@@ -6,3 +6,5 @@ sqlite3
 framework/
 cms/
 vendor/
+compass/
+sortablegridfield/

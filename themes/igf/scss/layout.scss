@@ -1,0 +1,15 @@
+// Core variables and mixins
+@import "variables"; // Modify this for custom colors, font-sizes, etc
+@import "mixins";
+
+/* Body
+-------------------------------------------------- */
+html {
+	height: 100%;
+}
+
+body {
+	background-color: #EFEFEF;
+	min-height: 100%;
+	position: relative;
+}

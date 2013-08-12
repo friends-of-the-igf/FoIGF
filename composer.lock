@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f8f9e2c78c1de56914fcf4b61408d20b",
+    "hash": "0b855a6ed88f0cc95f32b801d58b5eb2",
     "packages": [
         {
             "name": "composer/installers",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "3e3c4ace757bd7b9d11b9dc6b7fd2f4ef57dc8c1"
+                "reference": "v1.0.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/3e3c4ace757bd7b9d11b9dc6b7fd2f4ef57dc8c1",
-                "reference": "3e3c4ace757bd7b9d11b9dc6b7fd2f4ef57dc8c1",
+                "url": "https://api.github.com/repos/composer/installers/zipball/v1.0.5",
+                "reference": "v1.0.5",
                 "shasum": ""
             },
             "replace": {
@@ -67,6 +67,7 @@
                 "li3",
                 "lithium",
                 "mako",
+                "modulework",
                 "phpbb",
                 "ppi",
                 "silverstripe",
@@ -74,7 +75,7 @@
                 "wordpress",
                 "zend"
             ],
-            "time": "2013-05-25 02:21:36"
+            "time": "2013-08-07 17:25:08"
         },
         {
             "name": "silverstripe/cms",
@@ -124,6 +125,41 @@
             "time": "2013-02-18 00:20:00"
         },
         {
+            "name": "silverstripe/compass",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe-labs/silverstripe-compass.git",
+                "reference": "df401ac7e503b30c6cc0828448abeb18ecf767a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe-labs/silverstripe-compass/zipball/df401ac7e503b30c6cc0828448abeb18ecf767a9",
+                "reference": "df401ac7e503b30c6cc0828448abeb18ecf767a9",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/framework": "3.*"
+            },
+            "type": "silverstripe-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Hamish Friedlander",
+                    "email": "hamish@silverstripe.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Compass module for SilverStripe seamlessly integrates Sass and Compass in SilverStripe modules and themes. You write your styles in sass, and the module automatically compiles these sass files to css.",
+            "keywords": [
+                "compass",
+                "css",
+                "sass",
+                "silverstripe"
+            ],
+            "time": "2013-01-16 09:27:25"
+        },
+        {
             "name": "silverstripe/framework",
             "version": "3.0.5",
             "source": {
@@ -168,6 +204,43 @@
                 "silverstripe"
             ],
             "time": "2013-02-19 23:39:00"
+        },
+        {
+            "name": "undefinedoffset/sortablegridfield",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UndefinedOffset/SortableGridField.git",
+                "reference": "0.2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UndefinedOffset/SortableGridField/zipball/0.2.0",
+                "reference": "0.2.0",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "silverstripe/framework": "3.*"
+            },
+            "type": "silverstripe-module",
+            "extra": {
+                "installer-name": "sortablegridfield"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Ed Chipman",
+                    "homepage": "http://www.edchipman.ca",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Adds drag and drop functionality to SilverStripe 3.0's GridField",
+            "keywords": [
+                "gridfield",
+                "silverstripe"
+            ],
+            "time": "2013-08-04 15:23:28"
         }
     ],
     "packages-dev": [
