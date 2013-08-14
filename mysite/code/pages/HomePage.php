@@ -19,7 +19,9 @@ class HomePage_Controller extends Page_Controller{
 	}
 
 	public function getSessions(){
+
 		$list = new ArrayList();
+
 		for($i = 0; $i < 4; $i++){
 
 			$list2 = new ArrayList();
@@ -32,3 +34,5 @@ class HomePage_Controller extends Page_Controller{
 		return $list;
 	}
 }
+
+// $sessions = Sessions::get()->sort('DESC', 'Created');

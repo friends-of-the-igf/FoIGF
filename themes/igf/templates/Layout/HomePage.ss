@@ -22,7 +22,7 @@
 		</div>
 		<div>
 			<% loop getSpeakers %>
-				<% include Speakers %>
+				<% include Speaker %>
 			<% end_loop %>
 		</div>
 	</div>
@@ -39,7 +39,7 @@
 			<% loop getSessions %>
 			<div class="span3">
 			 	<% loop col %>
-			 		<% include Sessions %>
+			 		<% include Session %>
 			 	<% end_loop %>
 			 </div>
 			<% end_loop %>

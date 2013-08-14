@@ -53,7 +53,7 @@ body { background-color: white; min-height: 100%; position: relative; }
 #homepage .speakers { padding-top: 50px; }
 #homepage .speakers .heading { padding-bottom: 10px; }
 #homepage .speakers .heading .link { text-align: right; padding-top: 20px; text-decoration: underline; }
-#homepage .sessions { padding-top: 50px; }
+#homepage .sessions { padding-top: 50px; padding-bottom: 50px; }
 #homepage .sessions .heading { padding-bottom: 10px; }
 #homepage .sessions .heading .link { text-align: right; padding-top: 10px; }
 #homepage .sessions .heading .link a { color: white; height: 45px; text-transform: uppercase; text-shadow: 0px -2px 1px #0878e3; font-size: 12px; letter-spacing: 1px; padding: 12px 10px; border: 1px #2188ea solid; background-image: linear-gradient(to bottom, #359bfc, #0878e3); box-shadow: none; border-radius: 4px; }
@@ -61,7 +61,13 @@ body { background-color: white; min-height: 100%; position: relative; }
 #homepage .sessions .ses .span3 { margin-left: 10px; width: 230px; }
 #homepage .sessions .session-tile { border: 1px solid #d8d8d8; margin-bottom: 20px; }
 #homepage .sessions .session-tile .video { margin: 3px; }
-#homepage .sessions .session-tile .title { margin: 5px; font-weight: bold; }
+#homepage .sessions .session-tile .text-wrap { margin: 5px; }
+#homepage .sessions .session-tile .text-wrap .title { font-weight: bold; }
+#homepage .sessions .session-tile .text-wrap .location { color: #696b6f; font-size: 12px; }
+#homepage .sessions .session-tile .text-wrap .location a { color: #42a1fc; }
+#homepage .sessions .session-tile .text-wrap .date { color: #696b6f; font-size: 12px; font-weight: 500; }
+#homepage .sessions .session-tile .text-wrap .tags { padding-top: 10px; color: #696b6f; font-size: 13px; font-weight: 500; }
+#homepage .sessions .session-tile .text-wrap .tags a { font-weight: normal; }
 
 /*Responsiveness -------------------------------------------------- */
 @media (max-width: 979px) { #searchbar .search #Search input { width: 75%; }

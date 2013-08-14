@@ -257,7 +257,7 @@ body {
 	}
 	.sessions{
 		padding-top: 50px;
-
+		padding-bottom: 50px;
 		.heading{
 			
 			padding-bottom: 10px;
@@ -302,17 +302,40 @@ body {
 				margin: 3px;
 			}
 
-			.title{
+			.text-wrap{
+
 				margin: 5px;
-				font-weight: bold;
-			}
 
-			.details{
+				.title{
+					
+					font-weight: bold;
+				}
 
-			}
+				.location{
+					color: $gray;
+					font-size: 12px;
+					a{
+						color:$blueLight;
+					}
+				}
 
-			.tags{
+				.date{
+					color: $gray;
+					font-size: 12px;
+					font-weight: 500;
 
+				}
+
+				.tags{
+					padding-top: 10px;
+					color: $gray;
+					font-size: 13px;
+					font-weight: 500;
+					a{
+						font-weight: normal;
+					}
+
+				}
 			}
 		}
 	}
