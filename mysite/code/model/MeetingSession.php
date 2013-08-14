@@ -14,7 +14,12 @@ class MeetingSession extends DataObject {
 
 	public static $has_one = array(
 		'Transcript' => 'File',
-		'Proposal' => 'File'
+		'Proposal' => 'File',
+		'Meeting' => 'Meeting'
+	);
+
+	public static $many_many = array(
+		'Speakers' => 'Member'
 	);
 
 	public static $summary_fields = array(
@@ -33,6 +38,11 @@ class MeetingSession extends DataObject {
 		$fields->push(new TextField('Tags', 'Tags (comma seperated)'));
 		$fields->push(new HTMLEditorField('Content', 'Content'));
 		$fields->push(new TextField('YouTubeID', 'YouTube ID (can be ID or full URL)'));
+
+		$meetings = Meeting::get();
+		if($meetings->count() != 0) {
+			$fields->push(new DropdownField('MeetingID', 'Meeting', $meetings->map()));
+		}
 
 		return $fields;
 	}
