@@ -1,0 +1,6 @@
+---
+Name: IGF
+---
+Director:
+  rules:
+    'session//$ID!/$Action': 'SessionController'

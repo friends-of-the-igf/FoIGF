@@ -30,4 +30,9 @@ class SessionsHolder_Controller extends Page_Controller {
 		return $form;
 	}
 
+	public function getSessions() {
+		$sessions = MeetingSession::get();
+		return $sessions;
+	}
+
 }
