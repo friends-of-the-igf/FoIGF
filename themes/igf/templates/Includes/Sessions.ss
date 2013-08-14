@@ -5,8 +5,10 @@
 	<div class="title">
 		Taking Stock and the Way Forward
 	</div>
-	<div class="details">
+	<div class="location">
 		Session
+	</div>
+	<div class="date">
 	</div>
 	<div class="tags">
 		Tags
