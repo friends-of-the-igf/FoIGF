@@ -5,16 +5,19 @@
 	</div>
 	<div class="text-wrap">
 		<div class="title">
-			Taking Stock and the Way Forward
+			$Title
 		</div>
 		<div class="location">
-			<a href>Session</a> in <a href>Location</a>
+			<a href>$Type</a> in <a href>$Location</a>
 		</div>
 		<div class="date">
-			21 Decemember 2008 | 124 views
+			$Date | $View views
 		</div>
 		<div class="tags">
-			Tagged: <a href>Feedback</a>, <a href>sustainability</a>
+			Tagged: 
+			<% loop TagCollection %>
+				<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
+			<% end_loop %>
 		</div>
 	</div>
 

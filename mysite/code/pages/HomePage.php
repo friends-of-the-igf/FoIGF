@@ -19,20 +19,26 @@ class HomePage_Controller extends Page_Controller{
 	}
 
 	public function getSessions(){
-
 		$list = new ArrayList();
-
-		for($i = 0; $i < 4; $i++){
-
-			$list2 = new ArrayList();
-
-			for($x = 0; $x < 3; $x++){
-				$list2->push($x);
+		for($i = -1; $i < 11; $i += 4){
+			$columns = new ArrayList();
+			if($i == -1){
+				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(3);
+			} else
+			{
+				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(3, $i);
 			}
-			$list->push(new ArrayData(array('col' => $list2)));
+			foreach($col as $session){
+				$columns->push($session);
+			}
+			$list->push(new ArrayData(array('Columns' => $columns)));
 		}
 		return $list;
 	}
+
+	public function sessionLink(){
+		return SessionsHolder::get()->First()->Link();
+	}
 }
 
-// $sessions = Sessions::get()->sort('DESC', 'Created');
+

@@ -268,7 +268,7 @@ body {
 				
 				
 
-				a{
+				.button{
 					color:white;
 					height:45px;
 					text-transform:uppercase;
@@ -280,9 +280,12 @@ body {
 					background-image: linear-gradient(to bottom, $blue, $blueDarker);
 					box-shadow: none;
 					border-radius: 4px;
+					:hover{
+						text-decoration:none;
+					}
 
 				}
-				a:hover{
+				.button:hover{
 						text-decoration:none;
 					}
 			}

@@ -4,6 +4,8 @@ class MeetingSession extends DataObject {
 	public static $db = array(
 		'Title' => 'Text',
 		'Date' => 'Date',
+		'Type' => 'Text',
+		'Location' => 'Text',
 		'Tags' => 'Text',
 		'Views' => 'Int',
 		'Content' => 'HTMLText',
@@ -25,6 +27,8 @@ class MeetingSession extends DataObject {
 
 		$fields->push(new TextField('Title', 'Title'));
 		$fields->push($date = new DateField('Date', 'Date'));
+		$fields->push(new TextField('Type', 'Type'));	
+		$fields->push(new TextField('Location', 'Location'));
 		$date->setConfig('showcalendar', true);
 		$fields->push(new TextField('Tags', 'Tags (comma seperated)'));
 		$fields->push(new HTMLEditorField('Content', 'Content'));
@@ -35,6 +39,12 @@ class MeetingSession extends DataObject {
 
 	public function Link($action = null) {
 		return Controller::join_links('session', $this->ID, $action);
+	}
+
+	public function onAfterWrite(){
+		parent::onAfterWrite();
+
+		$this->formatYouTubeID();
 	}
 
 	public function TagsCollection() {
@@ -57,6 +67,36 @@ class MeetingSession extends DataObject {
 		if($this->Tags) {
 			return $output;
 		}
+	}
+
+	public function formatYouTubeID(){
+		$url = $this->YoutubeID;
+         
+        $params = explode('?',$url);
+        if(count($params) > 1) {
+            $paras = explode('&',$params[1]);
+            foreach($paras as $para) {
+                $type = substr($para,0,2);
+                if($type == 'v=') {
+                    $str = explode('=',$para);
+                    $v = $str[1];
+                    if($v != $url) {
+                        $this->VideoID = $v;
+                        $this->write();
+                    }
+                }
+            }
+        }
+        $params = explode('be/',$url);
+            if(count($params) > 1) {
+            $paras = explode('?',$params[1]);
+            if(count($paras) == 1){
+                if($paras[0] != $url){
+                    $this->VideoID = $paras[0];
+                    $this->write();
+                }
+            } 
+        }  
 	}
 
 }

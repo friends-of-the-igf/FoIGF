@@ -32,13 +32,13 @@
 			<h3>Recently added sessions</h3>
 			</div>
 			<div class="span4 link">
-				<a>Browse Sessions</a>
+				<a href='$sessionLink' class="button">Browse Sessions</a>
 			</div>
 		</div>
 		<div class="row ses">
 			<% loop getSessions %>
 			<div class="span3">
-			 	<% loop col %>
+			 	<% loop Columns %>
 			 		<% include Session %>
 			 	<% end_loop %>
 			 </div>
