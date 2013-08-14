@@ -34,7 +34,7 @@ body { background-color: white; min-height: 100%; position: relative; }
 #searchbar .logo { text-align: right; padding-top: 10px; }
 
 /*Footer -------------------------------------------------- */
-#footer { width: 100%; background: #696b6f; position: absolute; bottom: 0px; }
+#footer { width: 100%; background: #696b6f; position: relative; }
 #footer .container { padding-top: 30px; padding-bottom: 70px; }
 #footer .container ul { list-style-type: none; margin: 0px; }
 #footer .container ul li { padding: 3px; }
@@ -43,6 +43,25 @@ body { background-color: white; min-height: 100%; position: relative; }
 #footer .container .logo { text-align: right; }
 #footer .container .website span { margin-top: 0px; color: white; font-weight: 400; }
 #footer .container .website a { color: white; font-weight: 100; letter-spacing: 1px; text-decoration: underline; }
+
+/*HomePage -------------------------------------------------- */
+#homepage h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
+#homepage .content { padding-top: 50px; padding-bottom: 50px; }
+#homepage .content .social img { padding-top: 5px; padding-bottom: 5px; }
+#homepage .content .text { color: #303030; font-size: 35px; line-height: 35px; }
+#homepage .twitter { border: 1px solid #d8d8d8; }
+#homepage .speakers { padding-top: 50px; }
+#homepage .speakers .heading { padding-bottom: 10px; }
+#homepage .speakers .heading .link { text-align: right; padding-top: 20px; text-decoration: underline; }
+#homepage .sessions { padding-top: 50px; }
+#homepage .sessions .heading { padding-bottom: 10px; }
+#homepage .sessions .heading .link { text-align: right; padding-top: 10px; }
+#homepage .sessions .heading .link a { color: white; height: 45px; text-transform: uppercase; text-shadow: 0px -2px 1px #0878e3; font-size: 12px; letter-spacing: 1px; padding: 12px 10px; border: 1px #2188ea solid; background-image: linear-gradient(to bottom, #359bfc, #0878e3); box-shadow: none; border-radius: 4px; }
+#homepage .sessions .heading .link a:hover { text-decoration: none; }
+#homepage .sessions .ses .span3 { margin-left: 10px; width: 230px; }
+#homepage .sessions .session-tile { border: 1px solid #d8d8d8; margin-bottom: 20px; }
+#homepage .sessions .session-tile .video { margin: 3px; }
+#homepage .sessions .session-tile .title { margin: 5px; font-weight: bold; }
 
 /*Responsiveness -------------------------------------------------- */
 @media (max-width: 979px) { #searchbar .search #Search input { width: 75%; }

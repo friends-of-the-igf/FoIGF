@@ -163,8 +163,8 @@ body {
 #footer{
 	width: 100%;
 	background: $gray;
-	position: absolute;
-	bottom:0px;
+	position: relative;
+	
 
 	.container{
 		padding-top: 30px;
@@ -208,6 +208,123 @@ body {
 		}
 	}
 }
+/*HomePage -------------------------------------------------- */
+#homepage{
+	h3{
+		font-weight: normal;
+		font-size: 30px;
+		color: $grayDarkest;
+		margin: 0px;
+
+	}
+
+	.content{
+		padding-top: 50px;
+		padding-bottom: 50px;
+		
+		.social{
+			img{
+
+				padding-top:5px;
+				padding-bottom: 5px;
+			}
+		}
+		.text{
+			color: $grayDarkest;
+			font-size: 35px;
+			line-height: 35px;
+		}
+	}
+
+	.twitter{
+		border: 1px solid $grayMedium;
+	}
+
+	.speakers{
+
+		padding-top: 50px;
+		.heading{
+			
+			padding-bottom: 10px;
+
+			.link{
+				text-align: right;
+				padding-top: 20px;
+				text-decoration: underline;	
+
+			}
+		}
+	}
+	.sessions{
+		padding-top: 50px;
+
+		.heading{
+			
+			padding-bottom: 10px;
+
+		.link{
+				text-align: right;
+				padding-top: 10px;
+				
+				
+
+				a{
+					color:white;
+					height:45px;
+					text-transform:uppercase;
+					text-shadow: 0px -2px 1px $blueDarker;
+					font-size: 12px;
+					letter-spacing: 1px;
+					padding: 12px 10px;
+					border: 1px $blueDark solid;
+					background-image: linear-gradient(to bottom, $blue, $blueDarker);
+					box-shadow: none;
+					border-radius: 4px;
+
+				}
+				a:hover{
+						text-decoration:none;
+					}
+			}
+		}
+		.ses{
+			.span3{
+
+				margin-left:10px;
+				width: 230px;
+			}
+		}
+		.session-tile{
+			border: 1px solid $grayMedium;
+			margin-bottom: 20px;
+
+			.video{
+				margin: 3px;
+			}
+
+			.title{
+				margin: 5px;
+				font-weight: bold;
+			}
+
+			.details{
+
+			}
+
+			.tags{
+
+			}
+		}
+	}
+
+
+
+
+
+
+
+}
+
 /*Responsiveness -------------------------------------------------- */
 
 @media (max-width: 979px) {
@@ -223,6 +340,4 @@ body {
 			}
 		}
 	}
-
-
 }
