@@ -27,4 +27,21 @@ class Page_Controller extends ContentController {
 		parent::init();
 	}
 
+	public function CustomSearch(){
+		$fields = new FieldList($input = new TextField('Search', 'Search'));
+
+		$input->setAttribute('placeholder', 'Search for Sessions, Meetings and Speakers...');
+
+		$actions = new FieldList($button = new FormAction('doSearch', 'Search'));
+		$button->addExtraClass('btn');
+	
+		$button->addExtraClass('btn-primary');
+
+		$form = new Form($this, 'SearchForm', $fields, $actions);
+	
+		$form->addExtraClass('form-search');
+
+		return $form;
+	}
+
 }

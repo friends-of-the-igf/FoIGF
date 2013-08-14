@@ -16,11 +16,11 @@ if(class_exists('SiteTree')) SiteTree::enable_nested_urls();
 Email::setAdminEmail("ben@stripetheweb.com");
 
 // Don't use compass when not required
-if ( !isset($_GET['flush']) ) {
-	if(class_exists('SiteTree')) {
-		Object::remove_extension('SiteTree', 'Compass_RebuildDecorator');
-	}
-	if(class_exists('LeftAndMain')) {
-		Object::remove_extension('LeftAndMain', 'Compass_RebuildDecorator');
-	}
-}
+// if ( !isset($_GET['flush']) ) {
+// 	if(class_exists('SiteTree')) {
+// 		Object::remove_extension('SiteTree', 'Compass_RebuildDecorator');
+// 	}
+// 	if(class_exists('LeftAndMain')) {
+// 		Object::remove_extension('LeftAndMain', 'Compass_RebuildDecorator');
+// 	}
+// }

@@ -2,4 +2,44 @@
 -------------------------------------------------- */
 html { height: 100%; }
 
-body { background-color: #EFEFEF; min-height: 100%; position: relative; }
+body { background-color: white; min-height: 100%; position: relative; }
+
+/* Navigation */
+#navigation { height: 55px; }
+#navigation .navbar-inner { height: 100%; background: #303030; }
+#navigation .navbar-inner .container { height: 100%; }
+#navigation .navbar-inner .container .brand { padding-top: 12px; padding-right: 15px; }
+#navigation .navbar-inner .container .social-icons { padding-top: 15px; margin-right: -1px; float: right; }
+#navigation .navbar-inner .container .social-icons .social { padding-left: 3px; padding-right: 3px; }
+#navigation .navbar-inner .container ul { /*	border-left:1px black solid;
+	border-right:1px black solid;*/ height: 100%; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+#navigation .navbar-inner .container ul li a { padding: 22px 0px 0px 0px; margin-left: 15px; margin-right: 15px; color: #e0e0e0; text-shadow: 0.5px 0px #696b6f; line-height: 12px; }
+#navigation .navbar-inner .container ul li.active a { color: white; background: #303030; border-bottom: 2px #359bfc solid; }
+#navigation .navbar-inner .container ul .divider-vertical { height: 100%; border-left: 1px black solid; border-right: 1px #535353 solid; }
+
+/* Search */
+#searchbar { background: #f3f3f3; border-bottom: 1px solid #d8d8d8; }
+#searchbar .search { margin-top: -10px; }
+#searchbar .search label { display: none; }
+#searchbar .search form { margin-bottom: 10px; }
+#searchbar .search .mglass { position: relative; margin-bottom: -62px; margin-left: 5px; margin-top: 0px; }
+#searchbar .search fieldset { width: 77%; display: inline-block; }
+#searchbar .search #Search { width: 100%; }
+#searchbar .search #Search input { width: 94%; height: 35px; border: none; box-shadow: 0px 2px 2px #e0e0e0 inset; padding-left: 40px; }
+#searchbar .search #Search ::-webkit-input-placeholder { color: #535353; }
+#searchbar .search #Search :-moz-placeholder { color: #535353; }
+#searchbar .search #Search ::-moz-placeholder { color: #535353; }
+#searchbar .search #Search :-ms-input-placeholder { color: #535353; }
+#searchbar .search .Actions { display: inline-block; width: 20%; padding-left: 17px; }
+#searchbar .search .Actions input { height: 43px; text-transform: uppercase; text-shadow: 0px -2px 1px #0878e3; font-size: 12px; letter-spacing: 1px; padding: 10px 15px; border: 1px #2188ea solid; background-image: linear-gradient(to bottom, #359bfc, #0878e3); box-shadow: none; }
+#searchbar .logo { text-align: right; padding-top: 10px; }
+
+/*Footer*/
+#footer { width: 100%; background: #696b6f; position: absolute; bottom: 0px; }
+#footer .container { padding-top: 30px; padding-bottom: 70px; }
+#footer .container ul { list-style-type: none; margin: 0px; }
+#footer .container ul li { padding: 3px; }
+#footer .container ul li a { color: white; font-weight: 100; font-size: 13px; letter-spacing: 1px; text-shadow: 0px -2px 1px #303030; }
+#footer .container ul li .social { padding-right: 5px; }
+#footer .container .website span { margin-top: 0px; color: white; font-weight: 400; }
+#footer .container .website a { color: white; font-weight: 100; letter-spacing: 1px; text-decoration: underline; }

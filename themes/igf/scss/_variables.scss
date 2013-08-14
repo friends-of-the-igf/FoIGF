@@ -10,18 +10,21 @@
 // Grays
 // -------------------------
 $black:                 #000 !default;
-$grayDarker:            #222 !default;
-$grayDark:              #333 !default;
-$gray:                  #555 !default;
-$grayLight:             #999 !default;
-$grayLighter:           #eee !default;
+$grayDarkest:            #303030; 
+$grayDarker:             #5E5E5E;
+$grayDark:				 #535353;
+$grayMedium:			#D8D8D8;
+$gray:                  #696B6F;
+$grayLight:             #E0E0E0; 
+$grayLighter:           #F3F3F3;
 $white:                 #fff !default;
 
 
 // Accent colors
 // -------------------------
-$blue:                  #049cdb !default;
-$blueDark:              #0064cd !default;
+$blue:                  #359BFC;
+$blueDark:				#2188EA;
+$blueDarker:            #0878E3;
 $green:                 #46a546 !default;
 $red:                   #9d261d !default;
 $yellow:                #ffc40d !default;
@@ -151,8 +154,8 @@ $zindexModal:             1050 !default;
 
 // Sprite icons path
 // -------------------------
-$iconSpritePath:          "../img/glyphicons-halflings.png" !default;
-$iconWhiteSpritePath:     "../img/glyphicons-halflings-white.png" !default;
+$iconSpritePath:          "../images/glyphicons-halflings.png" !default;
+$iconWhiteSpritePath:     "../images/glyphicons-halflings-white.png" !default;
 
 
 // Input placeholder text color

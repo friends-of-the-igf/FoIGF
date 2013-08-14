@@ -37,6 +37,7 @@
 <body id="$ClassName">
 	<div id="wrap">
 		<% include Navigation %>
+		<% include SearchBar %>
 		<% include Header %>
 	    <div id="contentWrap" class="container">
 			$Layout
