@@ -14,16 +14,18 @@ body {
 	position: relative;
 }
 
-/* Navigation */
+/* Navigation -------------------------------------------------- */
+
 #navigation{
 	height: 55px;
+
 	.navbar-inner{
+
 		height: 100%;
-	
 		background: $grayDarkest;
 
-		.container{
-		
+		.container{	
+
 			height: 100%;
 
 			.brand{
@@ -44,8 +46,6 @@ body {
 			}
 
 			ul{
-			/*	border-left:1px black solid;
-				border-right:1px black solid;*/
 				height: 100%;
 				text-transform:uppercase;
 				font-size: 12px;
@@ -53,8 +53,6 @@ body {
 
 
 				li{
-					
-
 					a{
 						padding: 22px 0px 0px 0px;
 						margin-left: 15px;
@@ -83,7 +81,8 @@ body {
 	}
 }
 
-/* Search */
+/* Search -------------------------------------------------- */
+
 #searchbar{
 	background: $grayLighter;
 	border-bottom: 1px solid $grayMedium;
@@ -160,7 +159,7 @@ body {
 	}
 }
 
-/*Footer*/
+/*Footer -------------------------------------------------- */
 #footer{
 	width: 100%;
 	background: $gray;
@@ -190,6 +189,10 @@ body {
 			}
 		}
 
+		.logo{
+			text-align: right;
+		}
+
 		.website{
 			span{
 				margin-top: 0px;
@@ -203,8 +206,23 @@ body {
 				text-decoration: underline;
 			}
 		}
-
-
-
 	}
+}
+/*Responsiveness -------------------------------------------------- */
+
+@media (max-width: 979px) {
+	#searchbar{
+		.search{
+			#Search{
+				input{
+					width:75%;
+				}
+			}
+			.Actions{
+				width:19%;
+			}
+		}
+	}
+
+
 }

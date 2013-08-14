@@ -21,7 +21,7 @@
 					
 				</ul>
 			</div>
-			<div class="span1">		
+			<div class="span2 logo">		
 					<img src="http://placehold.it/60x45"/>	
 			</div>
 			<div class="span2">
