@@ -4,15 +4,19 @@
 		<div class="span12">
 			<h3>$Title</h3>
 			<div>
-				$Date - A <a>$Type</a> on "Topic here" in <a>$Location</a>
+				$Date - A <a>$Type.Name</a> on "Topic here" in <a>$Meeting.Location.Name</a>
 			</div>
 		</div>	
 	</div>
 	<div class="row">
 		<div class="span8 content">	
+			<% if Videos %>
+			<% loop Videos %>
 			<div class="video">
 				$getVideo
 			</div>
+			<% end_loop %>
+			<% end_if %>
 			<div>
 				<a class="btn"><b>Read full session transcript</b></a> <a class="btn"><b>View Original proposal</b></a>
 			</div>

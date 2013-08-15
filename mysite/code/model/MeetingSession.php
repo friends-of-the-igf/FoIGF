@@ -7,7 +7,7 @@ class MeetingSession extends DataObject {
 		'Tags' => 'Text',
 		'Views' => 'Int',
 		'Content' => 'HTMLText',
-		'YouTubeID' => 'VarChar'
+		'TranscriptContent' => 'HTMLText'
 	);
 
 	public static $has_one = array(
@@ -15,6 +15,10 @@ class MeetingSession extends DataObject {
 		'Proposal' => 'File',
 		'Meeting' => 'Meeting',
 		'Type' => 'Type'
+	);
+
+	public static $has_many = array(
+		'Videos' => 'Video'
 	);
 
 	public static $many_many = array(
@@ -30,11 +34,15 @@ class MeetingSession extends DataObject {
 		$fields = new FieldList();
 
 		$mainTab = new Tab('Main');
+		$transcriptTab = new Tab('Transcript');
 		$filesTab = new Tab('Files');
+		$videosTab = new Tab('Videos');
 		$speakersTab = new Tab('Speakers');
 		$tabset = new TabSet("Root",
 			$mainTab,
+			$transcriptTab,
 			$filesTab,
+			$videosTab,
 			$speakersTab
 		);
 		$fields->push( $tabset );
@@ -49,15 +57,21 @@ class MeetingSession extends DataObject {
 		}	
 
 		$mainTab->push(new TextField('Tags', 'Tags (comma seperated)'));
-		$mainTab->push(new TextField('YouTubeID', 'YouTube ID (can be ID or full URL)'));
 		$meetings = Meeting::get();
 		if($meetings->count() != 0) {
 			$mainTab->push(new DropdownField('MeetingID', 'Meeting', $meetings->map()));
 		}
 		$mainTab->push(new HTMLEditorField('Content', 'Content'));
 
+		$transcriptTab->push(new HTMLEditorField('TranscriptContent', 'TranscriptContent'));
+
 		$filesTab->push(new UploadField('Transcript', 'Transcript'));
 		$filesTab->push(new UploadField('Proposal', 'Proposal'));
+
+		$gridFieldConfig = new GridFieldConfig_RecordEditor();
+		$list = $this->Videos();
+		$gridField = new GridField('Videos', 'Videos', $list, $gridFieldConfig);
+		$videosTab->push($gridField);
 
 		if($this->ID) {
 			$group = $this;
@@ -73,12 +87,6 @@ class MeetingSession extends DataObject {
 
 	public function Link($action = null) {
 		return Controller::join_links('session', $this->ID, $action);
-	}
-
-	public function onAfterWrite(){
-		parent::onAfterWrite();
-
-		$this->formatYouTubeID();
 	}
 
 	public function TagsCollection() {
@@ -103,46 +111,11 @@ class MeetingSession extends DataObject {
 		}
 	}
 
-	public function formatYouTubeID(){
-
-		$url = $this->YouTubeID;
-         
-        $params = explode('?',$url);
-
-        if(count($params) > 1) {
-
-            $paras = explode('&',$params[1]);
-            foreach($paras as $para) {
-                $type = substr($para,0,2);
-                if($type == 'v=') {
-                    $str = explode('=',$para);
-                    $v = $str[1];
-                    if($v != $url) {
-                    	error_log($v);
-                        $this->YouTubeID = $v;
-                        $this->write();
-                    }
-                }
-            }
-        }
-        $params = explode('be/',$url);
-            if(count($params) > 1) {
-            $paras = explode('?',$params[1]);
-            if(count($paras) == 1){
-                if($paras[0] != $url){
-                	error_log($paras[0]);
-                    $this->YouTubeID = $paras[0];
-                    $this->write();
-                }
-            } 
-        }  
-	}
-
 	public function getVideo(){
-        if($this->YouTubeID != null){
-            return '<iframe width="100%" height="100%" src="http://www.youtube.com/v/'.$this->YouTubeID.'?controls=0&showinfo=0" frameborder="0"></iframe>';
-        
-        }
+		if($this->Videos()->Count() != 0) {
+			$vid = $this->Videos()->first();
+			return '<iframe width="100%" height="100%" src="http://www.youtube.com/v/'.$vid->YouTubeID.'?controls=0&showinfo=0" frameborder="0"></iframe>';
+		}
     }
 
     public function getRelatedSessions(){
