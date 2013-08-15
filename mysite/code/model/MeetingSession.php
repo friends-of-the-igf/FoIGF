@@ -137,7 +137,7 @@ class MeetingSession extends DataObject {
 
 	  public function getVideo(){
         if($this->YouTubeID != null){
-            return '<iframe width="100%" height="130" src="http://www.youtube.com/v/'.$this->YouTubeID.'?controls=0&showinfo=0" frameborder="0"></iframe>';
+            return '<iframe width="100%" height="100%" src="http://www.youtube.com/v/'.$this->YouTubeID.'?controls=0&showinfo=0" frameborder="0"></iframe>';
         
         }
     }

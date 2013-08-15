@@ -80,6 +80,7 @@ body {
 /* Search -------------------------------------------------- */
 
 #searchbar{
+
 	background: $grayLighter;
 	border-bottom: 1px solid $grayMedium;
 
@@ -158,7 +159,6 @@ body {
 	background: $gray;
 	position: relative;
 	
-
 	.container{
 		padding-top: 30px;
 		padding-bottom: 70px;
@@ -206,19 +206,26 @@ body {
 .heading{
 	padding-bottom: 10px;
 }
+h3{
+	font-weight: normal;
+	font-size: 30px;
+	color: $grayDarkest;
+	margin: 0px;
+
+}
+.btn{
+	padding: 10px 10px;
+	text-transform:uppercase;
+	font-size: 12px;
+	letter-spacing: 1px;
+}
+
 
 /*HomePage -------------------------------------------------- */
 #HomePage{
 
 	#homepage{
-		h3{
-			font-weight: normal;
-			font-size: 30px;
-			color: $grayDarkest;
-			margin: 0px;
-
-		}
-
+		
 		.content{
 			padding-top: 50px;
 			padding-bottom: 50px;
@@ -267,18 +274,12 @@ body {
 		background: $grayLighter;
 	}
 
-
 	#sessionholder{
-
 		#session-wrap{
 			background: white;
 			border-left: 1px $grayMedium solid;
 			margin-left: 9px;
-		
-
-		
 		}
-
 		.sessions{
 			background: white;
 			border-left: 1px $grayMedium solid;
@@ -342,10 +343,7 @@ body {
 		color: $grayDarkest;
 		margin: 0px;
 
-	}
-			
-			
-
+	}		
 		.link{
 				text-align: right;
 				padding-top: 10px;	
@@ -359,26 +357,31 @@ body {
 				}
 				
 			}
-	
-
 		.session-tile{
 			border: 1px solid $grayMedium;
 			margin-bottom: 20px;
+		
 
 			.video{
-				margin: 3px;
+				height: 130px;
 			}
 
 			.text-wrap{
-				margin: 5px;
 
-				.title{
-					
-					font-weight: bold;
+				margin: 5px;
+				color: $gray;
+				font-size: 12px;
+				p{
+					padding: 0;
+					margin: 0;
 				}
+				a{
+						color:$blueLight;
+					}
+
 
 				.location{
-					color: $gray;
+				
 					font-size: 12px;
 					a{
 						color:$blueLight;
@@ -405,6 +408,34 @@ body {
 			}
 		}
 	}
+/* session controller --------------------------------------------------*/
+#ses-wrap{
+	padding-top: 30px;
+
+	.content{
+		div{
+			padding-bottom: 20px;
+		}
+		h5{
+			color:$blue;
+			font-size: 16px;
+		}
+		p{
+			padding-bottom: 10px;
+		}
+	}
+
+	.video{
+		height: 300px;
+		
+	}
+
+
+
+
+
+}
+
 
 /* meetings holder -------------------------------------------------- */
 #MeetingsHolder {
@@ -432,6 +463,9 @@ body {
 }
 
 /* thumbnails -------------------------------------------------- */
+.thumbnails{
+	margin-left: 0px;
+}
 .thumbnail {
 	@include border-radius(0);
 	text-decoration: none;
