@@ -25,7 +25,6 @@ body {
 		background: $grayDarkest;
 
 		.container{	
-
 			height: 100%;
 
 			.brand{
@@ -38,7 +37,6 @@ body {
 				margin-right: -1px;
 				float: right;
 
-
 				.social{
 					padding-left: 3px;
 					padding-right: 3px;
@@ -50,8 +48,6 @@ body {
 				text-transform:uppercase;
 				font-size: 12px;
 				letter-spacing: 1px;
-
-
 				li{
 					a{
 						padding: 22px 0px 0px 0px;
@@ -88,7 +84,6 @@ body {
 	border-bottom: 1px solid $grayMedium;
 
 	.search{
-
 		margin-top: -10px;
 
 		label{
@@ -207,6 +202,11 @@ body {
 		}
 	}
 }
+/* Generic Classes -------------------------------------------------- */
+.heading{
+	padding-bottom: 10px;
+}
+
 /*HomePage -------------------------------------------------- */
 #HomePage{
 
@@ -248,9 +248,7 @@ body {
 		.speakers{
 
 			padding-bottom: 50px;
-			.heading{
-				
-				padding-bottom: 10px;
+
 
 				.link{
 					text-align: right;
@@ -258,35 +256,48 @@ body {
 					text-decoration: underline;	
 
 				}
-			}
+			
 		}	
 	}
 }
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder{
 
-#wrap{
-	background: $grayLighter;
-}
+	#wrap{
+		background: $grayLighter;
+	}
 
-#filter-wrap{
-	height:100%;
-}
 
 	#sessionholder{
+
 		#session-wrap{
 			background: white;
 			border-left: 1px $grayMedium solid;
 			margin-left: 9px;
+		
+
+		
 		}
 
 		.sessions{
 			background: white;
+			border-left: 1px $grayMedium solid;
+			margin-left: 9px;
+			padding-left: 20px;
+			padding-right: 20px;
+			background: white;
+			border-top: 1px $grayMedium solid;
 			padding-top: 30px;
 			height:100%;
 
 			.heading{
 				padding-left: 10px;
+			}
+			
+
+			.session-bottom{
+				width:100%;
+				text-align: center;
 			}
 
 		}
@@ -300,7 +311,7 @@ body {
 			form{
 				#Text{
 					input{
-						width:50%;
+						width:70%;
 					}
 				}
 				.Actions{
@@ -316,10 +327,8 @@ body {
 		}
 	}
 
-	#searchbar{
-		.logo{
-			text-align: left;
-		}
+	#searchbar{	
+		border: none;
 	}
 }
 
@@ -334,8 +343,8 @@ body {
 		margin: 0px;
 
 	}
-		.heading{		
-			padding-bottom: 10px;
+			
+			
 
 		.link{
 				text-align: right;
@@ -350,10 +359,8 @@ body {
 				}
 				
 			}
-		}
-		.ses{
 	
-		}
+
 		.session-tile{
 			border: 1px solid $grayMedium;
 			margin-bottom: 20px;
@@ -400,8 +407,19 @@ body {
 	}
 
 /*Responsiveness -------------------------------------------------- */
+/*  Responsive: Large desktop and up*/
 
-@media (max-width: 979px) {
+
+
+@media (min-width: 1200px) {
+
+}
+
+@media (max-width: 767px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
 	#searchbar{
 		.search{
 			#Search{

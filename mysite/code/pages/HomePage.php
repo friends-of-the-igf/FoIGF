@@ -20,7 +20,7 @@ class HomePage_Controller extends Page_Controller{
 
 	public function getSessions(){
 		$list = new ArrayList();
-		for($i = -1; $i < 11; $i += 4){
+		for($i = -1; $i < 12; $i += 4){
 			$columns = new ArrayList();
 			if($i == -1){
 				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(3);

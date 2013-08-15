@@ -44,6 +44,9 @@ body { background-color: white; min-height: 100%; position: relative; }
 #footer .container .website span { margin-top: 0px; color: white; font-weight: 400; }
 #footer .container .website a { color: white; font-weight: 100; letter-spacing: 1px; text-decoration: underline; }
 
+/* Generic Classes -------------------------------------------------- */
+.heading { padding-bottom: 10px; }
+
 /*HomePage -------------------------------------------------- */
 #HomePage #homepage h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 #HomePage #homepage .content { padding-top: 50px; padding-bottom: 50px; }
@@ -52,27 +55,24 @@ body { background-color: white; min-height: 100%; position: relative; }
 #HomePage #homepage .content .text { color: #303030; font-size: 35px; line-height: 35px; }
 #HomePage #homepage .twitter { margin-bottom: 50px; border: 1px solid #d8d8d8; }
 #HomePage #homepage .speakers { padding-bottom: 50px; }
-#HomePage #homepage .speakers .heading { padding-bottom: 10px; }
-#HomePage #homepage .speakers .heading .link { text-align: right; padding-top: 20px; text-decoration: underline; }
+#HomePage #homepage .speakers .link { text-align: right; padding-top: 20px; text-decoration: underline; }
 
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder #wrap { background: #f3f3f3; }
-#SessionsHolder #filter-wrap { height: 100%; }
 #SessionsHolder #sessionholder #session-wrap { background: white; border-left: 1px #d8d8d8 solid; margin-left: 9px; }
-#SessionsHolder #sessionholder .sessions { background: white; padding-top: 30px; height: 100%; }
+#SessionsHolder #sessionholder .sessions { background: white; border-left: 1px #d8d8d8 solid; margin-left: 9px; padding-left: 20px; padding-right: 20px; background: white; border-top: 1px #d8d8d8 solid; padding-top: 30px; height: 100%; }
 #SessionsHolder #sessionholder .sessions .heading { padding-left: 10px; }
+#SessionsHolder #sessionholder .sessions .session-bottom { width: 100%; text-align: center; }
 #SessionsHolder #sessionholder .filter { padding-top: 20px; background: #f3f3f3; margin-left: -46%; padding-left: 46%; margin-right: -10%; }
-#SessionsHolder #sessionholder .filter form #Text input { width: 50%; }
+#SessionsHolder #sessionholder .filter form #Text input { width: 70%; }
 #SessionsHolder #sessionholder .filter form .Actions input { height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
-#SessionsHolder #searchbar .logo { text-align: left; }
+#SessionsHolder #searchbar { border: none; }
 
 /*Sessions -------------------------------------------------- */
 .sessions { padding-bottom: 50px; }
 .sessions h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
-.sessions .heading { padding-bottom: 10px; }
-.sessions .heading .link { text-align: right; padding-top: 10px; }
-.sessions .heading .link .btn { color: white; padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
-.sessions .ses span3 { margin: 5px; }
+.sessions .link { text-align: right; padding-top: 10px; }
+.sessions .link .btn { color: white; padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 .sessions .session-tile { border: 1px solid #d8d8d8; margin-bottom: 20px; }
 .sessions .session-tile .video { margin: 3px; }
 .sessions .session-tile .text-wrap { margin: 5px; }
@@ -84,5 +84,6 @@ body { background-color: white; min-height: 100%; position: relative; }
 .sessions .session-tile .text-wrap .tags a { font-weight: normal; }
 
 /*Responsiveness -------------------------------------------------- */
-@media (max-width: 979px) { #searchbar .search #Search input { width: 75%; }
+/*  Responsive: Large desktop and up*/
+@media (min-width: 768px) and (max-width: 979px) { #searchbar .search #Search input { width: 75%; }
   #searchbar .search .Actions { width: 19%; } }

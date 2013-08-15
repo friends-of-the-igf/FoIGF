@@ -1,5 +1,5 @@
 <div id="homepage">
-	<div class="row content">
+	<div class="row-fluid content">
 		<div class="span1 social">
 			<div class="fb-like" data-href="http://developers.facebook.com/docs/reference/plugins/like" data-width="450" data-layout="box_count" data-show-faces="true" data-send="false"></div>
 			<div>
@@ -14,7 +14,7 @@
 		<img src="http://placehold.it/940x130">
 	</div>
 	<div class="speakers">
-		<div class="row heading">
+		<div class="row-fluid heading">
 			<div class="span8">
 			<h3>Recently added speakers</h3>
 			</div>
@@ -24,13 +24,13 @@
 		</div>
 		<div class="row">
 			<% loop getSpeakers %>
-				
+
 				<% include Speaker %>
 			<% end_loop %>
 		</div>
 	</div>
 	<div class="sessions">
-		<div class="row heading">
+		<div class="row-fluid heading">
 			<div class="span8">
 			<h3>Recently added sessions</h3>
 			</div>
@@ -38,7 +38,7 @@
 				<a href='$sessionLink' class="btn btn-primary">Browse Sessions</a>
 			</div>
 		</div>
-		<div class="row ses">
+		<div class="row-fluid ses">
 			<% loop getSessions %>
 			<div class="span3">
 			 	<% loop Columns %>
