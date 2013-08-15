@@ -113,12 +113,17 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
   #SessionsHolder #searchbar .search form { margin-left: -20px; }
   #SessionsHolder #searchbar .logo { margin-left: 5px; } }
 @media (max-width: 767px) { #navigation .navbar-inner .container .social-icons { display: none !important; }
-  #searchbar .logo { width: 10%; display: inline-block; }
-  #searchbar .search { width: 80%; }
+  #searchbar .logo { width: 10%; display: none; }
+  #searchbar .search { width: 100%; }
   #searchbar .search fieldset { width: 60%; }
   #searchbar .search .mglass { margin-left: 25px; }
   #searchbar .search #Search { padding-left: 20px; width: 90%; margin-right: 20px; }
   #searchbar .search #Search input { width: 90%; }
-  #searchbar .search .Actions { width: 19%; } }
-@media (min-width: 768px) and (max-width: 979px) { #searchbar .search #Search input { width: 75%; }
+  #searchbar .search #Search ::-webkit-input-placeholder { display: none; }
+  #searchbar .search #Search :-moz-placeholder { display: none; }
+  #searchbar .search #Search ::-moz-placeholder { display: none; }
+  #searchbar .search #Search :-ms-input-placeholder { display: none; }
+  #searchbar .search .Actions { width: 19%; float: right; margin-right: 30px; } }
+@media (min-width: 768px) and (max-width: 979px) { #navigation .navbar-inner .container .social-icons { display: none !important; }
+  #searchbar .search #Search input { width: 75%; }
   #searchbar .search .Actions { width: 19%; } }

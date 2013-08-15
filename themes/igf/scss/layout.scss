@@ -476,13 +476,12 @@ h3{
 
 
 	#searchbar{
-
 		.logo{
 			width: 10%;
-			display: inline-block;
+			display: none;
 			}
 		.search{
-			width: 80%;
+			width: 100%;
 			fieldset{
 				width:60%;
 			}
@@ -497,10 +496,24 @@ h3{
 				input{
 					width:90%;
 				}
+				::-webkit-input-placeholder { 
+				    display:none;
+				}
+				:-moz-placeholder { 
+				    display:none;
+				}
+				::-moz-placeholder {
+				    display:none;
+				}
+				:-ms-input-placeholder { 
+				     display:none;
+				}
 
-			}
+				}
 			.Actions{
 				width:19%;
+				float:right;
+				margin-right: 30px;
 			}
 		}
 	}
@@ -509,6 +522,16 @@ h3{
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+
+	#navigation {
+	.navbar-inner {
+		.container {
+			.social-icons{
+				display:none !important;
+			}	
+		}
+	}
+}
 
 	#searchbar{
 		.search{

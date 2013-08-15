@@ -4,7 +4,7 @@
 		<div class="span12">
 			<h3>$Title</h3>
 			<div>
-				$Date - A <a>$Type</a> on "Topic here" in <a>$Location</a>
+				$Date - A <a>Tyoe</a> on "Topic here" in <a>$getLocation</a>
 			</div>
 		</div>	
 	</div>
