@@ -7,7 +7,7 @@
 			<% end_if %>
 		</div>
 		<div class="text-wrap">
-			<p><b><a href="$Link">$Title</a></b></p>		
+			<p><b><a class="title" href="$Link">$Title</a></b></p>		
 			<p><a href="#">$Type</a> in <a href="#">$Location</a></p>
 			<p><b>$Date | $View views</b></p>
 			<p>
