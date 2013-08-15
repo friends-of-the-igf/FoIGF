@@ -24,13 +24,13 @@ body { background-color: white; min-height: 100%; position: relative; }
 #searchbar .search .mglass { position: relative; margin-bottom: -62px; margin-left: 5px; margin-top: 0px; }
 #searchbar .search fieldset { width: 77%; display: inline-block; }
 #searchbar .search #Search { width: 100%; }
-#searchbar .search #Search input { width: 94%; height: 35px; border: none; box-shadow: 0px 2px 2px #e0e0e0 inset; padding-left: 40px; }
+#searchbar .search #Search input { width: 90%; height: 35px; border: none; box-shadow: 0px 2px 2px #e0e0e0 inset; padding-left: 40px; }
 #searchbar .search #Search ::-webkit-input-placeholder { color: #535353; }
 #searchbar .search #Search :-moz-placeholder { color: #535353; }
 #searchbar .search #Search ::-moz-placeholder { color: #535353; }
 #searchbar .search #Search :-ms-input-placeholder { color: #535353; }
-#searchbar .search .Actions { display: inline-block; width: 20%; padding-left: 17px; }
-#searchbar .search .Actions input { height: 43px; text-transform: uppercase; text-shadow: 0px -2px 1px #0878e3; font-size: 12px; letter-spacing: 1px; padding: 10px 15px; border: 1px #2188ea solid; background-image: linear-gradient(to bottom, #359bfc, #0878e3); box-shadow: none; }
+#searchbar .search .Actions { display: inline-block; width: 15%; padding-left: 17px; }
+#searchbar .search .Actions input { height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 #searchbar .logo { text-align: right; padding-top: 10px; }
 
 /*Footer -------------------------------------------------- */
@@ -45,30 +45,43 @@ body { background-color: white; min-height: 100%; position: relative; }
 #footer .container .website a { color: white; font-weight: 100; letter-spacing: 1px; text-decoration: underline; }
 
 /*HomePage -------------------------------------------------- */
-#homepage h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
-#homepage .content { padding-top: 50px; padding-bottom: 50px; }
-#homepage .content .social img { padding-top: 5px; padding-bottom: 5px; }
-#homepage .content .text { color: #303030; font-size: 35px; line-height: 35px; }
-#homepage .twitter { border: 1px solid #d8d8d8; }
-#homepage .speakers { padding-top: 50px; }
-#homepage .speakers .heading { padding-bottom: 10px; }
-#homepage .speakers .heading .link { text-align: right; padding-top: 20px; text-decoration: underline; }
-#homepage .sessions { padding-top: 50px; padding-bottom: 50px; }
-#homepage .sessions .heading { padding-bottom: 10px; }
-#homepage .sessions .heading .link { text-align: right; padding-top: 10px; }
-#homepage .sessions .heading .link .button { color: white; height: 45px; text-transform: uppercase; text-shadow: 0px -2px 1px #0878e3; font-size: 12px; letter-spacing: 1px; padding: 12px 10px; border: 1px #2188ea solid; background-image: linear-gradient(to bottom, #359bfc, #0878e3); box-shadow: none; border-radius: 4px; }
-#homepage .sessions .heading .link .button :hover { text-decoration: none; }
-#homepage .sessions .heading .link .button:hover { text-decoration: none; }
-#homepage .sessions .ses .span3 { margin-left: 10px; width: 230px; }
-#homepage .sessions .session-tile { border: 1px solid #d8d8d8; margin-bottom: 20px; }
-#homepage .sessions .session-tile .video { margin: 3px; }
-#homepage .sessions .session-tile .text-wrap { margin: 5px; }
-#homepage .sessions .session-tile .text-wrap .title { font-weight: bold; }
-#homepage .sessions .session-tile .text-wrap .location { color: #696b6f; font-size: 12px; }
-#homepage .sessions .session-tile .text-wrap .location a { color: #42a1fc; }
-#homepage .sessions .session-tile .text-wrap .date { color: #696b6f; font-size: 12px; font-weight: 500; }
-#homepage .sessions .session-tile .text-wrap .tags { padding-top: 10px; color: #696b6f; font-size: 13px; font-weight: 500; }
-#homepage .sessions .session-tile .text-wrap .tags a { font-weight: normal; }
+#HomePage #homepage h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
+#HomePage #homepage .content { padding-top: 50px; padding-bottom: 50px; }
+#HomePage #homepage .content .social div { padding-top: 5px; padding-bottom: 5px; }
+#HomePage #homepage .content .social .fb-like { padding-left: 4px; }
+#HomePage #homepage .content .text { color: #303030; font-size: 35px; line-height: 35px; }
+#HomePage #homepage .twitter { margin-bottom: 50px; border: 1px solid #d8d8d8; }
+#HomePage #homepage .speakers { padding-bottom: 50px; }
+#HomePage #homepage .speakers .heading { padding-bottom: 10px; }
+#HomePage #homepage .speakers .heading .link { text-align: right; padding-top: 20px; text-decoration: underline; }
+
+/*SessionsHolder -------------------------------------------------- */
+#SessionsHolder #wrap { background: #f3f3f3; }
+#SessionsHolder #filter-wrap { height: 100%; }
+#SessionsHolder #sessionholder #session-wrap { background: white; border-left: 1px #d8d8d8 solid; margin-left: 9px; }
+#SessionsHolder #sessionholder .sessions { background: white; padding-top: 30px; height: 100%; }
+#SessionsHolder #sessionholder .sessions .heading { padding-left: 10px; }
+#SessionsHolder #sessionholder .filter { padding-top: 20px; background: #f3f3f3; margin-left: -46%; padding-left: 46%; margin-right: -10%; }
+#SessionsHolder #sessionholder .filter form #Text input { width: 50%; }
+#SessionsHolder #sessionholder .filter form .Actions input { height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+#SessionsHolder #searchbar .logo { text-align: left; }
+
+/*Sessions -------------------------------------------------- */
+.sessions { padding-bottom: 50px; }
+.sessions h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
+.sessions .heading { padding-bottom: 10px; }
+.sessions .heading .link { text-align: right; padding-top: 10px; }
+.sessions .heading .link .btn { color: white; padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+.sessions .ses span3 { margin: 5px; }
+.sessions .session-tile { border: 1px solid #d8d8d8; margin-bottom: 20px; }
+.sessions .session-tile .video { margin: 3px; }
+.sessions .session-tile .text-wrap { margin: 5px; }
+.sessions .session-tile .text-wrap .title { font-weight: bold; }
+.sessions .session-tile .text-wrap .location { color: #696b6f; font-size: 12px; }
+.sessions .session-tile .text-wrap .location a { color: #42a1fc; }
+.sessions .session-tile .text-wrap .date { color: #696b6f; font-size: 12px; font-weight: 500; }
+.sessions .session-tile .text-wrap .tags { padding-top: 10px; color: #696b6f; font-size: 13px; font-weight: 500; }
+.sessions .session-tile .text-wrap .tags a { font-weight: normal; }
 
 /*Responsiveness -------------------------------------------------- */
 @media (max-width: 979px) { #searchbar .search #Search input { width: 75%; }

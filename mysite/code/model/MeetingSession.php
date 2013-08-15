@@ -70,10 +70,13 @@ class MeetingSession extends DataObject {
 	}
 
 	public function formatYouTubeID(){
-		$url = $this->YoutubeID;
+
+		$url = $this->YouTubeID;
          
         $params = explode('?',$url);
+
         if(count($params) > 1) {
+
             $paras = explode('&',$params[1]);
             foreach($paras as $para) {
                 $type = substr($para,0,2);
@@ -81,7 +84,8 @@ class MeetingSession extends DataObject {
                     $str = explode('=',$para);
                     $v = $str[1];
                     if($v != $url) {
-                        $this->VideoID = $v;
+                    	error_log($v);
+                        $this->YouTubeID = $v;
                         $this->write();
                     }
                 }
@@ -92,11 +96,19 @@ class MeetingSession extends DataObject {
             $paras = explode('?',$params[1]);
             if(count($paras) == 1){
                 if($paras[0] != $url){
-                    $this->VideoID = $paras[0];
+                	error_log($paras[0]);
+                    $this->YouTubeID = $paras[0];
                     $this->write();
                 }
             } 
         }  
 	}
+
+	  public function getVideo(){
+        if($this->YouTubeID != null){
+            return '<iframe width="192" height="130" src="http://www.youtube.com/v/'.$this->YouTubeID.'?controls=0&showinfo=0" frameborder="0"></iframe>';
+        
+        }
+    }
 
 }
