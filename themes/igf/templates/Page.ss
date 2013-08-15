@@ -24,9 +24,9 @@
 	<script type="text/javascript" src="$ThemeDir/javascript/script.js"></script>
 
 	<!-- Bootstrap -->
-	<!--<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-button.js"></script>
+	<!--<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-button.js"></script>-->
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-collapse.js"></script>
-	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-dropdown.js"></script>
+	<!--<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-dropdown.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-tab.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-tooltip.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-popover.js"></script>

@@ -1225,12 +1225,12 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini { *padding-top: 1px; *pad
 
 .nav-collapse.collapse { height: auto; overflow: visible; }
 
-.navbar .brand { float: left; display: block; padding: 10px 20px 10px; margin-left: -20px; font-size: 20px; font-weight: 200; color: #777777; text-shadow: 0 1px 0 white; }
+.navbar .brand { float: left; display: block; padding: 10px 20px 10px; margin-left: -20px; font-size: 20px; font-weight: 200; color: #e0e0e0; text-shadow: 0 1px 0 white; }
 .navbar .brand:hover, .navbar .brand:focus { text-decoration: none; }
 
 .navbar-text { margin-bottom: 0; line-height: 40px; color: #777777; }
 
-.navbar-link { color: #777777; }
+.navbar-link { color: #e0e0e0; }
 .navbar-link:hover, .navbar-link:focus { color: #535353; }
 
 .navbar .divider-vertical { height: 40px; margin: 0 9px; border-left: 1px solid #f2f2f2; border-right: 1px solid white; }
@@ -1277,7 +1277,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini { *padding-top: 1px; *pad
 
 .navbar .nav > li { float: left; }
 
-.navbar .nav > li > a { float: none; padding: 10px 15px 10px; color: #777777; text-decoration: none; text-shadow: 0 1px 0 white; }
+.navbar .nav > li > a { float: none; padding: 10px 15px 10px; color: #e0e0e0; text-decoration: none; text-shadow: 0 1px 0 white; }
 
 .navbar .nav .dropdown-toggle .caret { margin-top: 8px; }
 
@@ -1303,7 +1303,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini { *padding-top: 1px; *pad
 
 .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle { background-color: #e6e6e6; color: #696b6f; }
 
-.navbar .nav li.dropdown > .dropdown-toggle .caret { border-top-color: #777777; border-bottom-color: #777777; }
+.navbar .nav li.dropdown > .dropdown-toggle .caret { border-top-color: #e0e0e0; border-bottom-color: #e0e0e0; }
 
 .navbar .nav li.dropdown.open > .dropdown-toggle .caret, .navbar .nav li.dropdown.active > .dropdown-toggle .caret, .navbar .nav li.dropdown.open.active > .dropdown-toggle .caret { border-top-color: #696b6f; border-bottom-color: #696b6f; }
 

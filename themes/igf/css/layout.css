@@ -5,14 +5,13 @@ html { height: 100%; }
 body { background-color: white; min-height: 100%; position: relative; }
 
 /* Navigation -------------------------------------------------- */
-#navigation { height: 55px; }
-#navigation .navbar-inner { height: 100%; background: #303030; }
-#navigation .navbar-inner .container { height: 100%; }
+#navigation .navbar-inner { background: #303030; }
 #navigation .navbar-inner .container .brand { padding-top: 12px; padding-right: 15px; }
-#navigation .navbar-inner .container .social-icons { padding-top: 15px; margin-right: -1px; float: right; }
-#navigation .navbar-inner .container .social-icons .social { padding-left: 3px; padding-right: 3px; }
-#navigation .navbar-inner .container ul { height: 100%; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+#navigation .navbar-inner .container .social-icons { padding-top: 15px; margin-right: -1px; }
+#navigation .navbar-inner .container .social-icons .social { padding: 0 3px; }
+#navigation .navbar-inner .container ul { text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 #navigation .navbar-inner .container ul li a { padding: 22px 0px 0px 0px; margin-left: 15px; margin-right: 15px; color: #e0e0e0; text-shadow: 0.5px 0px #696b6f; line-height: 12px; }
+#navigation .navbar-inner .container ul li a:hover { border-bottom: 2px #359bfc solid; }
 #navigation .navbar-inner .container ul li.active a { color: white; background: #303030; border-bottom: 2px #359bfc solid; }
 #navigation .navbar-inner .container ul .divider-vertical { height: 100%; border-left: 1px black solid; border-right: 1px #535353 solid; }
 
@@ -47,8 +46,11 @@ body { background-color: white; min-height: 100%; position: relative; }
 /* Generic Classes -------------------------------------------------- */
 .heading { padding-bottom: 10px; }
 
+h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
+
+.btn { padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+
 /*HomePage -------------------------------------------------- */
-#HomePage #homepage h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 #HomePage #homepage .content { padding-top: 50px; padding-bottom: 50px; }
 #HomePage #homepage .content .social div { padding-top: 5px; padding-bottom: 5px; }
 #HomePage #homepage .content .social .fb-like { padding-left: 4px; }
@@ -74,14 +76,22 @@ body { background-color: white; min-height: 100%; position: relative; }
 .sessions .link { text-align: right; padding-top: 10px; }
 .sessions .link .btn { color: white; padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 .sessions .session-tile { border: 1px solid #d8d8d8; margin-bottom: 20px; }
-.sessions .session-tile .video { margin: 3px; }
-.sessions .session-tile .text-wrap { margin: 5px; }
-.sessions .session-tile .text-wrap .title { font-weight: bold; }
-.sessions .session-tile .text-wrap .location { color: #696b6f; font-size: 12px; }
+.sessions .session-tile .video { height: 130px; }
+.sessions .session-tile .text-wrap { margin: 5px; color: #696b6f; font-size: 12px; }
+.sessions .session-tile .text-wrap p { padding: 0; margin: 0; }
+.sessions .session-tile .text-wrap a { color: #42a1fc; }
+.sessions .session-tile .text-wrap .location { font-size: 12px; }
 .sessions .session-tile .text-wrap .location a { color: #42a1fc; }
 .sessions .session-tile .text-wrap .date { color: #696b6f; font-size: 12px; font-weight: 500; }
 .sessions .session-tile .text-wrap .tags { padding-top: 10px; color: #696b6f; font-size: 13px; font-weight: 500; }
 .sessions .session-tile .text-wrap .tags a { font-weight: normal; }
+
+/* session controller --------------------------------------------------*/
+#ses-wrap { padding-top: 30px; }
+#ses-wrap .content div { padding-bottom: 20px; }
+#ses-wrap .content h5 { color: #359bfc; font-size: 16px; }
+#ses-wrap .content p { padding-bottom: 10px; }
+#ses-wrap .video { height: 300px; }
 
 /* meetings holder -------------------------------------------------- */
 #MeetingsHolder .promo { background: #f3f3f3; border: 1px solid #d8d8d8; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; margin-top: 30px; margin-bottom: 20px; }
@@ -91,6 +101,8 @@ body { background-color: white; min-height: 100%; position: relative; }
 #MeetingController #speakers-wrap .thumbnail > img { margin-left: 0; margin-right: 0; }
 
 /* thumbnails -------------------------------------------------- */
+.thumbnails { margin-left: 0px; }
+
 .thumbnail { -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; text-decoration: none; }
 
 /*Responsiveness -------------------------------------------------- */
