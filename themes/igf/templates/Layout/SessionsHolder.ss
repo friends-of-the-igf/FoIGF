@@ -5,13 +5,11 @@
 				$FilterForm
 			</div>
 		</div>
-		<div id="session-wrap" class="sessions span9">
-			
+		<div class="sessions span9">
 				<div class="heading">
 					<h3>120 Sessions in 4 meetings match your criteria</h3>
 				</div>
-				<div class="ses row-fluid">
-
+				<div class="row-fluid">
 					<% if Sessions %>
 					<% loop getSessions %>
 							<div class="col span4">
@@ -23,9 +21,8 @@
 					<% end_if %>
 				</div>
 				<div class="row-fluid">
-
-					<div class="offset4 span4">
-						<a class="btn btn-primary ">Show 18 more sessions</a>
+					<div class="offset4 span4 button">
+						<a class="btn btn-primary">Show 18 more sessions</a>
 				</div>
 			</div>
 		

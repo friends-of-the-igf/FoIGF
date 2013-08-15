@@ -35,20 +35,58 @@
 		</div>
 		
 		<div class="span4">
-			<div> Social Icons </div>
-			<div>
-				<p>
-				Tagged: 
+			<div class="row-fluid social-icons">
+				<div class="span3">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>
+				</div>
+				<div class="span3">
+					<div class="fb-like" data-href="http://developers.facebook.com/docs/reference/plugins/like" data-width="450" data-layout="box_count" data-show-faces="true" data-send="false"></div>
+				</div>
+				<div class="span3">
+					<img src="http://placehold.it/60x60">
+				</div>
+				<div class="span3">
+					<img src="http://placehold.it/60x60">
+				</div>
+			</div>
+			<div class="session-side">
+				<b>Tagged</b><br/>
 				<% loop TagsCollection %>
 					<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
 				<% end_loop %>
-				</p>
+			</div>
+			<div class="session-side">
+				<b>Speakers</b>
+				<div class='row-fluid'>
+					<div class='span3'>
+						<img src="http://placehold.it/50x50">
+					</div>
+					<div class='span9'>
+						Priyanka Bryant<br/>
+						<a>23 Sessions</a>
+					</div>
+				</div>
+				<div class='row-fluid'>
+					<div class='span3'>
+						<img src="http://placehold.it/50x50">
+					</div>
+					<div class='span9'>
+						Priyanka Bryant<br/>
+						<a>23 Sessions</a>
+					</div>
+				</div>
+				<div class='row-fluid'>
+					<div class='span3'>
+						<img src="http://placehold.it/50x50">
+					</div>
+					<div class='span9'>
+						Priyanka Bryant<br/>
+						<a>23 Sessions</a>
+					</div>
+				</div>
 			</div>
 			<div>
-				Speakers
-			</div>
-			<div>
-				Related Sessions
+				<b>Related Sessions</b>
 			</div>
 		</div>
 	
