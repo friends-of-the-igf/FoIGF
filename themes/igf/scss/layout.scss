@@ -461,12 +461,43 @@ h3{
 }
 
 @media (max-width: 767px) {
+
+
+#navigation {
+	.navbar-inner {
+		.container {
+			.social-icons{
+				display:none !important;
+			}	
+		}
+	}
+}
+
+
+
 	#searchbar{
+
+		.logo{
+			width: 10%;
+			display: inline-block;
+			}
 		.search{
-			#Search{
-				input{
-					width:75%;
+			width: 80%;
+			fieldset{
+				width:60%;
+			}
+			.mglass{
+					margin-left: 25px;
 				}
+
+			#Search{
+				padding-left: 20px;
+				width: 90%;
+				margin-right: 20px;
+				input{
+					width:90%;
+				}
+
 			}
 			.Actions{
 				width:19%;
