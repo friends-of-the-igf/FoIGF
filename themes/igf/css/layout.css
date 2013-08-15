@@ -62,7 +62,6 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder #wrap { background: #f3f3f3; }
-#SessionsHolder #sessionholder #session-wrap { background: white; border-left: 1px #d8d8d8 solid; margin-left: 9px; }
 #SessionsHolder #sessionholder .sessions { background: white; border-left: 1px #d8d8d8 solid; margin-left: 9px; padding-left: 20px; padding-right: 20px; background: white; border-top: 1px #d8d8d8 solid; padding-top: 30px; height: 100%; }
 #SessionsHolder #sessionholder .sessions .heading { padding-left: 10px; }
 #SessionsHolder #sessionholder .sessions .session-bottom { width: 100%; text-align: center; }
@@ -70,6 +69,9 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 #SessionsHolder #sessionholder .filter form #Text input { width: 70%; }
 #SessionsHolder #sessionholder .filter form .Actions input { height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 #SessionsHolder #searchbar { border: none; }
+#SessionsHolder #searchbar .search .mglass { margin-left: -5px; }
+#SessionsHolder #searchbar .search form { margin-left: -10px; }
+#SessionsHolder #searchbar .logo { margin-left: 5px; }
 
 /*Sessions -------------------------------------------------- */
 .sessions { padding-bottom: 50px; }
@@ -77,7 +79,7 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 .sessions .link { text-align: right; padding-top: 10px; }
 .sessions .link .btn { color: white; padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 .sessions .session-tile { border: 1px solid #d8d8d8; margin-bottom: 20px; }
-.sessions .session-tile .video { height: 130px; }
+.sessions .session-tile .video { height: 130px; max-height: 130px; /*	width: 210px;*/ }
 .sessions .session-tile .text-wrap { margin: 5px; color: #696b6f; font-size: 12px; }
 .sessions .session-tile .text-wrap p { padding: 0; margin: 0; }
 .sessions .session-tile .text-wrap a { color: #42a1fc; }
@@ -93,6 +95,8 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 #ses-wrap .content h5 { color: #359bfc; font-size: 16px; }
 #ses-wrap .content p { padding-bottom: 10px; }
 #ses-wrap .video { height: 300px; }
+#ses-wrap .session-side a { text-decoration: underline; }
+#ses-wrap .session-side div { padding-bottom: 5px; }
 
 /* meetings holder -------------------------------------------------- */
 #MeetingsHolder .promo { background: #f3f3f3; border: 1px solid #d8d8d8; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; margin-top: 30px; margin-bottom: 20px; }
@@ -108,5 +112,10 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 
 /*Responsiveness -------------------------------------------------- */
 /*  Responsive: Large desktop and up*/
+@media (min-width: 1200px) { video { height: 130px; max-height: 130px; width: 260px; }
+  #SessionsHolder #searchbar { border: none; }
+  #SessionsHolder #searchbar .search .mglass { margin-left: -15px; }
+  #SessionsHolder #searchbar .search form { margin-left: -20px; }
+  #SessionsHolder #searchbar .logo { margin-left: 5px; } }
 @media (min-width: 768px) and (max-width: 979px) { #searchbar .search #Search input { width: 75%; }
   #searchbar .search .Actions { width: 19%; } }

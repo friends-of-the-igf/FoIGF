@@ -3,7 +3,7 @@
 			<% if getVideo %>
 				$getVideo
 			<% else %>
-				<img width="100%" src="http://placehold.it/224x130" />
+				<img width="100%" height="100%" src="http://placehold.it/224x130" />
 			<% end_if %>
 		</div>
 		<div class="text-wrap">

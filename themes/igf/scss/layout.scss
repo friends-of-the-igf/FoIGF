@@ -275,11 +275,6 @@ h3{
 	}
 
 	#sessionholder{
-		#session-wrap{
-			background: white;
-			border-left: 1px $grayMedium solid;
-			margin-left: 9px;
-		}
 		.sessions{
 			background: white;
 			border-left: 1px $grayMedium solid;
@@ -310,6 +305,7 @@ h3{
 			margin-right: -10%;
 
 			form{
+
 				#Text{
 					input{
 						width:70%;
@@ -320,8 +316,7 @@ h3{
 						height:43px;
 						text-transform:uppercase;
 						font-size: 12px;
-						letter-spacing: 1px;
-						
+						letter-spacing: 1px;	
 					}
 				}
 			}	
@@ -330,6 +325,17 @@ h3{
 
 	#searchbar{	
 		border: none;
+		.search{
+			.mglass{
+				margin-left: -5px;
+			}
+			form{
+				margin-left: -10px;
+			}
+		}
+		.logo{
+			margin-left: 5px;
+		}
 	}
 }
 
@@ -364,6 +370,8 @@ h3{
 
 			.video{
 				height: 130px;
+				max-height: 130px;
+			/*	width: 210px;*/
 			}
 
 			.text-wrap{
@@ -430,11 +438,17 @@ h3{
 		
 	}
 
-
-
-
-
+	.session-side{
+	a{
+		text-decoration: underline;
+	}
+	div{
+		padding-bottom: 5px;
+	}
 }
+}
+
+
 
 
 /* meetings holder -------------------------------------------------- */
@@ -477,6 +491,28 @@ h3{
 
 
 @media (min-width: 1200px) {
+	video{
+				height: 130px;
+				max-height: 130px;
+				width: 260px;
+		}
+
+	#SessionsHolder{
+		#searchbar{	
+			border: none;
+			.search{
+				.mglass{
+					margin-left: -15px;
+				}
+				form{
+					margin-left: -20px;
+				}
+			}
+			.logo{
+				margin-left: 5px;
+			}
+		}
+	}
 
 }
 
@@ -485,6 +521,7 @@ h3{
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+
 	#searchbar{
 		.search{
 			#Search{
