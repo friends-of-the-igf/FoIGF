@@ -41,4 +41,21 @@ class Meeting extends DataObject {
 		return Controller::join_links('meeting', $this->ID, $action);
 	}
 
+	public function getSpeakers() {
+		$sessions = $this->MeetingSessions();
+		if($sessions->count() != 0) {
+			$list = new ArrayList();
+			foreach($sessions as $session) {
+				$speakers = $session->Speakers();
+				if($speakers->count() != 0) {
+					foreach($speakers as $speaker) {
+						$list->push($speaker);
+					}
+				}
+			}
+			$list->removeDuplicates();
+			return $list;
+		}
+	}
+
 }
