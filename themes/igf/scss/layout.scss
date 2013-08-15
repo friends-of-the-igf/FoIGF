@@ -274,64 +274,60 @@ h3{
 		background: $grayLighter;
 	}
 
-	#sessionholder{
-		.sessions{
-			background: white;
-			border-left: 1px $grayMedium solid;
-			margin-left: 9px;
-			padding-left: 20px;
-			padding-right: 20px;
-			background: white;
-			border-top: 1px $grayMedium solid;
-			padding-top: 30px;
-			height:100%;
+	
 
-			.heading{
-				padding-left: 10px;
-			}
-			
+	.sessions{
+		background: white;
+		border: 1px $grayMedium solid;
+		margin-left: 9px;
+		padding-left: 20px;
+		padding-right: 20px;
+		background: white;
+		border-top: 1px $grayMedium solid;
+		padding-top: 30px;
+		height:100%;
 
-			.session-bottom{
-				width:100%;
-				text-align: center;
-			}
-
+		.heading{
+			padding-left: 10px;
 		}
-		.filter{
-			padding-top: 20px;
-			background: $grayLighter;
-			margin-left: -46%;
-			padding-left: 46%;
-			margin-right: -10%;
-
-			form{
-
-				#Text{
-					input{
-						width:70%;
-					}
-				}
-				.Actions{
-					input{
-						height:43px;
-						text-transform:uppercase;
-						font-size: 12px;
-						letter-spacing: 1px;	
-					}
-				}
-			}	
+		
+		.button{
+			text-align: center;
 		}
+
 	}
+	.filter{
+		padding-top: 20px;
+		background: $grayLighter;
+		margin-left: -46%;
+		padding-left: 46%;
+		margin-right: -10%;
 
+		form{
+			#Text{
+				input{
+					width:70%;
+				}
+			}
+			.Actions{
+				input{
+					height:43px;
+					text-transform:uppercase;
+					font-size: 12px;
+					letter-spacing: 1px;	
+				}
+			}
+		}	
+	}
+	
+  /*Search Bar Styling */
 	#searchbar{	
 		border: none;
-		.search{
-			.mglass{
-				margin-left: -5px;
-			}
-			form{
-				margin-left: -10px;
-			}
+		.mglass{
+			margin-left: -5px;
+		}
+		form{
+			margin-left: -10px;
 		}
 		.logo{
 			margin-left: 5px;
@@ -341,77 +337,43 @@ h3{
 
 /*Sessions -------------------------------------------------- */
 .sessions{
+
 		padding-bottom: 50px;
 
-		h3{
-		font-weight: normal;
-		font-size: 30px;
-		color: $grayDarkest;
-		margin: 0px;
-
-	}		
 		.link{
-				text-align: right;
-				padding-top: 10px;	
+			text-align: right;
+			padding-top: 10px;	
 			
-				.btn{
-					color:white;
-					padding: 10px 10px;
-					text-transform:uppercase;
-					font-size: 12px;
-					letter-spacing: 1px;
-				}
-				
-			}
+			.btn{
+				color:white;
+			}		
+		}
 		.session-tile{
+			padding-bottom: 0px;
 			border: 1px solid $grayMedium;
 			margin-bottom: 20px;
 		
 
 			.video{
-				height: 130px;
-				max-height: 130px;
-			/*	width: 210px;*/
+				height: 150px;
+				max-height: 150px;
 			}
 
 			.text-wrap{
+				
+				.title{
 
+				}
 				margin: 5px;
 				color: $gray;
 				font-size: 12px;
+
 				p{
 					padding: 0;
 					margin: 0;
 				}
 				a{
-						color:$blueLight;
-					}
-
-
-				.location{
-				
-					font-size: 12px;
-					a{
-						color:$blueLight;
-					}
-				}
-
-				.date{
-					color: $gray;
-					font-size: 12px;
-					font-weight: 500;
-
-				}
-
-				.tags{
-					padding-top: 10px;
-					color: $gray;
-					font-size: 13px;
-					font-weight: 500;
-					a{
-						font-weight: normal;
-					}
-
+					color:$blueLight;	
 				}
 			}
 		}
@@ -425,6 +387,11 @@ h3{
 			padding-bottom: 20px;
 		}
 		h5{
+			font-size: 16px;
+		}
+
+		span.blue{
+			font-weight: bold;
 			color:$blue;
 			font-size: 16px;
 		}
@@ -439,13 +406,13 @@ h3{
 	}
 
 	.session-side{
-	a{
-		text-decoration: underline;
+		a{
+			text-decoration: underline;
+		}
+		div{
+			padding-bottom: 5px;
+		}
 	}
-	div{
-		padding-bottom: 5px;
-	}
-}
 }
 
 
@@ -492,8 +459,8 @@ h3{
 
 @media (min-width: 1200px) {
 	video{
-				height: 130px;
-				max-height: 130px;
+				height: 160px;
+				max-height: 160px;
 				width: 260px;
 		}
 
@@ -517,6 +484,19 @@ h3{
 }
 
 @media (max-width: 767px) {
+	#searchbar{
+		.search{
+			#Search{
+				input{
+					width:75%;
+				}
+			}
+			.Actions{
+				width:19%;
+			}
+		}
+	}
+
 
 }
 
