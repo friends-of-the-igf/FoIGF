@@ -24,3 +24,5 @@ Email::setAdminEmail("ben@stripetheweb.com");
 // 		Object::remove_extension('LeftAndMain', 'Compass_RebuildDecorator');
 // 	}
 // }
+
+DataObject::add_extension('Member', 'CustomMember');

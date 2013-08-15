@@ -7,6 +7,14 @@ class SessionsHolder extends Page {
 	public static $has_one = array(
 	);
 
+	public function getCMSFields() {
+		$fields = parent::getCMSFields();
+
+		$fields->removeFieldFromTab('Root.Main', 'Content');
+
+		return $fields;
+	}
+
 }
 class SessionsHolder_Controller extends Page_Controller {
 

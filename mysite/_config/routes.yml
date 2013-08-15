@@ -3,4 +3,5 @@ Name: IGF
 ---
 Director:
   rules:
-    'session//$ID!/$Action': 'SessionController'
+    'session//$ID!/$Action': 'SessionController',
+    'meeting//$ID!/$Action': 'MeetingController'
