@@ -37,7 +37,7 @@
 				<a href='$sessionLink' class="btn btn-primary">Browse Sessions</a>
 			</div>
 		</div>
-		<div class="row-fluid ses thumbnails">
+		<div class="row-fluid ses">
 			<% loop getSessions %>
 			<div class="span3">
 			 	<% loop Columns %>
