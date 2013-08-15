@@ -51,13 +51,13 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 .btn { padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 
 /*HomePage -------------------------------------------------- */
-#HomePage #homepage .content { padding-top: 50px; padding-bottom: 50px; }
-#HomePage #homepage .content .social div { padding-top: 5px; padding-bottom: 5px; }
-#HomePage #homepage .content .social .fb-like { padding-left: 4px; }
-#HomePage #homepage .content .text { color: #303030; font-size: 35px; line-height: 35px; }
-#HomePage #homepage .twitter { margin-bottom: 50px; border: 1px solid #d8d8d8; }
-#HomePage #homepage .speakers { padding-bottom: 50px; }
-#HomePage #homepage .speakers .link { text-align: right; padding-top: 20px; text-decoration: underline; }
+#HomePage .content { padding-top: 50px; padding-bottom: 50px; }
+#HomePage .content .social div { padding-top: 5px; padding-bottom: 5px; }
+#HomePage .content .social .fb-like { padding-left: 4px; }
+#HomePage .content .text { color: #303030; font-size: 35px; line-height: 35px; }
+#HomePage .twitter { margin-bottom: 50px; border: 1px solid #d8d8d8; }
+#HomePage .speakers { padding-bottom: 50px; }
+#HomePage .speakers .link { text-align: right; padding-top: 20px; text-decoration: underline; }
 
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder #wrap { background: #f3f3f3; }

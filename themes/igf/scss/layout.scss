@@ -210,49 +210,38 @@ h3{
 
 
 /*HomePage -------------------------------------------------- */
-#HomePage{
-
-	#homepage{
-		
-		.content{
-			padding-top: 50px;
-			padding-bottom: 50px;
-			
-			.social{
-				div{
-					
-					padding-top:5px;
-					padding-bottom: 5px;
-				}
-				.fb-like{
-					padding-left: 4px;
-				}
+#HomePage{	
+	.content{
+		padding-top: 50px;
+		padding-bottom: 50px;
+		.social{
+			div{
+				
+				padding-top:5px;
+				padding-bottom: 5px;
 			}
-			.text{
-				color: $grayDarkest;
-				font-size: 35px;
-				line-height: 35px;
+			.fb-like{
+				padding-left: 4px;
 			}
 		}
-
-		.twitter{
-			margin-bottom: 50px;
-			border: 1px solid $grayMedium;
+		.text{
+			color: $grayDarkest;
+			font-size: 35px;
+			line-height: 35px;
 		}
+	}
+	.twitter{
+		margin-bottom: 50px;
+		border: 1px solid $grayMedium;
+	}
+	.speakers{
+		padding-bottom: 50px;
+		.link{
+			text-align: right;
+			padding-top: 20px;
+			text-decoration: underline;	
 
-		.speakers{
-
-			padding-bottom: 50px;
-
-
-				.link{
-					text-align: right;
-					padding-top: 20px;
-					text-decoration: underline;	
-
-				}
-			
-		}	
+		}
 	}
 }
 /*SessionsHolder -------------------------------------------------- */
