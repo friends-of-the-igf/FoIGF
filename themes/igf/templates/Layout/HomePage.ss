@@ -24,7 +24,6 @@
 		</div>
 		<div class="row">
 			<% loop getSpeakers %>
-
 				<% include Speaker %>
 			<% end_loop %>
 		</div>
@@ -38,7 +37,7 @@
 				<a href='$sessionLink' class="btn btn-primary">Browse Sessions</a>
 			</div>
 		</div>
-		<div class="row-fluid ses">
+		<div class="row-fluid ses thumbnails">
 			<% loop getSessions %>
 			<div class="span3">
 			 	<% loop Columns %>
