@@ -5,14 +5,13 @@ html { height: 100%; }
 body { background-color: white; min-height: 100%; position: relative; }
 
 /* Navigation -------------------------------------------------- */
-#navigation { height: 55px; }
-#navigation .navbar-inner { height: 100%; background: #303030; }
-#navigation .navbar-inner .container { height: 100%; }
+#navigation .navbar-inner { background: #303030; }
 #navigation .navbar-inner .container .brand { padding-top: 12px; padding-right: 15px; }
-#navigation .navbar-inner .container .social-icons { padding-top: 15px; margin-right: -1px; float: right; }
-#navigation .navbar-inner .container .social-icons .social { padding-left: 3px; padding-right: 3px; }
-#navigation .navbar-inner .container ul { height: 100%; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+#navigation .navbar-inner .container .social-icons { padding-top: 15px; margin-right: -1px; }
+#navigation .navbar-inner .container .social-icons .social { padding: 0 3px; }
+#navigation .navbar-inner .container ul { text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 #navigation .navbar-inner .container ul li a { padding: 22px 0px 0px 0px; margin-left: 15px; margin-right: 15px; color: #e0e0e0; text-shadow: 0.5px 0px #696b6f; line-height: 12px; }
+#navigation .navbar-inner .container ul li a:hover { border-bottom: 2px #359bfc solid; }
 #navigation .navbar-inner .container ul li.active a { color: white; background: #303030; border-bottom: 2px #359bfc solid; }
 #navigation .navbar-inner .container ul .divider-vertical { height: 100%; border-left: 1px black solid; border-right: 1px #535353 solid; }
 
@@ -52,13 +51,13 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 .btn { padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 
 /*HomePage -------------------------------------------------- */
-#HomePage #homepage .content { padding-top: 50px; padding-bottom: 50px; }
-#HomePage #homepage .content .social div { padding-top: 5px; padding-bottom: 5px; }
-#HomePage #homepage .content .social .fb-like { padding-left: 4px; }
-#HomePage #homepage .content .text { color: #303030; font-size: 35px; line-height: 35px; }
-#HomePage #homepage .twitter { margin-bottom: 50px; border: 1px solid #d8d8d8; }
-#HomePage #homepage .speakers { padding-bottom: 50px; }
-#HomePage #homepage .speakers .link { text-align: right; padding-top: 20px; text-decoration: underline; }
+#HomePage .content { padding-top: 50px; padding-bottom: 50px; }
+#HomePage .content .social div { padding-top: 5px; padding-bottom: 5px; }
+#HomePage .content .social .fb-like { padding-left: 4px; }
+#HomePage .content .text { color: #303030; font-size: 35px; line-height: 35px; }
+#HomePage .twitter { margin-bottom: 50px; border: 1px solid #d8d8d8; }
+#HomePage .speakers { padding-bottom: 50px; }
+#HomePage .speakers .link { text-align: right; padding-top: 20px; text-decoration: underline; }
 
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder { /*Search Bar Styling */ }

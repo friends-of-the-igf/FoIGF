@@ -29,11 +29,13 @@ class Meeting extends DataObject {
 		$fields->push($date = new DateField('EndDate', 'End Date'));
 		$date->setConfig('showcalendar', true);
 
-		$gridFieldConfig = new GridFieldConfig_RelationEditor();
-		$list = $this->MeetingSessions();
-		$gridField = new GridField('MeetingSessions', 'Sessions', $list, $gridFieldConfig);
-		$fields->push($gridField);
-
+		if($this->ID) {
+			$gridFieldConfig = new GridFieldConfig_RelationEditor();
+			$list = $this->MeetingSessions();
+			$gridField = new GridField('MeetingSessions', 'Sessions', $list, $gridFieldConfig);
+			$fields->push($gridField);
+		}
+		
 		return $fields;
 	}
 

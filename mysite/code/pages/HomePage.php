@@ -1,13 +1,8 @@
 <?php 
-class HomePage extends Page{
+class HomePage extends Page {
 	
 }
-
-class HomePage_Controller extends Page_Controller{
-
-
-
-
+class HomePage_Controller extends Page_Controller {
 
 	public function getSpeakers(){
 		$list = new ArrayList();
@@ -20,25 +15,49 @@ class HomePage_Controller extends Page_Controller{
 
 	public function getSessions(){
 		$list = new ArrayList();
-		for($i = -1; $i < 12; $i += 4){
-			$columns = new ArrayList();
-			if($i == -1){
-				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(3);
-			} else
-			{
-				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(3, $i);
+
+		$col1 = new ArrayList();
+		$col2 = new ArrayList();
+		$col3 = new ArrayList();
+		$col4 = new ArrayList();
+
+		$i = 0;
+		$j = 1;
+		while ($i <= 12) {
+			$session = MeetingSession::get()->sort('Created', 'DESC')->limit(1, $i)->first();
+			if($session) {
+				switch ($j) {
+					case 1:
+						$col1->push($session);
+						$j++;
+						break;
+					case 2:
+						$col2->push($session);
+						$j++;
+						break;
+					case 3:
+						$col3->push($session);
+						$j++;
+						break;
+					case 4:
+						$col4->push($session);
+						$j = 1;
+						break;
+				}
 			}
-			foreach($col as $session){
-				$columns->push($session);
-			}
-			$list->push(new ArrayData(array('Columns' => $columns)));
+			$i++;
 		}
+
+		$list->push(new ArrayData(array('Columns' => $col1)));
+		$list->push(new ArrayData(array('Columns' => $col2)));
+		$list->push(new ArrayData(array('Columns' => $col3)));
+		$list->push(new ArrayData(array('Columns' => $col4)));
+
 		return $list;
 	}
 
 	public function sessionLink(){
 		return SessionsHolder::get()->First()->Link();
 	}
+
 }
-
-
