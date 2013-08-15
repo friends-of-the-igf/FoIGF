@@ -30,18 +30,39 @@ class MeetingSession extends DataObject {
 	public function getCMSFields() {
 		$fields = new FieldList();
 
-		$fields->push(new TextField('Title', 'Title'));
-		$fields->push($date = new DateField('Date', 'Date'));
-		$fields->push(new TextField('Type', 'Type'));	
-		$fields->push(new TextField('Location', 'Location'));
-		$date->setConfig('showcalendar', true);
-		$fields->push(new TextField('Tags', 'Tags (comma seperated)'));
-		$fields->push(new HTMLEditorField('Content', 'Content'));
-		$fields->push(new TextField('YouTubeID', 'YouTube ID (can be ID or full URL)'));
+		$mainTab = new Tab('Main');
+		$filesTab = new Tab('Files');
+		$speakersTab = new Tab('Speakers');
+		$tabset = new TabSet("Root",
+			$mainTab,
+			$filesTab,
+			$speakersTab
+		);
+		$fields->push( $tabset );
 
+		$mainTab->push(new TextField('Title', 'Title'));
+		$mainTab->push($date = new DateField('Date', 'Date'));
+		$date->setConfig('showcalendar', true);
+		$mainTab->push(new TextField('Type', 'Type'));	
+		$mainTab->push(new TextField('Location', 'Location'));
+		$mainTab->push(new TextField('Tags', 'Tags (comma seperated)'));
+		$mainTab->push(new TextField('YouTubeID', 'YouTube ID (can be ID or full URL)'));
 		$meetings = Meeting::get();
 		if($meetings->count() != 0) {
-			$fields->push(new DropdownField('MeetingID', 'Meeting', $meetings->map()));
+			$mainTab->push(new DropdownField('MeetingID', 'Meeting', $meetings->map()));
+		}
+		$mainTab->push(new HTMLEditorField('Content', 'Content'));
+
+		$filesTab->push(new UploadField('Transcript', 'Transcript'));
+		$filesTab->push(new UploadField('Proposal', 'Proposal'));
+
+		if($this->ID) {
+			$group = $this;
+			$config = new GridFieldConfig_RelationEditor();
+			$config->getComponentByType('GridFieldAddExistingAutocompleter')
+				->setResultsFormat('$Title ($Email)')->setSearchFields(array('FirstName', 'Surname', 'Email'));
+			$memberList = GridField::create('Speakers',false, $this->Speakers(), $config);
+			$speakersTab->push($memberList);
 		}
 
 		return $fields;
