@@ -1,7 +1,11 @@
 <div class="session-tile">
 
 	<div class="video">
-		<img src="http://placehold.it/224x130">
+		<% if getVideo %>
+			$getVideo
+		<% else %>
+			<img src="http://placehold.it/224x130">
+		<% end_if %>
 	</div>
 	<div class="text-wrap">
 		<div class="title">
@@ -15,7 +19,7 @@
 		</div>
 		<div class="tags">
 			Tagged: 
-			<% loop TagCollection %>
+			<% loop TagsCollection %>
 				<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
 			<% end_loop %>
 		</div>

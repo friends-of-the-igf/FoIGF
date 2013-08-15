@@ -38,9 +38,27 @@ class SessionsHolder_Controller extends Page_Controller {
 		return $form;
 	}
 
-	public function getSessions() {
-		$sessions = MeetingSession::get();
-		return $sessions;
+	// public function getSessions() {
+	// 	$sessions = MeetingSession::get();
+	// 	return $sessions;
+	// }
+
+		public function getSessions(){
+		$list = new ArrayList();
+		for($i = -1; $i < 20; $i += 8){
+			$columns = new ArrayList();
+			if($i == -1){
+				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(7);
+			} else
+			{
+				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(7, $i);
+			}
+			foreach($col as $session){
+				$columns->push($session);
+			}
+			$list->push(new ArrayData(array('Columns' => $columns)));
+		}
+		return $list;
 	}
 
 }
