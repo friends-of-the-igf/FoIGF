@@ -8,6 +8,7 @@ class Meeting extends DataObject {
 	);
 
 	public static $has_one = array(
+		'Location' => 'Location'
 	);
 
 	public static $has_many = array(
@@ -28,6 +29,11 @@ class Meeting extends DataObject {
 		$date->setConfig('showcalendar', true);
 		$fields->push($date = new DateField('EndDate', 'End Date'));
 		$date->setConfig('showcalendar', true);
+
+		$locations = Location::get()->sort('Name');
+		if($locations->Count()) {
+			$fields->push(new DropdownField('LocationID', 'Location', $locations->map()));			
+		}	
 
 		if($this->ID) {
 			$gridFieldConfig = new GridFieldConfig_RelationEditor();

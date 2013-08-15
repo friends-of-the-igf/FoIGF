@@ -4,8 +4,6 @@ class MeetingSession extends DataObject {
 	public static $db = array(
 		'Title' => 'Text',
 		'Date' => 'Date',
-		'Type' => 'Text',
-		'Location' => 'Text',
 		'Tags' => 'Text',
 		'Views' => 'Int',
 		'Content' => 'HTMLText',
@@ -15,7 +13,8 @@ class MeetingSession extends DataObject {
 	public static $has_one = array(
 		'Transcript' => 'File',
 		'Proposal' => 'File',
-		'Meeting' => 'Meeting'
+		'Meeting' => 'Meeting',
+		'Type' => 'Type'
 	);
 
 	public static $many_many = array(
@@ -43,8 +42,12 @@ class MeetingSession extends DataObject {
 		$mainTab->push(new TextField('Title', 'Title'));
 		$mainTab->push($date = new DateField('Date', 'Date'));
 		$date->setConfig('showcalendar', true);
-		$mainTab->push(new TextField('Type', 'Type'));	
-		$mainTab->push(new TextField('Location', 'Location'));
+
+		$types = Type::get()->sort('Name');
+		if($types->Count()) {
+			$mainTab->push(new DropdownField('TypeID', 'Type', $types->map()));			
+		}	
+
 		$mainTab->push(new TextField('Tags', 'Tags (comma seperated)'));
 		$mainTab->push(new TextField('YouTubeID', 'YouTube ID (can be ID or full URL)'));
 		$meetings = Meeting::get();
