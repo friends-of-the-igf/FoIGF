@@ -22,7 +22,8 @@ class MeetingSession extends DataObject {
 	);
 
 	public static $many_many = array(
-		'Speakers' => 'Member'
+		'Speakers' => 'Member',
+		'RelatedSessions' => 'MeetingSession'
 	);
 
 	public static $summary_fields = array(
@@ -38,12 +39,14 @@ class MeetingSession extends DataObject {
 		$filesTab = new Tab('Files');
 		$videosTab = new Tab('Videos');
 		$speakersTab = new Tab('Speakers');
+		$sessionsTab = new Tab('RelatedSessions');
 		$tabset = new TabSet("Root",
 			$mainTab,
 			$transcriptTab,
 			$filesTab,
 			$videosTab,
-			$speakersTab
+			$speakersTab,
+			$sessionsTab
 		);
 		$fields->push( $tabset );
 
@@ -82,6 +85,13 @@ class MeetingSession extends DataObject {
 			$speakersTab->push($memberList);
 		}
 
+		if($this->ID) {
+			$group = $this;
+			$config = new GridFieldConfig_RelationEditor();
+			$sessionList = GridField::create('RelatedSessions',false, $this->RelatedSessions(), $config);
+			$sessionsTab->push($sessionList);
+		}
+
 		return $fields;
 	}
 
@@ -116,10 +126,6 @@ class MeetingSession extends DataObject {
 			$vid = $this->Videos()->first();
 			return '<iframe width="100%" height="100%" src="http://www.youtube.com/v/'.$vid->YouTubeID.'?controls=0&showinfo=0" frameborder="0"></iframe>';
 		}
-    }
-
-    public function getRelatedSessions(){
-    	return MeetingSession::get()->limit(3);
     }
 
 }
