@@ -2,7 +2,8 @@
 class MeetingSessionAdmin extends ModelAdmin {
 
 	public static $managed_models = array(
-		'MeetingSession'
+		'MeetingSession',
+		'Type'
 	);
 
 	static $url_segment = 'sessions';
