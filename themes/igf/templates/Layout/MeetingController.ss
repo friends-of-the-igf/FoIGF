@@ -26,8 +26,8 @@
   </div>
   <div class="span3">
     <h5>Meeting Information</h5>
-    <% loop Links %>
-      <a href="$URL"><% if Title %>$Title<% else %>$URL</a>
+    <% loop LinkItems %>
+      <a href="$URL"><% if Title %>$Title<% else %>$URL<% end_if %></a><br/>
     <% end_loop %>
   </div>
   <div class="span3">
