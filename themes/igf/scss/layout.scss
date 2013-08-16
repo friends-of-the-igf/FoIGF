@@ -296,20 +296,24 @@ b{
 			color: $blue;
 			font-size:15px;
 			}
-
 	
 
 		form{
+
 			label{
 				font-weight: bold;
 			}
+
+			input{
+				
+			}
+
 			ul{
 				list-style-type: none;
 
-				input[type="checkbox"]{
+				input{
 					margin-top: 0px;
-					border: none;
-					background: white;
+
 				}
 
 				label{
@@ -318,6 +322,8 @@ b{
 					display:inline-block;
 				}
 			}
+
+		
 
 
 			
