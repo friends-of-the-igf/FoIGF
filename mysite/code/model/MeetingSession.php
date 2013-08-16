@@ -5,6 +5,7 @@ class MeetingSession extends DataObject {
 		'Title' => 'Text',
 		'Date' => 'Date',
 		'Tags' => 'Text',
+		'NewTags' => 'Text',
 		'Views' => 'Int',
 		'Content' => 'HTMLText',
 		'TranscriptContent' => 'HTMLText'
@@ -57,9 +58,19 @@ class MeetingSession extends DataObject {
 		$types = Type::get()->sort('Name');
 		if($types->Count()) {
 			$mainTab->push(new DropdownField('TypeID', 'Type', $types->map()));			
-		}	
+		}
 
-		$mainTab->push(new TextField('Tags', 'Tags (comma seperated)'));
+		// tags
+		$tags = $this->allTagsArray();
+		asort($tags);
+		$mainTab->push(ListboxField::create('Tags', 'Tags (pre-defined)')
+			->setMultiple(true)
+			->setSource($tags)
+		);
+
+		$mainTab->push(new TextField('NewTags', 'New Tags (adds to pre-defined list, comma seperated eg tag1,tag2,tag3)'));
+
+
 		$meetings = Meeting::get();
 		if($meetings->count() != 0) {
 			$mainTab->push(new DropdownField('MeetingID', 'Meeting', $meetings->map()));
@@ -95,12 +106,22 @@ class MeetingSession extends DataObject {
 		return $fields;
 	}
 
+	public function onAfterWrite() {
+		parent::onAfterWrite();
+
+		if($this->NewTags) {
+			$this->Tags .= ',' . $this->NewTags;
+			$this->NewTags = null;
+			$this->write();
+		}
+	}
+
 	public function Link($action = null) {
 		return Controller::join_links('session', $this->ID, $action);
 	}
 
 	public function TagsCollection() {
-		$tags = preg_split(" *, *", trim($this->Tags));
+		$tags = preg_split("*,*", trim($this->Tags));
 		$output = new ArrayList();
 		
 		$link = "";
@@ -119,6 +140,19 @@ class MeetingSession extends DataObject {
 		if($this->Tags) {
 			return $output;
 		}
+	}
+
+	public function allTagsArray() {
+		$sessions = MeetingSession::get();
+		$list = array();	
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				$tag = strtolower($tag);
+				$list[$tag] = $tag;
+			}
+		}
+		return $list;
 	}
 
 	public function getVideo(){
