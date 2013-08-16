@@ -148,8 +148,10 @@ class MeetingSession extends DataObject {
 		foreach($sessions as $session) {
 			$tags = preg_split("*,*", trim($session->Tags));
 			foreach($tags as $tag) {
-				$tag = strtolower($tag);
-				$list[$tag] = $tag;
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$list[$tag] = $tag;
+				}
 			}
 		}
 		return $list;

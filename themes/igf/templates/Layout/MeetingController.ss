@@ -37,6 +37,7 @@
 	</div>
 	<div class="span3">
 		<p>test</p>
+		<% loop allTags %><p>$Tag - $Weight</p><% end_loop %>
 	</div>
 </div>
 <div class="row-fluid">

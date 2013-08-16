@@ -97,4 +97,57 @@ class Meeting extends DataObject {
 		}
 	}
 
+	public function allTags() {
+		$sessions = $this->MeetingSessions();
+
+		$uniqueTagsArray = array();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$uniqueTagsArray[$tag] = $tag;
+				}
+			}
+		}
+
+		$output = new ArrayList();
+		$link = "";
+		if($page = SessionsHolder::get()->First()) {
+			$link = $page->Link('tag');
+		}
+
+		foreach($uniqueTagsArray as $tag) {
+			$tagsList = $this->allTagsList();
+			$filteredList = $tagsList->filter('Tag', $tag);
+			$weight = $filteredList->Count();
+
+			$output->push(new ArrayData(array(
+				'Tag' => $tag,
+				'Link' => $link . '/' . urlencode($tag),
+				'URLTag' => urlencode($tag),
+				'Weight' => $weight
+			)));
+		}
+		
+		return $output;
+	}
+
+	public function allTagsList() {
+		$sessions = $this->MeetingSessions();
+		$tagsList = new ArrayList();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$tagsList->push(new ArrayData(array(
+						'Tag' => $tag
+					)));
+				}
+			}
+		}
+		return $tagsList;
+	}
+
 }
