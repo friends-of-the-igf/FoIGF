@@ -12,7 +12,12 @@ class Meeting extends DataObject {
 	);
 
 	public static $has_many = array(
-		'MeetingSessions' => 'MeetingSession'
+		'MeetingSessions' => 'MeetingSession',
+		'LinkItems' => 'LinkItem'
+	);
+
+	public static $many_many = array(
+		'Topics' => 'Topic'
 	);
 
 	public static $summary_fields = array(
@@ -24,22 +29,48 @@ class Meeting extends DataObject {
 	public function getCMSFields() {
 		$fields = new FieldList();
 
-		$fields->push(new TextField('Title', 'Title'));
-		$fields->push($date = new DateField('StartDate', 'Start Date'));
+		$mainTab = new Tab('Main');
+		$sessionsTab = new Tab('Sessions');
+		$linksTab = new Tab('Links');
+		$topicsTab = new Tab('Topics');
+		$tabset = new TabSet("Root",
+			$mainTab,
+			$sessionsTab,
+			$linksTab,
+			$topicsTab
+		);
+		$fields->push( $tabset );
+
+		$mainTab->push(new TextField('Title', 'Title'));
+		$mainTab->push($date = new DateField('StartDate', 'Start Date'));
 		$date->setConfig('showcalendar', true);
-		$fields->push($date = new DateField('EndDate', 'End Date'));
+		$mainTab->push($date = new DateField('EndDate', 'End Date'));
 		$date->setConfig('showcalendar', true);
 
 		$locations = Location::get()->sort('Name');
 		if($locations->Count()) {
-			$fields->push(new DropdownField('LocationID', 'Location', $locations->map()));			
+			$mainTab->push(new DropdownField('LocationID', 'Location', $locations->map()));			
 		}	
 
 		if($this->ID) {
 			$gridFieldConfig = new GridFieldConfig_RelationEditor();
 			$list = $this->MeetingSessions();
 			$gridField = new GridField('MeetingSessions', 'Sessions', $list, $gridFieldConfig);
-			$fields->push($gridField);
+			$sessionsTab->push($gridField);
+		}
+
+		if($this->ID) {
+			$gridFieldConfig = new GridFieldConfig_RecordEditor();
+			$list = $this->LinkItems();
+			$gridField = new GridField('LinkItems', 'Links', $list, $gridFieldConfig);
+			$linksTab->push($gridField);
+		}
+
+		if($this->ID) {
+			$gridFieldConfig = new GridFieldConfig_RelationEditor();
+			$list = $this->Topics();
+			$gridField = new GridField('Topics', 'Topics', $list, $gridFieldConfig);
+			$topicsTab->push($gridField);
 		}
 		
 		return $fields;
@@ -66,6 +97,57 @@ class Meeting extends DataObject {
 		}
 	}
 
-	
+	public function allTags() {
+		$sessions = $this->MeetingSessions();
+
+		$uniqueTagsArray = array();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$uniqueTagsArray[$tag] = $tag;
+				}
+			}
+		}
+
+		$output = new ArrayList();
+		$link = "";
+		if($page = SessionsHolder::get()->First()) {
+			$link = $page->Link('tag');
+		}
+
+		foreach($uniqueTagsArray as $tag) {
+			$tagsList = $this->allTagsList();
+			$filteredList = $tagsList->filter('Tag', $tag);
+			$weight = $filteredList->Count();
+
+			$output->push(new ArrayData(array(
+				'Tag' => $tag,
+				'Link' => $link . '/' . urlencode($tag),
+				'URLTag' => urlencode($tag),
+				'Weight' => $weight
+			)));
+		}
+		
+		return $output;
+	}
+
+	public function allTagsList() {
+		$sessions = $this->MeetingSessions();
+		$tagsList = new ArrayList();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$tagsList->push(new ArrayData(array(
+						'Tag' => $tag
+					)));
+				}
+			}
+		}
+		return $tagsList;
+	}
 
 }

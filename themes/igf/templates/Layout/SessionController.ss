@@ -1,5 +1,6 @@
 <div id="ses-wrap">
 	<% with MeetingSession %>
+	$allTagsArray
 	<div class="row">
 		<div class="span12">
 			<h3>$Title</h3>

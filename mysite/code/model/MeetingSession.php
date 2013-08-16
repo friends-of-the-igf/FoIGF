@@ -5,6 +5,7 @@ class MeetingSession extends DataObject {
 		'Title' => 'Text',
 		'Date' => 'Date',
 		'Tags' => 'Text',
+		'NewTags' => 'Text',
 		'Views' => 'Int',
 		'Content' => 'HTMLText',
 		'TranscriptContent' => 'HTMLText'
@@ -22,7 +23,8 @@ class MeetingSession extends DataObject {
 	);
 
 	public static $many_many = array(
-		'Speakers' => 'Member'
+		'Speakers' => 'Member',
+		'RelatedSessions' => 'MeetingSession'
 	);
 
 	public static $summary_fields = array(
@@ -38,12 +40,14 @@ class MeetingSession extends DataObject {
 		$filesTab = new Tab('Files');
 		$videosTab = new Tab('Videos');
 		$speakersTab = new Tab('Speakers');
+		$sessionsTab = new Tab('RelatedSessions');
 		$tabset = new TabSet("Root",
 			$mainTab,
 			$transcriptTab,
 			$filesTab,
 			$videosTab,
-			$speakersTab
+			$speakersTab,
+			$sessionsTab
 		);
 		$fields->push( $tabset );
 
@@ -54,9 +58,19 @@ class MeetingSession extends DataObject {
 		$types = Type::get()->sort('Name');
 		if($types->Count()) {
 			$mainTab->push(new DropdownField('TypeID', 'Type', $types->map()));			
-		}	
+		}
 
-		$mainTab->push(new TextField('Tags', 'Tags (comma seperated)'));
+		// tags
+		$tags = $this->allTagsArray();
+		asort($tags);
+		$mainTab->push(ListboxField::create('Tags', 'Tags (pre-defined)')
+			->setMultiple(true)
+			->setSource($tags)
+		);
+
+		$mainTab->push(new TextField('NewTags', 'New Tags (adds to pre-defined list, comma seperated eg tag1,tag2,tag3)'));
+
+
 		$meetings = Meeting::get();
 		if($meetings->count() != 0) {
 			$mainTab->push(new DropdownField('MeetingID', 'Meeting', $meetings->map()));
@@ -82,7 +96,24 @@ class MeetingSession extends DataObject {
 			$speakersTab->push($memberList);
 		}
 
+		if($this->ID) {
+			$group = $this;
+			$config = new GridFieldConfig_RelationEditor();
+			$sessionList = GridField::create('RelatedSessions',false, $this->RelatedSessions(), $config);
+			$sessionsTab->push($sessionList);
+		}
+
 		return $fields;
+	}
+
+	public function onAfterWrite() {
+		parent::onAfterWrite();
+
+		if($this->NewTags) {
+			$this->Tags .= ',' . $this->NewTags;
+			$this->NewTags = null;
+			$this->write();
+		}
 	}
 
 	public function Link($action = null) {
@@ -90,7 +121,7 @@ class MeetingSession extends DataObject {
 	}
 
 	public function TagsCollection() {
-		$tags = preg_split(" *, *", trim($this->Tags));
+		$tags = preg_split("*,*", trim($this->Tags));
 		$output = new ArrayList();
 		
 		$link = "";
@@ -111,17 +142,26 @@ class MeetingSession extends DataObject {
 		}
 	}
 
+	public function allTagsArray() {
+		$sessions = MeetingSession::get();
+		$list = array();	
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$list[$tag] = $tag;
+				}
+			}
+		}
+		return $list;
+	}
+
 	public function getVideo(){
 		if($this->Videos()->Count() != 0) {
 			$vid = $this->Videos()->first();
 			return '<iframe width="100%" height="100%" src="http://www.youtube.com/v/'.$vid->YouTubeID.'?controls=0&showinfo=0" frameborder="0"></iframe>';
 		}
     }
-
-    public function getRelatedSessions(){
-    	return MeetingSession::get()->limit(3);
-    }
-
- 
 
 }
