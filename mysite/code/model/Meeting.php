@@ -16,6 +16,10 @@ class Meeting extends DataObject {
 		'LinkItems' => 'LinkItem'
 	);
 
+	public static $many_many = array(
+		'Topics' => 'Topic'
+	);
+
 	public static $summary_fields = array(
 		'Title',
 		'StartDate',
@@ -28,10 +32,12 @@ class Meeting extends DataObject {
 		$mainTab = new Tab('Main');
 		$sessionsTab = new Tab('Sessions');
 		$linksTab = new Tab('Links');
+		$topicsTab = new Tab('Topics');
 		$tabset = new TabSet("Root",
 			$mainTab,
 			$sessionsTab,
-			$linksTab
+			$linksTab,
+			$topicsTab
 		);
 		$fields->push( $tabset );
 
@@ -58,6 +64,13 @@ class Meeting extends DataObject {
 			$list = $this->LinkItems();
 			$gridField = new GridField('LinkItems', 'Links', $list, $gridFieldConfig);
 			$linksTab->push($gridField);
+		}
+
+		if($this->ID) {
+			$gridFieldConfig = new GridFieldConfig_RelationEditor();
+			$list = $this->Topics();
+			$gridField = new GridField('Topics', 'Topics', $list, $gridFieldConfig);
+			$topicsTab->push($gridField);
 		}
 		
 		return $fields;

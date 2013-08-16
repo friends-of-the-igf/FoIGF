@@ -3,7 +3,8 @@ class MeetingAdmin extends ModelAdmin {
 
 	public static $managed_models = array(
 		'Meeting',
-		'Location'
+		'Location',
+		'Topic'
 	);
 
 	static $url_segment = 'meeting';
