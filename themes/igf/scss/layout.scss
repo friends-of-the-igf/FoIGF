@@ -131,11 +131,12 @@ b{
 		}
 
 		fieldset{
-			width: 77%;
+			width: 100%;
 			display:inline-block;
 		}
 		#Search{
-			width: 100%;
+			width: 77%;
+			float:left;
 			input{
 				width: 90%;
 				height:35px;
@@ -155,7 +156,7 @@ b{
 			}
 			:-ms-input-placeholder { 
 			    color:    $grayDark;
-				}
+			}
 		}
 		.Actions{
 

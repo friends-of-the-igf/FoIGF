@@ -126,14 +126,29 @@ class SessionsHolder_Controller extends Page_Controller {
 
 		foreach($uniqueTagsArray as $tag) {
 			$tagsList = $this->allTagsList();
+			$count = $tagsList->Count();
 			$filteredList = $tagsList->filter('Tag', $tag);
 			$weight = $filteredList->Count();
+			$percent = ($weight / $count) * 100;
+
+			if($percent <= 20) {
+				$size = "12px";
+			} elseif($percent <= 40) {
+				$size = "14px";
+			} elseif($percent <= 60) {
+				$size = "16px";
+			} elseif($percent <= 80) {
+				$size = "18px";
+			} elseif($percent <= 100) {
+				$size = "20px";
+			}
 
 			$output->push(new ArrayData(array(
 				'Tag' => $tag,
 				'Link' => $link . '/' . urlencode($tag),
 				'URLTag' => urlencode($tag),
-				'Weight' => $weight
+				'Weight' => $percent,
+				'Size' => $size
 			)));
 		}
 		

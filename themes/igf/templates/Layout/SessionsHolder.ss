@@ -7,7 +7,7 @@
 		</div>
 		<div class='tags'>
 			<h5>View Sessions tagged</h5>
-			 <% loop allTags %><a >$Tag - $Weight<% if not Last %>,<% end_if %></a> <% end_loop %>
+			 <% loop allTags %><a href="$Link" style="font-size: {$Size};">$Tag - $Weight<% if not Last %>,<% end_if %></a> <% end_loop %>
 			</div>
 	</div>
 	<div class="sessions span9">

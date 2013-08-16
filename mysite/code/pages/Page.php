@@ -21,13 +21,15 @@ class Page extends SiteTree {
 class Page_Controller extends ContentController {
 
 	public static $allowed_actions = array (
+		'SearchForm',
+		'doSearch'
 	);
 
 	public function init() {
 		parent::init();
 	}
 
-	public function CustomSearch(){
+	public function SearchForm(){
 		$fields = new FieldList($input = new TextField('Search', 'Search'));
 
 		$input->setAttribute('placeholder', 'Search for Sessions, Meetings and Speakers...');
@@ -37,11 +39,22 @@ class Page_Controller extends ContentController {
 	
 		$button->addExtraClass('btn-primary');
 
-		$form = new Form($this, 'SearchForm', $fields, $actions);
+		$form = new SearchForm($this, 'SearchForm', $fields, $actions);
 	
 		$form->addExtraClass('form-search');
 
 		return $form;
+	}
+
+	public function doSearch($data, $form, $request) {
+		$data = array(
+            'Results' => $form->getResults(),
+            'Query' => $form->getSearchQuery(),
+            'Title' => _t('SearchForm.SearchResults', 'Search Results')
+        );
+
+        var_dump($form->getSearchQuery());
+        // return $this->owner->customise($data)->renderWith(array('Page_results', 'Page'));
 	}
 
 	public function sessionLink(){
