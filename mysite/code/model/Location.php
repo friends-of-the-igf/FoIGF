@@ -10,6 +10,11 @@ class Location extends DataObject {
 		'Meetings' => 'Meeting'
 	);
 
+	public static $summary_fields = array(
+		'City',
+		'Country'	
+	);
+
 	public function getCMSFields() {
 		$fields = new FieldList();
 		$fields->push(new TextField('City', 'City'));

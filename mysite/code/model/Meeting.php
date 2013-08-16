@@ -43,7 +43,7 @@ class Meeting extends DataObject {
 		$mainTab->push($date = new DateField('EndDate', 'End Date'));
 		$date->setConfig('showcalendar', true);
 
-		$locations = Location::get()->sort('Name');
+		$locations = Location::get()->sort('City');
 		if($locations->Count()) {
 			$mainTab->push(new DropdownField('LocationID', 'Location', $locations->map()));			
 		}	
@@ -155,7 +155,7 @@ class Meeting extends DataObject {
 	}
 
 	public function getYearLocation(){
-		return $this->StartDate." - ".$this->Location()->Name;
+		return $this->StartDate." - ".$this->Location()->City;
 	}
 
 }
