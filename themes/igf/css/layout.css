@@ -85,10 +85,10 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 
 /* session controller --------------------------------------------------*/
 #ses-wrap { padding-top: 30px; }
-#ses-wrap .content div { padding-bottom: 20px; }
-#ses-wrap .content h5 { font-size: 16px; }
-#ses-wrap .content span.blue { font-weight: bold; color: #359bfc; font-size: 16px; }
-#ses-wrap .content p { padding-bottom: 10px; }
+#ses-wrap .main div { padding-bottom: 20px; }
+#ses-wrap .main h5 { font-size: 16px; }
+#ses-wrap .main .content h5 { color: #359bfc; }
+#ses-wrap .main p { padding-bottom: 10px; }
 #ses-wrap .video { height: 300px; }
 #ses-wrap .session-side a { text-decoration: underline; }
 #ses-wrap .session-side div { padding-bottom: 5px; }
@@ -96,6 +96,9 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 /* meetings holder -------------------------------------------------- */
 #MeetingsHolder .promo { background: #f3f3f3; border: 1px solid #d8d8d8; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; margin-top: 30px; margin-bottom: 20px; }
 #MeetingsHolder .promo .dark { background-color: #d8d8d8; }
+#MeetingsHolder #meetings-wrap { padding-bottom: 100px; }
+#MeetingsHolder #meetings-wrap a h4 { color: black; }
+#MeetingsHolder #meetings-wrap a:hover { text-decoration: none; }
 
 /* meeting -------------------------------------------------- */
 #MeetingController #speakers-wrap .thumbnail > img { margin-left: 0; margin-right: 0; }
@@ -112,7 +115,18 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
   #SessionsHolder #searchbar .search .mglass { margin-left: -15px; }
   #SessionsHolder #searchbar .search form { margin-left: -20px; }
   #SessionsHolder #searchbar .logo { margin-left: 5px; } }
-@media (max-width: 767px) { #searchbar .search #Search input { width: 75%; }
-  #searchbar .search .Actions { width: 19%; } }
-@media (min-width: 768px) and (max-width: 979px) { #searchbar .search #Search input { width: 75%; }
+@media (max-width: 767px) { #navigation .navbar-inner .container .social-icons { display: none !important; }
+  #searchbar .logo { width: 10%; display: none; }
+  #searchbar .search { width: 100%; }
+  #searchbar .search fieldset { width: 60%; }
+  #searchbar .search .mglass { margin-left: 25px; }
+  #searchbar .search #Search { padding-left: 20px; width: 90%; margin-right: 20px; }
+  #searchbar .search #Search input { width: 90%; }
+  #searchbar .search #Search ::-webkit-input-placeholder { display: none; }
+  #searchbar .search #Search :-moz-placeholder { display: none; }
+  #searchbar .search #Search ::-moz-placeholder { display: none; }
+  #searchbar .search #Search :-ms-input-placeholder { display: none; }
+  #searchbar .search .Actions { width: 19%; float: right; margin-right: 30px; } }
+@media (min-width: 768px) and (max-width: 979px) { #navigation .navbar-inner .container .social-icons { display: none !important; }
+  #searchbar .search #Search input { width: 75%; }
   #searchbar .search .Actions { width: 19%; } }

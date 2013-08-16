@@ -359,7 +359,7 @@ h3{
 #ses-wrap{
 	padding-top: 30px;
 
-	.content{
+	.main{
 		div{
 			padding-bottom: 20px;
 		}
@@ -367,11 +367,12 @@ h3{
 			font-size: 16px;
 		}
 
-		span.blue{
-			font-weight: bold;
-			color:$blue;
-			font-size: 16px;
+		.content{
+			h5{
+				color: $blue
+			}
 		}
+		
 		p{
 			padding-bottom: 10px;
 		}
@@ -406,6 +407,19 @@ h3{
 
 		.dark {
 			background-color: $grayMedium;
+		}
+	}
+	#meetings-wrap{
+		padding-bottom: 100px;
+
+		a{
+			h4{
+				color: black;
+				
+			}
+		}
+		a:hover{
+			text-decoration: none;
 		}
 	}
 }
@@ -461,15 +475,59 @@ h3{
 }
 
 @media (max-width: 767px) {
+
+
+#navigation {
+	.navbar-inner {
+		.container {
+			.social-icons{
+				display:none !important;
+			}	
+		}
+	}
+}
+
+
+
 	#searchbar{
-		.search{
-			#Search{
-				input{
-					width:75%;
-				}
+		.logo{
+			width: 10%;
+			display: none;
 			}
+		.search{
+			width: 100%;
+			fieldset{
+				width:60%;
+			}
+			.mglass{
+					margin-left: 25px;
+				}
+
+			#Search{
+				padding-left: 20px;
+				width: 90%;
+				margin-right: 20px;
+				input{
+					width:90%;
+				}
+				::-webkit-input-placeholder { 
+				    display:none;
+				}
+				:-moz-placeholder { 
+				    display:none;
+				}
+				::-moz-placeholder {
+				    display:none;
+				}
+				:-ms-input-placeholder { 
+				     display:none;
+				}
+
+				}
 			.Actions{
 				width:19%;
+				float:right;
+				margin-right: 30px;
 			}
 		}
 	}
@@ -478,6 +536,16 @@ h3{
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+
+	#navigation {
+	.navbar-inner {
+		.container {
+			.social-icons{
+				display:none !important;
+			}	
+		}
+	}
+}
 
 	#searchbar{
 		.search{
