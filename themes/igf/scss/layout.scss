@@ -31,6 +31,9 @@ h3{
 	margin: 0px;
 
 }
+h4{
+	font-weight: 500;
+}
 .btn{
 	padding: 10px 10px;
 	text-transform:uppercase;
@@ -282,18 +285,42 @@ b{
 
 	}
 	.filter{
+
 		padding-top: 20px;
 		background: $grayLighter;
 		margin-left: -46%;
 		padding-left: 46%;
 		margin-right: -10%;
 
+		h5{
+			color: $blue;
+			font-size:15px;
+			}
+
+	
+
 		form{
-			#Text{
-				input{
-					width:70%;
+			label{
+				font-weight: bold;
+			}
+			ul{
+				list-style-type: none;
+
+				input[type="checkbox"]{
+					margin-top: 0px;
+					border: none;
+					background: white;
+				}
+
+				label{
+
+					font-weight: normal;
+					display:inline-block;
 				}
 			}
+
+
+			
 			.Actions{
 				input{
 					height:43px;
@@ -302,7 +329,7 @@ b{
 					letter-spacing: 1px;	
 				}
 			}
-		}	
+		}
 	}
 	
   /*Search Bar Styling */

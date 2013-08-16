@@ -3,9 +3,9 @@
 	<div class="row">
 		<div class="span12">
 			<h3>$Title</h3>
-			<div>
-				$Date.Long - A <a>$Type.Name</a> on $Topic.Name in <a>$Meeting.Location.Name</a>
-			</div>
+			<h4 class="subtext">
+				$Date.Long - A <a>$Type.Name</a> on <a>$Topic.Name</a> in <a>$Meeting.Location.Name</a>
+			</h4>
 		</div>	
 	</div>
 	<div class="row">

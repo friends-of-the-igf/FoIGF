@@ -11,6 +11,8 @@ a { cursor: pointer; }
 
 h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 
+h4 { font-weight: 500; }
+
 .btn { padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 
 .subtext { color: #919294; }
@@ -72,7 +74,11 @@ b { font-weight: 500; }
 #SessionsHolder .sessions .heading { padding-left: 10px; }
 #SessionsHolder .sessions .button { text-align: center; }
 #SessionsHolder .filter { padding-top: 20px; background: #f3f3f3; margin-left: -46%; padding-left: 46%; margin-right: -10%; }
-#SessionsHolder .filter form #Text input { width: 70%; }
+#SessionsHolder .filter h5 { color: #359bfc; font-size: 15px; }
+#SessionsHolder .filter form label { font-weight: bold; }
+#SessionsHolder .filter form ul { list-style-type: none; }
+#SessionsHolder .filter form ul input[type="checkbox"] { margin-top: 0px; border: none; background: white; }
+#SessionsHolder .filter form ul label { font-weight: normal; display: inline-block; }
 #SessionsHolder .filter form .Actions input { height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 #SessionsHolder #searchbar { border: none; }
 #SessionsHolder #searchbar .mglass { margin-left: -5px; }

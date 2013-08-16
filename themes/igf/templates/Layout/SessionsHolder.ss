@@ -2,8 +2,13 @@
 <div class="row-fluid">
 	<div id='filter-wrap' class="span3">
 		<div class="filter">
+			<h5>Filter Sessions by</h5>
 			$FilterForm
 		</div>
+		<div class='tags'>
+			<h5>View Sessions tagged</h5>
+			 <% loop allTags %><a >$Tag - $Weight<% if not Last %>,<% end_if %></a> <% end_loop %>
+			</div>
 	</div>
 	<div class="sessions span9">
 		<div class="heading">

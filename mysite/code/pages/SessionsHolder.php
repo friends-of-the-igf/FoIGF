@@ -27,9 +27,15 @@ class SessionsHolder_Controller extends Page_Controller {
 
 	public function FilterForm(){
 		$fields = new FieldList();
-		$fields->push(new TextField('Text', 'Text'));
 
-		$actions = new FieldList($button = new FormAction('doSearch', 'Search'));
+		$fields->push(new DropdownField('Meeting', 'Meeting', Meeting::get()->map('ID', 'getYearLocation')));
+		$fields->push(new DropdownField('Type', 'Session type', Type::get()->map('ID', 'Name')));
+		$fields->push(new DropdownField('Speaker', 'Speaker', Member::get()->map('ID', 'Name')));
+		$fields->push(new CheckboxSetField('Topic', 'Sessions on there topics', Topic::get()->map('ID', 'Name')));
+		$fields->push(new CheckboxSetField('Sort', 'Sort Sessions by', array('Latest' => 'Latest', 'Oldest' => 'Oldest', 'Most viewed' => 'Most viewed', 'Most shared' => 'Most shared')));
+
+
+		$actions = new FieldList($button = new FormAction('doSearch', 'Refine Results'));
 		$button->addExtraClass('btn');
 		$button->addExtraClass('btn-primary');
 
@@ -43,22 +49,113 @@ class SessionsHolder_Controller extends Page_Controller {
 	// 	return $sessions;
 	// }
 
-		public function getSessions(){
+	public function getSessions(){
+		// $list = new ArrayList();
+		// for($i = -1; $i < 18; $i += 7){
+		// 	$columns = new ArrayList();
+		// 	if($i == -1){
+		// 		$col = MeetingSession::get()->sort('Created', 'DESC')->limit(6);
+		// 	} else
+		// 	{
+		// 		$col = MeetingSession::get()->sort('Created', 'DESC')->limit(6, $i);
+		// 	}
+		// 	foreach($col as $session){
+		// 		$columns->push($session);
+		// 	}
+		// 	$list->push(new ArrayData(array('Columns' => $columns)));
+		// }
+		// return $list;
+
 		$list = new ArrayList();
-		for($i = -1; $i < 20; $i += 8){
-			$columns = new ArrayList();
-			if($i == -1){
-				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(7);
-			} else
-			{
-				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(7, $i);
+
+		$col1 = new ArrayList();
+		$col2 = new ArrayList();
+		$col3 = new ArrayList();
+
+		$i = 0;
+		$j = 1;
+		while ($i <= 17) {
+			$session = MeetingSession::get()->sort('Created', 'DESC')->limit(1, $i)->first();
+			if($session) {
+				switch ($j) {
+					case 1:
+						$col1->push($session);
+						$j++;
+						break;
+					case 2:
+						$col2->push($session);
+						$j++;
+						break;
+					case 3:
+						$col3->push($session);
+						$j=1;
+						break;	
+				}
 			}
-			foreach($col as $session){
-				$columns->push($session);
-			}
-			$list->push(new ArrayData(array('Columns' => $columns)));
+			$i++;
 		}
+
+		$list->push(new ArrayData(array('Columns' => $col1)));
+		$list->push(new ArrayData(array('Columns' => $col2)));
+		$list->push(new ArrayData(array('Columns' => $col3)));
+
 		return $list;
 	}
+
+
+
+	public function allTags() {
+		$sessions = MeetingSession::get();
+
+		$uniqueTagsArray = array();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$uniqueTagsArray[$tag] = $tag;
+				}
+			}
+		}
+
+		$output = new ArrayList();
+		$link = "";
+		if($page = SessionsHolder::get()->First()) {
+			$link = $page->Link('tag');
+		}
+
+		foreach($uniqueTagsArray as $tag) {
+			$tagsList = $this->allTagsList();
+			$filteredList = $tagsList->filter('Tag', $tag);
+			$weight = $filteredList->Count();
+
+			$output->push(new ArrayData(array(
+				'Tag' => $tag,
+				'Link' => $link . '/' . urlencode($tag),
+				'URLTag' => urlencode($tag),
+				'Weight' => $weight
+			)));
+		}
+		
+		return $output;
+	}
+
+	public function allTagsList() {
+		$sessions = MeetingSession::get();
+		$tagsList = new ArrayList();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$tagsList->push(new ArrayData(array(
+						'Tag' => $tag
+					)));
+				}
+			}
+		}
+		return $tagsList;
+	}
+
 
 }

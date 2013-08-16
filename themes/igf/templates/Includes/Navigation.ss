@@ -12,7 +12,7 @@
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 						<li class="divider-vertical"></li>
-					<% loop $Menu(1) %>
+					<% loop $Menu(1).Limit(3) %>
 						<li class="$LinkingMode"><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
 					<% end_loop %>
 						<li class="divider-vertical"></li>
@@ -22,8 +22,11 @@
 					<a class="social"><img src="http://placehold.it/25x25" class="img-circle"></a>
 				</div>
 				<ul class="nav pull-right">
-					<li class=""><a href="" title="About">About</a></li>
-					<li class=""><a href="" title="Contact">Contact</a></li>
+					<% loop $Menu(1).Limit(5, 3) %>
+					
+					<li class="$LinkingMode"><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
+					
+					<% end_loop %>
 				</ul>
 			</div>
 			
