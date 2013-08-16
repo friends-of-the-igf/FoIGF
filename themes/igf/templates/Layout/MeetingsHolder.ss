@@ -6,7 +6,7 @@
 		<a href="$Link" class="thumbnail">
 			<img src="http://placehold.it/400x300" />
 			<div class="text-wrap">
-				<h4>$Title</h4>
+				<h4>$Location.Name</h4>
 				<p><span class="subtext"><b>$StartDate.Nice - $EndDate.Nice</b></span><br/>$MeetingSessions.Count sessions</p>
 			</div>
 		</a>
