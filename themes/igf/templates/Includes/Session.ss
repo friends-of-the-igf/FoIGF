@@ -9,8 +9,8 @@
 		<div class="text-wrap">
 			<p><b><a class="title" href="$Link">$Title</a></b></p>		
 			<p><a href="#">$Type.Name</a> in <a href="#">$Meeting.Location.Name</a></p>
-			<p><b>$Date | $View views</b></p>
-			<p>
+			<p class="subtext"><b>$Date | $View views</b></p>
+			<p class="subtext light">
 				Tagged: 
 				<% loop TagsCollection %>
 					<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>

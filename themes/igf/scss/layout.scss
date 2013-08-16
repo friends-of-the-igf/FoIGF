@@ -208,6 +208,11 @@ h3{
 	letter-spacing: 1px;
 }
 
+.subtext{
+	color: $gray;
+	font-size: 12px;
+}
+
 
 /*HomePage -------------------------------------------------- */
 #HomePage{	
@@ -337,13 +342,14 @@ h3{
 			}
 
 			.text-wrap{
+				margin: 5px;
 				
 				.title{
-
+					color: $grayDarkest;
+					font-size: 14px;
 				}
-				margin: 5px;
-				color: $gray;
-				font-size: 12px;
+				
+				
 
 				p{
 					padding: 0;
@@ -410,17 +416,23 @@ h3{
 		}
 	}
 	#meetings-wrap{
+		padding-top: 30px;
 		padding-bottom: 100px;
 
 		a{
-			h4{
-				color: black;
-				
+			.text-wrap{
+				padding:10px;
+				h4{
+					color: black;
+					
+				}
 			}
 		}
 		a:hover{
 			text-decoration: none;
 		}
+
+		
 	}
 }
 

@@ -50,6 +50,8 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 
 .btn { padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 
+.subtext { color: #696b6f; font-size: 12px; }
+
 /*HomePage -------------------------------------------------- */
 #HomePage .content { padding-top: 50px; padding-bottom: 50px; }
 #HomePage .content .social div { padding-top: 5px; padding-bottom: 5px; }
@@ -79,7 +81,8 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 .sessions .link .btn { color: white; }
 .sessions .session-tile { padding-bottom: 0px; border: 1px solid #d8d8d8; margin-bottom: 20px; }
 .sessions .session-tile .video { height: 150px; max-height: 150px; }
-.sessions .session-tile .text-wrap { margin: 5px; color: #696b6f; font-size: 12px; }
+.sessions .session-tile .text-wrap { margin: 5px; }
+.sessions .session-tile .text-wrap .title { color: #303030; font-size: 14px; }
 .sessions .session-tile .text-wrap p { padding: 0; margin: 0; }
 .sessions .session-tile .text-wrap a { color: #42a1fc; }
 
@@ -96,8 +99,9 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 /* meetings holder -------------------------------------------------- */
 #MeetingsHolder .promo { background: #f3f3f3; border: 1px solid #d8d8d8; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; margin-top: 30px; margin-bottom: 20px; }
 #MeetingsHolder .promo .dark { background-color: #d8d8d8; }
-#MeetingsHolder #meetings-wrap { padding-bottom: 100px; }
-#MeetingsHolder #meetings-wrap a h4 { color: black; }
+#MeetingsHolder #meetings-wrap { padding-top: 30px; padding-bottom: 100px; }
+#MeetingsHolder #meetings-wrap a .text-wrap { padding: 10px; }
+#MeetingsHolder #meetings-wrap a .text-wrap h4 { color: black; }
 #MeetingsHolder #meetings-wrap a:hover { text-decoration: none; }
 
 /* meeting -------------------------------------------------- */
