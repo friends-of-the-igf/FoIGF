@@ -12,7 +12,8 @@ class Meeting extends DataObject {
 	);
 
 	public static $has_many = array(
-		'MeetingSessions' => 'MeetingSession'
+		'MeetingSessions' => 'MeetingSession',
+		'LinkItems' => 'LinkItem'
 	);
 
 	public static $summary_fields = array(
@@ -24,22 +25,39 @@ class Meeting extends DataObject {
 	public function getCMSFields() {
 		$fields = new FieldList();
 
-		$fields->push(new TextField('Title', 'Title'));
-		$fields->push($date = new DateField('StartDate', 'Start Date'));
+		$mainTab = new Tab('Main');
+		$sessionsTab = new Tab('Sessions');
+		$linksTab = new Tab('Links');
+		$tabset = new TabSet("Root",
+			$mainTab,
+			$sessionsTab,
+			$linksTab
+		);
+		$fields->push( $tabset );
+
+		$mainTab->push(new TextField('Title', 'Title'));
+		$mainTab->push($date = new DateField('StartDate', 'Start Date'));
 		$date->setConfig('showcalendar', true);
-		$fields->push($date = new DateField('EndDate', 'End Date'));
+		$mainTab->push($date = new DateField('EndDate', 'End Date'));
 		$date->setConfig('showcalendar', true);
 
 		$locations = Location::get()->sort('Name');
 		if($locations->Count()) {
-			$fields->push(new DropdownField('LocationID', 'Location', $locations->map()));			
+			$mainTab->push(new DropdownField('LocationID', 'Location', $locations->map()));			
 		}	
 
 		if($this->ID) {
 			$gridFieldConfig = new GridFieldConfig_RelationEditor();
 			$list = $this->MeetingSessions();
 			$gridField = new GridField('MeetingSessions', 'Sessions', $list, $gridFieldConfig);
-			$fields->push($gridField);
+			$sessionsTab->push($gridField);
+		}
+
+		if($this->ID) {
+			$gridFieldConfig = new GridFieldConfig_RecordEditor();
+			$list = $this->LinkItems();
+			$gridField = new GridField('LinkItems', 'Links', $list, $gridFieldConfig);
+			$linksTab->push($gridField);
 		}
 		
 		return $fields;
