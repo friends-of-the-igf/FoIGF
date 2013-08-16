@@ -232,7 +232,7 @@
   .modal.fade.in { top: 20px; } }
 @media (max-width: 480px) { .nav-collapse { -webkit-transform: translate3d(0, 0, 0); }
   .page-header h1 small { display: block; line-height: 20px; }
-  input[type="checkbox"], input[type="radio"] { border: 1px solid #cccccc; }
+  input[type="checkbox"], input[type="radio"] { border: 1px solid #ccc; }
   .form-horizontal .control-label { float: none; width: auto; padding-top: 0; text-align: left; }
   .form-horizontal .controls { margin-left: 0; }
   .form-horizontal .control-list { padding-top: 0; }

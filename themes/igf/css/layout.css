@@ -3,7 +3,21 @@
 html { height: 100%; }
 
 body { background-color: white; min-height: 100%; position: relative; }
-body a { cursor: pointer; }
+
+/* Generic Classes -------------------------------------------------- */
+a { cursor: pointer; }
+
+.heading { padding-bottom: 10px; }
+
+h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
+
+.btn { padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+
+.subtext { color: #919294; }
+
+.small { font-size: 12px; }
+
+b { font-weight: 500; }
 
 /* Navigation -------------------------------------------------- */
 #navigation .navbar-inner { background: #303030; }
@@ -44,27 +58,14 @@ body a { cursor: pointer; }
 #footer .container .website span { margin-top: 0px; color: white; font-weight: 400; }
 #footer .container .website a { color: white; font-weight: 100; letter-spacing: 1px; text-decoration: underline; }
 
-/* Generic Classes -------------------------------------------------- */
-.heading { padding-bottom: 10px; }
-
-h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
-
-.btn { padding: 10px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
-
-.subtext { color: #696b6f; }
-
-.small { font-size: 12px; }
-
 /*HomePage -------------------------------------------------- */
 #HomePage .content { padding-top: 50px; padding-bottom: 50px; }
-#HomePage .content .social div { padding-top: 5px; padding-bottom: 5px; }
-#HomePage .content .social .fb-like { padding-left: 4px; }
 #HomePage .content .text { color: #303030; font-size: 35px; line-height: 35px; }
 #HomePage .twitter { margin-bottom: 50px; border: 1px solid #d8d8d8; }
 #HomePage .speakers { padding-bottom: 50px; }
 #HomePage .speakers .link { text-align: right; padding-top: 20px; text-decoration: underline; }
 
-/*sionsHolder -------------------------------------------------- */
+/*SessionsHolder -------------------------------------------------- */
 #SessionsHolder { /*Search Bar Styling */ }
 #SessionsHolder #wrap { background: #f3f3f3; }
 #SessionsHolder .sessions { background: white; border: 1px #d8d8d8 solid; margin-left: 9px; padding-left: 20px; padding-right: 20px; background: white; border-top: 1px #d8d8d8 solid; padding-top: 30px; height: 100%; }
@@ -82,12 +83,13 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 .sessions { padding-bottom: 50px; }
 .sessions .link { text-align: right; padding-top: 10px; }
 .sessions .link .btn { color: white; }
-.sessions .session-tile { padding-bottom: 0px; border: 1px solid #d8d8d8; margin-bottom: 20px; }
-.sessions .session-tile .video { height: 150px; max-height: 150px; }
-.sessions .session-tile .text-wrap { margin: 5px; }
+.sessions .session-tile { padding: 0px; padding-bottom: 0px; border: 1px solid #d8d8d8; margin-bottom: 20px; }
+.sessions .session-tile .video { padding: 4px; height: 150px; max-height: 150px; }
+.sessions .session-tile .text-wrap { padding: 4px; margin: 5px; }
 .sessions .session-tile .text-wrap .title { color: #303030; font-size: 14px; }
 .sessions .session-tile .text-wrap p { padding: 0; margin: 0; }
 .sessions .session-tile .text-wrap a { color: #42a1fc; }
+.sessions .session-tile .tags { font-size: 13px; background: #f3f3f3; padding: 7px; }
 
 /* session controller --------------------------------------------------*/
 #ses-wrap { padding-top: 30px; }
@@ -111,8 +113,7 @@ h3 { font-weight: normal; font-size: 30px; color: #303030; margin: 0px; }
 #MeetingController .header { border-bottom: 1px #d8d8d8 solid; padding-top: 30px; padding-bottom: 10px; margin-bottom: 10px; }
 #MeetingController .links { padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px #d8d8d8 solid; }
 #MeetingController .links a { text-decoration: underline; }
-#MeetingController .links .social { padding-top: 20px; }
-#MeetingController .links .social .fb-like { margin-top: 1px; }
+#MeetingController .links .social { padding-top: 10px; }
 #MeetingController #speakers-wrap .thumbnail > img { margin-left: 0; margin-right: 0; }
 
 /* thumbnails -------------------------------------------------- */

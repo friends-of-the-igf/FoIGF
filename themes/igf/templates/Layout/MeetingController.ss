@@ -9,7 +9,7 @@
   </div>
   <div class="span10">
     <h3>$Title</h3>
-    <h4 class="subtext">$StartDate.Nice - $EndDate.Nice in <a>$Location.Name</a></h4>
+    <h4 class="subtext">$StartDate.Format(d) - $EndDate.Long in <a>$Location.Name</a></h4>
   </div>    
 </div>
 <div class="row-fluid links">
@@ -30,9 +30,9 @@
   </div>
   <div class="span3">
     <h5>Meeting Information</h5>
-    <a>Link One</a><br/>
-    <a>Link One</a><br/>
-    <a>Link One</a><br/>
+    <% loop LinkItems %>
+      <a href="$Url"><% if Title %>$Title<% else %>$Url<% end_if %></a><br/>
+    <% end_loop %>
   </div>
   <div class="span3">
     <h5>Topic's Covered</h5>
@@ -40,29 +40,30 @@
   </div>
   <div class="span3">
     <h5>Sessions tagged</h5>
-   <% loop allTags %><a>$Tag - $Weight</a><br/><% end_loop %>
+   <% loop allTags %><a >$Tag - $Weight<% if not Last %>,<% end_if %></a> <% end_loop %>
   </div>
 </div>
-
-<div class="row-fluid">
-  <div class="span8">
-    <h3>$MeetingSessions.Count Session<% if $MeetingSessions.Count != 1 %>s<% end_if %></h3>
-  </div>
-  <div class="span4">
-    <a href='$sessionLink' class="btn btn-primary">Filter Sessions</a>
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="span12">
-  <% if MeetingSessions %>
-    <div class="row-fluid sessions">
-      <% loop MeetingSessions %>
-      <div class="span3">
-        <% include Session %>
-      </div>
-      <% end_loop %>
+<div class="sessions">
+  <div class="row-fluid ">
+    <div class="span8">
+      <h3>$MeetingSessions.Count Session<% if $MeetingSessions.Count != 1 %>s<% end_if %></h3>
     </div>
-  <% end_if %>
+    <div class="span4 link">
+      <a href='$sessionLink' class="btn btn-primary">Filter Sessions</a>
+    </div>
+  </div>
+  <div class="row-fluid ">
+    <div class="span12">
+    <% if MeetingSessions %>
+      <div class="row-fluid ">
+        <% loop MeetingSessions %>
+        <div class="span3">
+          <% include Session %>
+        </div>
+        <% end_loop %>
+      </div>
+    <% end_if %>
+    </div>
   </div>
 </div>
 <% end_with %>

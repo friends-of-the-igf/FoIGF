@@ -13,10 +13,42 @@ body {
 	min-height: 100%;
 	position: relative;
 
-	a{
-		cursor: pointer;
-	}
+	
 }
+
+/* Generic Classes -------------------------------------------------- */
+a{
+		cursor: pointer;
+}
+
+.heading{
+	padding-bottom: 10px;
+}
+h3{
+	font-weight: normal;
+	font-size: 30px;
+	color: $grayDarkest;
+	margin: 0px;
+
+}
+.btn{
+	padding: 10px 10px;
+	text-transform:uppercase;
+	font-size: 12px;
+	letter-spacing: 1px;
+}
+
+.subtext{
+	color: $grayFade;
+}
+.small{
+	font-size: 12px;
+}
+
+b{
+	font-weight: 500;
+}
+
 
 /* Navigation -------------------------------------------------- */
 
@@ -194,30 +226,6 @@ body {
 		}
 	}
 }
-/* Generic Classes -------------------------------------------------- */
-.heading{
-	padding-bottom: 10px;
-}
-h3{
-	font-weight: normal;
-	font-size: 30px;
-	color: $grayDarkest;
-	margin: 0px;
-
-}
-.btn{
-	padding: 10px 10px;
-	text-transform:uppercase;
-	font-size: 12px;
-	letter-spacing: 1px;
-}
-
-.subtext{
-	color: $gray;
-}
-.small{
-	font-size: 12px;
-}
 
 
 /*HomePage -------------------------------------------------- */
@@ -225,16 +233,7 @@ h3{
 	.content{
 		padding-top: 50px;
 		padding-bottom: 50px;
-		.social{
-			div{
-				
-				padding-top:5px;
-				padding-bottom: 5px;
-			}
-			.fb-like{
-				padding-left: 4px;
-			}
-		}
+		
 		.text{
 			color: $grayDarkest;
 			font-size: 35px;
@@ -255,14 +254,12 @@ h3{
 		}
 	}
 }
-/*sionsHolder -------------------------------------------------- */
+/*SessionsHolder -------------------------------------------------- */
 #SessionsHolder{
 
 	#wrap{
 		background: $grayLighter;
 	}
-
-	
 
 	.sessions{
 		background: white;
@@ -336,25 +333,26 @@ h3{
 			}		
 		}
 		.session-tile{
+			padding: 0px;
 			padding-bottom: 0px;
 			border: 1px solid $grayMedium;
 			margin-bottom: 20px;
 		
 
 			.video{
+				padding: 4px;
 				height: 150px;
 				max-height: 150px;
 			}
 
 			.text-wrap{
+				padding: 4px;
 				margin: 5px;
 				
 				.title{
 					color: $grayDarkest;
 					font-size: 14px;
 				}
-				
-				
 
 				p{
 					padding: 0;
@@ -363,6 +361,12 @@ h3{
 				a{
 					color:$blueLight;	
 				}
+			}
+
+			.tags{
+				font-size: 13px;
+				background: $grayLighter;
+				padding:7px;
 			}
 		}
 	}
@@ -459,12 +463,8 @@ h3{
 			text-decoration: underline;
 		}
 		.social{
-			padding-top: 20px;
-			.fb-like{
-				margin-top: 1px;
-			}
+			padding-top: 10px;
 		}
-
 	}
 
 	#speakers-wrap {

@@ -1,9 +1,7 @@
 <div class="row-fluid content">
-	<div class="span1 social">
-		<div class="fb-like" data-href="http://developers.facebook.com/docs/reference/plugins/like" data-width="450" data-layout="box_count" data-show-faces="true" data-send="false"></div>
-		<div>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>
-		</div>
+	<div class="span1">
+		<span class='st_facebook_vcount' displayText='Facebook'></span>
+		<span class='st_twitter_vcount' displayText='Tweet'></span>
 	</div>
 	<div class="span11 text">
 	$Content

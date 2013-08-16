@@ -4,7 +4,7 @@
 		<div class="span12">
 			<h3>$Title</h3>
 			<div>
-				$Date - A <a>$Type.Name</a> on $Topic.Name in <a>$Meeting.Location.Name</a>
+				$Date.Long - A <a>$Type.Name</a> on $Topic.Name in <a>$Meeting.Location.Name</a>
 			</div>
 		</div>	
 	</div>
