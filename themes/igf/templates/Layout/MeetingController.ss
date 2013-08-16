@@ -26,9 +26,9 @@
   </div>
   <div class="span3">
     <h5>Meeting Information</h5>
-    <a>Link One</a><br/>
-    <a>Link One</a><br/>
-    <a>Link One</a><br/>
+    <% loop Links %>
+      <a href="$URL"><% if Title %>$Title<% else %>$URL</a>
+    <% end_loop %>
   </div>
   <div class="span3">
     <h5>Topic's Covered</h5>
@@ -36,7 +36,7 @@
   </div>
   <div class="span3">
     <h5>Sessions tagged</h5>
-   <% loop allTags %><a>$Tag - $Weight</a><br/><% end_loop %>
+   <% loop allTags %><a >$Tag - $Weight<% if not Last %>,<% end_if %></a> <% end_loop %>
   </div>
 </div>
 
