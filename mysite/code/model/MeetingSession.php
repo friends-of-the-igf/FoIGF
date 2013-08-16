@@ -122,8 +122,6 @@ class MeetingSession extends DataObject {
     	return MeetingSession::get()->limit(3);
     }
 
-    public function getLocation(){
-    	return $this->Meeting()->Location()->Name;
-    }
+ 
 
 }

@@ -359,7 +359,7 @@ h3{
 #ses-wrap{
 	padding-top: 30px;
 
-	.content{
+	.main{
 		div{
 			padding-bottom: 20px;
 		}
@@ -367,11 +367,12 @@ h3{
 			font-size: 16px;
 		}
 
-		span.blue{
-			font-weight: bold;
-			color:$blue;
-			font-size: 16px;
+		.content{
+			h5{
+				color: $blue
+			}
 		}
+		
 		p{
 			padding-bottom: 10px;
 		}
@@ -406,6 +407,19 @@ h3{
 
 		.dark {
 			background-color: $grayMedium;
+		}
+	}
+	#meetings-wrap{
+		padding-bottom: 100px;
+
+		a{
+			h4{
+				color: black;
+				
+			}
+		}
+		a:hover{
+			text-decoration: none;
 		}
 	}
 }

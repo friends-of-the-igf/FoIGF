@@ -21,7 +21,7 @@
 	<div class="span3">
 		<a href="$Link" class="thumbnail">
 			<img src="http://placehold.it/400x300" />
-			<p>$Title</p>
+			<h4>$Title</h4>
 			<p>$StartDate.Nice - $EndDate.Nice<br/>20 sessions</p>
 		</a>
 	</div>
