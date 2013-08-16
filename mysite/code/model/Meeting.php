@@ -8,7 +8,8 @@ class Meeting extends DataObject {
 	);
 
 	public static $has_one = array(
-		'Location' => 'Location'
+		'Location' => 'Location',
+		'Image' => 'Image'
 	);
 
 	public static $has_many = array(
@@ -47,6 +48,7 @@ class Meeting extends DataObject {
 		if($locations->Count()) {
 			$mainTab->push(new DropdownField('LocationID', 'Location', $locations->map()));			
 		}	
+		$mainTab->push(new UploadField('Image', 'Image'));
 
 		if($this->ID) {
 			$gridFieldConfig = new GridFieldConfig_RelationEditor();

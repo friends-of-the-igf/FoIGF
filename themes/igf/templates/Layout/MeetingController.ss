@@ -1,7 +1,11 @@
 <% with Meeting %>
 <div class="row-fluid header">
   <div class="span2">
+    <% if Image %>
+    $Image.SetSize(150,150)
+    <% else %>
     <img src="http://placehold.it/150x150" />
+    <% end_if %>
   </div>
   <div class="span10">
     <h3>$Title</h3>

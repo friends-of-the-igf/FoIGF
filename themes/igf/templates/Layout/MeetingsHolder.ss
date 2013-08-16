@@ -4,7 +4,11 @@
 	<% loop Meetings %>
 	<div class="span3">
 		<a href="$Link" class="thumbnail">
-			<img src="http://placehold.it/400x300" />
+			<% if Image %>
+		    $Image.SetSize(400,300)
+		    <% else %>
+		    <img src="http://placehold.it/400x300" />
+		    <% end_if %>
 			<div class="text-wrap">
 				<h4>$Location.Name</h4>
 				<p><span class="subtext"><b>$StartDate.Nice - $EndDate.Nice</b></span><br/>$MeetingSessions.Count sessions</p>
