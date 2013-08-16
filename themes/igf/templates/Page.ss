@@ -22,6 +22,9 @@
 	<link rel="shortcut icon" href="$ThemeDir/images/favicon.ico" />
 	<script type="text/javascript" src="$ThemeDir/thirdparty/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="$ThemeDir/javascript/script.js"></script>
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "0c00c82d-56a9-4266-9c80-1c3436cc413a", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 
 	<!-- Bootstrap -->
 	<!--<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-button.js"></script>-->

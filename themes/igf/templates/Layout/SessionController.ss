@@ -1,6 +1,5 @@
 <div id="ses-wrap">
 	<% with MeetingSession %>
-	$allTagsArray
 	<div class="row">
 		<div class="span12">
 			<h3>$Title</h3>
@@ -27,15 +26,15 @@
 		</div>
 		
 		<div class="span4">
-			<div class="row-fluid social-icons">
+			<div class="row-fluid social-icons">    
 				<div class="span3">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>
+					 <span class='st_twitter_vcount' displayText='Tweet'></span>
 				</div>
 				<div class="span3">
-					<div class="fb-like" data-href="http://developers.facebook.com/docs/reference/plugins/like" data-width="450" data-layout="box_count" data-show-faces="true" data-send="false"></div>
+					 <span class='st_facebook_vcount' displayText='Facebook'></span>
 				</div>
 				<div class="span3">
-					<img src="http://placehold.it/60x60">
+					   <span class='st_email_vcount' displayText='Email'></span>
 				</div>
 				<div class="span3">
 					<img src="http://placehold.it/60x60">
