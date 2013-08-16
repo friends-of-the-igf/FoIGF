@@ -16,10 +16,6 @@ class Meeting extends DataObject {
 		'LinkItems' => 'LinkItem'
 	);
 
-	public static $many_many = array(
-		'Topics' => 'Topic'
-	);
-
 	public static $summary_fields = array(
 		'Title',
 		'StartDate',
@@ -32,12 +28,11 @@ class Meeting extends DataObject {
 		$mainTab = new Tab('Main');
 		$sessionsTab = new Tab('Sessions');
 		$linksTab = new Tab('Links');
-		$topicsTab = new Tab('Topics');
+		
 		$tabset = new TabSet("Root",
 			$mainTab,
 			$sessionsTab,
-			$linksTab,
-			$topicsTab
+			$linksTab
 		);
 		$fields->push( $tabset );
 
@@ -65,19 +60,27 @@ class Meeting extends DataObject {
 			$gridField = new GridField('LinkItems', 'Links', $list, $gridFieldConfig);
 			$linksTab->push($gridField);
 		}
-
-		if($this->ID) {
-			$gridFieldConfig = new GridFieldConfig_RelationEditor();
-			$list = $this->Topics();
-			$gridField = new GridField('Topics', 'Topics', $list, $gridFieldConfig);
-			$topicsTab->push($gridField);
-		}
 		
 		return $fields;
 	}
 
 	public function Link($action = null) {
 		return Controller::join_links('meeting', $this->ID, $action);
+	}
+
+	public function getTopics() {
+		$sessions = $this->MeetingSessions();
+		if($sessions->count() != 0) {
+			$list = new ArrayList();
+			foreach($sessions as $session) {
+				$topic = $session->Topic();
+				if($topic) {
+					$list->push($topic);
+				}
+			}
+			$list->removeDuplicates();
+			return $list;
+		}
 	}
 
 	public function getSpeakers() {

@@ -45,7 +45,9 @@ class Page_Controller extends ContentController {
 	}
 
 	public function sessionLink(){
-		return SessionsHolder::get()->First()->Link();
+		if($page = SessionsHolder::get()->First()) {
+			return $page->Link();
+		}
 	}
 
 

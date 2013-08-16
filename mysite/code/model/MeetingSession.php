@@ -15,7 +15,8 @@ class MeetingSession extends DataObject {
 		'Transcript' => 'File',
 		'Proposal' => 'File',
 		'Meeting' => 'Meeting',
-		'Type' => 'Type'
+		'Type' => 'Type',
+		'Topic' => 'Topic'
 	);
 
 	public static $has_many = array(
@@ -41,6 +42,7 @@ class MeetingSession extends DataObject {
 		$videosTab = new Tab('Videos');
 		$speakersTab = new Tab('Speakers');
 		$sessionsTab = new Tab('RelatedSessions');
+		
 		$tabset = new TabSet("Root",
 			$mainTab,
 			$transcriptTab,
@@ -70,6 +72,10 @@ class MeetingSession extends DataObject {
 
 		$mainTab->push(new TextField('NewTags', 'New Tags (adds to pre-defined list, comma seperated eg tag1,tag2,tag3)'));
 
+		$topics = Topic::get()->sort('Name');
+		if($topics->Count()) {
+			$mainTab->push(new DropdownField('TopicID', 'Topic', $topics->map()));			
+		}
 
 		$meetings = Meeting::get();
 		if($meetings->count() != 0) {

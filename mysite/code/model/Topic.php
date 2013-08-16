@@ -5,8 +5,8 @@ class Topic extends DataObject {
 		'Name' => 'Text'
 	);
 
-	public static $belongs_many_many = array(
-		'Meetings' => 'Meeting'
+	public static $has_many = array(
+		'MeetingSessions' => 'MeetingSession'
 	);
 
 	public function getCMSFields() {
