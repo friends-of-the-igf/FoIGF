@@ -56,8 +56,5 @@ class HomePage_Controller extends Page_Controller {
 		return $list;
 	}
 
-	public function sessionLink(){
-		return SessionsHolder::get()->First()->Link();
-	}
 
 }

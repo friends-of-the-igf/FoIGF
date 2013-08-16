@@ -210,6 +210,8 @@ h3{
 
 .subtext{
 	color: $gray;
+}
+.small{
 	font-size: 12px;
 }
 
@@ -249,7 +251,7 @@ h3{
 		}
 	}
 }
-/*SessionsHolder -------------------------------------------------- */
+/*sionsHolder -------------------------------------------------- */
 #SessionsHolder{
 
 	#wrap{
@@ -319,7 +321,6 @@ h3{
 
 /*Sessions -------------------------------------------------- */
 .sessions{
-
 		padding-bottom: 50px;
 
 		.link{
@@ -438,6 +439,30 @@ h3{
 
 /* meeting -------------------------------------------------- */
 #MeetingController {
+
+	.header{
+		border-bottom: 1px $grayMedium solid;
+		padding-top: 30px;
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+	}
+	
+	.links{
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+		border-bottom: 1px $grayMedium solid;
+		a{
+			text-decoration: underline;
+		}
+		.social{
+			padding-top: 20px;
+			.fb-like{
+				margin-top: 1px;
+			}
+		}
+
+	}
+
 	#speakers-wrap {
 		.thumbnail > img {
 			margin-left: 0;
