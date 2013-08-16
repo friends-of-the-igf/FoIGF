@@ -27,7 +27,7 @@ class SessionsHolder_Controller extends Page_Controller {
 
 	public function FilterForm(){
 		$fields = new FieldList();
-		$fields->push(new TextField('Text', 'Text'));
+		$fields->push(new DropdownField('Meeting', 'Meeting', Meeting::get()->map('ID', 'getYearLocation')));
 
 		$actions = new FieldList($button = new FormAction('doSearch', 'Search'));
 		$button->addExtraClass('btn');
@@ -45,13 +45,13 @@ class SessionsHolder_Controller extends Page_Controller {
 
 		public function getSessions(){
 		$list = new ArrayList();
-		for($i = -1; $i < 20; $i += 8){
+		for($i = -1; $i < 18; $i += 7){
 			$columns = new ArrayList();
 			if($i == -1){
-				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(7);
+				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(6);
 			} else
 			{
-				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(7, $i);
+				$col = MeetingSession::get()->sort('Created', 'DESC')->limit(6, $i);
 			}
 			foreach($col as $session){
 				$columns->push($session);

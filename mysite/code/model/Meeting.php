@@ -22,6 +22,7 @@ class Meeting extends DataObject {
 		'EndDate'
 	);
 
+
 	public function getCMSFields() {
 		$fields = new FieldList();
 
@@ -151,6 +152,10 @@ class Meeting extends DataObject {
 			}
 		}
 		return $tagsList;
+	}
+
+	public function getYearLocation(){
+		return $this->StartDate." - ".$this->Location()->Name;
 	}
 
 }

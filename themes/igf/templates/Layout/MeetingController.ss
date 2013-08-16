@@ -5,7 +5,7 @@
   </div>
   <div class="span10">
     <h3>$Title</h3>
-    <h4 class="subtext">$StartDate.Format(d) - $EndDate.Long in <a>$Location.Name</a></h4>
+    <h4 class="subtext">$StartDate.Format(d)-$EndDate.Long - in <a>$Location.Name</a></h4>
   </div>    
 </div>
 <div class="row-fluid links">
