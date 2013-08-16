@@ -27,7 +27,7 @@
   <div class="span3">
     <h5>Meeting Information</h5>
     <% loop LinkItems %>
-      <a href="$URL"><% if Title %>$Title<% else %>$URL<% end_if %></a><br/>
+      <a href="$Url"><% if Title %>$Title<% else %>$Url<% end_if %></a><br/>
     <% end_loop %>
   </div>
   <div class="span3">
@@ -39,26 +39,27 @@
    <% loop allTags %><a >$Tag - $Weight<% if not Last %>,<% end_if %></a> <% end_loop %>
   </div>
 </div>
-
-<div class="row-fluid">
-  <div class="span8">
-    <h3>$MeetingSessions.Count Session<% if $MeetingSessions.Count != 1 %>s<% end_if %></h3>
-  </div>
-  <div class="span4">
-    <a href='$sessionLink' class="btn btn-primary">Filter Sessions</a>
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="span12">
-  <% if MeetingSessions %>
-    <div class="row-fluid sessions">
-      <% loop MeetingSessions %>
-      <div class="span3">
-        <% include Session %>
-      </div>
-      <% end_loop %>
+<div class="sessions">
+  <div class="row-fluid ">
+    <div class="span8">
+      <h3>$MeetingSessions.Count Session<% if $MeetingSessions.Count != 1 %>s<% end_if %></h3>
     </div>
-  <% end_if %>
+    <div class="span4 link">
+      <a href='$sessionLink' class="btn btn-primary">Filter Sessions</a>
+    </div>
+  </div>
+  <div class="row-fluid ">
+    <div class="span12">
+    <% if MeetingSessions %>
+      <div class="row-fluid ">
+        <% loop MeetingSessions %>
+        <div class="span3">
+          <% include Session %>
+        </div>
+        <% end_loop %>
+      </div>
+    <% end_if %>
+    </div>
   </div>
 </div>
 <% end_with %>
