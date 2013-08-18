@@ -12,9 +12,9 @@
 		<div class="span8 main">	
 			<% if Videos %>
 			<% loop Videos %>
-			<div class="video">
-				$getVideo
-			</div>
+				<div class="video">
+					$getVideo
+				</div>
 			<% end_loop %>
 			<% end_if %>
 			<div>
@@ -47,40 +47,28 @@
 				<% end_loop %>
 			</div>
 			<div class="session-side">
-				<h5>Speakers</h5>
-				<div class='row-fluid'>
-					<div class='span3'>
-						<img src="http://placehold.it/50x50">
-					</div>
-					<div class='span9'>
-						Priyanka Bryant<br/>
-						<a>23 Sessions</a>
-					</div>
-				</div>
-				<div class='row-fluid'>
-					<div class='span3'>
-						<img src="http://placehold.it/50x50">
-					</div>
-					<div class='span9'>
-						Priyanka Bryant<br/>
-						<a>23 Sessions</a>
-					</div>
-				</div>
-				<div class='row-fluid'>
-					<div class='span3'>
-						<img src="http://placehold.it/50x50">
-					</div>
-					<div class='span9'>
-						Priyanka Bryant<br/>
-						<a>23 Sessions</a>
-					</div>
-				</div>
+				<% if Speakers %>
+					<h5>Speakers</h5>
+					<% loop Speakers %>
+						<div class='row-fluid'>
+							<div class='span3'>
+								<img src="http://placehold.it/50x50">
+							</div>
+							<div class='span9'>
+								$Name<br/>
+								<a>$MeetingSessions.Count</a>
+							</div>
+						</div>
+					<% end_loop %>
+				<% end_if %>
 			</div>
 			<div class="sessions">
-				<h5>Related Sessions</h5>
-				<% loop RelatedSessions %>
-					<% include Session %>
-				<% end_loop %>
+				<% if RelatedSessions %>
+					<h5>Related Sessions</h5>
+					<% loop RelatedSessions %>
+						<% include Session %>
+					<% end_loop %>
+				<% end_if %>
 			</div>
 		</div>
 	</div>

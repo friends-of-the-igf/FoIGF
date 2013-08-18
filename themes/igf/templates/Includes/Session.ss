@@ -1,9 +1,12 @@
 <div class="session-tile thumbnail">
-	<div class="video">
-		<% if getVideo %>
-			$getVideo
+	<div class="vidthumb">
+		<% if getVideoThumb %>
+		<a href="$Link">
+			<img class="icon" width="40px" height="40px" src="{$ThemeDir}/images/youtube-play.png" />
+			$getVideoThumb
+		</a>
 		<% else %>
-			<img width="100%" height="100%" src="http://placehold.it/224x130" />
+			<img width="100%"  src="http://placehold.it/224x130" />
 		<% end_if %>
 	</div>
 	<div class="text-wrap">

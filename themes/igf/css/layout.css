@@ -91,7 +91,9 @@ b { font-weight: 500; }
 .sessions .link { text-align: right; padding-top: 10px; }
 .sessions .link .btn { color: white; }
 .sessions .session-tile { padding: 0px; padding-bottom: 0px; border: 1px solid #d8d8d8; margin-bottom: 20px; }
-.sessions .session-tile .video { padding: 4px; height: 150px; max-height: 150px; }
+.sessions .session-tile .vidthumb { padding: 4px; height: 100%; }
+.sessions .session-tile .vidthumb .thumb { position: relative; margin-top: -40px; top: 0px; }
+.sessions .session-tile .vidthumb .icon { position: relative; z-index: 1; top: 0px; left: 10px; }
 .sessions .session-tile .text-wrap { padding: 4px; margin: 5px; }
 .sessions .session-tile .text-wrap .title { color: #303030; font-size: 14px; }
 .sessions .session-tile .text-wrap p { padding: 0; margin: 0; }
@@ -130,7 +132,7 @@ b { font-weight: 500; }
 
 /*Responsiveness -------------------------------------------------- */
 /*  Responsive: Large desktop and up*/
-@media (min-width: 1200px) { video { height: 160px; max-height: 160px; width: 260px; }
+@media (min-width: 1200px) { /*.video{ 			height: 190px !important;  			max-height: 190px !important;  			.icon{ 					position: relative; 					z-index: 1; 					top: -190px !important; 					left: 10px; 				} 				 				 		}*/
   #SessionsHolder #searchbar { border: none; }
   #SessionsHolder #searchbar .search .mglass { margin-left: -15px; }
   #SessionsHolder #searchbar .search form { margin-left: -20px; }
@@ -147,6 +149,7 @@ b { font-weight: 500; }
   #searchbar .search #Search ::-moz-placeholder { display: none; }
   #searchbar .search #Search :-ms-input-placeholder { display: none; }
   #searchbar .search .Actions { width: 19%; float: right; margin-right: 30px; } }
-@media (min-width: 768px) and (max-width: 979px) { #navigation .navbar-inner .container .social-icons { display: none !important; }
+@media (min-width: 768px) and (max-width: 979px) { /*	.video{ 			height: 120px !important;  			max-height: 120px !important;  			.icon{ 					position: relative; 					z-index: 1; 					top: -115px !important; 					left: 10px; 				} 				 				 		}*/
+  #navigation .navbar-inner .container .social-icons { display: none !important; }
   #searchbar .search #Search input { width: 75%; }
   #searchbar .search .Actions { width: 19%; } }

@@ -170,4 +170,15 @@ class MeetingSession extends DataObject {
 		}
     }
 
+    public function getVideoThumb(){
+    	if($this->Videos()->Count() != 0) {
+			$vid = $this->Videos()->first();
+			return '<img width="100%" height="100%" class="thumb" src="http://img.youtube.com/vi/'.$vid->YouTubeID.'/0.jpg" />';
+   		}
+    }
+
+    public function getSpeakers(){
+    	return $this->Speakers();
+    }
+
 }

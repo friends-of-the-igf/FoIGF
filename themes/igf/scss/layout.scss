@@ -375,10 +375,22 @@ b{
 			margin-bottom: 20px;
 		
 
-			.video{
+			.vidthumb{
 				padding: 4px;
-				height: 150px;
-				max-height: 150px;
+				height: 100%;
+				.thumb{
+					position: relative;
+					margin-top: -40px;
+					top: 0px;
+				
+				}
+				
+				.icon{
+					position: relative;
+					z-index: 1;
+					top: 0px;
+					left: 10px;
+				}
 			}
 
 			.text-wrap{
@@ -526,11 +538,19 @@ b{
 
 
 @media (min-width: 1200px) {
-	video{
-				height: 160px;
-				max-height: 160px;
-				width: 260px;
-		}
+	/*.video{
+			height: 190px !important; 
+			max-height: 190px !important;
+
+			.icon{
+					position: relative;
+					z-index: 1;
+					top: -190px !important;
+					left: 10px;
+				}
+				
+				
+		}*/
 
 	#SessionsHolder{
 		#searchbar{	
@@ -613,6 +633,20 @@ b{
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+
+/*	.video{
+			height: 120px !important; 
+			max-height: 120px !important;
+
+			.icon{
+					position: relative;
+					z-index: 1;
+					top: -115px !important;
+					left: 10px;
+				}
+				
+				
+		}*/
 
 	#navigation {
 	.navbar-inner {
