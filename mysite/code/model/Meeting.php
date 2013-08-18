@@ -23,7 +23,6 @@ class Meeting extends DataObject {
 		'EndDate'
 	);
 
-
 	public function getCMSFields() {
 		$fields = new FieldList();
 
@@ -46,7 +45,7 @@ class Meeting extends DataObject {
 
 		$locations = Location::get()->sort('City');
 		if($locations->Count()) {
-			$mainTab->push(new DropdownField('LocationID', 'Location', $locations->map()));			
+			$mainTab->push(new DropdownField('LocationID', 'Location', $locations->map('ID', 'Name')));			
 		}	
 		$mainTab->push(new UploadField('Image', 'Image'));
 
