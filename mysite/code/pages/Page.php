@@ -39,21 +39,16 @@ class Page_Controller extends ContentController {
 	
 		$button->addExtraClass('btn-primary');
 
-		$form = new SearchForm($this, 'SearchForm', $fields, $actions);
+		$form = new Form($this, 'SearchForm', $fields, $actions);
 	
 		$form->addExtraClass('form-search');
 
 		return $form;
 	}
 
-	public function doSearch($data, $form, $request) {
-		$data = array(
-            'Results' => $form->getResults(),
-            'Query' => $form->getSearchQuery(),
-            'Title' => _t('SearchForm.SearchResults', 'Search Results')
-        );
+	public function doSearch($data, $form) {
 
-        var_dump($form->getSearchQuery());
+        var_dump($data);
         // return $this->owner->customise($data)->renderWith(array('Page_results', 'Page'));
 	}
 

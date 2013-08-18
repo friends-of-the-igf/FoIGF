@@ -26,5 +26,3 @@ Email::setAdminEmail("ben@stripetheweb.com");
 // }
 
 DataObject::add_extension('Member', 'CustomMember');
-
-FulltextSearchable::enable();

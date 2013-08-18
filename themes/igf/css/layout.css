@@ -38,8 +38,8 @@ b { font-weight: 500; }
 #searchbar .search label { display: none; }
 #searchbar .search form { margin-bottom: 10px; }
 #searchbar .search .mglass { position: relative; margin-bottom: -62px; margin-left: 5px; margin-top: 0px; }
-#searchbar .search fieldset { width: 100%; display: inline-block; }
-#searchbar .search #Search { width: 77%; float: left; }
+#searchbar .search fieldset { width: 77%; display: inline-block; }
+#searchbar .search #Search { width: 100%; }
 #searchbar .search #Search input { width: 90%; height: 35px; border: none; box-shadow: 0px 2px 2px #e0e0e0 inset; padding-left: 40px; }
 #searchbar .search #Search ::-webkit-input-placeholder { color: #535353; }
 #searchbar .search #Search :-moz-placeholder { color: #535353; }
