@@ -88,10 +88,13 @@ class MeetingSession extends DataObject {
 		$filesTab->push(new UploadField('Transcript', 'Transcript'));
 		$filesTab->push(new UploadField('Proposal', 'Proposal'));
 
-		$gridFieldConfig = new GridFieldConfig_RecordEditor();
-		$list = $this->Videos();
-		$gridField = new GridField('Videos', 'Videos', $list, $gridFieldConfig);
-		$videosTab->push($gridField);
+		if($this->ID) {
+			$group = $this;
+			$gridFieldConfig = new GridFieldConfig_RecordEditor();
+			$list = $this->Videos();
+			$gridField = new GridField('Videos', 'Videos', $list, $gridFieldConfig);
+			$videosTab->push($gridField);
+		}
 
 		if($this->ID) {
 			$group = $this;
