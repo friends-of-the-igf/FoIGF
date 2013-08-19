@@ -3,6 +3,7 @@
 html { height: 100%; }
 
 body { background-color: white; min-height: 100%; position: relative; }
+body #wrap { min-height: 810px; }
 
 /* Generic Classes -------------------------------------------------- */
 a { cursor: pointer; }

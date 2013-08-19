@@ -18,8 +18,8 @@ class SessionsHolder extends Page {
 }
 class SessionsHolder_Controller extends Page_Controller {
 
-	protected $sessionCount;
-	protected $meetingCount;
+	public $sessionCount;
+	public $meetingCount;
 
 	public static $allowed_actions = array (
 		'FilterForm',
@@ -47,6 +47,11 @@ class SessionsHolder_Controller extends Page_Controller {
 		$button->addExtraClass('btn-primary');
 
 		$form = new Form($this, 'FilterForm', $fields, $actions);
+		$dat = Session::get('Form');
+		if(isset($dat)){
+			$form->loadDataFrom($dat);
+			Session::clear('Form');
+		}
 
 		return $form;
 	}
@@ -98,6 +103,8 @@ class SessionsHolder_Controller extends Page_Controller {
 				$queryString .= '?sort='.$data['Sort'];
 			}
 		}
+
+		Session::set('Form', $form);
 		
 		
 		return $this->redirect($this->Link().$queryString);
@@ -126,6 +133,27 @@ class SessionsHolder_Controller extends Page_Controller {
 			$sort = $_REQUEST['sort'];
 		}
 		
+		if(!empty($filter)){
+			$full = MeetingSession::get()->filter($filter);
+		}else{
+			$full = MeetingSession::get();
+		}
+		
+		$this->sessionCount = $full->Count();
+
+		foreach($full as $sesh){
+			$meetings[$sesh->Meeting()->ID] = $sesh->Meeting()->ID;
+		}
+		if(isset($meetings)){
+			$this->meetingCount = count($meetings);
+		} else {
+			$this->meetingCount = 0;
+		}
+
+		error_log('before' . $this->sessionCount);
+		error_log($this->meetingCount);
+
+		
 
 		$list = new ArrayList();
 
@@ -138,6 +166,7 @@ class SessionsHolder_Controller extends Page_Controller {
 		while ($i <= 17) {
 
 			if(!empty($filter)){
+				
 				if(isset($sort)){
 					$session = MeetingSession::get()->filter($filter)->sort($sort, 'DESC')->limit(1, $i)->first();
 				} else {
@@ -146,13 +175,8 @@ class SessionsHolder_Controller extends Page_Controller {
 			} else {
 				$session = MeetingSession::get()->sort('Created', 'DESC')->limit(1, $i)->first();
 			}
-			// if(isset($sort)){
-			// 	$session->sort($sort, 'DESC');
-			// } else {
-			// 	$session->sort('Created', 'DESC');
-			// }	
 
-			
+
 
 			if($session) {
 				switch ($j) {
@@ -177,7 +201,22 @@ class SessionsHolder_Controller extends Page_Controller {
 		$list->push(new ArrayData(array('Columns' => $col2)));
 		$list->push(new ArrayData(array('Columns' => $col3)));
 
+	
+
 		return $list;
+	}
+
+	public function getCount(){
+
+		$this->getSessions();
+
+		$data = array(
+			'Sessions' => $this->sessionCount,
+			'Meetings' => $this->meetingCount
+			);
+
+
+		return new ArrayData($data);
 	}
 
 

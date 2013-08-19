@@ -12,7 +12,9 @@
 	</div>
 	<div class="sessions span9">
 		<div class="heading">
-			<h3>120 Sessions in 4 meetings match your criteria</h3>
+			<% with getCount %>
+				<h3>$Sessions Sessions in $Meetings meetings match your criteria</h3>
+			<% end_with %>
 		</div>
 		<div class="row-fluid">
 			<% if Sessions %>
@@ -27,6 +29,7 @@
 		</div>
 		<div class="row-fluid">
 			<div class="offset4 span4 button">
+				
 				<a class="btn btn-primary">Show 18 more sessions</a>
 			</div>
 		</div>
