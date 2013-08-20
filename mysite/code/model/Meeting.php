@@ -3,6 +3,7 @@ class Meeting extends DataObject {
 
 	public static $db = array(
 		'Title' => 'Text',
+		'Website' => 'Text',
 		'StartDate' => 'Date',
 		'EndDate' => 'Date'
 	);
@@ -38,6 +39,7 @@ class Meeting extends DataObject {
 		$fields->push( $tabset );
 
 		$mainTab->push(new TextField('Title', 'Title'));
+		$mainTab->push(new TextField('Website', 'Website'));
 		$mainTab->push($date = new DateField('StartDate', 'Start Date'));
 		$date->setConfig('showcalendar', true);
 		$mainTab->push($date = new DateField('EndDate', 'End Date'));
@@ -124,14 +126,29 @@ class Meeting extends DataObject {
 
 		foreach($uniqueTagsArray as $tag) {
 			$tagsList = $this->allTagsList();
+			$count = $tagsList->Count();
 			$filteredList = $tagsList->filter('Tag', $tag);
 			$weight = $filteredList->Count();
+			$percent = ($weight / $count) * 100;
+
+			if($percent <= 20) {
+				$size = "14px";
+			} elseif($percent <= 40) {
+				$size = "16px";
+			} elseif($percent <= 60) {
+				$size = "18px";
+			} elseif($percent <= 80) {
+				$size = "20px";
+			} elseif($percent <= 100) {
+				$size = "22px";
+			}
 
 			$output->push(new ArrayData(array(
 				'Tag' => $tag,
 				'Link' => $link . '/' . urlencode($tag),
 				'URLTag' => urlencode($tag),
-				'Weight' => $weight
+				'Weight' => $percent,
+				'Size' => $size
 			)));
 		}
 		
