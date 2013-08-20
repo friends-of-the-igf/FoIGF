@@ -12,8 +12,24 @@
     <h4 class="subtext">$StartDate.Format(d)-$EndDate.Long - in <a>$Location.Name</a></h4>
   </div>    
 </div>
+<div class="row-fluid tags-wrap">
+  <div class="span12 tags">
+    <h5>Topics covered</h5>
+      <% loop allTags %><a style="font-size: {$Size};" >$Tag</a> <% end_loop %>
+  </div>
+</div>
 <div class="row-fluid links">
-  <div class="span3">
+  <div class="span3 section right-divide">
+    <h5>Meeting Website</h5>
+      <a href="$Website">$Website</a>
+  </div>
+  <div class="span6 section right-divide">
+    <h5>Meeting Information</h5>
+    <% loop LinkItems %>
+      <a href="$Url"><% if Title %>$Title<% else %>$Url<% end_if %></a><% if not Last %> | <% end_if %>
+    <% end_loop %>
+  </div>
+  <div class="span3 section">
     <div class="row-fluid social">
       <div class="span4">
         <div>
@@ -27,20 +43,6 @@
        <span class='st_email_vcount' displayText='Email'></span>
       </div>
     </div>
-  </div>
-  <div class="span3">
-    <h5>Meeting Information</h5>
-    <% loop LinkItems %>
-      <a href="$Url"><% if Title %>$Title<% else %>$Url<% end_if %></a><br/>
-    <% end_loop %>
-  </div>
-  <div class="span3">
-    <h5>Topic's Covered</h5>
-     <% loop Topics %><a>$Name</a><br/><% end_loop %>
-  </div>
-  <div class="span3">
-    <h5>Sessions tagged</h5>
-   <% loop allTags %><a >$Tag - $Weight<% if not Last %>,<% end_if %></a> <% end_loop %>
   </div>
 </div>
 <div class="sessions">

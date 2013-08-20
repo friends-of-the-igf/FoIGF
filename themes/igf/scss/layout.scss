@@ -260,6 +260,28 @@ b{
 
 		}
 	}
+
+	.tags-wrap{
+
+		margin-bottom: 40px;
+		border: 1px $grayMedium solid;
+		
+		background: $grayLighter;
+		min-height: 100px;
+
+		.tags{
+			h5{
+			font-size: 16px;
+			color: $grayDarkest;
+			}
+			padding: 10px;
+		}
+
+
+		a{
+			text-decoration: none;
+		}
+	}
 }
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder{
@@ -500,23 +522,56 @@ b{
 /* meeting -------------------------------------------------- */
 #MeetingController {
 
+	h5{
+		font-size: 16px;
+		color: $grayDarkest;
+	}
+
 	.header{
-		border-bottom: 1px $grayMedium solid;
+		
 		padding-top: 30px;
 		padding-bottom: 10px;
 		margin-bottom: 10px;
 	}
-	
+
+	.tags-wrap{
+		margin-bottom: 0px;
+		border: 1px $grayMedium solid;
+		border-bottom: none;
+		background: $grayLighter;
+		min-height: 100px;
+
+		.tags{
+			padding: 10px;
+		}
+
+
+		a{
+			text-decoration: none;
+		}
+	}
+
 	.links{
-		padding-bottom: 10px;
+		
 		margin-bottom: 10px;
-		border-bottom: 1px $grayMedium solid;
+		border: 1px $grayMedium solid;
+		
+		.section{
+			padding: 10px;
+			height: 95px;
+			margin-left: 10px;
+			
+		}
+
+		.right-divide{
+			
+			border-right: 1px $grayMedium solid;
+		}
+	
 		a{
 			text-decoration: underline;
 		}
-		.social{
-			padding-top: 10px;
-		}
+		
 	}
 
 	#speakers-wrap {

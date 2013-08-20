@@ -67,6 +67,10 @@ b { font-weight: 500; }
 #HomePage .twitter { margin-bottom: 50px; border: 1px solid #d8d8d8; }
 #HomePage .speakers { padding-bottom: 50px; }
 #HomePage .speakers .link { text-align: right; padding-top: 20px; text-decoration: underline; }
+#HomePage .tags-wrap { margin-bottom: 40px; border: 1px #d8d8d8 solid; background: #f3f3f3; min-height: 100px; }
+#HomePage .tags-wrap .tags { padding: 10px; }
+#HomePage .tags-wrap .tags h5 { font-size: 16px; color: #303030; }
+#HomePage .tags-wrap a { text-decoration: none; }
 
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder { /*Search Bar Styling */ }
@@ -120,10 +124,15 @@ b { font-weight: 500; }
 #MeetingsHolder #meetings-wrap a:hover { text-decoration: none; }
 
 /* meeting -------------------------------------------------- */
-#MeetingController .header { border-bottom: 1px #d8d8d8 solid; padding-top: 30px; padding-bottom: 10px; margin-bottom: 10px; }
-#MeetingController .links { padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px #d8d8d8 solid; }
+#MeetingController h5 { font-size: 16px; color: #303030; }
+#MeetingController .header { padding-top: 30px; padding-bottom: 10px; margin-bottom: 10px; }
+#MeetingController .tags-wrap { margin-bottom: 0px; border: 1px #d8d8d8 solid; border-bottom: none; background: #f3f3f3; min-height: 100px; }
+#MeetingController .tags-wrap .tags { padding: 10px; }
+#MeetingController .tags-wrap a { text-decoration: none; }
+#MeetingController .links { margin-bottom: 10px; border: 1px #d8d8d8 solid; }
+#MeetingController .links .section { padding: 10px; height: 95px; margin-left: 10px; }
+#MeetingController .links .right-divide { border-right: 1px #d8d8d8 solid; }
 #MeetingController .links a { text-decoration: underline; }
-#MeetingController .links .social { padding-top: 10px; }
 #MeetingController #speakers-wrap .thumbnail > img { margin-left: 0; margin-right: 0; }
 
 /* thumbnails -------------------------------------------------- */

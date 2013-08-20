@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="span2">
 				<ul class="col-footer">
-					<% loop $Menu(1) %>
+					<% loop $Menu(1).Limit(3) %>
 					<li><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
 					<% if $Children %>
 						<% loop $Children %>
@@ -15,8 +15,9 @@
 			</div>
 			<div class="span2">
 				<ul class="col-footer">
-					<li><a href="" title="">About</a></li>
-					<li><a href="" title="">Contact</a></li>
+					<% loop $Menu(1).Limit(5, 3) %>
+					<li><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
+					<% end_loop %>
 					<li><a href="" title=""><img src="http://placehold.it/25x25" class='img-circle social'></a><a href="" title=""><img src="http://placehold.it/25x25" class='img-circle social'></a></li>
 					
 				</ul>

@@ -56,7 +56,7 @@
 							</div>
 							<div class='span9'>
 								$Name<br/>
-								<a>$MeetingSessions.Count</a>
+								<a>$MeetingSessions.Count Sessions</a>
 							</div>
 						</div>
 					<% end_loop %>

@@ -18,16 +18,25 @@ class SessionsHolder extends Page {
 }
 class SessionsHolder_Controller extends Page_Controller {
 
+	public $sessions;
+
 	public $sessionCount;
 	public $meetingCount;
 
 	public static $allowed_actions = array (
 		'FilterForm',
-		'doSearch'
+		'doSearch',
+		'getSpeakers'
 	);
 
 	public function init() {
 		parent::init();
+			
+		$this->sessions = MeetingSession::get();
+
+		Requirements::javascript('themes/igf/thirdparty/bootstrap-typeahead.js');
+		Requirements::javascript('themes/igf/javascript/sessionholder.js');
+		
 	}
 
 	public function FilterForm(){
@@ -37,7 +46,11 @@ class SessionsHolder_Controller extends Page_Controller {
 		$m->setEmptyString('-select-');
 		$fields->push($t = new DropdownField('Type', 'Session type', Type::get()->map('ID', 'Name')));
 		$t->setEmptyString('-select-');
-		$fields->push(new TextField('Speaker', 'Speaker'));
+		$fields->push($s = new TextField('Speaker', 'Speaker'));
+		$s->setAttribute('autocomplete', 'off');
+		$s->setAttribute('data-provide', 'typeahead');
+		$s->setAttribute('class', 'typeahead');
+
 		$fields->push(new CheckboxSetField('Topic', 'Sessions on there topics', Topic::get()->map('ID', 'Name')));
 		$fields->push(new OptionSetField('Sort', 'Sort Sessions by', array('Latest' => 'Latest', 'Oldest' => 'Oldest', 'Most viewed' => 'Most viewed', 'Most shared' => 'Most shared')));
 
@@ -58,102 +71,88 @@ class SessionsHolder_Controller extends Page_Controller {
 
 	public function doSearch($data, $form){
 
-		$queryString = '';
+		
+		$filter = array();
+		$speaker = array();
 
 		if(isset($data['Meeting']) && $data['Meeting'] != null){
-			if(strlen($queryString) > 0){
-				$queryString .= '&meeting='.$data['Meeting'];
-			} else {
-				$queryString .= '?meeting='.$data['Meeting'];
-			}
+				$filter['MeetingID'] = $data['Meeting'];
 		}
 		if(isset($data['Type']) && $data['Type'] != null){
-			if(strlen($queryString) > 0){
-				$queryString .= '&type='.$data['Type'];
-			} else {
-				$queryString .= '?type='.$data['Type'];
-			}
+				$filter['TypeID'] = $data['Type'];		
 		}
-		// if(isset($data['Topic']) && $data['Topic'] != null){
-		// 	$i = 0;
-		// 	if(strlen($queryString) > 0){
-		// 		foreach($data['Topic'] as $topic){
-		// 			$queryString .= '&topic='.$data['Topic'];
-		// 		}
-		// 	} else {
-		// 		foreach($data['Topic'] as $topic){
-		// 		if($i == 0){
-		// 			$queryString .= '?topic='.$data['Topic'];
-		// 		} else {
-		// 			$queryString .= '&topic='.$data['Topic'];
-		// 		}
-		// 	}
-		// }
+		if(isset($data['Topic']) && $data['Topic'] != null){
+			$filter['TopicID'] = $data['Topic'];
+		}
 		if(isset($data['Speaker']) && $data['Speaker'] != null){
-			if(strlen($queryString) > 0){
-				$queryString .= '&speaker='.$data['Speaker'];
-			} else {
-				$queryString .= '?speaker='.$data['Speaker'];
+			foreach(Member::get() as $member){
+				if($member->Name == $data['Speaker']){
+					$speaker['MemberID'] = $member->ID;
+				} else {
+					$speaker['MemberID'] = 0;
+				}
 			}
 		}
 		if(isset($data['Sort']) && $data['Sort'] != null){
-			if(strlen($queryString) > 0){
-				$queryString .= '&sort='.$data['Sort'];
+			$sort = $data['Sort'];
+		}
+		
+
+		if(!empty($filter)){		
+			if(isset($sort)){
+				$sessions = MeetingSession::get()->filter($filter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort, 'DESC');
 			} else {
-				$queryString .= '?sort='.$data['Sort'];
+				$sessions = MeetingSession::get()->filter($filter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'DESC');
 			}
-		}
-
-		Session::set('Form', $form);
-		
-		
-		return $this->redirect($this->Link().$queryString);
-
-
-	}
-
-
-
-	public function getSessions(){
-
-		$filter = array();
-		if(isset($_REQUEST['meeting']) && $_REQUEST['meeting'] != null){
-			$filter['MeetingID'] = $_REQUEST['meeting'];
-		}
-		if(isset($_REQUEST['type']) && $_REQUEST['type'] != null){
-			$filter['TypeID'] = $_REQUEST['type'];
-		}
-		if(isset($_REQUEST['topic']) && $_REQUEST['topic'] != null){
-			$filter['TopicID'] = $_REQUEST['topic'];
-		}
-		if(isset($_REQUEST['speaker']) && $_REQUEST['speaker'] != null){
-			$speakerID = $_REQUEST['speaker'];
-		}
-		if(isset($_REQUEST['sort']) && $_REQUEST['sort'] != null){
-			$sort = $_REQUEST['sort'];
+		} else {
+			$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'DESC');
 		}
 		
-		if(!empty($filter)){
-			$full = MeetingSession::get()->filter($filter);
-		}else{
-			$full = MeetingSession::get();
+		if(!empty($speaker)){	
+			$sessions = $sessions->filter($speaker);
 		}
-		
-		$this->sessionCount = $full->Count();
 
-		foreach($full as $sesh){
+		//Do counts
+		$this->sessionCount = $sessions->Count();
+
+		foreach($sessions as $sesh){
 			$meetings[$sesh->Meeting()->ID] = $sesh->Meeting()->ID;
 		}
+
 		if(isset($meetings)){
 			$this->meetingCount = count($meetings);
 		} else {
 			$this->meetingCount = 0;
 		}
 
-		error_log('before' . $this->sessionCount);
-		error_log($this->meetingCount);
+		
+		//Paginate
+		$sessions = $this->makeColumns($sessions);
+
+			Session::set('Search', True);
+
+		return $this->customise(array('getSessions' => $sessions));
+
+
+	}
+
+
+	public function getSessions(){
+		
+		$sessions = $this->sessions;
+		
+		return $this->makeColumns($sessions);
+	}
+
+	public function makeColumns($sessions){
 
 		
+		// $total = $sessions->Count();
+		// $pages = ceil($total/18);
+		// $pagesList = new ArrayList();
+		// $pageIndex = 1;
+		// $sessionIndex = 0;
+
 
 		$list = new ArrayList();
 
@@ -161,23 +160,14 @@ class SessionsHolder_Controller extends Page_Controller {
 		$col2 = new ArrayList();
 		$col3 = new ArrayList();
 
-		$i = 0;
+		$sessionIndex = 0;
 		$j = 1;
-		while ($i <= 17) {
 
-			if(!empty($filter)){
-				
-				if(isset($sort)){
-					$session = MeetingSession::get()->filter($filter)->sort($sort, 'DESC')->limit(1, $i)->first();
-				} else {
-					$session = MeetingSession::get()->filter($filter)->sort('Created', 'DESC')->limit(1, $i)->first();
-				}
-			} else {
-				$session = MeetingSession::get()->sort('Created', 'DESC')->limit(1, $i)->first();
-			}
+		while ($sessionIndex <= 17) {
+			
 
-
-
+			$session = $sessions->limit(1, $sessionIndex)->first();
+			
 			if($session) {
 				switch ($j) {
 					case 1:
@@ -194,100 +184,48 @@ class SessionsHolder_Controller extends Page_Controller {
 						break;	
 				}
 			}
-			$i++;
+			$sessionIndex++;
 		}
 
 		$list->push(new ArrayData(array('Columns' => $col1)));
 		$list->push(new ArrayData(array('Columns' => $col2)));
 		$list->push(new ArrayData(array('Columns' => $col3)));
 
-	
 
-		return $list;
+		return $list;	
+
 	}
 
 	public function getCount(){
-
-		$this->getSessions();
-
 		$data = array(
 			'Sessions' => $this->sessionCount,
 			'Meetings' => $this->meetingCount
 			);
 
-
 		return new ArrayData($data);
 	}
 
+	public function hasSessions(){
+		return $this->sessions->Count() > 0;
+	}
 
-
-	public function allTags() {
-		$sessions = MeetingSession::get();
-
-		$uniqueTagsArray = array();
-		foreach($sessions as $session) {
-			$tags = preg_split("*,*", trim($session->Tags));
-			foreach($tags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$uniqueTagsArray[$tag] = $tag;
-				}
-			}
+	public function isSearch(){
+		if(Session::get('Search')){	
+			Session::clear('Search');
+			return true;
+		} else {
+			return false;
 		}
+	}
 
-		$output = new ArrayList();
-		$link = "";
-		if($page = SessionsHolder::get()->First()) {
-			$link = $page->Link('tag');
-		}
-
-		foreach($uniqueTagsArray as $tag) {
-			$tagsList = $this->allTagsList();
-			$count = $tagsList->Count();
-			$filteredList = $tagsList->filter('Tag', $tag);
-			$weight = $filteredList->Count();
-			$percent = ($weight / $count) * 100;
-
-			if($percent <= 20) {
-				$size = "12px";
-			} elseif($percent <= 40) {
-				$size = "14px";
-			} elseif($percent <= 60) {
-				$size = "16px";
-			} elseif($percent <= 80) {
-				$size = "18px";
-			} elseif($percent <= 100) {
-				$size = "20px";
-			}
-
-			$output->push(new ArrayData(array(
-				'Tag' => $tag,
-				'Link' => $link . '/' . urlencode($tag),
-				'URLTag' => urlencode($tag),
-				'Weight' => $percent,
-				'Size' => $size
-			)));
-		}
+	public function getSpeakers(){
 		
-		return $output;
-	}
-
-	public function allTagsList() {
-		$sessions = MeetingSession::get();
-		$tagsList = new ArrayList();
-		foreach($sessions as $session) {
-			$tags = preg_split("*,*", trim($session->Tags));
-			foreach($tags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$tagsList->push(new ArrayData(array(
-						'Tag' => $tag
-					)));
-				}
+		foreach(Member::get() as $member){
+			if($member->inGroup('Speakers')){
+				$speakers[$member->ID] = $member->Name;
 			}
 		}
-		return $tagsList;
+		return json_encode($speakers);
 	}
-
 
 }

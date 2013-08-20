@@ -58,5 +58,73 @@ class Page_Controller extends ContentController {
 		}
 	}
 
+	public function allTags() {
+		$sessions = MeetingSession::get();
+
+		$uniqueTagsArray = array();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$uniqueTagsArray[$tag] = $tag;
+				}
+			}
+		}
+
+		$output = new ArrayList();
+		$link = "";
+		if($page = SessionsHolder::get()->First()) {
+			$link = $page->Link('tag');
+		}
+
+		foreach($uniqueTagsArray as $tag) {
+			$tagsList = $this->allTagsList();
+			$count = $tagsList->Count();
+			$filteredList = $tagsList->filter('Tag', $tag);
+			$weight = $filteredList->Count();
+			$percent = ($weight / $count) * 100;
+
+			if($percent <= 20) {
+				$size = "14px";
+			} elseif($percent <= 40) {
+				$size = "16px";
+			} elseif($percent <= 60) {
+				$size = "18px";
+			} elseif($percent <= 80) {
+				$size = "20px";
+			} elseif($percent <= 100) {
+				$size = "22px";
+			}
+
+			$output->push(new ArrayData(array(
+				'Tag' => $tag,
+				'Link' => $link . '/' . urlencode($tag),
+				'URLTag' => urlencode($tag),
+				'Weight' => $percent,
+				'Size' => $size
+			)));
+		}
+		
+		return $output;
+	}
+
+	public function allTagsList() {
+		$sessions = MeetingSession::get();
+		$tagsList = new ArrayList();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$tagsList->push(new ArrayData(array(
+						'Tag' => $tag
+					)));
+				}
+			}
+		}
+		return $tagsList;
+	}
+
 
 }
