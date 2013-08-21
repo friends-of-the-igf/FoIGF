@@ -48,7 +48,7 @@ b { font-weight: 500; }
 #searchbar .search #Search :-ms-input-placeholder { color: #535353; }
 #searchbar .search .Actions { display: inline-block; width: 15%; padding-left: 17px; }
 #searchbar .search .Actions input { height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
-#searchbar .logo { text-align: right; padding-top: 10px; }
+#searchbar .logo { text-align: right; padding-top: 15px; }
 
 /*Footer -------------------------------------------------- */
 #footer { width: 100%; background: #696b6f; position: relative; }
@@ -129,6 +129,7 @@ b { font-weight: 500; }
 #MeetingController .tags-wrap { margin-bottom: 0px; border: 1px #d8d8d8 solid; border-bottom: none; background: #f3f3f3; min-height: 100px; }
 #MeetingController .tags-wrap .tags { padding: 10px; }
 #MeetingController .tags-wrap a { text-decoration: none; }
+#MeetingController .ses { padding-top: 10px; }
 #MeetingController .links { margin-bottom: 10px; border: 1px #d8d8d8 solid; }
 #MeetingController .links .section { padding: 10px; height: 95px; margin-left: 10px; }
 #MeetingController .links .right-divide { border-right: 1px #d8d8d8 solid; }

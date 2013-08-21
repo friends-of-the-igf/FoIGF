@@ -3,11 +3,11 @@
 	<div class="container">	
 		<div class="row-fluid">	
 			<div class="search span8 offset3">
-				<img src="http://placehold.it/30x30" class='img-circle mglass'>
+				<img class='mglass' src="{$ThemeDir}/images/icons/search.png">
 				$SearchForm
 			</div>
 			<div class="logo span1">
-				<img src="http://placehold.it/60x45">
+				<img src="{$ThemeDir}/images/icons/igf-logo-light.png">
 			</div>
 		</div>
 	</div>
@@ -19,11 +19,11 @@
 	<div class="container">
 		<div class="row-fluid">
 			<div class="search span9">
-				<img src="http://placehold.it/30x30" class='img-circle mglass'>
+				<img class='mglass' src="{$ThemeDir}/images/icons/search.png">
 				$SearchForm
 			</div>
 			<div class="logo span3">
-				<img src="http://placehold.it/60x45">
+				<img src="{$ThemeDir}/images/icons/igf-logo-light.png">
 			</div>
 		</div>
 	</div>

@@ -54,14 +54,16 @@
       <a href='$sessionLink' class="btn btn-primary">Filter Sessions</a>
     </div>
   </div>
-  <div class="row-fluid ">
+  <div class="row-fluid ses">
     <div class="span12">
     <% if MeetingSessions %>
       <div class="row-fluid ">
-        <% loop MeetingSessions %>
-        <div class="span3">
-          <% include Session %>
-        </div>
+        <% loop getMeetingSessions %>
+          <div class="span3">
+            <% loop Columns %>
+              <% include Session %>
+            <% end_loop %>
+          </div>
         <% end_loop %>
       </div>
     <% end_if %>

@@ -34,4 +34,6 @@ class MeetingController extends Page_Controller {
 		return 'MeetingController';
 	}
 
+	
+
 }

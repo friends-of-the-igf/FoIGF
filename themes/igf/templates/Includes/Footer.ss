@@ -18,12 +18,12 @@
 					<% loop $Menu(1).Limit(5, 3) %>
 					<li><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
 					<% end_loop %>
-					<li><a href="" title=""><img src="http://placehold.it/25x25" class='img-circle social'></a><a href="" title=""><img src="http://placehold.it/25x25" class='img-circle social'></a></li>
+					<li><a href="" title=""><img src="{$ThemeDir}/images/icons/facebook-dark.png" class='social'></a><a href="" title=""><img src="{$ThemeDir}/images/icons/twitter-dark.png" class='social'></a></li>
 					
 				</ul>
 			</div>
 			<div class="span2 logo">		
-					<img src="http://placehold.it/60x45"/>	
+					<img src="{$ThemeDir}/images/icons/igf-logo-dark.png"/>	
 			</div>
 			<div class="span2">
 				<div class='website'>

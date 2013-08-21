@@ -176,4 +176,66 @@ class Meeting extends DataObject {
 		return $this->StartDate." - ".$this->Location()->City;
 	}
 
+	public function getMeetingSessions(){
+		return $this->makeColumns($this->MeetingSessions());
+
+	}
+
+	public function makeColumns($sessions){
+
+		// $total = $sessions->Count();
+		// $pages = ceil($total/18);
+		// $pagesList = new ArrayList();
+		// $pageIndex = 1;
+		// $sessionIndex = 0;
+
+
+		$list = new ArrayList();
+
+		$col1 = new ArrayList();
+		$col2 = new ArrayList();
+		$col3 = new ArrayList();
+		$col4 = new ArrayList();
+
+		$sessionIndex = 0;
+		$j = 1;
+
+		while ($sessionIndex <= 101) {
+			
+
+			$session = $sessions->limit(1, $sessionIndex)->first();
+			
+			if($session) {
+				switch ($j) {
+					case 1:
+						$col1->push($session);
+						$j++;
+						break;
+					case 2:
+						$col2->push($session);
+						$j++;
+						break;
+					case 3:
+						$col3->push($session);
+						$j++;
+						break;
+					case 4:
+						$col4->push($session);
+						$j = 1;
+						break;	
+				}
+			}
+			$sessionIndex++;
+		}
+
+		$list->push(new ArrayData(array('Columns' => $col1)));
+		$list->push(new ArrayData(array('Columns' => $col2)));
+		$list->push(new ArrayData(array('Columns' => $col3)));
+		$list->push(new ArrayData(array('Columns' => $col4)));
+
+
+		return $list;	
+
+	}
+
 }
