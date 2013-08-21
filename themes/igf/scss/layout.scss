@@ -24,7 +24,6 @@ body {
 a{
 		cursor: pointer;
 }
-
 .heading{
 	padding-bottom: 10px;
 }
@@ -44,21 +43,18 @@ h4{
 	font-size: 12px;
 	letter-spacing: 1px;
 }
-
 .subtext{
 	color: $grayFade;
 }
 .small{
 	font-size: 12px;
 }
-
 b{
 	font-weight: 500;
 }
 
 
 /* Navigation -------------------------------------------------- */
-
 #navigation {
 	.navbar-inner {
 		background: $grayDarkest;
@@ -109,9 +105,7 @@ b{
 }
 
 /* Search -------------------------------------------------- */
-
 #searchbar{
-
 	background: $grayLighter;
 	border-bottom: 1px solid $grayMedium;
 
@@ -183,13 +177,12 @@ b{
 	}
 }
 
-
 /*Footer -------------------------------------------------- */
 #footer{
 	width: 100%;
 	background: $gray;
 	position: relative;
-	
+
 	.container{
 		padding-top: 30px;
 		padding-bottom: 70px;
@@ -233,7 +226,6 @@ b{
 		}
 	}
 }
-
 
 /*HomePage -------------------------------------------------- */
 #HomePage{	
@@ -283,6 +275,7 @@ b{
 		}
 	}
 }
+
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder{
 
@@ -322,7 +315,6 @@ b{
 			color: $blue;
 			font-size:15px;
 			}
-	
 
 		form{
 
@@ -348,10 +340,6 @@ b{
 					display:inline-block;
 				}
 			}
-
-		
-
-
 			
 			.Actions{
 				input{
@@ -646,6 +634,7 @@ b{
 
 
 	#searchbar{
+		margin: 0 -20px;
 		.logo{
 			width: 10%;
 			display: none;

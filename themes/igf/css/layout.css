@@ -148,6 +148,7 @@ b { font-weight: 500; }
   #SessionsHolder #searchbar .search form { margin-left: -20px; }
   #SessionsHolder #searchbar .logo { margin-left: 5px; } }
 @media (max-width: 767px) { #navigation .navbar-inner .container .social-icons { display: none !important; }
+  #searchbar { margin: 0 -20px; }
   #searchbar .logo { width: 10%; display: none; }
   #searchbar .search { width: 100%; }
   #searchbar .search fieldset { width: 60%; }
