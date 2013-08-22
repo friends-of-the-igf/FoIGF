@@ -19,19 +19,32 @@
 			<% end_if %>
 		</div>
 		<div class="row-fluid">
+			<div class="span12">
 			<% if hasSessions %>
-			<% loop getSessions %>
-					<div class="col span4">
-					 	<% loop Columns %>
-					 		<% include Session %>
+					<% loop getSessions %>
+					<div class="row-fluid paged" data-page="$Pos">
+						<% loop Page %>
+						<div class="col span4">
+					 		<% loop Column %>
+					 			<% include Session %>
+					 		<% end_loop %>
+					 	</div>
 					 	<% end_loop %>
-					 </div>
+					 </div>	
 					<% end_loop %>
-			<% end_if %>
+				<% end_if %>
+			</div>	
 		</div>
-		<div class="row-fluid">
-			<div class="offset4 span4 button">
-				<a class="btn btn-primary">Show more</a>
+		<div class="row-fluid more">
+			<div class=" span4 button">
+				<a id="prev" class="btn btn-primary">Show Less</a>
+			</div>
+			<div class=" span4 button">
+				<a id="first-next" class="btn btn-primary">Show More</a>
+				<a id="last-prev" class="btn btn-primary">Show Less</a>
+			</div>
+			<div class=" span4 button">
+				<a id="next" class="btn btn-primary"> Show More</a>
 			</div>
 		</div>
 	</div>

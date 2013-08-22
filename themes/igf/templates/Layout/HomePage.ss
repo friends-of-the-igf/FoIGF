@@ -10,7 +10,7 @@
 <div class="row-fluid tags-wrap">
   <div class="span12 tags">
     <h5>Popular Topics</h5>
-      <% loop allTags %><a style="font-size: {$Size};" >$Tag</a> <% end_loop %>
+      <% loop allTags %><a href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
   </div>
 </div>
 <div class="sessions">

@@ -14,4 +14,12 @@ class Topic extends DataObject {
 		$fields->push(new TextField('Name', 'Name'));
 		return $fields;
 	}
+
+	public function Link(){
+		$link = "";
+		if($page = SessionsHolder::get()->First()) {
+			$link = $page->Link('topic/').$this->ID;
+		}
+		return $link;
+	}
 }

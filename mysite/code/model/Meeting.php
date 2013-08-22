@@ -183,11 +183,13 @@ class Meeting extends DataObject {
 
 	public function makeColumns($sessions){
 
-		// $total = $sessions->Count();
+		$total = $sessions->Count();
+		error_log($total);
 		// $pages = ceil($total/18);
+
 		// $pagesList = new ArrayList();
 		// $pageIndex = 1;
-		// $sessionIndex = 0;
+	
 
 
 		$list = new ArrayList();
@@ -200,7 +202,7 @@ class Meeting extends DataObject {
 		$sessionIndex = 0;
 		$j = 1;
 
-		while ($sessionIndex <= 101) {
+		while ($sessionIndex <= 17 ) {
 			
 
 			$session = $sessions->limit(1, $sessionIndex)->first();

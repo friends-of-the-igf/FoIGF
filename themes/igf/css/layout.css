@@ -77,7 +77,9 @@ b { font-weight: 500; }
 #SessionsHolder #wrap { background: #f3f3f3; }
 #SessionsHolder .sessions { background: white; border: 1px #d8d8d8 solid; margin-left: 9px; padding-left: 20px; padding-right: 20px; background: white; border-top: 1px #d8d8d8 solid; padding-top: 30px; height: 100%; }
 #SessionsHolder .sessions .heading { padding-left: 10px; }
-#SessionsHolder .sessions .button { text-align: center; }
+#SessionsHolder .sessions .more { display: none; }
+#SessionsHolder .sessions .more .button { text-align: center; }
+#SessionsHolder .sessions .more .button a { width: 90px; }
 #SessionsHolder .filter { padding-top: 20px; background: #f3f3f3; margin-left: -46%; padding-left: 46%; margin-right: -10%; }
 #SessionsHolder .filter h5 { color: #359bfc; font-size: 15px; }
 #SessionsHolder .filter form label { font-weight: bold; }

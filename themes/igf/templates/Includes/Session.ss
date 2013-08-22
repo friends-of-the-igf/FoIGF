@@ -10,8 +10,8 @@
 		<% end_if %>
 	</div>
 	<div class="text-wrap">
-		<p><b><a class="title" href="$Link">$Title</a></b></p>		
-		<p><a href="#">$Type.Name</a> in <a href="#">$Meeting.Location.City</a></p>
+		<p><b><a class="title" href="$Link">$Title $ID</a></b></p>		
+		<p><a href="$Type.Link">$Type.Name</a> in <a href="$Meeting.Location.Link">$Meeting.Location.City</a></p>
 		<p class="subtext small"><b>$Date.Long | $View views</b></p>
 	</div>
 	<div class="tags subtext">

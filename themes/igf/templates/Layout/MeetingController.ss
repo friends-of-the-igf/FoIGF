@@ -9,13 +9,13 @@
   </div>
   <div class="span10">
     <h3>$Title</h3>
-    <h4 class="subtext">$StartDate.Format(d)-$EndDate.Long - in <a>$Location.Name</a></h4>
+    <h4 class="subtext">$StartDate.Format(d)-$EndDate.Long - in <a href="$Location.Link">$Location.Name</a></h4>
   </div>    
 </div>
 <div class="row-fluid tags-wrap">
   <div class="span12 tags">
     <h5>Topics covered</h5>
-      <% loop allTags %><a style="font-size: {$Size};" >$Tag</a> <% end_loop %>
+      <% loop allTags %><a href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
   </div>
 </div>
 <div class="row-fluid links">

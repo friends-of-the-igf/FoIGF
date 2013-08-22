@@ -25,4 +25,13 @@ class Location extends DataObject {
 	public function Name(){
 		return $this->City.', '.$this->Country;
 	}
+
+	public function Link(){
+		$link = "";
+		if($page = SessionsHolder::get()->First()) {
+			$link = $page->Link('location/').$this->ID;
+		}
+
+		return $link;
+	}
 }

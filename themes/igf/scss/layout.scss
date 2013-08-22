@@ -297,9 +297,14 @@ b{
 		.heading{
 			padding-left: 10px;
 		}
-		
-		.button{
-			text-align: center;
+		.more{
+			display:none;
+			.button{
+				text-align: center;
+				a{
+					width: 90px;
+				}
+			}
 		}
 
 	}
