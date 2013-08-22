@@ -13,8 +13,10 @@ body {
 	min-height: 100%;
 	position: relative;
 
+
 	#wrap{
 		min-height: 810px;
+	
 	}
 
 	
@@ -186,6 +188,7 @@ b{
 	position: relative;
 
 	.container{
+		padding: 30px 20px 70px 20px;
 		padding-top: 30px;
 		padding-bottom: 70px;
 
@@ -635,6 +638,24 @@ b{
 }
 
 @media (max-width: 767px) {
+	body{
+		padding: 0px;
+
+		#wrap{
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+
+	#footer{
+		.container{
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+
+
+
 	#navigation {
 		.navbar-inner {
 			.container {
@@ -645,8 +666,22 @@ b{
 		}
 	}
 
+	#SessionsHolder{
+		#searchbar{
+		
+			.search{
+				.mglass{
+					margin-left: 15px;
+				}
+			}
+
+		}
+	}
+
 	#searchbar{
-		margin: 0 -20px;
+		/*width: 100%;*/
+		margin-left: -20px;
+		margin-right: -20px;
 		.logo{
 			width: 10%;
 			display: none;
@@ -700,6 +735,18 @@ b{
 		}	
 	}*/
 
+	#SessionsHolder{
+		#Form_FilterForm{
+			select{
+				width:75%;
+			}
+			#Form_FilterForm_Speaker{
+				width: 75%;
+			}
+		}
+
+	}
+
 	#navigation {
 		.navbar-inner {
 			.container {
@@ -712,9 +759,11 @@ b{
 
 	#searchbar{
 		.search{
-			#Search{
-				input{
-					width:75%;
+			fieldset{
+				width: 70%;
+				#Search{
+					display: inline-block;
+					width: 100%;
 				}
 			}
 			.Actions{

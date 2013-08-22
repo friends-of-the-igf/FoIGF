@@ -81,7 +81,7 @@ class MeetingSession extends DataObject {
 
 		$meetings = Meeting::get();
 		if($meetings->count() != 0) {
-			$mainTab->push(new DropdownField('MeetingID', 'Meeting', $meetings->map()));
+			$mainTab->push(new DropdownField('MeetingID', 'Meeting', $meetings->map('ID', 'getYearLocation')));
 		}
 		$mainTab->push(new HTMLEditorField('Content', 'Content'));
 
