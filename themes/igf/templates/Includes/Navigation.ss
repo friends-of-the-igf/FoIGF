@@ -29,12 +29,6 @@
 					<% end_loop %>
 				</ul>
 			</div>
-			
-			<div class="social-icons hidden-desktop">
-				<a class="social"><img src="http://placehold.it/25x25" class="img-circle"></a>
-				<a class="social"><img src="http://placehold.it/25x25" class="img-circle"></a>
-			</div>
-
 		</div>
 	</div>
 </div>

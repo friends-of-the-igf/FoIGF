@@ -82,7 +82,9 @@ b{
 						color: $grayLight;
 						text-shadow: 0.5px 0px $gray;
 						line-height: 12px;
+						border-bottom: 2px $grayDarkest solid;
 						&:hover {
+							background:none;
 							border-bottom: 2px $blue solid;
 						}
 					}
@@ -598,24 +600,21 @@ b{
 }
 
 /*Responsiveness -------------------------------------------------- */
-/*  Responsive: Large desktop and up*/
-
-
 
 @media (min-width: 1200px) {
 	/*.video{
-			height: 190px !important; 
-			max-height: 190px !important;
+		height: 190px !important; 
+		max-height: 190px !important;
 
-			.icon{
-					position: relative;
-					z-index: 1;
-					top: -190px !important;
-					left: 10px;
-				}
-				
-				
-		}*/
+		.icon{
+				position: relative;
+				z-index: 1;
+				top: -190px !important;
+				left: 10px;
+			}
+			
+			
+	}*/
 
 	#SessionsHolder{
 		#searchbar{	
@@ -633,39 +632,33 @@ b{
 			}
 		}
 	}
-
 }
 
 @media (max-width: 767px) {
-
-
-#navigation {
-	.navbar-inner {
-		.container {
-			.social-icons{
-				display:none !important;
-			}	
+	#navigation {
+		.navbar-inner {
+			.container {
+				.social-icons{
+					display:none !important;
+				}	
+			}
 		}
 	}
-}
-
-
 
 	#searchbar{
 		margin: 0 -20px;
 		.logo{
 			width: 10%;
 			display: none;
-			}
+		}
 		.search{
 			width: 100%;
 			fieldset{
 				width:60%;
 			}
 			.mglass{
-					margin-left: 25px;
-				}
-
+				margin-left: 25px;
+			}
 			#Search{
 				padding-left: 20px;
 				width: 90%;
@@ -685,8 +678,7 @@ b{
 				:-ms-input-placeholder { 
 				     display:none;
 				}
-
-				}
+			}
 			.Actions{
 				width:19%;
 				float:right;
@@ -694,35 +686,29 @@ b{
 			}
 		}
 	}
-
-
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
-
-/*	.video{
-			height: 120px !important; 
-			max-height: 120px !important;
-
-			.icon{
-					position: relative;
-					z-index: 1;
-					top: -115px !important;
-					left: 10px;
-				}
-				
-				
-		}*/
+    /* .video{
+		height: 120px !important; 
+		max-height: 120px !important;
+		.icon{
+			position: relative;
+			z-index: 1;
+			top: -115px !important;
+			left: 10px;
+		}	
+	}*/
 
 	#navigation {
-	.navbar-inner {
-		.container {
-			.social-icons{
-				display:none !important;
-			}	
+		.navbar-inner {
+			.container {
+				.social-icons{
+					display:none !important;
+				}	
+			}
 		}
 	}
-}
 
 	#searchbar{
 		.search{
