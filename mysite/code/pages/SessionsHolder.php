@@ -41,8 +41,7 @@ class SessionsHolder_Controller extends Page_Controller {
 	public function init() {
 		parent::init();
 			
-		$this->sessions = MeetingSession::get();
-		$this->sessionCount = $this->sessions->Count();
+		$this->loadSessions();
 
 		Requirements::javascript('themes/igf/thirdparty/bootstrap-typeahead.js');
 		Requirements::javascript('themes/igf/javascript/sessionholder.js');
@@ -52,16 +51,31 @@ class SessionsHolder_Controller extends Page_Controller {
 	public function FilterForm(){
 		$fields = new FieldList();
 
+		
+		
+		
+
 		$fields->push($m = new DropdownField('Meeting', 'Meeting', Meeting::get()->map('ID', 'getYearLocation')));
+		if(isset($_GET['location']) && $_GET['location'] != null){
+			$m->setValue(Location::get()->byID($_GET['location'])->Meetings()->First()->ID);
+		}
 		$m->setEmptyString('-select-');
 		$fields->push($t = new DropdownField('Type', 'Session type', Type::get()->map('ID', 'Name')));
+		if(isset($_GET['type']) && $_GET['type'] != null){
+			$t->setValue($_GET['type']);
+		}
 		$t->setEmptyString('-select-');
 		$fields->push($s = new TextField('Speaker', 'Speaker'));
+
 		$s->setAttribute('autocomplete', 'off');
 		$s->setAttribute('data-provide', 'typeahead');
 		$s->setAttribute('class', 'typeahead');
 
-		$fields->push(new CheckboxSetField('Topic', 'Sessions on there topics', Topic::get()->map('ID', 'Name')));
+		$fields->push($topic = new CheckboxSetField('Topic', 'Sessions on there topics', Topic::get()->map('ID', 'Name')));
+		if(isset($_GET['topic']) && $_GET['topic'] != null){
+			$topic->setValue($_GET['topic']);
+		}
+
 		$fields->push(new OptionSetField('Sort', 'Sort Sessions by', array('DESC' => 'Latest', 'ASC' => 'Oldest')));
 
 
@@ -70,12 +84,12 @@ class SessionsHolder_Controller extends Page_Controller {
 		$button->addExtraClass('btn-primary');
 
 		$form = new Form($this, 'FilterForm', $fields, $actions);
-		$dat = Session::get('Form');
-		if(isset($dat)){
-			$form->loadDataFrom($dat);
-			Session::clear('Form');
+		$form->setAttribute('data-url', $this->Link().'getSpeakers');
+	
+		if(isset($_POST)){
+			$form->loadDataFrom($_POST);
 		}
-
+		
 		return $form;
 	}
 
@@ -130,7 +144,9 @@ class SessionsHolder_Controller extends Page_Controller {
 		$this->sessionCount = $sessions->Count();
 
 		foreach($sessions as $sesh){
-			$meetings[$sesh->Meeting()->ID] = $sesh->Meeting()->ID;
+			if($sesh->Meeting()->ID != 0){
+				$meetings[$sesh->Meeting()->ID] = $sesh->Meeting()->ID;
+			}
 		}
 
 		if(isset($meetings)){
@@ -162,7 +178,6 @@ class SessionsHolder_Controller extends Page_Controller {
 
 		
 		$total = $sessions->Count(); 
-		error_log($total);
 		$pages = ceil($total/18); 
 
 		$sessionIndex = 0;
@@ -271,44 +286,68 @@ class SessionsHolder_Controller extends Page_Controller {
         return Controller::curr()->customise(array('getSessions' => $sessions));
     }
 
-    public function topic(){
-    	$params = Controller::curr()->getURLParams();
-        $topic = $params['ID'];
-        $sessions = Type::get()->byID($topic)->MeetingSessions();
+    public function loadSessions(){
 
-        $sessions = $this->makeColumns($sessions);
-        
-        return Controller::curr()->customise(array('getSessions' => $sessions));
+    	$this->sessions = MeetingSession::get();
 
+    	if(isset($_GET['topic']) && $_GET['topic'] != null){
+    		$this->sessions = MeetingSession::get()->filter(array('TopicID' => $_GET['topic']));
+    	}
+    	if(isset($_GET['location']) && $_GET['location'] != null){
+			$sessions = new ArrayList();
+	        $meetings = Location::get()->byID($_GET['location'])->Meetings();
+	        foreach($meetings as $meeting){
+	        	foreach($meeting->MeetingSessions() as $session){
+	        		$sessions->push($session);
+	        	}
+	        }
+	        $this->sessions = $sessions;
+    	}
+    	if(isset($_GET['type']) && $_GET['type'] != null){
+    		$this->sessions = MeetingSession::get()->filter(array('TypeID' => $_GET['type']));
+    	}
 
+		$this->sessionCount = $this->sessions->Count();
     }
 
-    public function type(){
-    	$params = Controller::curr()->getURLParams();
-        $type = $params['ID'];
-        $sessions = Type::get()->byID($type)->MeetingSessions();
+    // public function topic(){
+    // 	$params = Controller::curr()->getURLParams();
+    //     $topic = $params['ID'];
+    //     $sessions = Type::get()->byID($topic)->MeetingSessions();
 
-        $sessions = $this->makeColumns($sessions);
+    //     $sessions = $this->makeColumns($sessions);
         
-        return Controller::curr()->customise(array('getSessions' => $sessions));
+    //     return Controller::curr()->customise(array('getSessions' => $sessions));
 
 
-    }
+    // }
 
-    public function location(){
-    	$params = Controller::curr()->getURLParams();
-        $location = $params['ID'];
-        $sessions = new ArrayList();
-        $meetings = Location::get()->byID($location)->Meetings();
-        foreach($meetings as $meeting){
-        	foreach($meeting->MeetingSessions() as $session){
-        		$sessions->push($session);
-        	}
-        }
+    // public function type(){
+    // 	$params = Controller::curr()->getURLParams();
+    //     $type = $params['ID'];
+    //     $sessions = Type::get()->byID($type)->MeetingSessions();
 
-        $sessions = $this->makeColumns($sessions);
+    //     $sessions = $this->makeColumns($sessions);
         
-        return Controller::curr()->customise(array('getSessions' => $sessions));
-    }
+    //     return Controller::curr()->customise(array('getSessions' => $sessions));
+
+
+    // }
+
+    // public function location(){
+    // 	$params = Controller::curr()->getURLParams();
+    //     $location = $params['ID'];
+    //     $sessions = new ArrayList();
+    //     $meetings = Location::get()->byID($location)->Meetings();
+    //     foreach($meetings as $meeting){
+    //     	foreach($meeting->MeetingSessions() as $session){
+    //     		$sessions->push($session);
+    //     	}
+    //     }
+
+    //     $sessions = $this->makeColumns($sessions);
+        
+    //     return Controller::curr()->customise(array('getSessions' => $sessions));
+    // }
 
 }

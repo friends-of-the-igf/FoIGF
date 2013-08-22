@@ -491,9 +491,19 @@ b{
 			background-color: $grayMedium;
 		}
 	}
+
+	
+
 	#meetings-wrap{
 		padding-top: 30px;
 		padding-bottom: 100px;
+
+		.first{
+			margin-left: 0px;
+		}
+		.span3{
+			margin-bottom: 30px;
+		}
 
 		a{
 			.text-wrap{

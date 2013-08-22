@@ -121,6 +121,8 @@ b { font-weight: 500; }
 #MeetingsHolder .promo { background: #f3f3f3; border: 1px solid #d8d8d8; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; margin-top: 30px; margin-bottom: 20px; }
 #MeetingsHolder .promo .dark { background-color: #d8d8d8; }
 #MeetingsHolder #meetings-wrap { padding-top: 30px; padding-bottom: 100px; }
+#MeetingsHolder #meetings-wrap .first { margin-left: 0px; }
+#MeetingsHolder #meetings-wrap .span3 { margin-bottom: 30px; }
 #MeetingsHolder #meetings-wrap a .text-wrap { padding: 10px; }
 #MeetingsHolder #meetings-wrap a .text-wrap h4 { color: black; }
 #MeetingsHolder #meetings-wrap a:hover { text-decoration: none; }

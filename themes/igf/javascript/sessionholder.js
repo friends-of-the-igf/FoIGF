@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 	var speakerArr = [];
 
-	url = window.location.href.split('?')[0] + '/getSpeakers';
+	url = $('#Form_FilterForm').data('url');
 	$.get(url, function(data){
 		for(var i in data){
 		    speakerArr.push(data [i]);
@@ -16,6 +16,8 @@ $(document).ready(function() {
 		source: speakerArr
 	});
 
+
+//pagination----------
 
 	var index = 1;
 

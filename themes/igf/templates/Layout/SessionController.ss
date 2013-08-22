@@ -4,7 +4,7 @@
 		<div class="span12">
 			<h3>$Title</h3>
 			<h4 class="subtext">
-				$Date.Long - A <a>$Type.Name</a> on <a>$Topic.Name</a> in <a>$Meeting.Location.Name</a>
+				$Date.Long - A <a href="$Type.Link">$Type.Name</a> on <a href="$Topic.Link">$Topic.Name</a> in <a href="$Meeting.Location.Link">$Meeting.Location.Name</a>
 			</h4>
 		</div>	
 	</div>
@@ -18,7 +18,7 @@
 			<% end_loop %>
 			<% end_if %>
 			<div>
-				<a class="btn"><b>Read full session transcript</b></a> <a class="btn"><b>View Original proposal</b></a>
+				<% if Transcript || TranscriptContent %><a class="btn"><b>Read full session transcript</b></a> <% end_if %><% if ProposalLink %><a href="$ProposalLink" class="btn"><b>View Original proposal</b></a><% end_if %>
 			</div>
 			<div class="content">
 				$Content

@@ -173,7 +173,9 @@ class Meeting extends DataObject {
 	}
 
 	public function getYearLocation(){
-		return $this->StartDate." - ".$this->Location()->City;
+		$date = date('Y', strtotime($this->StartDate));
+		// $date .= '-'.date('d F Y', strtotime($this->EndDate));
+		return $this->Location()->Name().' '.$date;
 	}
 
 	public function getMeetingSessions(){
@@ -184,13 +186,6 @@ class Meeting extends DataObject {
 	public function makeColumns($sessions){
 
 		$total = $sessions->Count();
-		error_log($total);
-		// $pages = ceil($total/18);
-
-		// $pagesList = new ArrayList();
-		// $pageIndex = 1;
-	
-
 
 		$list = new ArrayList();
 

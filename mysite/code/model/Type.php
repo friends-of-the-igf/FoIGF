@@ -18,7 +18,7 @@ class Type extends DataObject {
 	public function Link(){
 		$link = "";
 		if($page = SessionsHolder::get()->First()) {
-			$link = $page->Link('type/').$this->ID;
+			$link = $page->Link('?type=').$this->ID;
 		}
 
 		return $link;

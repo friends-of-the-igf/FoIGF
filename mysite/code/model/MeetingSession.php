@@ -8,7 +8,8 @@ class MeetingSession extends DataObject {
 		'NewTags' => 'Text',
 		'Views' => 'Int',
 		'Content' => 'HTMLText',
-		'TranscriptContent' => 'HTMLText'
+		'TranscriptContent' => 'HTMLText',
+		'ProposalLink' => 'Text'
 	);
 
 	public static $has_one = array(
@@ -54,6 +55,7 @@ class MeetingSession extends DataObject {
 		$fields->push( $tabset );
 
 		$mainTab->push(new TextField('Title', 'Title'));
+		$mainTab->push(new TextField('ProposalLink', 'Link to Proposal'));
 		$mainTab->push($date = new DateField('Date', 'Date'));
 		$date->setConfig('showcalendar', true);
 

@@ -2,7 +2,8 @@
 <div id="meetings-wrap" class="row thumbnails">
 	<% if Meetings %>
 	<% loop Meetings %>
-	<div class="span3">
+
+	<div class="span3<% if First || Modulus(4) == 1 %> first <% end_if %> <% if not First && Modulus(5) == 1 %> last <% end_if %>">
 		<a href="$Link" class="thumbnail">
 			<% if Image %>
 		    $Image.SetSize(400,300)
