@@ -151,7 +151,11 @@ b { font-weight: 500; }
   #SessionsHolder #searchbar .search .mglass { margin-left: -15px; }
   #SessionsHolder #searchbar .search form { margin-left: -20px; }
   #SessionsHolder #searchbar .logo { margin-left: 5px; } }
-@media (max-width: 767px) { #navigation .navbar-inner .container .social-icons { display: none !important; }
+@media (max-width: 767px) { body { padding-left: 0px; padding-right: 0px; }
+  #wrap { padding-right: 20px; padding-left: 20px; }
+  #navigation .navbar-inner .container .btn-navbar { margin-top: 12px; }
+  #navigation .navbar-inner .container .social-icons { display: none !important; }
+  #footer .container { padding-left: 20px; padding-right: 20px; }
   #searchbar { margin: 0 -20px; }
   #searchbar .logo { width: 10%; display: none; }
   #searchbar .search { width: 100%; }

@@ -52,8 +52,6 @@ class SessionsHolder_Controller extends Page_Controller {
 		$fields = new FieldList();
 
 		
-		
-		
 
 		$fields->push($m = new DropdownField('Meeting', 'Meeting', Meeting::get()->map('ID', 'getYearLocation')));
 		if(isset($_GET['location']) && $_GET['location'] != null){
