@@ -11,7 +11,6 @@ class WriteAllTask extends BuildTask{
 			$meeting->write();
 		}
 		foreach(MeetingSession::get() as $session){
-			$session->URLSegment = $session->Link();
 			$session->write();
 		}
 		foreach(Member::get() as $member){

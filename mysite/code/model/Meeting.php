@@ -6,9 +6,8 @@ class Meeting extends DataObject {
 		'Website' => 'Text',
 		'StartDate' => 'Date',
 		'EndDate' => 'Date',
-		'URLSegment' => 'Varchar(255)',
-		'City' => 'Text',
-		'Country' => 'Text'
+		'URLSegment' => 'Varchar(255)'
+		
 	);
 
 	public static $has_one = array(
@@ -27,23 +26,19 @@ class Meeting extends DataObject {
 	);
 
 	static $searchable_fields = array(
-		'Title',
-		'City',
-		'Country'
+		'Title'
 		
 	);
 
 	// fields to return
 	static $return_fields = array(
 		'Title',
-		'URLSegment',
-		'City',
-		'Country'
+		'URLSegment'
 	);
 
 	// set index
 	public static $indexes = array(
-		"fulltext (Title, City, Country)"
+		"fulltext (Title)"
     );
 
     // REQUIRED: object table must be set to MyISAM
@@ -106,14 +101,6 @@ class Meeting extends DataObject {
 		if(!$this->URLSegment) {
 			$this->URLSegment = $this->Link();
 			
-		}
-
-		if(!$this->City) {
-			$this->City = $this->Location()->City;
-		}
-
-		if(!$this->Country) {
-			$this->Country = $this->Location()->Country;
 		}
 	}
 

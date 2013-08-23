@@ -34,6 +34,6 @@ FulltextSearchable::enable();
 
 CustomSearchFilter::set_search_objects(array('Meeting', 'MeetingSession'));
 
-Object::add_extension('MeetingSession', "FulltextSearchable('Title', 'Date', 'Tags', 'Content', 'TranscriptContent', 'SearchType', 'SearchTopic', 'SearchMeeting', 'SearchSpeakers')");
-Object::add_extension('Meeting', "FulltextSearchable('Title', 'City', 'Country')");
+Object::add_extension('MeetingSession', "FulltextSearchable('Title', 'Date', 'Tags', 'Content', 'TranscriptContent')");
+Object::add_extension('Meeting', "FulltextSearchable('Title')");
 

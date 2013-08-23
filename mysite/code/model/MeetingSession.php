@@ -11,10 +11,7 @@ class MeetingSession extends DataObject {
 		'TranscriptContent' => 'HTMLText',
 		'ProposalLink' => 'Text',
 		'URLSegment' => 'Varchar(255)',
-		'SearchType' => 'Text',
-		'SearchTopic' => 'Text',
-		'SearchMeeting' => 'Text',
-		'SearchSpeakers' => 'Text'
+	
 	);
 
 	public static $has_one = array(
@@ -43,11 +40,7 @@ class MeetingSession extends DataObject {
 		'Title',
 		'Tags',
 		'Content',
-		'TranscriptContent',
-		'SearchType',
-		'SearchTopic',
-		'SearchMeeting',
-		'SearchSpeakers'
+		'TranscriptContent'
 	);
 
 	// fields to return
@@ -55,16 +48,12 @@ class MeetingSession extends DataObject {
 		'Title',
 		'Content',
 		'TranscriptContent',
-		'URLSegment',
-		'SearchType',
-		'SearchTopic',
-		'SearchMeeting'
-
+		'URLSegment'
 	);
 
 	// set index
 	public static $indexes = array(
-		"fulltext (Title, Tags, Content, TranscriptContent, SearchType, SearchTopic, SearchMeeting, SearchSpeakers)"
+		"fulltext (Title, Tags, Content, TranscriptContent)"
     );
 
     // REQUIRED: object table must be set to MyISAM
@@ -168,27 +157,6 @@ class MeetingSession extends DataObject {
 		if(!$this->URLSegment) {
 			$this->URLSegment = $this->Link();
 		}
-
-		if(!$this->SearchType && $this->Type()) {
-			$this->SearchType = $this->Type()->Name;
-		}
-
-		if(!$this->SearchTopic && $this->Topic()) {
-			$this->SearchTopic = $this->Topic()->Name;
-		}
-
-		if(!$this->SearchMeeting && $this->Meeting()) {
-			$this->SearchMeeting = $this->Meeting()->getYearLocation();
-		}
-
-		if(!$this->SearchSpeakers && $this->Speakers()) {
-			$speakerString = ''; 
-			foreach($this->Speakers() as $speaker){
-				$speakerString .= $speaker->Name.', ';
-			}
-			$this->SearchSpeakers = $speakerString;
-		}
-
 		
 	}
 
