@@ -88,6 +88,7 @@ b { font-weight: 500; }
 #SessionsHolder .filter form .Actions input { height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 #SessionsHolder .tags { padding-bottom: 30px; }
 #SessionsHolder #searchbar { border: none; }
+#SessionsHolder #searchbar #Search input { width: 89%; }
 #SessionsHolder #searchbar .mglass { margin-left: -5px; }
 #SessionsHolder #searchbar form { margin-left: -10px; }
 #SessionsHolder #searchbar .logo { margin-left: 5px; }

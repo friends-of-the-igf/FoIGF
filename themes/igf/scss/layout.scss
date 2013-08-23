@@ -373,6 +373,11 @@ b{
   /*Search Bar Styling */
 	#searchbar{	
 		border: none;
+		#Search{
+			input{
+				width: 89%;
+			}
+		}
 		.mglass{
 			margin-left: -5px;
 		}
