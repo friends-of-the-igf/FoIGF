@@ -28,16 +28,20 @@
 		<div class="span4">
 			<div class="row-fluid social-icons">    
 				<div class="span3">
-					 <span class='st_twitter_vcount' displayText='Tweet'></span>
+					<span class='st_twitter_vcount' displayText='Tweet'></span>
 				</div>
 				<div class="span3">
-					 <span class='st_facebook_vcount' displayText='Facebook'></span>
+					<span class='st_facebook_vcount' displayText='Facebook'></span>
 				</div>
 				<div class="span3">
-					   <span class='st_email_vcount' displayText='Email'></span>
+					<span class='st_email_vcount' displayText='Email'></span>
 				</div>
 				<div class="span3">
-					<img src="http://placehold.it/60x60">
+					<div class="view-count">
+						<p class="text-center">
+							<b>$Views</b><br />view<% if Views != 1 %>s<% end_if %>
+						</p>
+					</div>
 				</div>
 			</div>
 			<div class="session-side">
