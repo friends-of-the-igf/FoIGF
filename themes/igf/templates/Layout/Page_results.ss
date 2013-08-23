@@ -14,11 +14,7 @@
              <% if ClassName == Meeting %>
             <li>
                 <a class="searchResultHeader" href="$URLSegment">
-                    <% if $MenuTitle %>
-                    $MenuTitle
-                    <% else %>
                     $Title
-                    <% end_if %>
                 </a>
                
                 <p>$Content.LimitWordCountXML</p>
@@ -34,9 +30,8 @@
               <% if ClassName == MeetingSession %>
             <li>
                 <a class="searchResultHeader" href="$URLSegment">
-                    $Title - $SearchMeeting
+                    $Title 
                 </a> 
-                <p><b>$SearchType</b> on <b>$SearchTopic</b> </p>
                 <p>$Content.LimitWordCountXML</p>
             
             </li>

@@ -20,40 +20,15 @@ class Page extends SiteTree {
 }
 class Page_Controller extends ContentController {
 
-	public static $allowed_actions = array (
-		'SearchForm',
-		'doSearch'
+	public static $allowed_actions = array(
+		'CustomSearchForm',
+		'customResults',
 	);
 
 	public function init() {
 		parent::init();
 	}
 
-	// public function SearchForm(){
-	// 	$fields = new FieldList($input = new TextField('Search', 'Search'));
-
-	// 	$input->setAttribute('placeholder', 'Search for Sessions, Meetings and Speakers...');
-
-	// 	$actions = new FieldList($button = new FormAction('getResults', 'Search'));
-	// 	$button->addExtraClass('btn');
-	
-	// 	$button->addExtraClass('btn-primary');
-
-	// 	$form = new Form($this, 'SearchForm', $fields, $actions);
-	
-	// 	$form->addExtraClass('form-search');
-
-	// 	return $form;
-	// }
-
-	// public function getResults($data, $form) {
-
-
-
-
- //        var_dump($data);
- //        // return $this->owner->customise($data)->renderWith(array('Page_results', 'Page'));
-	// }
 
 	public function sessionLink(){
 		if($page = SessionsHolder::get()->First()) {
@@ -80,6 +55,7 @@ class Page_Controller extends ContentController {
 		if($page = SessionsHolder::get()->First()) {
 			$link = $page->Link('tag');
 		}
+
 
 		foreach($uniqueTagsArray as $tag) {
 			$tagsList = $this->allTagsList();
