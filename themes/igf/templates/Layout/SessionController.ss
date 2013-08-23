@@ -18,7 +18,9 @@
 			<% end_loop %>
 			<% end_if %>
 			<div>
-				<% if Transcript || TranscriptContent %><a class="btn"><b>Read full session transcript</b></a> <% end_if %><% if ProposalLink %><a href="$ProposalLink" class="btn"><b>View Original proposal</b></a><% end_if %>
+				<% if Transcript %> <a href="$Transcript.Link" class="btn"><b>Read full session transcript</b></a> 
+				<% else_if  TranscriptContent %>  <a href="transcript/$ID" class="btn" target="_blank"><b>Read full session transcript</b></a> <% end_if %>
+				<% if ProposalLink %><a href="$ProposalLink" class="btn"><b>View Original proposal</b></a><% end_if %>
 			</div>
 			<div class="content">
 				$Content

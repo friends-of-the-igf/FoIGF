@@ -9,7 +9,12 @@ class MeetingSession extends DataObject {
 		'Views' => 'Int',
 		'Content' => 'HTMLText',
 		'TranscriptContent' => 'HTMLText',
-		'ProposalLink' => 'Text'
+		'ProposalLink' => 'Text',
+		'URLSegment' => 'Varchar(255)',
+		'SearchType' => 'Text',
+		'SearchTopic' => 'Text',
+		'SearchMeeting' => 'Text',
+		'SearchSpeakers' => 'Text'
 	);
 
 	public static $has_one = array(
@@ -32,6 +37,39 @@ class MeetingSession extends DataObject {
 	public static $summary_fields = array(
 		'Title',
 		'Date'
+	);
+
+	static $searchable_fields = array(
+		'Title',
+		'Tags',
+		'Content',
+		'TranscriptContent',
+		'SearchType',
+		'SearchTopic',
+		'SearchMeeting',
+		'SearchSpeakers'
+	);
+
+	// fields to return
+	static $return_fields = array(
+		'Title',
+		'Content',
+		'TranscriptContent',
+		'URLSegment',
+		'SearchType',
+		'SearchTopic',
+		'SearchMeeting'
+
+	);
+
+	// set index
+	public static $indexes = array(
+		"fulltext (Title, Tags, Content, TranscriptContent, SearchType, SearchTopic, SearchMeeting, SearchSpeakers)"
+    );
+
+    // REQUIRED: object table must be set to MyISAM
+	static $create_table_options = array(
+	    'MySQLDatabase' => 'ENGINE=MyISAM'
 	);
 
 	public function getCMSFields() {
@@ -117,15 +155,43 @@ class MeetingSession extends DataObject {
 		return $fields;
 	}
 
-	public function onAfterWrite() {
-		parent::onAfterWrite();
+	public function onBeforeWrite() {
+
+		parent::onBeforeWrite();
 
 		if($this->NewTags) {
 			$this->Tags .= ',' . $this->NewTags;
 			$this->NewTags = null;
 			$this->write();
 		}
+
+		if(!$this->URLSegment) {
+			$this->URLSegment = $this->Link();
+		}
+
+		if(!$this->SearchType && $this->Type()) {
+			$this->SearchType = $this->Type()->Name;
+		}
+
+		if(!$this->SearchTopic && $this->Topic()) {
+			$this->SearchTopic = $this->Topic()->Name;
+		}
+
+		if(!$this->SearchMeeting && $this->Meeting()) {
+			$this->SearchMeeting = $this->Meeting()->getYearLocation();
+		}
+
+		if(!$this->SearchSpeakers && $this->Speakers()) {
+			$speakerString = ''; 
+			foreach($this->Speakers() as $speaker){
+				$speakerString .= $speaker->Name.', ';
+			}
+			$this->SearchSpeakers = $speakerString;
+		}
+
+		
 	}
+
 
 	public function Link($action = null) {
 		return Controller::join_links('session', $this->ID, $action);

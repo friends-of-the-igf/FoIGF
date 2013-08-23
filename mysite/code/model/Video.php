@@ -36,7 +36,7 @@ class Video extends DataObject {
                     $str = explode('=',$para);
                     $v = $str[1];
                     if($v != $url) {
-                    	error_log($v);
+                 
                         $this->YouTubeID = $v;
                         $this->write();
                     }
@@ -48,7 +48,7 @@ class Video extends DataObject {
             $paras = explode('?',$params[1]);
             if(count($paras) == 1){
                 if($paras[0] != $url){
-                	error_log($paras[0]);
+                	
                     $this->YouTubeID = $paras[0];
                     $this->write();
                 }

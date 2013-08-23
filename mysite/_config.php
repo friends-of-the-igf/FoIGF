@@ -26,4 +26,14 @@ Email::setAdminEmail("ben@stripetheweb.com");
 // }
 
 DataObject::add_extension('Member', 'CustomMember');
+Object::useCustomClass('SearchForm', 'CustomSearchForm');
 Member::set_unique_identifier_field('Username');
+
+
+FulltextSearchable::enable();
+
+CustomSearchFilter::set_search_objects(array('Meeting', 'MeetingSession'));
+
+Object::add_extension('MeetingSession', "FulltextSearchable('Title', 'Date', 'Tags', 'Content', 'TranscriptContent', 'SearchType', 'SearchTopic', 'SearchMeeting', 'SearchSpeakers')");
+Object::add_extension('Meeting', "FulltextSearchable('Title', 'City', 'Country')");
+
