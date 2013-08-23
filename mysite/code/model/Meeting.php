@@ -5,7 +5,9 @@ class Meeting extends DataObject {
 		'Title' => 'Text',
 		'Website' => 'Text',
 		'StartDate' => 'Date',
-		'EndDate' => 'Date'
+		'EndDate' => 'Date',
+		'URLSegment' => 'Varchar(255)'
+		
 	);
 
 	public static $has_one = array(
@@ -19,9 +21,29 @@ class Meeting extends DataObject {
 	);
 
 	public static $summary_fields = array(
+		'Title'
+
+	);
+
+	static $searchable_fields = array(
+		'Title'
+		
+	);
+
+	// fields to return
+	static $return_fields = array(
 		'Title',
-		'StartDate',
-		'EndDate'
+		'URLSegment'
+	);
+
+	// set index
+	public static $indexes = array(
+		"fulltext (Title)"
+    );
+
+    // REQUIRED: object table must be set to MyISAM
+	static $create_table_options = array(
+	    'MySQLDatabase' => 'ENGINE=MyISAM'
 	);
 
 	public function getCMSFields() {
@@ -70,6 +92,16 @@ class Meeting extends DataObject {
 
 	public function Link($action = null) {
 		return Controller::join_links('meeting', $this->ID, $action);
+	}
+
+
+	public function onBeforeWrite() {
+		parent::onBeforeWrite();
+
+		if(!$this->URLSegment) {
+			$this->URLSegment = $this->Link();
+			
+		}
 	}
 
 	public function getTopics() {

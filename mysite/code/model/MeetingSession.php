@@ -9,7 +9,9 @@ class MeetingSession extends DataObject {
 		'Views' => 'Int',
 		'Content' => 'HTMLText',
 		'TranscriptContent' => 'HTMLText',
-		'ProposalLink' => 'Text'
+		'ProposalLink' => 'Text',
+		'URLSegment' => 'Varchar(255)',
+	
 	);
 
 	public static $has_one = array(
@@ -32,6 +34,31 @@ class MeetingSession extends DataObject {
 	public static $summary_fields = array(
 		'Title',
 		'Date'
+	);
+
+	static $searchable_fields = array(
+		'Title',
+		'Tags',
+		'Content',
+		'TranscriptContent'
+	);
+
+	// fields to return
+	static $return_fields = array(
+		'Title',
+		'Content',
+		'TranscriptContent',
+		'URLSegment'
+	);
+
+	// set index
+	public static $indexes = array(
+		"fulltext (Title, Tags, Content, TranscriptContent)"
+    );
+
+    // REQUIRED: object table must be set to MyISAM
+	static $create_table_options = array(
+	    'MySQLDatabase' => 'ENGINE=MyISAM'
 	);
 
 	public function getCMSFields() {
@@ -117,15 +144,22 @@ class MeetingSession extends DataObject {
 		return $fields;
 	}
 
-	public function onAfterWrite() {
-		parent::onAfterWrite();
+	public function onBeforeWrite() {
+
+		parent::onBeforeWrite();
 
 		if($this->NewTags) {
 			$this->Tags .= ',' . $this->NewTags;
 			$this->NewTags = null;
 			$this->write();
 		}
+
+		if(!$this->URLSegment) {
+			$this->URLSegment = $this->Link();
+		}
+		
 	}
+
 
 	public function Link($action = null) {
 		return Controller::join_links('session', $this->ID, $action);

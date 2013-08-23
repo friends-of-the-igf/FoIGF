@@ -4,4 +4,5 @@ Name: IGF
 Director:
   rules:
     'session//$ID!/$Action': 'SessionController',
-    'meeting//$ID!/$Action': 'MeetingController'
+    'meeting//$ID!/$Action': 'MeetingController',
+    'transcript//$ID': 'TranscriptController'

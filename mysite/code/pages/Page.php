@@ -29,28 +29,31 @@ class Page_Controller extends ContentController {
 		parent::init();
 	}
 
-	public function SearchForm(){
-		$fields = new FieldList($input = new TextField('Search', 'Search'));
+	// public function SearchForm(){
+	// 	$fields = new FieldList($input = new TextField('Search', 'Search'));
 
-		$input->setAttribute('placeholder', 'Search for Sessions, Meetings and Speakers...');
+	// 	$input->setAttribute('placeholder', 'Search for Sessions, Meetings and Speakers...');
 
-		$actions = new FieldList($button = new FormAction('doSearch', 'Search'));
-		$button->addExtraClass('btn');
+	// 	$actions = new FieldList($button = new FormAction('getResults', 'Search'));
+	// 	$button->addExtraClass('btn');
 	
-		$button->addExtraClass('btn-primary');
+	// 	$button->addExtraClass('btn-primary');
 
-		$form = new Form($this, 'SearchForm', $fields, $actions);
+	// 	$form = new Form($this, 'SearchForm', $fields, $actions);
 	
-		$form->addExtraClass('form-search');
+	// 	$form->addExtraClass('form-search');
 
-		return $form;
-	}
+	// 	return $form;
+	// }
 
-	public function doSearch($data, $form) {
+	// public function getResults($data, $form) {
 
-        var_dump($data);
-        // return $this->owner->customise($data)->renderWith(array('Page_results', 'Page'));
-	}
+
+
+
+ //        var_dump($data);
+ //        // return $this->owner->customise($data)->renderWith(array('Page_results', 'Page'));
+	// }
 
 	public function sessionLink(){
 		if($page = SessionsHolder::get()->First()) {
@@ -85,15 +88,15 @@ class Page_Controller extends ContentController {
 			$weight = $filteredList->Count();
 			$percent = ($weight / $count) * 100;
 
-			if($percent <= 5) {
+			if($percent <= 1) {
 				$size = "14px";
-			} elseif($percent <= 10) {
+			} elseif($percent <= 3) {
 				$size = "16px";
-			} elseif($percent <= 20) {
+			} elseif($percent <= 5) {
 				$size = "18px";
-			} elseif($percent <= 40) {
+			} elseif($percent <= 10) {
 				$size = "20px";
-			} elseif($percent <= 80) {
+			} elseif($percent <= 20) {
 				$size = "22px";
 			}
 

@@ -39,15 +39,14 @@ b { font-weight: 500; }
 #searchbar .search label { display: none; }
 #searchbar .search form { margin-bottom: 10px; }
 #searchbar .search .mglass { position: relative; margin-bottom: -62px; margin-left: 5px; margin-top: 0px; }
-#searchbar .search fieldset { width: 77%; display: inline-block; }
-#searchbar .search #Search { width: 100%; }
+#searchbar .search fieldset { width: 85%; display: inline-block; }
+#searchbar .search #Search { display: inline-block; width: 80%; margin-right: 0px; }
 #searchbar .search #Search input { width: 90%; height: 35px; border: none; box-shadow: 0px 2px 2px #e0e0e0 inset; padding-left: 40px; }
 #searchbar .search #Search ::-webkit-input-placeholder { color: #535353; }
 #searchbar .search #Search :-moz-placeholder { color: #535353; }
 #searchbar .search #Search ::-moz-placeholder { color: #535353; }
 #searchbar .search #Search :-ms-input-placeholder { color: #535353; }
-#searchbar .search .Actions { display: inline-block; width: 15%; padding-left: 17px; }
-#searchbar .search .Actions input { height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+#searchbar .search #CustomSearchForm_CustomSearchForm_action_customResults { display: inline-block; width: 77px; padding: 5px 10px; height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 #searchbar .logo { text-align: right; padding-top: 15px; }
 
 /*Footer -------------------------------------------------- */
@@ -147,42 +146,36 @@ b { font-weight: 500; }
 
 .thumbnail { -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; text-decoration: none; }
 
+/* Search Results */
+.searchResults .results { border-bottom: 1px solid #e0e0e0; margin-bottom: 10px; padding-bottom: 10px; }
+.searchResults .results h3 { padding-bottom: 10px; }
+.searchResults .results ul { list-style-type: none; }
+.searchResults .results ul li { margin-bottom: 10px; margin-right: 20px; padding-bottom: 5px; border-bottom: 1px solid #e0e0e0; }
+.searchResults .results ul li a { font-size: 16px; }
+
 /*Responsiveness -------------------------------------------------- */
-@media (min-width: 1200px) { /*.video{ 		height: 190px !important;  		max-height: 190px !important;  		.icon{ 				position: relative; 				z-index: 1; 				top: -190px !important; 				left: 10px; 			} 			 			 	}*/
-  #SessionsHolder #searchbar { border: none; }
+@media (min-width: 1200px) { #SessionsHolder #searchbar { border: none; }
   #SessionsHolder #searchbar .search .mglass { margin-left: -15px; }
   #SessionsHolder #searchbar .search form { margin-left: -20px; }
   #SessionsHolder #searchbar .logo { margin-left: 5px; } }
 @media (max-width: 767px) { body { padding: 0px; }
   body #wrap { padding-left: 20px; padding-right: 20px; }
   #footer .container { padding-left: 20px; padding-right: 20px; }
+  #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
   #SessionsHolder #searchbar .search .mglass { margin-left: 15px; }
   #searchbar { /*width: 100%;*/ margin-left: -20px; margin-right: -20px; }
   #searchbar .logo { width: 10%; display: none; }
-  #searchbar .search { width: 100%; }
-  #searchbar .search fieldset { width: 60%; }
+  #searchbar .search fieldset { width: 100%; }
   #searchbar .search .mglass { margin-left: 25px; }
-  #searchbar .search #Search { padding-left: 20px; width: 90%; margin-right: 20px; }
-  #searchbar .search #Search input { width: 90%; }
-  #searchbar .search #Search ::-webkit-input-placeholder { display: none; }
-  #searchbar .search #Search :-moz-placeholder { display: none; }
-  #searchbar .search #Search ::-moz-placeholder { display: none; }
-  #searchbar .search #Search :-ms-input-placeholder { display: none; }
-  #searchbar .search .Actions { width: 19%; float: right; margin-right: 30px; } }
-@media (min-width: 768px) and (max-width: 979px) { /* .video{
-		height: 120px !important; 
-		max-height: 120px !important;
-		.icon{
-			position: relative;
-			z-index: 1;
-			top: -115px !important;
-			left: 10px;
-		}	
-	}*/
+  #searchbar .search #Search { padding-left: 20px; width: 70%; }
+  #searchbar .search #Search input { width: 70%; } }
+@media (min-width: 768px) and (max-width: 979px) { #HomePage .content .span1 { padding-top: 30px; }
+  #HomePage .content .text { padding: 10px; }
   #SessionsHolder #Form_FilterForm select { width: 75%; }
   #SessionsHolder #Form_FilterForm #Form_FilterForm_Speaker { width: 75%; }
+  #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
-  #searchbar .search fieldset { width: 70%; }
-  #searchbar .search fieldset #Search { display: inline-block; width: 100%; }
-  #searchbar .search .Actions { width: 19%; } }
+  #searchbar .search fieldset { width: 100%; }
+  #searchbar .search fieldset #Search { display: inline-block; width: 80%; }
+  #searchbar .search fieldset #Search input { width: 85%; } }
