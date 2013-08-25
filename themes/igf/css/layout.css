@@ -170,7 +170,11 @@ b { font-weight: 500; }
   #searchbar .search fieldset { width: 100%; }
   #searchbar .search .mglass { margin-left: 25px; }
   #searchbar .search #Search { padding-left: 20px; width: 70%; }
-  #searchbar .search #Search input { width: 70%; } }
+  #searchbar .search #Search input { width: 70%; }
+  #SessionController .social-icons .span3 { display: inline-block; width: 20%; margin-left: 2%; margin-right: 2%; }
+  #SessionController .social-icons .view { margin-top: 3px; vertical-align: top; }
+  #SessionController .social-icons .view .view-count { padding-top: 25px; width: 65px; margin-top: 0px; }
+  #SessionController .social-icons .view .view-count p { margin-top: -10px; } }
 @media (min-width: 768px) and (max-width: 979px) { #HomePage .content .span1 { padding-top: 30px; }
   #HomePage .content .text { padding: 10px; }
   #SessionsHolder #Form_FilterForm select { width: 75%; }
@@ -179,4 +183,7 @@ b { font-weight: 500; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
   #searchbar .search fieldset { width: 100%; }
   #searchbar .search fieldset #Search { display: inline-block; width: 80%; }
-  #searchbar .search fieldset #Search input { width: 85%; } }
+  #searchbar .search fieldset #Search input { width: 85%; }
+  #SessionController .social-icons .span3 { width: 45%; margin-left: 2.5%; margin-right: 2.5%; padding-bottom: 10px; }
+  #SessionController .social-icons .span3 .view-count { width: 65px; }
+  #meetings-wrap .span3 { height: 275px; } }

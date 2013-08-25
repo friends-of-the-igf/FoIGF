@@ -38,7 +38,7 @@
 				<div class="span3">
 					<span class='st_email_vcount' displayText='Email'></span>
 				</div>
-				<div class="span3">
+				<div class="span3 view">
 					<div class="view-count">
 						<p class="text-center">
 							<b>$Views</b><br />view<% if Views != 1 %>s<% end_if %>
