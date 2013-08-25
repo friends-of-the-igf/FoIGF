@@ -8,7 +8,7 @@ $(document).ready(function() {
 	}
 
 	if($('#sessionResults').find('li').length == 0){
-		$('#noSession').html('<p>Sorry, your search query did not return any sessions.</p>')
+		$('#noSessions').html('<p>Sorry, your search query did not return any sessions.</p>')
 	}
 	
 });
