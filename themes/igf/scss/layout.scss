@@ -13,18 +13,16 @@ body {
 	min-height: 100%;
 	position: relative;
 
-
 	#wrap{
 		min-height: 810px;
 	
 	}
-
-	
 }
 
 /* Generic Classes -------------------------------------------------- */
 a{
-		cursor: pointer;
+	cursor: pointer;
+	transition: all 0.2s linear;
 }
 .heading{
 	padding-bottom: 10px;
@@ -34,7 +32,6 @@ h3{
 	font-size: 30px;
 	color: $grayDarkest;
 	margin: 0px;
-
 }
 h4{
 	font-weight: 500;
@@ -392,66 +389,67 @@ b{
 
 /*Sessions -------------------------------------------------- */
 .sessions{
-		padding-bottom: 50px;
+	padding-bottom: 50px;
 
-		.link{
-			text-align: right;
-			padding-top: 10px;	
-			
-			.btn{
-				color:white;
-			}		
-		}
-		.session-tile{
-			padding: 0px;
-			padding-bottom: 0px;
-			border: 1px solid $grayMedium;
-			margin-bottom: 20px;
+	.link{
+		text-align: right;
+		padding-top: 10px;	
 		
+		.btn{
+			color:white;
+		}		
+	}
+	.session-tile{
+		padding: 0px;
+		padding-bottom: 0px;
+		border: 1px solid $grayMedium;
+		margin-bottom: 20px;
+	
 
-			.vidthumb{
-				padding: 4px;
-				height: 100%;
-				.thumb{
-					position: relative;
-					margin-top: -40px;
-					top: 0px;
-				
-				}
-				
-				.icon{
-					position: relative;
-					z-index: 1;
-					top: 0px;
-					left: 10px;
-				}
+		.vidthumb{
+			padding: 4px;
+			height: 100%;
+			.thumb{
+				position: relative;
+				margin-top: -40px;
+				top: 0px;
+			
+			}
+			
+			.icon{
+				position: relative;
+				z-index: 1;
+				top: 0px;
+				left: 10px;
+			}
+		}
+
+		.text-wrap{
+			padding: 4px;
+			margin: 5px;
+			
+			.title{
+				color: $grayDarkest;
+				font-size: 14px;
 			}
 
-			.text-wrap{
-				padding: 4px;
-				margin: 5px;
-				
-				.title{
-					color: $grayDarkest;
-					font-size: 14px;
-				}
-
-				p{
-					padding: 0;
-					margin: 0;
-				}
-				a{
-					color:$blueLight;	
-				}
+			p{
+				padding: 0;
+				margin: 0;
 			}
-
-			.tags{
-				font-size: 13px;
-				background: $grayLighter;
-				padding:7px;
+			a{
+				color:$blueLight;	
 			}
+		}
+
+		.tags{
+			font-size: 13px;
+			background: $grayLighter;
+			padding:7px;
 		}
 	}
+}
+
 /* session controller --------------------------------------------------*/
 #ses-wrap{
 	padding-top: 30px;
@@ -488,10 +486,17 @@ b{
 			padding-bottom: 5px;
 		}
 	}
+
+	.view-count {
+		padding:15px 0 5px 0;
+		background-color: $grayLighter;
+		@include border-radius(5px);
+
+		b {
+			font-size: 1.5em;
+		}
+	}
 }
-
-
-
 
 /* meetings holder -------------------------------------------------- */
 #MeetingsHolder {

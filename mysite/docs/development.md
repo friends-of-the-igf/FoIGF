@@ -14,5 +14,6 @@ thirdparty js goes in the themes/nad/thirdparty dir
 custom js goes in the themes/nad/javascript dir
 
 ## for live
+turn on Session view count through global settings
 
 ## tasks
