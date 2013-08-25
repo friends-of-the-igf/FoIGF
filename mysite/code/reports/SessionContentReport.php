@@ -1,16 +1,16 @@
 <?php
 
-class VideoReport extends SS_Report {
+class SessionContentReport extends SS_Report {
 
 	function title() {
-		return "Missing Videos Report";
+		return "Session - Missing Content Report";
 	}
 	
 	function sourceRecords($params, $sort, $limit) {
 		$sessions = MeetingSession::get()->sort($sort);
 		$list = new ArrayList();
 		foreach($sessions as $session) {
-			if($session->Videos()->Count() == 0) {
+			if(!$session->Content) {
 				$list->push($session);
 			}
 		}
