@@ -44,25 +44,29 @@
     <% else %>
     <p>Sorry, your search query did not return any results.</p>
     <% end_if %>
-              
+
     <% if $Results.MoreThanOnePage %>
-    <div id="PageNumbers">
-        <% if $Results.NotLastPage %>
-        <a class="next" href="$Results.NextLink" title="View the next page">Next</a>
-        <% end_if %>
-        <% if $Results.NotFirstPage %>
-        <a class="prev" href="$Results.PrevLink" title="View the previous page">Prev</a>
-        <% end_if %>
-        <span>
-            <% loop $Results.Pages %>
-                <% if $CurrentBool %>
-                $PageNum
-                <% else %>
-                <a href="$Link" title="View page number $PageNum">$PageNum</a>
-                <% end_if %>
-            <% end_loop %>
-        </span>
-        <p>Page $Results.CurrentPage of $Results.TotalPages</p>
+    <div class="pagination pagination-centered">
+        <ul>
+            <% if $Results.NotFirstPage %>
+            <li><a href="$Results.PrevLink" title="View the previous page">Prev</a></li>
+            <% end_if %>
+
+                <% loop $Results.Pages %>
+                
+                    <% if $CurrentBool %>
+                    <li class="active"><a href="$Link" title="View page number $PageNum">$PageNum</a></li>
+                    <% else %>
+                    <li><a href="$Link" title="View page number $PageNum">$PageNum</a></li>
+                    <% end_if %>
+                
+                <% end_loop %>
+
+            <% if $Results.NotLastPage %>
+            <li><a href="$Results.NextLink" title="View the next page">Next</a></li>
+            <% end_if %>
+        </ul>
     </div>
+    <p class="text-center">Page $Results.CurrentPage of $Results.TotalPages</p>
     <% end_if %>
 </div>

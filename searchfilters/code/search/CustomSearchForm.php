@@ -180,7 +180,8 @@ class CustomSearchForm extends SearchForm
 		$lists = array();
 		$baseClasses = array();
 		foreach($classesToSearch as $class) {
-			$lists[$class] = DataList::create($class)->where($notMatch . $match[$class] . $extraFilters[$class], "");
+			$dataList = DataList::create($class)->where($notMatch . $match[$class] . $extraFilters[$class], "");
+			$lists[$class] = $dataList;
 			$baseClasses[$class] = '';
 		}
 

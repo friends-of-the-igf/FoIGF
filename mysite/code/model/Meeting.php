@@ -22,12 +22,10 @@ class Meeting extends DataObject {
 
 	public static $summary_fields = array(
 		'Title'
-
 	);
 
 	static $searchable_fields = array(
 		'Title'
-		
 	);
 
 	// fields to return
