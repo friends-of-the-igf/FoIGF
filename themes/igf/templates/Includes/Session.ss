@@ -6,7 +6,7 @@
 			$getVideoThumb
 		</a>
 		<% else %>
-			<img width="100%"  src="http://placehold.it/224x130&text=+" />
+			<img width="100%"  src="http://placehold.it/224x130&text=No+Video+Available" />
 		<% end_if %>
 	</div>
 	<div class="text-wrap">
