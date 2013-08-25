@@ -34,7 +34,7 @@ class SessionsHolder_Controller extends Page_Controller {
 		'tag',
 		'location',
 		'type',
-		'topic'
+		'topic',
 
 	);
 
@@ -51,8 +51,7 @@ class SessionsHolder_Controller extends Page_Controller {
 	public function FilterForm(){
 		$fields = new FieldList();
 
-		
-		
+	
 		
 
 		$fields->push($m = new DropdownField('Meeting', 'Meeting', Meeting::get()->map('ID', 'getYearLocation')));
@@ -309,45 +308,5 @@ class SessionsHolder_Controller extends Page_Controller {
 
 		$this->sessionCount = $this->sessions->Count();
     }
-
-    // public function topic(){
-    // 	$params = Controller::curr()->getURLParams();
-    //     $topic = $params['ID'];
-    //     $sessions = Type::get()->byID($topic)->MeetingSessions();
-
-    //     $sessions = $this->makeColumns($sessions);
-        
-    //     return Controller::curr()->customise(array('getSessions' => $sessions));
-
-
-    // }
-
-    // public function type(){
-    // 	$params = Controller::curr()->getURLParams();
-    //     $type = $params['ID'];
-    //     $sessions = Type::get()->byID($type)->MeetingSessions();
-
-    //     $sessions = $this->makeColumns($sessions);
-        
-    //     return Controller::curr()->customise(array('getSessions' => $sessions));
-
-
-    // }
-
-    // public function location(){
-    // 	$params = Controller::curr()->getURLParams();
-    //     $location = $params['ID'];
-    //     $sessions = new ArrayList();
-    //     $meetings = Location::get()->byID($location)->Meetings();
-    //     foreach($meetings as $meeting){
-    //     	foreach($meeting->MeetingSessions() as $session){
-    //     		$sessions->push($session);
-    //     	}
-    //     }
-
-    //     $sessions = $this->makeColumns($sessions);
-        
-    //     return Controller::curr()->customise(array('getSessions' => $sessions));
-    // }
 
 }

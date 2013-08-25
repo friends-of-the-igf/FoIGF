@@ -4,7 +4,7 @@
 		<div class="row-fluid">	
 			<div class="search span8 offset3">
 				<img class='mglass' src="{$ThemeDir}/images/icons/search.png">
-				$CustomSearchFormm
+				$CustomSearchForm
 			</div>
 			<div class="logo span1">
 				<img src="{$ThemeDir}/images/icons/igf-logo-light.png">

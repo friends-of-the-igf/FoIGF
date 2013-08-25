@@ -36,7 +36,9 @@ class SessionController extends Page_Controller {
 			
 			$this->meetingsession = $meetingsession;
 		} else {
-			return $this->httpError(404);
+			if($this->request->param('Action') != 'CustomSearchForm'){
+				return $this->httpError(404);
+			}
 		}
 	}
 

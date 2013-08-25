@@ -8,7 +8,7 @@ class SearchControllerExtension extends Extension {
 		'customResults'
 	);
 
-	function CustomSearchForm() {
+	public function CustomSearchForm() {
 		
 
 		if($this->owner->request && $this->owner->request->getVar('Search')) {
@@ -36,6 +36,7 @@ class SearchControllerExtension extends Extension {
 		$button->addExtraClass('btn');
 		$button->addExtraClass('btn-primary');
 
+
 		$form = new CustomSearchForm($this->owner, 'CustomSearchForm', $fields, $actions);
 		$form->classesToSearch(FulltextSearchable::get_searchable_classes());
 		$form->addExtraClass('form-search');
@@ -43,7 +44,7 @@ class SearchControllerExtension extends Extension {
 		return $form;
 	}
 
-	function customResults($data, $form, $request) {
+	public function customResults($data, $form, $request) {
 	
 		$data = array(
 			'Results' => $form->getResults(20),

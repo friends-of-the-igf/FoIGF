@@ -338,9 +338,11 @@ b{
 
 			ul{
 				list-style-type: none;
+					margin-left: 0px;
 
 				input{
 					margin-top: 0px;
+
 
 				}
 
@@ -368,6 +370,11 @@ b{
   /*Search Bar Styling */
 	#searchbar{	
 		border: none;
+		#Search{
+			input{
+				width: 89%;
+			}
+		}
 		.mglass{
 			margin-left: -5px;
 		}
@@ -701,6 +708,14 @@ b{
 		}
 	}
 
+	#HomePage{
+		.content{
+			.span1{
+				padding-bottom: 10px;			
+			}
+		}
+	}
+
 	#searchbar{
 		/*width: 100%;*/
 		margin-left: -20px;
@@ -726,6 +741,38 @@ b{
 				}
 			}
 		}
+	}
+
+	#SessionController{
+		.social-icons{
+			
+			.span3{
+				display: inline-block;
+				width:20%;
+				margin-left: 2%;
+				margin-right: 2%;
+				
+				
+				
+			}
+
+			.view {
+			
+					margin-top: 3px;
+					vertical-align: top;
+					.view-count{
+						padding-top: 25px;
+						width: 65px;
+						margin-top: 0px;
+	
+						p{
+							margin-top: -10px;
+						}
+
+					}
+				}
+		}
+		
 	}
 }
 
@@ -780,10 +827,29 @@ b{
 					}
 				}
 			}
-			#CustomSearchForm_CustomSearchForm_action_customResults{
-				
-			}
+		
 
+		}
+	}
+
+	#SessionController{
+		.social-icons{
+			.span3{
+				width:45%;
+				margin-left: 2.5%;
+				margin-right: 2.5%;
+				padding-bottom: 10px;
+				.view-count{
+					width: 65px;
+				}
+			}
+		}
+		
+	}
+
+	#meetings-wrap{
+		.span3{
+			height:275px;
 		}
 	}
 }
