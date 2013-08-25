@@ -165,17 +165,27 @@ b { font-weight: 500; }
   #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
   #SessionsHolder #searchbar .search .mglass { margin-left: 15px; }
+  #SessionsHolder #searchbar .search fieldset { width: 100%; }
+  #SessionsHolder #searchbar .search #Search { padding-left: 20px; width: 60%; }
+  #SessionsHolder #searchbar .search #Search input { width: 60%; }
   #HomePage .content .span1 { padding-bottom: 10px; }
+  /* Mozilla specific */
+  @-moz-document url-prefix() { #searchbar .search .mglass { margin-left: -140px !important; }
+    #SessionsHolder #searchbar .search .mglass { margin-left: -150px !important; } }
   #searchbar { /*width: 100%;*/ margin-left: -20px; margin-right: -20px; }
-  #searchbar .logo { width: 10%; display: none; }
+  #searchbar .logo { display: none; }
   #searchbar .search fieldset { width: 100%; }
   #searchbar .search .mglass { margin-left: 25px; }
-  #searchbar .search #Search { padding-left: 20px; width: 70%; }
-  #searchbar .search #Search input { width: 70%; }
+  #searchbar .search #Search { padding-left: 20px; width: 60%; }
+  #searchbar .search #Search input { width: 60%; }
   #SessionController .social-icons .span3 { display: inline-block; width: 20%; margin-left: 2%; margin-right: 2%; }
   #SessionController .social-icons .view { margin-top: 3px; vertical-align: top; }
   #SessionController .social-icons .view .view-count { padding-top: 25px; width: 65px; margin-top: 0px; }
-  #SessionController .social-icons .view .view-count p { margin-top: -10px; } }
+  #SessionController .social-icons .view .view-count p { margin-top: -10px; }
+  #MeetingController .section { padding: 0px !important; margin-left: 0px !important; }
+  #MeetingController .right-divide { padding-left: 10px !important; border-right: 1px #d8d8d8 solid; }
+  #MeetingController .social { text-align: center; }
+  #MeetingController .social .span4 { display: inline-block; width: 30%; } }
 @media (min-width: 768px) and (max-width: 979px) { #HomePage .content .span1 { padding-top: 30px; }
   #HomePage .content .text { padding: 10px; }
   #SessionsHolder #Form_FilterForm select { width: 75%; }
@@ -187,4 +197,8 @@ b { font-weight: 500; }
   #searchbar .search fieldset #Search input { width: 85%; }
   #SessionController .social-icons .span3 { width: 45%; margin-left: 2.5%; margin-right: 2.5%; padding-bottom: 10px; }
   #SessionController .social-icons .span3 .view-count { width: 65px; }
-  #meetings-wrap .span3 { height: 275px; } }
+  #meetings-wrap .span3 { height: 275px; }
+  #MeetingController .section { padding: 0px !important; height: 95px; margin-left: 0px !important; }
+  #MeetingController .right-divide { padding-left: 10px !important; border-right: 1px #d8d8d8 solid; }
+  #MeetingController .social { width: 200px; text-align: center; padding-top: 8px; padding-left: 6px; }
+  #MeetingController .social .span4 { margin-right: 18px; display: inline-block; width: 20%; } }

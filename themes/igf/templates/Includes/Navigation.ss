@@ -18,8 +18,8 @@
 						<li class="divider-vertical"></li>
 				</ul>
 				<div class="social-icons pull-right visible-desktop">
-					<a class="social"><img src="{$ThemeDir}/images/icons/facebook-light.png"></a>
-					<a class="social"><img src="{$ThemeDir}/images/icons/twitter-light.png"></a>
+					<a href="$SiteConfig.FacebookURL" class="social"><img src="{$ThemeDir}/images/icons/facebook-light.png"></a>
+					<a href="$SiteConfig.TwitterURL" class="social"><img src="{$ThemeDir}/images/icons/twitter-light.png"></a>
 				</div>
 				<ul class="nav pull-right">
 					<% loop $Menu(1).Limit(5, 3) %>

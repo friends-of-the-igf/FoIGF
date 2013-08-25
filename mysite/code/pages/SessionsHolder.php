@@ -75,7 +75,16 @@ class SessionsHolder_Controller extends Page_Controller {
 			$topic->setValue($_GET['topic']);
 		}
 
-		$fields->push(new OptionSetField('Sort', 'Sort Sessions by', array('DESC' => 'Latest', 'ASC' => 'Oldest')));
+		$sortOptions = array(
+			'Latest' => 'Latest', 
+			'Oldest' => 'Oldest', 
+			);
+
+		if(SiteConfig::current_site_config()->ViewCheck){
+			$sortOptions['Views'] = 'Most Viewed';
+		}
+
+		$fields->push(new OptionSetField('Sort', 'Sort Sessions by', $sortOptions));
 
 
 		$actions = new FieldList($button = new FormAction('doSearch', 'Refine Results'));
@@ -117,19 +126,33 @@ class SessionsHolder_Controller extends Page_Controller {
 			}
 		}
 		if(isset($data['Sort']) && $data['Sort'] != null){
-			$sort = $data['Sort'];
+
+			switch($data['Sort']){
+				case 'Latest':
+					$sort['Field'] = 'Created';
+					$sort['Direction'] = 'DESC' ;
+					break;
+				case 'Oldest':
+					$sort['Field'] = 'Created';
+					$sort['Direction'] = 'ASC';
+					break;
+				case 'Views':
+					$sort['Field'] = 'Views';
+					$sort['Direction'] = 'DESC';
+					break;
+			}
 		}
 		
 
 		if(!empty($filter)){		
 			if(isset($sort)){
-				$sessions = MeetingSession::get()->filter($filter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', $sort);
+				$sessions = MeetingSession::get()->filter($filter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
 			} else {
 				$sessions = MeetingSession::get()->filter($filter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'ASC');
 			}
 		} else {
 			if(isset($sort)){
-				$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', $sort);
+				$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
 			} else {
 				$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'ASC');
 			}
