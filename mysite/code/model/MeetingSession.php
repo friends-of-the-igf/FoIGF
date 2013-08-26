@@ -10,7 +10,7 @@ class MeetingSession extends DataObject {
 		'Content' => 'HTMLText',
 		'TranscriptContent' => 'HTMLText',
 		'ProposalLink' => 'Text',
-		'URLSegment' => 'Varchar(255)',
+		'URLSegment' => 'Varchar(255)'
 	
 	);
 
@@ -30,6 +30,9 @@ class MeetingSession extends DataObject {
 		'Speakers' => 'Member',
 		'RelatedSessions' => 'MeetingSession'
 	);
+	public static $defaults = array(
+		'URLSegment' => null
+		);
 
 	public static $summary_fields = array(
 		'Title',
@@ -154,7 +157,7 @@ class MeetingSession extends DataObject {
 			$this->write();
 		}
 
-		if(!$this->URLSegment) {
+		if(!$this->URLSegment || $this->URLSegment = 'session/0') {
 			$this->URLSegment = $this->Link();
 		}
 		

@@ -93,7 +93,11 @@ class Meeting extends DataObject {
 	}
 
 	public function FilterLink($action = null) {
-		return 'find-sessions/?meeting='. $this->ID;
+		if($page = SessionsHolder::get()->First()) {
+			$link =  $page->Link();
+	
+			return $link. '?meeting='. $this->ID;
+		}
 	}
 
 
