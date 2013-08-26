@@ -15,6 +15,28 @@ class Location extends DataObject {
 		'Country'	
 	);
 
+	static $searchable_fields = array(
+		'City',
+		'Country'
+	);
+
+	// fields to return
+	static $return_fields = array(
+		'City',
+		'Country',
+		'ID'
+	);
+
+	// set index
+	public static $indexes = array(
+		"fulltext (City, Country)"
+    );
+
+    // REQUIRED: object table must be set to MyISAM
+	static $create_table_options = array(
+	    'MySQLDatabase' => 'ENGINE=MyISAM'
+	);
+
 	public function getCMSFields() {
 		$fields = new FieldList();
 		$fields->push(new TextField('City', 'City'));

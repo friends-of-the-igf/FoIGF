@@ -15,6 +15,9 @@ CustomSearchFilter::set_search_objects(array('class_1', 'class_2'));
 add full text to the searchable class fields
 Object::add_extension('class_1', "FulltextSearchable('field_1','field_2','field_3')");
 
+replace returned array object with full class object
+CustomSearchForm::set_return_objects(array('class_1', 'class_2'));
+
 add static variables to the searchable class to define search parameters
 	
 	// fields to search
@@ -64,3 +67,5 @@ add URLSegment if required to link to
 	}
 
 modify search results template to account for DataObjects by using <% if ClassName == class_1 %><% end_if %> conditions
+
+

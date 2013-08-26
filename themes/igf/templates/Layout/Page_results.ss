@@ -13,15 +13,20 @@
             <% loop $Results %> 
              <% if ClassName == Meeting %>
             <li>
-                <a class="searchResultHeader" href="$URLSegment">
-                    $Title
-                </a>
-               
+                <a class="searchResultHeader" href="$URLSegment">$Title</a>
                 <p>$Content.LimitWordCountXML</p>
+            </li>
+            <% else_if ClassName == Location %>
+            <li>
+                <% loop Meetings %>
+                <a class="searchResultHeader" href="$URLSegment">$Title</a>
+                <p>$Content.LimitWordCountXML</p>
+                <% end_loop %>
             </li>
             <% end_if %>
             <% end_loop %>
-        </div>
+        </ul>
+    </div>
     <div class='results'>
         <h3> Sessions </h3> 
         <div id="noSessions"></div>
@@ -39,8 +44,6 @@
             <% end_loop %>
         </ul>
     </div>
-   
-    </ul>
     <% else %>
     <p>Sorry, your search query did not return any results.</p>
     <% end_if %>
