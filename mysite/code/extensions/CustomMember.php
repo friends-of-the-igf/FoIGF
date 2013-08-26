@@ -2,9 +2,7 @@
 class CustomMember extends DataExtension {
 
 	static $db = array(
-		'Username' => 'Text',
-		'Speaker' => 'Boolean',
-		'URLSegment' => 'Varchar(255)'
+		'Username' => 'Text'
 		);
 
 	public static $belongs_many_many = array(
