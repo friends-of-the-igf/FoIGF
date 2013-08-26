@@ -157,7 +157,7 @@ class MeetingSession extends DataObject {
 			} else {
 				$this->Tags = $this->NewTags;
 			}
-				$this->NewTags = null;
+			$this->NewTags = null;
 
 			$this->write();
 		}

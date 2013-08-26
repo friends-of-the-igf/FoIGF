@@ -46,10 +46,6 @@ class CustomMember extends DataExtension {
 			$this->owner->Speaker = true;
 		}
 
-		// if(!$this->URLSegment) {
-		// 	$this->URLSegment = $this->Link();
-		// 	$this->write();
-		// }
 	}
 
 }
