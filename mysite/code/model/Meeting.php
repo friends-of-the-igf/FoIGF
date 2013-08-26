@@ -235,7 +235,7 @@ class Meeting extends DataObject {
 		$sessionIndex = 0;
 		$j = 1;
 
-		while ($sessionIndex <= 17 ) {
+		while ($sessionIndex <= 19 ) {
 			
 
 			$session = $sessions->limit(1, $sessionIndex)->first();
