@@ -178,11 +178,13 @@ class MeetingSession extends DataObject {
 		}
 
 		foreach($tags as $tag) {
-			$output->push(new ArrayData(array(
-				'Tag' => $tag,
-				'Link' => $link . '/' . urlencode($tag),
-				'URLTag' => urlencode($tag)
-			)));
+			if($tag != ''){
+				$output->push(new ArrayData(array(
+					'Tag' => $tag,
+					'Link' => $link . '/' . urlencode($tag),
+					'URLTag' => urlencode($tag)
+				)));
+			}
 		}
 		
 		if($this->Tags) {
