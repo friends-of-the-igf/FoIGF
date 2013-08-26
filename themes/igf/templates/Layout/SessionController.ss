@@ -26,7 +26,6 @@
 				$Content
 			</div>
 		</div>
-		
 		<div class="span4">
 			<div class="row-fluid social-icons">    
 				<div class="span3">
@@ -47,18 +46,24 @@
 				</div>
 			</div>
 			<div class="session-side">
-				<h5>Tagged<h5/>
-				<% loop TagsCollection %>
-					<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
-				<% end_loop %>
+				<% if TagsCollection %>
+					<h5>Tagged<h5/>
+					<% loop TagsCollection %>
+						<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
+					<% end_loop %>
+				<% end_if %>
 			</div>
 			<div class="session-side">
 				<% if Speakers %>
 					<h5>Speakers</h5>
 					<% loop Speakers %>
-						<div class='row-fluid'>
+						<div class='row-fluid speaker'>
 							<div class='span3'>
-								<img src="http://placehold.it/50x50">
+								<% if ProfilePhoto %>
+									$ProfilePhoto.CroppedImage(50,50)
+								<% else %>
+									<img src="http://placehold.it/50x50">
+								<% end_if %>
 							</div>
 							<div class='span9'>
 								$Name<br/>

@@ -5,6 +5,10 @@ class CustomMember extends DataExtension {
 		'Username' => 'Text'
 		);
 
+	static $has_one = array(
+		'ProfilePhoto' => 'Image'
+		);
+
 	public static $belongs_many_many = array(
 		'MeetingSessions' => 'MeetingSession'
 	);

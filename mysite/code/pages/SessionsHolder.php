@@ -31,8 +31,7 @@ class SessionsHolder_Controller extends Page_Controller {
 		'FilterForm',
 		'doSearch',
 		'getSpeakers',
-		'tag'
-		
+		'tag'	
 
 	);
 
@@ -180,7 +179,7 @@ class SessionsHolder_Controller extends Page_Controller {
 		//Paginate
 		$sessions = $this->makeColumns($sessions);
 
-			Session::set('Search', True);
+			// Session::set('Search', True);
 
 		return $this->customise(array('getSessions' => $sessions));
 
@@ -273,14 +272,14 @@ class SessionsHolder_Controller extends Page_Controller {
 		return $this->sessions->Count() > 0;
 	}
 
-	public function isSearch(){
-		if(Session::get('Search')){	
-			Session::clear('Search');
-			return true;
-		} else {
-			return false;
-		}
-	}
+	// public function isSearch(){
+	// 	if(Session::get('Search')){	
+	// 		Session::clear('Search');
+	// 		return true;
+	// 	} else {
+	// 		return false;
+	// 	}
+	// }
 
 	public function getSpeakers(){
 		
@@ -334,6 +333,18 @@ class SessionsHolder_Controller extends Page_Controller {
     	}
 
 		$this->sessionCount = $this->sessions->Count();
+
+		foreach($this->sessions as $sesh){
+			if($sesh->Meeting()->ID != 0){
+				$meetings[$sesh->Meeting()->ID] = $sesh->Meeting()->ID;
+			}
+		}
+
+		if(isset($meetings)){
+			$this->meetingCount = count($meetings);
+		} else {
+			$this->meetingCount = 0;
+		}
     }
 
 }

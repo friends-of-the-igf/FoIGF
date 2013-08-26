@@ -169,15 +169,15 @@ class Meeting extends DataObject {
 			$weight = $filteredList->Count();
 			$percent = ($weight / $count) * 100;
 
-			if($percent <= 5) {
+			if($percent <= 1) {
 				$size = "14px";
-			} elseif($percent <= 10) {
+			} elseif($percent <= 2) {
 				$size = "16px";
-			} elseif($percent <= 20) {
+			} elseif($percent <= 3) {
 				$size = "18px";
-			} elseif($percent <= 40) {
+			} elseif($percent <= 5) {
 				$size = "20px";
-			} elseif($percent <= 80) {
+			} elseif($percent <= 10) {
 				$size = "22px";
 			}
 
