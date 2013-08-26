@@ -22,12 +22,10 @@ class Meeting extends DataObject {
 
 	public static $summary_fields = array(
 		'Title'
-
 	);
 
 	static $searchable_fields = array(
 		'Title'
-		
 	);
 
 	// fields to return
@@ -92,6 +90,14 @@ class Meeting extends DataObject {
 
 	public function Link($action = null) {
 		return Controller::join_links('meeting', $this->ID, $action);
+	}
+
+	public function FilterLink($action = null) {
+		if($page = SessionsHolder::get()->First()) {
+			$link =  $page->Link();
+	
+			return $link. '?meeting='. $this->ID;
+		}
 	}
 
 

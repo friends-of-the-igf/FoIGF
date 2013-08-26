@@ -4,13 +4,21 @@ class CustomSearchForm extends SearchForm
 {
 	
 	private $customSearchClasses = array();
-	
+	static $returnClasses = array();
 	
 	private static function add_search_fields($object, $record)
 	{
 		$object->setField('Title',$record['Title']);
 		$object->setField('Content',$record['Content']);
 		return $object;
+	}
+
+	public static function set_return_objects($classes) {
+		self::$returnClasses = $classes;
+	}
+
+	public static function get_return_objects() {
+		return self::$returnClasses;
 	}
 	
 	public function addSearchableClasses($classes)
@@ -179,9 +187,12 @@ class CustomSearchForm extends SearchForm
 		// Generate initial DataLists and base table names
 		$lists = array();
 		$baseClasses = array();
+		$fullList = new ArrayList();
 		foreach($classesToSearch as $class) {
-			$lists[$class] = DataList::create($class)->where($notMatch . $match[$class] . $extraFilters[$class], "");
+			$dataList = DataList::create($class)->where($notMatch . $match[$class] . $extraFilters[$class], "");
+			$lists[$class] = $dataList;
 			$baseClasses[$class] = '';
+			$fullList->push($dataList);
 		}
 
 		// Make column selection lists
@@ -219,9 +230,17 @@ class CustomSearchForm extends SearchForm
 		$list = new ArrayList($objects);
 		$list->sort('Relevance');
 
+		foreach($list as $item) {
+			if(in_array($item->ClassName, $this->get_return_objects())) {
+				$class = $item->ClassName;
+				$location = $class::get()->ByID($item->ID);
+				$list->replace($item, $location);
+			}
+		}
+
 		$list = new PaginatedList($list);
 		$list->setPageStart($start);
-		$list->setPageLEngth($pageLength);
+		$list->setPageLength($pageLength);
 		$list->setTotalItems($totalCount);
 		$list->setLimitItems(true);
 

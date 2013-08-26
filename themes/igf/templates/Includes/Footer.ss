@@ -18,7 +18,7 @@
 					<% loop $Menu(1).Limit(5, 3) %>
 					<li><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
 					<% end_loop %>
-					<li><a href="" title=""><img src="{$ThemeDir}/images/icons/facebook-dark.png" class='social'></a><a href="" title=""><img src="{$ThemeDir}/images/icons/twitter-dark.png" class='social'></a></li>
+					<li><a href="$SiteConfig.FacebookURL" title="Facebook"><img src="{$ThemeDir}/images/icons/facebook-dark.png" class='social'></a><a href="$SiteConfig.TwitterURL" title="Tiwtter"><img src="{$ThemeDir}/images/icons/twitter-dark.png" class='social'></a></li>
 					
 				</ul>
 			</div>

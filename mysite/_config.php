@@ -33,8 +33,11 @@ Member::set_unique_identifier_field('Username');
 
 FulltextSearchable::enable();
 
-CustomSearchFilter::set_search_objects(array('Meeting', 'MeetingSession'));
+CustomSearchFilter::set_search_objects(array('Meeting', 'MeetingSession', 'Location', 'Topic', 'Type'));
+CustomSearchForm::set_return_objects(array('Location', 'Topic', 'Type'));
 
 Object::add_extension('MeetingSession', "FulltextSearchable('Title', 'Date', 'Tags', 'Content', 'TranscriptContent')");
 Object::add_extension('Meeting', "FulltextSearchable('Title')");
-
+Object::add_extension('Location', "FulltextSearchable('City', 'Country')");
+Object::add_extension('Topic', "FulltextSearchable('Name')");
+Object::add_extension('Type', "FulltextSearchable('Name')");

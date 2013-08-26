@@ -31,10 +31,8 @@ class SessionsHolder_Controller extends Page_Controller {
 		'FilterForm',
 		'doSearch',
 		'getSpeakers',
-		'tag',
-		'location',
-		'type',
-		'topic',
+		'tag'
+		
 
 	);
 
@@ -58,6 +56,9 @@ class SessionsHolder_Controller extends Page_Controller {
 		if(isset($_GET['location']) && $_GET['location'] != null){
 			$m->setValue(Location::get()->byID($_GET['location'])->Meetings()->First()->ID);
 		}
+		if(isset($_GET['meeting']) && $_GET['meeting'] != null){
+			$m->setValue(Meeting::get()->byID($_GET['meeting'])->ID);
+		}
 		$m->setEmptyString('-select-');
 		$fields->push($t = new DropdownField('Type', 'Session type', Type::get()->map('ID', 'Name')));
 		if(isset($_GET['type']) && $_GET['type'] != null){
@@ -75,7 +76,16 @@ class SessionsHolder_Controller extends Page_Controller {
 			$topic->setValue($_GET['topic']);
 		}
 
-		$fields->push(new OptionSetField('Sort', 'Sort Sessions by', array('DESC' => 'Latest', 'ASC' => 'Oldest')));
+		$sortOptions = array(
+			'Latest' => 'Latest', 
+			'Oldest' => 'Oldest', 
+			);
+
+		if(SiteConfig::current_site_config()->ViewCheck){
+			$sortOptions['Views'] = 'Most Viewed';
+		}
+
+		$fields->push(new OptionSetField('Sort', 'Sort Sessions by', $sortOptions));
 
 
 		$actions = new FieldList($button = new FormAction('doSearch', 'Refine Results'));
@@ -94,7 +104,6 @@ class SessionsHolder_Controller extends Page_Controller {
 
 	public function doSearch($data, $form){
 
-		
 		$filter = array();
 		$speaker = array();
 
@@ -116,20 +125,33 @@ class SessionsHolder_Controller extends Page_Controller {
 				}
 			}
 		}
+
 		if(isset($data['Sort']) && $data['Sort'] != null){
-			$sort = $data['Sort'];
+			switch($data['Sort']){
+				case 'Latest':
+					$sort['Field'] = 'Created';
+					$sort['Direction'] = 'DESC' ;
+					break;
+				case 'Oldest':
+					$sort['Field'] = 'Created';
+					$sort['Direction'] = 'ASC';
+					break;
+				case 'Views':
+					$sort['Field'] = 'Views';
+					$sort['Direction'] = 'DESC';
+					break;
+			}
 		}
 		
-
 		if(!empty($filter)){		
 			if(isset($sort)){
-				$sessions = MeetingSession::get()->filter($filter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', $sort);
+				$sessions = MeetingSession::get()->filter($filter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
 			} else {
 				$sessions = MeetingSession::get()->filter($filter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'ASC');
 			}
 		} else {
 			if(isset($sort)){
-				$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', $sort);
+				$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
 			} else {
 				$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'ASC');
 			}
@@ -304,6 +326,11 @@ class SessionsHolder_Controller extends Page_Controller {
     	}
     	if(isset($_GET['type']) && $_GET['type'] != null){
     		$this->sessions = MeetingSession::get()->filter(array('TypeID' => $_GET['type']));
+    	}
+
+    	if(isset($_GET['meeting']) && $_GET['meeting'] != null){
+    		$meeting = Meeting::get()->byID($_GET['meeting']);
+    		$this->sessions = $meeting->MeetingSessions();
     	}
 
 		$this->sessionCount = $this->sessions->Count();

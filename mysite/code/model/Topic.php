@@ -9,6 +9,26 @@ class Topic extends DataObject {
 		'MeetingSessions' => 'MeetingSession'
 	);
 
+	static $searchable_fields = array(
+		'Name'
+	);
+
+	// fields to return
+	static $return_fields = array(
+		'Name',
+		'ID'
+	);
+
+	// set index
+	public static $indexes = array(
+		"fulltext (Name)"
+    );
+
+    // REQUIRED: object table must be set to MyISAM
+	static $create_table_options = array(
+	    'MySQLDatabase' => 'ENGINE=MyISAM'
+	);
+
 	public function getCMSFields() {
 		$fields = new FieldList();
 		$fields->push(new TextField('Name', 'Name'));

@@ -69,7 +69,7 @@ b{
 					padding: 0 3px;
 				}
 			}
-			ul {
+			ul{
 				text-transform:uppercase;
 				font-size: 12px;
 				letter-spacing: 1px;
@@ -159,19 +159,14 @@ b{
 			}
 		}
 		#CustomSearchForm_CustomSearchForm_action_customResults{
-
 			display: inline-block;
 			width:77px;
-			padding: 5px 10px;
-			
-		
 			height:43px;
+			padding: 5px 10px;
 			text-transform:uppercase;
 			font-size: 12px;
 			letter-spacing: 1px;
 				
-				
-			
 		}
 	}
 
@@ -195,8 +190,10 @@ b{
 		ul{
 			list-style-type: none;
 			margin: 0px;
+
 			li{
 				padding:3px;
+
 				a{
 					color: $white;
 					font-weight: 100;
@@ -208,7 +205,6 @@ b{
 				.social{
 					padding-right: 5px;
 				}
-
 			}
 		}
 
@@ -254,7 +250,6 @@ b{
 			text-align: right;
 			padding-top: 20px;
 			text-decoration: underline;	
-
 		}
 	}
 
@@ -267,13 +262,13 @@ b{
 		min-height: 100px;
 
 		.tags{
-			h5{
-			font-size: 16px;
-			color: $grayDarkest;
-			}
 			padding: 10px;
-		}
 
+			h5{
+				font-size: 16px;
+				color: $grayDarkest;
+			}	
+		}
 
 		a{
 			text-decoration: none;
@@ -283,6 +278,12 @@ b{
 
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder{
+	#filter-form{
+		cursor: pointer;
+	}
+	#tag-head{
+		cursor: pointer;
+	}
 
 	#wrap{
 		background: $grayLighter;
@@ -302,6 +303,7 @@ b{
 		.heading{
 			padding-left: 10px;
 		}
+
 		.more{
 			display:none;
 			.button{
@@ -311,8 +313,8 @@ b{
 				}
 			}
 		}
-
 	}
+
 	.filter{
 
 		padding-top: 20px;
@@ -330,11 +332,7 @@ b{
 
 			label{
 				font-weight: bold;
-			}
-
-			input{
-				
-			}
+			}	
 
 			ul{
 				list-style-type: none;
@@ -342,12 +340,9 @@ b{
 
 				input{
 					margin-top: 0px;
-
-
 				}
 
 				label{
-
 					font-weight: normal;
 					display:inline-block;
 				}
@@ -370,6 +365,11 @@ b{
   /*Search Bar Styling */
 	#searchbar{	
 		border: none;
+		#Search{
+			input{
+				width: 89%;
+			}
+		}
 		.mglass{
 			margin-left: -5px;
 		}
@@ -469,8 +469,7 @@ b{
 	}
 
 	.video{
-		height: 300px;
-		
+		height: 300px;	
 	}
 
 	.session-side{
@@ -532,8 +531,6 @@ b{
 		a:hover{
 			text-decoration: none;
 		}
-
-		
 	}
 }
 
@@ -568,6 +565,7 @@ b{
 			text-decoration: none;
 		}
 	}
+
 	.ses{
 		padding-top: 10px;
 	}
@@ -585,7 +583,6 @@ b{
 		}
 
 		.right-divide{
-			
 			border-right: 1px $grayMedium solid;
 		}
 	
@@ -660,6 +657,7 @@ b{
 }
 
 @media (max-width: 767px) {
+
 	body{
 		padding: 0px;
 
@@ -692,24 +690,112 @@ b{
 	}
 
 	#SessionsHolder{
+
+		#filter-form{
+			cursor: pointer;
+		}
+		#filter-form:hover{
+			text-decoration: underline;
+		}
+
+		#tag-head{
+			cursor: pointer;
+		}
+		#tag-head:hover{
+			text-decoration: underline;
+		}
+
+		#Form_FilterForm{
+			display: none;
+		}
+		#tag-list{
+			display: none;
+		}
+
 		#searchbar{
-		
-			.search{
-				.mglass{
-					margin-left: 15px;
+			padding-left: 10px;
+				.search{
+					.mglass{
+						margin-left: 15px;
+					}
+				fieldset{
+					width:100%;
+				}
+				#Search{
+					padding-left: 20px;
+					width: 60%;
+					
+					input{
+						width:60%;
+					}
 				}
 			}
+		}
 
+		.filter{
+			width: 100%;
+		}
+
+		.sessions{
+			margin-left: 0px;
+			padding-left: 5px;
+			padding-right: 5px;
+			padding-top: 10px;
 		}
 	}
 
+	#HomePage{
+		h3{
+			font-size: 20px;
+		}
+		.content{
+			padding-bottom: 10px;
+			.span1{
+				padding-bottom: 10px;			
+			}
+			.text{
+				font-size: 18px;
+			}
+		}
+		.sessions{
+			.heading{
+				div{
+					width: 100%;
+					display: inline-block;
+				}
+				div.link{
+					text-align: left;
+				}
+			}
+		}
+	}
+
+	/* Mozilla specific */
+	@-moz-document url-prefix() {
+	    #searchbar{
+	    	.search{
+	    		.mglass{
+	    			  margin-left: -140px !important;
+	    		}
+	    	}
+	    }
+	    #SessionsHolder{
+		    #searchbar{
+		    	.search{
+		    		.mglass{
+		    			  margin-left: -150px !important;
+		    		}
+		    	}
+		    }
+	    }
+	}
+
+
 	#searchbar{
-		/*width: 100%;*/
 		margin-left: -20px;
 		margin-right: -20px;
 
 		.logo{
-			width: 10%;
 			display: none;
 		}
 		.search{
@@ -719,13 +805,94 @@ b{
 			.mglass{
 				margin-left: 25px;
 			}
+			
 			#Search{
 				padding-left: 20px;
-				width: 70%;
+				width: 60%;
 				
 				input{
-					width:70%;
+					width:60%;
 				}
+			}
+		}
+	}
+
+	#SessionController{
+
+		.btn{
+			margin-bottom: 10px;
+		}
+
+		.social-icons{
+			text-align: center;
+
+			.span3{
+				display: inline-block;
+				width:20%;
+				margin-left: 2%;
+				margin-right: 2%;
+				
+			}
+
+			.view {	
+				margin-top: 3px;
+				vertical-align: top;
+
+				.view-count{
+					padding-top: 25px;
+					width: 65px;
+					margin-top: 0px;
+
+					p{
+						margin-top: -10px;
+					}
+
+				}
+			}
+		}	
+	}
+
+	#MeetingController{
+		.section{
+			padding: 0px !important;
+			margin-left: 0px !important;
+			
+		}
+
+		.right-divide{
+			padding-left: 10px !important;
+			border-right: 1px $grayMedium solid;
+		
+		}
+		.social{
+			text-align: center;
+			.span4{
+				display: inline-block;
+				width: 30%;
+			}
+		}
+	}
+	.sessions{
+		.heading{
+			div{
+					width: 100%;
+					display: inline-block;
+				}
+				div.link{
+					text-align: left;
+				}
+			}
+		.session-tile{
+			.vidthumb{
+				width: 49%;
+				display: inline-block;
+				vertical-align: top;
+			}
+	
+			.text-wrap{
+				height:3;
+				width: 40%;
+				display: inline-block;			
 			}
 		}
 	}
@@ -782,10 +949,53 @@ b{
 					}
 				}
 			}
-			#CustomSearchForm_CustomSearchForm_action_customResults{
-				
-			}
+		}
+	}
+		
 
+	#SessionController{
+		.social-icons{
+			.span3{
+				width:45%;
+				margin-left: 2.5%;
+				margin-right: 2.5%;
+				padding-bottom: 10px;
+
+				.view-count{
+					width: 65px;
+				}
+			}
+		}	
+	}
+	#meetings-wrap{
+		.span3{
+			height:275px;
+		}
+	}
+
+	#MeetingController{
+		.section{
+			padding: 0px !important;
+			height: 95px;
+			margin-left: 0px !important;
+
+			.social{
+				width: 200px;
+				text-align: center;
+				padding-top: 8px;
+				padding-left: 6px;
+
+				.span4{
+					margin-right: 18px;
+					display: inline-block;
+					width: 20%;
+				}
+			}
+		}
+
+		.right-divide{
+			padding-left: 10px !important;
+			border-right: 1px $grayMedium solid;
 		}
 	}
 }

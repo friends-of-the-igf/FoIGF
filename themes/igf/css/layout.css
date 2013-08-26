@@ -46,7 +46,7 @@ b { font-weight: 500; }
 #searchbar .search #Search :-moz-placeholder { color: #535353; }
 #searchbar .search #Search ::-moz-placeholder { color: #535353; }
 #searchbar .search #Search :-ms-input-placeholder { color: #535353; }
-#searchbar .search #CustomSearchForm_CustomSearchForm_action_customResults { display: inline-block; width: 77px; padding: 5px 10px; height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+#searchbar .search #CustomSearchForm_CustomSearchForm_action_customResults { display: inline-block; width: 77px; height: 43px; padding: 5px 10px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 #searchbar .logo { text-align: right; padding-top: 15px; }
 
 /*Footer -------------------------------------------------- */
@@ -73,6 +73,8 @@ b { font-weight: 500; }
 
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder { /*Search Bar Styling */ }
+#SessionsHolder #filter-form { cursor: pointer; }
+#SessionsHolder #tag-head { cursor: pointer; }
 #SessionsHolder #wrap { background: #f3f3f3; }
 #SessionsHolder .sessions { background: white; border: 1px #d8d8d8 solid; margin-left: 9px; padding-left: 20px; padding-right: 20px; background: white; border-top: 1px #d8d8d8 solid; padding-top: 30px; height: 100%; }
 #SessionsHolder .sessions .heading { padding-left: 10px; }
@@ -88,6 +90,7 @@ b { font-weight: 500; }
 #SessionsHolder .filter form .Actions input { height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 #SessionsHolder .tags { padding-bottom: 30px; }
 #SessionsHolder #searchbar { border: none; }
+#SessionsHolder #searchbar #Search input { width: 89%; }
 #SessionsHolder #searchbar .mglass { margin-left: -5px; }
 #SessionsHolder #searchbar form { margin-left: -10px; }
 #SessionsHolder #searchbar .logo { margin-left: 5px; }
@@ -163,13 +166,48 @@ b { font-weight: 500; }
   #footer .container { padding-left: 20px; padding-right: 20px; }
   #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
+  #SessionsHolder #filter-form { cursor: pointer; }
+  #SessionsHolder #filter-form:hover { text-decoration: underline; }
+  #SessionsHolder #tag-head { cursor: pointer; }
+  #SessionsHolder #tag-head:hover { text-decoration: underline; }
+  #SessionsHolder #Form_FilterForm { display: none; }
+  #SessionsHolder #tag-list { display: none; }
+  #SessionsHolder #searchbar { padding-left: 10px; }
   #SessionsHolder #searchbar .search .mglass { margin-left: 15px; }
-  #searchbar { /*width: 100%;*/ margin-left: -20px; margin-right: -20px; }
-  #searchbar .logo { width: 10%; display: none; }
+  #SessionsHolder #searchbar .search fieldset { width: 100%; }
+  #SessionsHolder #searchbar .search #Search { padding-left: 20px; width: 60%; }
+  #SessionsHolder #searchbar .search #Search input { width: 60%; }
+  #SessionsHolder .filter { width: 100%; }
+  #SessionsHolder .sessions { margin-left: 0px; padding-left: 5px; padding-right: 5px; padding-top: 10px; }
+  #HomePage h3 { font-size: 20px; }
+  #HomePage .content { padding-bottom: 10px; }
+  #HomePage .content .span1 { padding-bottom: 10px; }
+  #HomePage .content .text { font-size: 18px; }
+  #HomePage .sessions .heading div { width: 100%; display: inline-block; }
+  #HomePage .sessions .heading div.link { text-align: left; }
+  /* Mozilla specific */
+  @-moz-document url-prefix() { #searchbar .search .mglass { margin-left: -140px !important; }
+    #SessionsHolder #searchbar .search .mglass { margin-left: -150px !important; } }
+  #searchbar { margin-left: -20px; margin-right: -20px; }
+  #searchbar .logo { display: none; }
   #searchbar .search fieldset { width: 100%; }
   #searchbar .search .mglass { margin-left: 25px; }
-  #searchbar .search #Search { padding-left: 20px; width: 70%; }
-  #searchbar .search #Search input { width: 70%; } }
+  #searchbar .search #Search { padding-left: 20px; width: 60%; }
+  #searchbar .search #Search input { width: 60%; }
+  #SessionController .btn { margin-bottom: 10px; }
+  #SessionController .social-icons { text-align: center; }
+  #SessionController .social-icons .span3 { display: inline-block; width: 20%; margin-left: 2%; margin-right: 2%; }
+  #SessionController .social-icons .view { margin-top: 3px; vertical-align: top; }
+  #SessionController .social-icons .view .view-count { padding-top: 25px; width: 65px; margin-top: 0px; }
+  #SessionController .social-icons .view .view-count p { margin-top: -10px; }
+  #MeetingController .section { padding: 0px !important; margin-left: 0px !important; }
+  #MeetingController .right-divide { padding-left: 10px !important; border-right: 1px #d8d8d8 solid; }
+  #MeetingController .social { text-align: center; }
+  #MeetingController .social .span4 { display: inline-block; width: 30%; }
+  .sessions .heading div { width: 100%; display: inline-block; }
+  .sessions .heading div.link { text-align: left; }
+  .sessions .session-tile .vidthumb { width: 49%; display: inline-block; vertical-align: top; }
+  .sessions .session-tile .text-wrap { height: 3; width: 40%; display: inline-block; } }
 @media (min-width: 768px) and (max-width: 979px) { #HomePage .content .span1 { padding-top: 30px; }
   #HomePage .content .text { padding: 10px; }
   #SessionsHolder #Form_FilterForm select { width: 75%; }
@@ -178,4 +216,11 @@ b { font-weight: 500; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
   #searchbar .search fieldset { width: 100%; }
   #searchbar .search fieldset #Search { display: inline-block; width: 80%; }
-  #searchbar .search fieldset #Search input { width: 85%; } }
+  #searchbar .search fieldset #Search input { width: 85%; }
+  #SessionController .social-icons .span3 { width: 45%; margin-left: 2.5%; margin-right: 2.5%; padding-bottom: 10px; }
+  #SessionController .social-icons .span3 .view-count { width: 65px; }
+  #meetings-wrap .span3 { height: 275px; }
+  #MeetingController .section { padding: 0px !important; height: 95px; margin-left: 0px !important; }
+  #MeetingController .section .social { width: 200px; text-align: center; padding-top: 8px; padding-left: 6px; }
+  #MeetingController .section .social .span4 { margin-right: 18px; display: inline-block; width: 20%; }
+  #MeetingController .right-divide { padding-left: 10px !important; border-right: 1px #d8d8d8 solid; } }

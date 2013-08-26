@@ -6,13 +6,15 @@
 			$getVideoThumb
 		</a>
 		<% else %>
-			<img width="100%"  src="http://placehold.it/224x130&text=+" />
+			<img width="100%"  src="http://placehold.it/224x130&text=No+Video+Available" />
 		<% end_if %>
 	</div>
 	<div class="text-wrap">
-		<p><b><a class="title" href="$Link">$Title</a></b></p>		
-		<p><a href="$Type.Link">$Type.Name</a> in <a href="$Meeting.Location.Link">$Meeting.Location.City</a></p>
-		<p class="subtext small"><b>$Date.Long | $Views view<% if Views != 1 %>s<% end_if %></b></p>
+		<div>
+			<p><b><a class="title" href="$Link">$Title</a></b></p>		
+			<p><a href="$Type.Link">$Type.Name</a> in <a href="$Meeting.Location.Link">$Meeting.Location.City</a></p>
+			<p class="subtext small"><b>$Date.Long | $Views view<% if Views != 1 %>s<% end_if %></b></p>
+		</div>
 	</div>
 	<div class="tags subtext">
 			<b>Tagged:</b>

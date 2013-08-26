@@ -7,62 +7,70 @@
           
     <% if $Results %>
     <div class='results'>
-        <h3>Meetings</h3>
-        <div id="noMeeting"></div>
         <ul id="meetingResults">
             <% loop $Results %> 
              <% if ClassName == Meeting %>
             <li>
-                <a class="searchResultHeader" href="$URLSegment">
-                    $Title
-                </a>
-               
+                <strong>Meeting</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
                 <p>$Content.LimitWordCountXML</p>
             </li>
-            <% end_if %>
-            <% end_loop %>
-        </div>
-    <div class='results'>
-        <h3> Sessions </h3> 
-        <div id="noSessions"></div>
-        <ul id="sessionResults">
-             <% loop $Results %>
-              <% if ClassName == MeetingSession %>
+            <% else_if ClassName == Location %> 
+                <% loop Meetings %>
+                    <li>
+                       <strong>Meeting</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
+                        <p>$Content.LimitWordCountXML</p>
+                    </li>
+                <% end_loop %>
+            <% else_if ClassName == MeetingSession %>
             <li>
-                <a class="searchResultHeader" href="$URLSegment">
-                    $Title 
-                </a> 
+                <strong>Session</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
                 <p>$Content.LimitWordCountXML</p>
             
             </li>
-             <% end_if %>
+            <% else_if ClassName == Topic %>
+                <% loop MeetingSessions %>
+                     <li>
+                        <strong>Session</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
+                        <p>$Content.LimitWordCountXML</p>
+                     </li>
+                <% end_loop %> 
+            <% else_if ClassName == Type %>
+                <% loop MeetingSessions %>
+                     <li>
+                        <strong>Session</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
+                        <p>$Content.LimitWordCountXML</p>
+                     </li>
+                <% end_loop %> 
+            <% end_if %>
             <% end_loop %>
         </ul>
     </div>
-   
-    </ul>
     <% else %>
     <p>Sorry, your search query did not return any results.</p>
     <% end_if %>
-              
+
     <% if $Results.MoreThanOnePage %>
-    <div id="PageNumbers">
-        <% if $Results.NotLastPage %>
-        <a class="next" href="$Results.NextLink" title="View the next page">Next</a>
-        <% end_if %>
-        <% if $Results.NotFirstPage %>
-        <a class="prev" href="$Results.PrevLink" title="View the previous page">Prev</a>
-        <% end_if %>
-        <span>
-            <% loop $Results.Pages %>
-                <% if $CurrentBool %>
-                $PageNum
-                <% else %>
-                <a href="$Link" title="View page number $PageNum">$PageNum</a>
-                <% end_if %>
-            <% end_loop %>
-        </span>
-        <p>Page $Results.CurrentPage of $Results.TotalPages</p>
+    <div class="pagination pagination-centered">
+        <ul>
+            <% if $Results.NotFirstPage %>
+            <li><a href="$Results.PrevLink" title="View the previous page">Prev</a></li>
+            <% end_if %>
+
+                <% loop $Results.Pages %>
+                
+                    <% if $CurrentBool %>
+                    <li class="active"><a href="$Link" title="View page number $PageNum">$PageNum</a></li>
+                    <% else %>
+                    <li><a href="$Link" title="View page number $PageNum">$PageNum</a></li>
+                    <% end_if %>
+                
+                <% end_loop %>
+
+            <% if $Results.NotLastPage %>
+            <li><a href="$Results.NextLink" title="View the next page">Next</a></li>
+            <% end_if %>
+        </ul>
     </div>
+    <p class="text-center">Page $Results.CurrentPage of $Results.TotalPages</p>
     <% end_if %>
 </div>
