@@ -232,7 +232,8 @@ class CustomSearchForm extends SearchForm
 
 		foreach($list as $item) {
 			if(in_array($item->ClassName, $this->get_return_objects())) {
-				$location = Location::get()->ByID($item->ID);
+				$class = $item->ClassName;
+				$location = $class::get()->ByID($item->ID);
 				$list->replace($item, $location);
 			}
 		}
