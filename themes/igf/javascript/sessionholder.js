@@ -17,6 +17,25 @@ $(document).ready(function() {
 	});
 
 
+//filter form---------
+
+$('#filter-form').on('click', function(){
+	if($('#Form_FilterForm').css('display') == 'none'){	
+		$('#Form_FilterForm').show();
+	} else {
+		$('#Form_FilterForm').hide();
+	}
+})
+
+$('#tag-head').on('click', function(){
+	if($('#tag-list').css('display') == 'none'){	
+		$('#tag-list').show();
+	} else {
+		$('#tag-list').hide();
+	}
+})
+
+
 //pagination----------
 
 	var index = 1;

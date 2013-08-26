@@ -2,13 +2,16 @@
 <div class="row-fluid">
 	<div id='filter-wrap' class="span3">
 		<div class="filter">
-			<h5>Filter Sessions by</h5>
+			<h5 id="filter-form">Filter Sessions</h5>
 			$FilterForm
 		</div>
 		<div class='tags'>
-			<h5>View Sessions tagged</h5>
-			 <% loop allTags %><a href="$Link" style="font-size: {$Size};">$Tag</a> <% end_loop %>
+			<h5 id="tag-head">View Tags</h5>
+			<div id="tag-list">
+			 	<% loop allTags %><a href="$Link" style="font-size: {$Size};">$Tag</a> <% end_loop %>
 			</div>
+		</div>
+
 	</div>
 	<div class="sessions span9">
 		<div class="heading">

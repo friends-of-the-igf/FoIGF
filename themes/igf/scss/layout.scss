@@ -278,6 +278,12 @@ b{
 
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder{
+	#filter-form{
+		cursor: pointer;
+	}
+	#tag-head{
+		cursor: pointer;
+	}
 
 	#wrap{
 		background: $grayLighter;
@@ -685,6 +691,27 @@ b{
 
 	#SessionsHolder{
 
+		#filter-form{
+			cursor: pointer;
+		}
+		#filter-form:hover{
+			text-decoration: underline;
+		}
+
+		#tag-head{
+			cursor: pointer;
+		}
+		#tag-head:hover{
+			text-decoration: underline;
+		}
+
+		#Form_FilterForm{
+			display: none;
+		}
+		#tag-list{
+			display: none;
+		}
+
 		#searchbar{
 			padding-left: 10px;
 				.search{
@@ -752,7 +779,7 @@ b{
 	    	}
 	    }
 	    #SessionsHolder{
-		    	#searchbar{
+		    #searchbar{
 		    	.search{
 		    		.mglass{
 		    			  margin-left: -150px !important;

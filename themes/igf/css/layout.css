@@ -73,6 +73,8 @@ b { font-weight: 500; }
 
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder { /*Search Bar Styling */ }
+#SessionsHolder #filter-form { cursor: pointer; }
+#SessionsHolder #tag-head { cursor: pointer; }
 #SessionsHolder #wrap { background: #f3f3f3; }
 #SessionsHolder .sessions { background: white; border: 1px #d8d8d8 solid; margin-left: 9px; padding-left: 20px; padding-right: 20px; background: white; border-top: 1px #d8d8d8 solid; padding-top: 30px; height: 100%; }
 #SessionsHolder .sessions .heading { padding-left: 10px; }
@@ -164,6 +166,12 @@ b { font-weight: 500; }
   #footer .container { padding-left: 20px; padding-right: 20px; }
   #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
+  #SessionsHolder #filter-form { cursor: pointer; }
+  #SessionsHolder #filter-form:hover { text-decoration: underline; }
+  #SessionsHolder #tag-head { cursor: pointer; }
+  #SessionsHolder #tag-head:hover { text-decoration: underline; }
+  #SessionsHolder #Form_FilterForm { display: none; }
+  #SessionsHolder #tag-list { display: none; }
   #SessionsHolder #searchbar { padding-left: 10px; }
   #SessionsHolder #searchbar .search .mglass { margin-left: 15px; }
   #SessionsHolder #searchbar .search fieldset { width: 100%; }
