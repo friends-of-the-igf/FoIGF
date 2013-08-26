@@ -46,10 +46,12 @@
 				</div>
 			</div>
 			<div class="session-side">
-				<h5>Tagged<h5/>
-				<% loop TagsCollection %>
-					<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
-				<% end_loop %>
+				<% if TagsCollection %>
+					<h5>Tagged<h5/>
+					<% loop TagsCollection %>
+						<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
+					<% end_loop %>
+				<% end_if %>
 			</div>
 			<div class="session-side">
 				<% if Speakers %>
