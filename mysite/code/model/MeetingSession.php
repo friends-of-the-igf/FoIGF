@@ -152,8 +152,13 @@ class MeetingSession extends DataObject {
 		parent::onBeforeWrite();
 
 		if($this->NewTags) {
-			$this->Tags .= ',' . $this->NewTags;
-			$this->NewTags = null;
+			if($this->Tags != null){
+				$this->Tags .= ',' . $this->NewTags;
+			} else {
+				$this->Tags = $this->NewTags;
+			}
+				$this->NewTags = null;
+
 			$this->write();
 		}
 
