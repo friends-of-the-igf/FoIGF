@@ -92,6 +92,10 @@ class Meeting extends DataObject {
 		return Controller::join_links('meeting', $this->ID, $action);
 	}
 
+	public function FilterLink($action = null) {
+		return 'find-sessions/?meeting='. $this->ID;
+	}
+
 
 	public function onBeforeWrite() {
 		parent::onBeforeWrite();

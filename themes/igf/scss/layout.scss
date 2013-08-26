@@ -698,7 +698,7 @@ b{
 
 	#SessionsHolder{
 		#searchbar{
-		
+		padding-left: 10px;
 			.search{
 				.mglass{
 					margin-left: 15px;
@@ -714,16 +714,45 @@ b{
 					width:60%;
 				}
 			}
-			}
+		}
 
+		}
+
+		.filter{
+			width: 100%;
+		}
+
+		.sessions{
+			padding-left: 5px;
+			padding-right: 5px;
+			padding-top: 10px;
 		}
 	}
 
 	#HomePage{
+		h3{
+			font-size: 20px;
+		}
 		.content{
+			padding-bottom: 10px;
 			.span1{
 				padding-bottom: 10px;			
 			}
+			.text{
+				font-size: 18px;
+			}
+		}
+		.sessions{
+			.heading{
+				div{
+					width: 100%;
+					display: inline-block;
+				}
+				div.link{
+					text-align: left;
+				}
+			}
+			
 		}
 	}
 
@@ -778,8 +807,13 @@ b{
 
 
 	#SessionController{
+
+
+		.btn{
+			margin-bottom: 10px;
+		}
 		.social-icons{
-			
+			text-align: center;
 			.span3{
 				display: inline-block;
 				width:20%;
@@ -789,7 +823,7 @@ b{
 			}
 
 			.view {
-			
+					
 					margin-top: 3px;
 					vertical-align: top;
 					.view-count{
@@ -826,6 +860,40 @@ b{
 				display: inline-block;
 				width: 30%;
 			}
+		}
+	}
+	.sessions{
+		.heading{
+			div{
+					width: 100%;
+					display: inline-block;
+				}
+				div.link{
+					text-align: left;
+				}
+			}
+		.session-tile{
+		
+			.vidthumb{
+				width: 49%;
+				display: inline-block;
+				vertical-align: top;
+				
+		
+
+
+			}
+			
+			.text-wrap{
+				height:3;
+				width: 40%;
+				display: inline-block;
+					
+			}
+			.tags{
+				
+			}
+			
 		}
 	}
 }
@@ -914,24 +982,24 @@ b{
 			padding: 0px !important;
 			height: 95px;
 			margin-left: 0px !important;
+
+			.social{
+				width: 200px;
+				text-align: center;
+				padding-top: 8px;
+				padding-left: 6px;
+				.span4{
+					margin-right: 18px;
+					display: inline-block;
+					width: 20%;
+				}
+			}
 			
 		}
 
 		.right-divide{
 			padding-left: 10px !important;
 			border-right: 1px $grayMedium solid;
-		}
-
-		.social{
-			width: 200px;
-			text-align: center;
-			padding-top: 8px;
-			padding-left: 6px;
-			.span4{
-				margin-right: 18px;
-				display: inline-block;
-				width: 20%;
-			}
 		}
 	}
 }

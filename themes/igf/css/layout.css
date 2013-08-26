@@ -164,11 +164,19 @@ b { font-weight: 500; }
   #footer .container { padding-left: 20px; padding-right: 20px; }
   #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
+  #SessionsHolder #searchbar { padding-left: 10px; }
   #SessionsHolder #searchbar .search .mglass { margin-left: 15px; }
   #SessionsHolder #searchbar .search fieldset { width: 100%; }
   #SessionsHolder #searchbar .search #Search { padding-left: 20px; width: 60%; }
   #SessionsHolder #searchbar .search #Search input { width: 60%; }
+  #SessionsHolder .filter { width: 100%; }
+  #SessionsHolder .sessions { padding-left: 5px; padding-right: 5px; padding-top: 10px; }
+  #HomePage h3 { font-size: 20px; }
+  #HomePage .content { padding-bottom: 10px; }
   #HomePage .content .span1 { padding-bottom: 10px; }
+  #HomePage .content .text { font-size: 18px; }
+  #HomePage .sessions .heading div { width: 100%; display: inline-block; }
+  #HomePage .sessions .heading div.link { text-align: left; }
   /* Mozilla specific */
   @-moz-document url-prefix() { #searchbar .search .mglass { margin-left: -140px !important; }
     #SessionsHolder #searchbar .search .mglass { margin-left: -150px !important; } }
@@ -178,6 +186,8 @@ b { font-weight: 500; }
   #searchbar .search .mglass { margin-left: 25px; }
   #searchbar .search #Search { padding-left: 20px; width: 60%; }
   #searchbar .search #Search input { width: 60%; }
+  #SessionController .btn { margin-bottom: 10px; }
+  #SessionController .social-icons { text-align: center; }
   #SessionController .social-icons .span3 { display: inline-block; width: 20%; margin-left: 2%; margin-right: 2%; }
   #SessionController .social-icons .view { margin-top: 3px; vertical-align: top; }
   #SessionController .social-icons .view .view-count { padding-top: 25px; width: 65px; margin-top: 0px; }
@@ -185,7 +195,11 @@ b { font-weight: 500; }
   #MeetingController .section { padding: 0px !important; margin-left: 0px !important; }
   #MeetingController .right-divide { padding-left: 10px !important; border-right: 1px #d8d8d8 solid; }
   #MeetingController .social { text-align: center; }
-  #MeetingController .social .span4 { display: inline-block; width: 30%; } }
+  #MeetingController .social .span4 { display: inline-block; width: 30%; }
+  .sessions .heading div { width: 100%; display: inline-block; }
+  .sessions .heading div.link { text-align: left; }
+  .sessions .session-tile .vidthumb { width: 49%; display: inline-block; vertical-align: top; }
+  .sessions .session-tile .text-wrap { height: 3; width: 40%; display: inline-block; } }
 @media (min-width: 768px) and (max-width: 979px) { #HomePage .content .span1 { padding-top: 30px; }
   #HomePage .content .text { padding: 10px; }
   #SessionsHolder #Form_FilterForm select { width: 75%; }
@@ -199,6 +213,6 @@ b { font-weight: 500; }
   #SessionController .social-icons .span3 .view-count { width: 65px; }
   #meetings-wrap .span3 { height: 275px; }
   #MeetingController .section { padding: 0px !important; height: 95px; margin-left: 0px !important; }
-  #MeetingController .right-divide { padding-left: 10px !important; border-right: 1px #d8d8d8 solid; }
-  #MeetingController .social { width: 200px; text-align: center; padding-top: 8px; padding-left: 6px; }
-  #MeetingController .social .span4 { margin-right: 18px; display: inline-block; width: 20%; } }
+  #MeetingController .section .social { width: 200px; text-align: center; padding-top: 8px; padding-left: 6px; }
+  #MeetingController .section .social .span4 { margin-right: 18px; display: inline-block; width: 20%; }
+  #MeetingController .right-divide { padding-left: 10px !important; border-right: 1px #d8d8d8 solid; } }

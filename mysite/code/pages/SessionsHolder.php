@@ -31,10 +31,8 @@ class SessionsHolder_Controller extends Page_Controller {
 		'FilterForm',
 		'doSearch',
 		'getSpeakers',
-		'tag',
-		'location',
-		'type',
-		'topic',
+		'tag'
+		
 
 	);
 
@@ -57,6 +55,9 @@ class SessionsHolder_Controller extends Page_Controller {
 		$fields->push($m = new DropdownField('Meeting', 'Meeting', Meeting::get()->map('ID', 'getYearLocation')));
 		if(isset($_GET['location']) && $_GET['location'] != null){
 			$m->setValue(Location::get()->byID($_GET['location'])->Meetings()->First()->ID);
+		}
+		if(isset($_GET['meeting']) && $_GET['meeting'] != null){
+			$m->setValue(Meeting::get()->byID($_GET['meeting'])->ID);
 		}
 		$m->setEmptyString('-select-');
 		$fields->push($t = new DropdownField('Type', 'Session type', Type::get()->map('ID', 'Name')));
@@ -103,7 +104,6 @@ class SessionsHolder_Controller extends Page_Controller {
 
 	public function doSearch($data, $form){
 
-		
 		$filter = array();
 		$speaker = array();
 
@@ -125,8 +125,8 @@ class SessionsHolder_Controller extends Page_Controller {
 				}
 			}
 		}
-		if(isset($data['Sort']) && $data['Sort'] != null){
 
+		if(isset($data['Sort']) && $data['Sort'] != null){
 			switch($data['Sort']){
 				case 'Latest':
 					$sort['Field'] = 'Created';
@@ -143,7 +143,6 @@ class SessionsHolder_Controller extends Page_Controller {
 			}
 		}
 		
-
 		if(!empty($filter)){		
 			if(isset($sort)){
 				$sessions = MeetingSession::get()->filter($filter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
@@ -327,6 +326,11 @@ class SessionsHolder_Controller extends Page_Controller {
     	}
     	if(isset($_GET['type']) && $_GET['type'] != null){
     		$this->sessions = MeetingSession::get()->filter(array('TypeID' => $_GET['type']));
+    	}
+
+    	if(isset($_GET['meeting']) && $_GET['meeting'] != null){
+    		$meeting = Meeting::get()->byID($_GET['meeting']);
+    		$this->sessions = $meeting->MeetingSessions();
     	}
 
 		$this->sessionCount = $this->sessions->Count();

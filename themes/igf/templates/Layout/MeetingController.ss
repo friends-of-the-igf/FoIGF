@@ -46,12 +46,12 @@
   </div>
 </div>
 <div class="sessions">
-  <div class="row-fluid ">
+  <div class="row-fluid heading">
     <div class="span8">
       <h3>$MeetingSessions.Count Session<% if $MeetingSessions.Count != 1 %>s<% end_if %></h3>
     </div>
     <div class="span4 link">
-      <a href='$sessionLink' class="btn btn-primary">Filter Sessions</a>
+      <a href="$FilterLink" class="btn btn-primary">Filter Sessions</a>
     </div>
   </div>
   <div class="row-fluid ses">
