@@ -12,9 +12,10 @@ class PanelToWorkshopTask extends BuildTask{
 		foreach(MeetingSession::get() as $session){
 			if($session->TypeID == 2){
 				$session->TypeID == 4;
-				$count++;
+				$session->write();
+				echo $session->Title;
 			}
 		}
-		echo $count.' Sessions Written';
+		
 	}
 }
