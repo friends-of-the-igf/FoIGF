@@ -499,6 +499,8 @@ b{
 			font-size: 1.5em;
 		}
 	}
+
+
 }
 
 /* meetings holder -------------------------------------------------- */
@@ -646,6 +648,22 @@ b{
 /*Responsiveness -------------------------------------------------- */
 
 @media (min-width: 1200px) {
+	#ses-wrap{
+		.session-tile{
+			.vidthumb{
+				width: 49%;
+				display: inline-block;
+				vertical-align: top;
+			}
+	
+			.text-wrap{
+				height:3;
+				width: 40%;
+				display: inline-block;			
+			}
+		}
+
+	}
 
 	#SessionsHolder{
 		#searchbar{	

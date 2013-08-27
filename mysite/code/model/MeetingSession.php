@@ -243,33 +243,41 @@ class MeetingSession extends DataObject {
     	return $this->Speakers();
     }
 
-    // public function getRelatedSessions(){
-    // 	$list = new ArrayList();
-    // 	if($this->RelatedSessions()){
-    // 		foreach($this->RelatedSessions() as $related){
-    // 			$list->push($related);
-    // 		}
-    // 	} 
-    // 	if($list->Count() <= 3){
-    // 		return $list->limit(3);
-    // 	} else {
-    // 		$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
-    // 		$speakers = $this->Speakers()->map('Name', 'Name');
-    // 		$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID);
-    // 		if($this->Speakers()){
-    // 			$speakers = $this->Speakers()->map('Name');
-    // 			$speakerSessions = $sessions->filter(array('MemberID' => $speakers);
-    // 			if($speakerSessions->Count <= 3){
-    // 				$sessions = $speakerSessions;
-    // 			} else {
-    // 				$sessions = $topicSessions;
-    // 			}
-    // 		}
-    // 		foreach($sessions as $session){
-    // 			$list->push($related);
-    // 		}
-    // 	}
-    // 	return $list->limit(3);
-    // }
+    public function getRelatedSessions(){
+
+    	$list = new ArrayList();
+    	if($this->RelatedSessions()){
+    		foreach($this->RelatedSessions() as $related){
+    			$list->push($related);
+    		}
+    		if($list->Count() >= 3){
+    			return $list->limit(3);
+    		}
+    	} 
+    
+		$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
+		$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID));
+		if($this->Speakers()){
+			$speakers = $this->Speakers();
+			$speakerArray = array();
+			foreach($speakers as $speaker){
+				array_push($speakerArray, $speaker->Name);
+			}
+			$speakerSessions = $sessions->filter(array('MemberID' => $speakerArray));
+			if($speakerSessions->Count >= 3){
+				$sessions = $speakerSessions;
+			} 
+		} else {
+			
+			$sessions = $topicSessions;
+		}
+		foreach($sessions as $session){
+			if($session->ID != $this->ID){
+				$list->push($session);
+			}
+		}
+    	
+    	return $list->limit(3);
+    }
 
 }
