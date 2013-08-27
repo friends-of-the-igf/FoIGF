@@ -26,7 +26,7 @@ class MeetingsHolder_Controller extends Page_Controller {
 	}
 
 	public function getMeetings() {
-		$meetings = Meeting::get();
+		$meetings = Meeting::get()->Sort('StartDate', 'DESC');
 		return $meetings;
 	}
 

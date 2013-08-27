@@ -10,6 +10,8 @@ class Meeting extends DataObject {
 		
 	);
 
+	public static $default_sort='StartDate';
+
 	public static $has_one = array(
 		'Location' => 'Location',
 		'Image' => 'Image'
@@ -21,7 +23,9 @@ class Meeting extends DataObject {
 	);
 
 	public static $summary_fields = array(
-		'Title'
+		'Title',
+		'StartDate',
+		'EndDate'
 	);
 
 	static $searchable_fields = array(
