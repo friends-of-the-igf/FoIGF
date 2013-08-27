@@ -31,7 +31,8 @@ class SessionsHolder_Controller extends Page_Controller {
 		'FilterForm',
 		'doSearch',
 		'getSpeakers',
-		'tag'	
+		'tag',
+		'test'	
 
 	);
 
@@ -39,7 +40,7 @@ class SessionsHolder_Controller extends Page_Controller {
 		parent::init();
 			
 		$this->loadSessions();
-
+	
 		Requirements::javascript('themes/igf/thirdparty/bootstrap-typeahead.js');
 		Requirements::javascript('themes/igf/javascript/sessionholder.js');
 		
@@ -93,7 +94,7 @@ class SessionsHolder_Controller extends Page_Controller {
 		$button->addExtraClass('btn-primary');
 
 		$form = new Form($this, 'FilterForm', $fields, $actions);
-		$form->setAttribute('data-url', $this->Link().'getSpeakers');
+		$form->setAttribute('data-url', $this->Link());
 	
 		if(isset($_POST)){
 			$form->loadDataFrom($_POST);
@@ -205,57 +206,46 @@ class SessionsHolder_Controller extends Page_Controller {
 
 		$pageList = new ArrayList();
 
+		$pageLimit = 18;
+
+		$list = new ArrayList();
+
+		$col1 = new ArrayList();
+		$col2 = new ArrayList();
+		$col3 = new ArrayList();
 
 
-		for($p = 1; $p <= $pages; $p++){
+		$j = 1;
 
-			$pageLimit = $p*18;
+		while ($sessionIndex < 18) {
 			
 
-
-			$list = new ArrayList();
-
-			$col1 = new ArrayList();
-			$col2 = new ArrayList();
-			$col3 = new ArrayList();
-
-
-			$j = 1;
-
-			while ($sessionIndex < $pageLimit) {
-				
-
-				$session = $sessions->limit(1, $sessionIndex)->first();
-				
-				if($session) {
-					switch ($j) {
-						case 1:
-							$col1->push($session);
-							$j++;
-							break;
-						case 2:
-							$col2->push($session);
-							$j++;
-							break;
-						case 3:
-							$col3->push($session);
-							$j=1;
-							break;	
-					}
+			$session = $sessions->limit(1, $sessionIndex)->first();
+			
+			if($session) {
+				switch ($j) {
+					case 1:
+						$col1->push($session);
+						$j++;
+						break;
+					case 2:
+						$col2->push($session);
+						$j++;
+						break;
+					case 3:
+						$col3->push($session);
+						$j=1;
+						break;	
 				}
-				$sessionIndex++;
 			}
-
-			$list->push(new ArrayData(array('Column' => $col1)));
-			$list->push(new ArrayData(array('Column' => $col2)));
-			$list->push(new ArrayData(array('Column' => $col3)));
-
-
-
-
-			$pageList->push(new ArrayData(array('Page' => $list)));	
+			$sessionIndex++;
 		}
-		return $pageList;
+
+		$list->push(new ArrayData(array('Column' => $col1)));
+		$list->push(new ArrayData(array('Column' => $col2)));
+		$list->push(new ArrayData(array('Column' => $col3)));
+
+		return $list;
 
 	}
 
@@ -272,15 +262,6 @@ class SessionsHolder_Controller extends Page_Controller {
 	public function hasSessions(){
 		return $this->sessions->Count() > 0;
 	}
-
-	// public function isSearch(){
-	// 	if(Session::get('Search')){	
-	// 		Session::clear('Search');
-	// 		return true;
-	// 	} else {
-	// 		return false;
-	// 	}
-	// }
 
 	public function getSpeakers(){
 		
@@ -346,6 +327,11 @@ class SessionsHolder_Controller extends Page_Controller {
 		} else {
 			$this->meetingCount = 0;
 		}
+    }
+
+    public function test(){
+    	error_log($_REQUEST['test']);
+    	return 'popperlocking';
     }
 
 }

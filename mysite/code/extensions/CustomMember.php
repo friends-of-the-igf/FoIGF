@@ -2,7 +2,8 @@
 class CustomMember extends DataExtension {
 
 	static $db = array(
-		'Username' => 'Text'
+		'Username' => 'Text',
+		'BioLink' => 'Text'
 		);
 
 	static $has_one = array(

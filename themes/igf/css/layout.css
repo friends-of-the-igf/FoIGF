@@ -118,6 +118,7 @@ b { font-weight: 500; }
 #ses-wrap .main p { padding-bottom: 10px; }
 #ses-wrap .video { height: 300px; }
 #ses-wrap .video embed { height: 100%; width: 100%; }
+#ses-wrap .speaker .no-dec { text-decoration: none; color: #696b6f; }
 #ses-wrap .session-side a { text-decoration: underline; }
 #ses-wrap .session-side div { padding-bottom: 5px; }
 #ses-wrap .view-count { padding: 15px 0 5px 0; background-color: #f3f3f3; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
