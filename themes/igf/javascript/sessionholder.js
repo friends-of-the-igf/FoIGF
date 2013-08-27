@@ -38,7 +38,7 @@ $('#tag-head').on('click', function(){
 
 //pagination----------
 var page = 1;
-$('.more').show();
+// $('.more').show();
 $('#first-next').on('click', function(){
 	url = $('#Form_FilterForm').data('url') +'test';
 	$.post(url, {test:'123'}, function(data){alert(data)});
