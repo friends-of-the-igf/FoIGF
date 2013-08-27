@@ -62,8 +62,14 @@ class Meeting extends DataObject {
 		$mainTab->push(new TextField('Website', 'Website'));
 		$mainTab->push($date = new DateField('StartDate', 'Start Date'));
 		$date->setConfig('showcalendar', true);
+		$date->setConfig('jQueryUI.changeMonth', true);
+		$date->setConfig('jQueryUI.changeYear', true);
+		$date->setAttribute('placeholder', 'eg. Jan 1, 1999');
 		$mainTab->push($date = new DateField('EndDate', 'End Date'));
 		$date->setConfig('showcalendar', true);
+		$date->setConfig('jQueryUI.changeMonth', true);
+		$date->setConfig('jQueryUI.changeYear', true);
+		$date->setAttribute('placeholder', 'eg. Jan 1, 1999');
 
 		$locations = Location::get()->sort('City');
 		if($locations->Count()) {
@@ -213,7 +219,7 @@ class Meeting extends DataObject {
 	public function getYearLocation(){
 		$date = date('Y', strtotime($this->StartDate));
 		// $date .= '-'.date('d F Y', strtotime($this->EndDate));
-		return $this->Location()->Name().' '.$date;
+		return $date.' '.$this->Location()->City;
 	}
 
 	public function getMeetingSessions(){

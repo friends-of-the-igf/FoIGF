@@ -20,7 +20,7 @@ class SearchControllerExtension extends Extension {
 		$filters = CustomSearchFilter::get()->map('ID', 'Title');
 
 		$search = new TextField('Search', false, $searchText);
-		$search->setAttribute('placeholder', 'Search for Sessions, Meetings and Speakers...');
+		$search->setAttribute('placeholder', 'Search for Sessions, Meetings and Tags...');
 		$fields = new FieldList(
 			$search
 		);

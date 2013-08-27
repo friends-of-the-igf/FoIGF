@@ -13,4 +13,11 @@ class MeetingSessionAdmin extends ModelAdmin {
 
 	static $model_importers = array();
 
+	public function getEditForm($id = null, $fields = null){
+		$form = parent::getEditForm($id, $fields);
+		$gridField = $form->Fields()->fieldByName($this->sanitiseClassName($this->modelClass));
+		$gridField->getConfig()->addComponent(new GridFieldSortableRows('SortOrder'));
+        return $form;
+	}
+
 }

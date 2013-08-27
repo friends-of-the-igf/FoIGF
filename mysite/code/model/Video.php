@@ -2,7 +2,8 @@
 class Video extends DataObject {
 
 	public static $db = array(
-		'YouTubeID' => 'VarChar'
+		'YouTubeID' => 'VarChar',
+        'WebcastCode' => 'HTMLText'
 	);
 
 	public static $has_one = array(
@@ -12,6 +13,8 @@ class Video extends DataObject {
 	public function getCMSFields() {
 		$fields = new FieldList();
 		$fields->push(new TextField('YouTubeID', 'YouTube ID (can be ID or full URL)'));
+        $fields->push(new LabelField('OR', 'OR'));
+        $fields->push(new TextAreaField('WebcastCode', 'Webcast Embed Code (from webcast.intgovforum.org)'));
 		return $fields;
 	}
 
@@ -59,6 +62,9 @@ class Video extends DataObject {
 	public function getVideo(){
         if($this->YouTubeID != null){
             return '<iframe width="100%" height="100%" class="youtube-player" type="text/html" src="http://www.youtube.com/embed/'.$this->YouTubeID.'?controls=0&showinfo=0&html5=1" frameborder="0"></iframe>';
+        } elseif ($this->WebcastCode != null){
+
+            return $this->WebcastCode;
         }
     }
 }

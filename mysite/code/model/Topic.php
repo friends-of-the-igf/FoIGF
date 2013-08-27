@@ -2,8 +2,11 @@
 class Topic extends DataObject {
 
 	public static $db = array(
-		'Name' => 'Text'
+		'Name' => 'Text',
+		'SortOrder' => 'Int'
 	);
+	
+	public static $default_sort='SortOrder';
 
 	public static $has_many = array(
 		'MeetingSessions' => 'MeetingSession'
