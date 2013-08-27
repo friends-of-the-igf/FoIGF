@@ -11,7 +11,7 @@ class PanelToWorkshopTask extends BuildTask{
 	
 		foreach(MeetingSession::get() as $session){
 			if($session->TypeID == 2){
-				$session->TypeID == 4;
+				$session->TypeID = 4;
 				$session->write();
 				echo $session->Title;
 			}
