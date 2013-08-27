@@ -164,7 +164,7 @@ class MeetingSession extends DataObject {
 		parent::onBeforeWrite();
 
 		//Create member from add speaker fields
-		if($this->record['FirstName'] != null && $this->record['Surname'] != null){
+		if(array_key_exists('FirstName', $this->record) && $this->record['FirstName'] != null && array_key_exists('Surname', $this->record) && $this->record['Surname'] != null){
 			if(Member::get()->filter(array('FirstName' => $this->record['FirstName'], 'Surname' => $this->record['Surname']))->Count() > 0){
 				$member = Member::get()->filter(array('FirstName' => $this->record['FirstName'], 'Surname' => $this->record['Surname']))->First();
 				$this->Speakers()->add($member);
