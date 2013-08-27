@@ -16,7 +16,7 @@
 	<div class="sessions span9">
 		<div class="heading">
 			<% with getCount %>
-				<h3>$Sessions Sessions in $Meetings meetings match your criteria</h3>
+				<h3>$Sessions Sessions in $Meetings Meetings match your criteria</h3>
 			<% end_with %>
 		</div>
 		<div class="row-fluid">

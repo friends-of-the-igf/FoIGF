@@ -10,9 +10,12 @@ class MeetingSession extends DataObject {
 		'Content' => 'HTMLText',
 		'TranscriptContent' => 'HTMLText',
 		'ProposalLink' => 'Text',
+		'SortOrder' => 'Int',
 		'URLSegment' => 'Varchar(255)'
 	
 	);
+
+	public static $default_sort='SortOrder';
 
 	public static $has_one = array(
 		'Transcript' => 'File',
@@ -88,6 +91,9 @@ class MeetingSession extends DataObject {
 		$mainTab->push(new TextField('ProposalLink', 'Link to Proposal'));
 		$mainTab->push($date = new DateField('Date', 'Date'));
 		$date->setConfig('showcalendar', true);
+		$date->setConfig('jQueryUI.changeMonth', true);
+		$date->setConfig('jQueryUI.changeYear', true);
+		$date->setAttribute('placeholder', 'eg. Jan 1, 1999');
 
 		$types = Type::get()->sort('Name');
 		if($types->Count()) {
@@ -165,6 +171,13 @@ class MeetingSession extends DataObject {
 		if(!$this->URLSegment || $this->URLSegment = 'session/0') {
 			$this->URLSegment = $this->Link();
 		}
+
+		if(!Topic::get()->byID($this->TopicID)){
+			$this->TopicID = Topic::get()->filter(array('Name' => 'Other'))->First()->ID;
+		}
+		if(!Type::get()->byID($this->TypeID)){
+			$this->TypeID = Type::get()->filter(array('Name' => 'Other'))->First()->ID;
+		}
 		
 	}
 
@@ -229,5 +242,34 @@ class MeetingSession extends DataObject {
     public function getSpeakers(){
     	return $this->Speakers();
     }
+
+    // public function getRelatedSessions(){
+    // 	$list = new ArrayList();
+    // 	if($this->RelatedSessions()){
+    // 		foreach($this->RelatedSessions() as $related){
+    // 			$list->push($related);
+    // 		}
+    // 	} 
+    // 	if($list->Count() <= 3){
+    // 		return $list->limit(3);
+    // 	} else {
+    // 		$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
+    // 		$speakers = $this->Speakers()->map('Name', 'Name');
+    // 		$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID);
+    // 		if($this->Speakers()){
+    // 			$speakers = $this->Speakers()->map('Name');
+    // 			$speakerSessions = $sessions->filter(array('MemberID' => $speakers);
+    // 			if($speakerSessions->Count <= 3){
+    // 				$sessions = $speakerSessions;
+    // 			} else {
+    // 				$sessions = $topicSessions;
+    // 			}
+    // 		}
+    // 		foreach($sessions as $session){
+    // 			$list->push($related);
+    // 		}
+    // 	}
+    // 	return $list->limit(3);
+    // }
 
 }

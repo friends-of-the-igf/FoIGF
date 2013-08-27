@@ -51,7 +51,7 @@ class SessionsHolder_Controller extends Page_Controller {
 	
 		
 
-		$fields->push($m = new DropdownField('Meeting', 'Meeting', Meeting::get()->map('ID', 'getYearLocation')));
+		$fields->push($m = new DropdownField('Meeting', 'Meeting', Meeting::get()->sort('StartDate','DESC')->map('ID', 'getYearLocation')));
 		if(isset($_GET['location']) && $_GET['location'] != null){
 			$m->setValue(Location::get()->byID($_GET['location'])->Meetings()->First()->ID);
 		}
@@ -66,11 +66,12 @@ class SessionsHolder_Controller extends Page_Controller {
 		$t->setEmptyString('-select-');
 		$fields->push($s = new TextField('Speaker', 'Speaker'));
 
+		$s->setAttribute('placeholder', 'Start typing to select from list');
 		$s->setAttribute('autocomplete', 'off');
 		$s->setAttribute('data-provide', 'typeahead');
 		$s->setAttribute('class', 'typeahead');
 
-		$fields->push($topic = new CheckboxSetField('Topic', 'Sessions on there topics', Topic::get()->map('ID', 'Name')));
+		$fields->push($topic = new CheckboxSetField('Topic', 'Topics', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
 		if(isset($_GET['topic']) && $_GET['topic'] != null){
 			$topic->setValue($_GET['topic']);
 		}

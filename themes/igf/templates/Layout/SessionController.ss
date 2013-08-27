@@ -19,11 +19,17 @@
 			<% end_if %>
 			<div>
 				<% if Transcript %> <a href="$Transcript.Link" class="btn"><b>Read full session transcript</b></a> 
-				<% else_if  TranscriptContent %>  <a href="transcript/$ID" class="btn" target="_blank"><b>Read full session transcript</b></a> <% end_if %>
+				<% else_if  TranscriptContent %><% if Videos || Content %>  <a href="transcript/$ID" class="btn" target="_blank"><b>Read full session transcript</b></a> <% end_if %><% end_if %>
 				<% if ProposalLink %><a href="$ProposalLink" class="btn" target="_blank"><b>View Original proposal</b></a><% end_if %>
 			</div>
 			<div class="content">
-				$Content
+				<% if Content %>
+					<h4>Agenda</h4>
+					$Content
+				<% else_if not Videos && not Content && $TranscriptContent %>
+					<h4> Session Transcript </h4>
+					$TranscriptContent
+				<% end_if %>
 			</div>
 		</div>
 		<div class="span4">
@@ -47,7 +53,7 @@
 			</div>
 			<div class="session-side">
 				<% if TagsCollection %>
-					<h5>Tagged<h5/>
+					<h5>Tagged</h5>
 					<% loop TagsCollection %>
 						<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
 					<% end_loop %>
@@ -61,8 +67,6 @@
 							<div class='span3'>
 								<% if ProfilePhoto %>
 									$ProfilePhoto.CroppedImage(50,50)
-								<% else %>
-									<img src="http://placehold.it/50x50">
 								<% end_if %>
 							</div>
 							<div class='span9'>
