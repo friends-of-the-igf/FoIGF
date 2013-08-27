@@ -23,15 +23,11 @@
 			<div class="span12">
 			<% if hasSessions %>
 					<% loop getSessions %>
-					<div class="row-fluid paged" data-page="$Pos">
-						<% loop Page %>
 						<div class="col span4">
 					 		<% loop Column %>
 					 			<% include Session %>
 					 		<% end_loop %>
 					 	</div>
-					 	<% end_loop %>
-					 </div>	
 					<% end_loop %>
 				<% end_if %>
 			</div>	

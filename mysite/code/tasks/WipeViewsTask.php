@@ -7,9 +7,12 @@ class WipeViewsTask extends BuildTask{
 	protected $description = "Reset view to zero on all Sessions";
 	
 	function run($request){
+		$count = 0;
 		foreach(MeetingSession::get() as $session){
 			$session->Views = 0;
 			$session->write();
+			$count++;
 		}
+		echo $count.' Sessions Written';
 	}
 }

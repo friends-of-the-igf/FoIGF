@@ -74,7 +74,8 @@ class MeetingSession extends DataObject {
 		$transcriptTab = new Tab('Transcript');
 		$filesTab = new Tab('Files');
 		$videosTab = new Tab('Videos');
-		$speakersTab = new Tab('Speakers');
+		$speakersTab = new Tab('View Speakers');
+		$addSpeakersTab = new Tab('Add Speakers');
 		$sessionsTab = new Tab('RelatedSessions');
 		
 		$tabset = new TabSet("Root",
@@ -82,6 +83,7 @@ class MeetingSession extends DataObject {
 			$transcriptTab,
 			$filesTab,
 			$videosTab,
+			$addSpeakersTab,
 			$speakersTab,
 			$sessionsTab
 		);
@@ -134,6 +136,10 @@ class MeetingSession extends DataObject {
 			$videosTab->push($gridField);
 		}
 
+		$addSpeakersTab->push(new TextField('FirstName', 'First Name'));
+		$addSpeakersTab->push(new TextField('Surname', 'Surname'));
+		$addSpeakersTab->push(new TextField('Bio', 'Link to Bio'));
+
 		if($this->ID) {
 			$group = $this;
 			$config = new GridFieldConfig_RelationEditor();
@@ -157,6 +163,32 @@ class MeetingSession extends DataObject {
 
 		parent::onBeforeWrite();
 
+		//Create member from add speaker fields
+		if($this->record['FirstName'] != null && $this->record['Surname'] != null){
+			if(Member::get()->filter(array('FirstName' => $this->record['FirstName'], 'Surname' => $this->record['Surname']))->Count() > 0){
+				$member = Member::get()->filter(array('FirstName' => $this->record['FirstName'], 'Surname' => $this->record['Surname']))->First();
+				$this->Speakers()->add($member);
+				if(!$member->inGroup('Speakers')){
+					$member->addToGroupByCode('speaker');
+				}
+			} else{
+				$member = new Member();
+				$member->FirstName = $this->record['FirstName'];
+				$member->Surname = $this->record['Surname'];
+				$username = substr($this->record['Surname'], 0, 5);
+				$username .= substr($this->record['FirstName'], 0, 3);
+				$member->Username = strtolower($username);
+				$member->Email = 'speaker@igf.com';
+				$member->Password = 'igf123';
+				$member->BioLink = $this->record['Bio'];
+				$member->write();
+				$member->addToGroupByCode('speakers');
+				$this->Speakers()->add($member);
+			}
+		}
+		
+
+		
 		if($this->NewTags) {
 			if($this->Tags != null){
 				$this->Tags .= ',' . $this->NewTags;

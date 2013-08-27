@@ -64,13 +64,12 @@
 					<h5>Speakers</h5>
 					<% loop Speakers %>
 						<div class='row-fluid speaker'>
-							<div class='span3'>
-								<% if ProfilePhoto %>
-									$ProfilePhoto.CroppedImage(50,50)
-								<% end_if %>
-							</div>
 							<div class='span9'>
-								$Name<br/>
+								<% if BioLink %>
+									<a class="no-dec" href="$BioLink">$Name</a><br/>
+								<% else %>
+									$Name<br/>
+								<% end_if %>
 								<a>$MeetingSessions.Count Sessions</a>
 							</div>
 						</div>
