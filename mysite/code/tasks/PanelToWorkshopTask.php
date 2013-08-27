@@ -8,11 +8,11 @@ class PanelToWorkshopTask extends BuildTask{
 	
 	function run($request){
 		$count = 0;
-		$panel = Type::get()->filter(array('Name' => 'Panel discussion'))->First()->ID;
-		$workshop = Type::get()->filter(array('Name' => 'Workshop'))->First()->ID;
+	
 		foreach(MeetingSession::get() as $session){
-			if($session->TypeID == $panel){
-				$session->TypeID == $workshop;
+			if($session->TypeID == 2){
+				$session->TypeID == 4;
+				$count++;
 			}
 		}
 		echo $count.' Sessions Written';
