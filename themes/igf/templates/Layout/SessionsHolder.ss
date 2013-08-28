@@ -8,7 +8,7 @@
 		<div class='tags'>
 			<h5 id="tag-head">View Tags</h5>
 			<div id="tag-list">
-			 	<% loop allTags %><a href="$Link" style="font-size: {$Size};">$Tag</a> <% end_loop %>
+			 
 			</div>
 		</div>
 
@@ -19,9 +19,9 @@
 				<h3>$Sessions Sessions in $Meetings Meetings match your criteria</h3>
 			<% end_with %>
 		</div>
-		<div class="row-fluid">
+		<div id="sessions-paged" class="row-fluid ">
 			<div class="span12">
-			<% if hasSessions %>
+			<% if getSessions %>
 					<% loop getSessions %>
 						<div class="col span4">
 					 		<% loop Column %>
@@ -36,11 +36,7 @@
 			<div class=" span4 button">
 				<a id="prev" class="btn btn-primary">Show Less</a>
 			</div>
-			<div class=" span4 button">
-				<a id="first-next" class="btn btn-primary">Show More</a>
-				<a id="last-prev" class="btn btn-primary">Show Less</a>
-			</div>
-			<div class=" span4 button">
+			<div class="offset4 span4 button">
 				<a id="next" class="btn btn-primary"> Show More</a>
 			</div>
 		</div>

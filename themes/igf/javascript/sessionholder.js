@@ -37,11 +37,18 @@ $('#tag-head').on('click', function(){
 
 
 //pagination----------
-var page = 1;
-// $('.more').show();
-$('#first-next').on('click', function(){
-	url = $('#Form_FilterForm').data('url') +'test';
-	$.post(url, {test:'123'}, function(data){alert(data)});
+var page = 0;
+$('.more').show();
+$('#next').on('click', function(){
+	page++;
+	url = $('#Form_FilterForm').data('url') +'nextPage';
+	$.post(url, {pager:page}, function(data){
+		alert(data);
+		// $('#sessions-paged').html(data);
+		// window.scrollTo(0,0);
+	});
+
+	
 })
 
 	// var index = 1;

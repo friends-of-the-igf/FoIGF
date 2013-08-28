@@ -39,8 +39,13 @@ class MeetingSession extends DataObject {
 
 	public static $summary_fields = array(
 		'Title',
-		'Date'
+		'Date',
+		'Meeting.Title'
 	);
+
+	public static $field_labels = array(
+		'Meeting.Title' => 'Meeting'
+		);
 
 	static $searchable_fields = array(
 		'Title',
