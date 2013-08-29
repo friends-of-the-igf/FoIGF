@@ -16,10 +16,12 @@
 			<p class="subtext small"><b>$Date.Long | $Views view<% if Views != 1 %>s<% end_if %></b></p>
 		</div>
 	</div>
-	<div class="tags subtext">
-			<b>Tagged:</b>
-			<% loop TagsCollection %>
-				<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
-			<% end_loop %>
-	</div>
+	<% if TagsCollection %>
+		<div class="tags subtext">
+				<b>Tagged:</b>
+				<% loop TagsCollection %>
+					<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
+				<% end_loop %>
+		</div>
+	<% end_if %>
 </div>
