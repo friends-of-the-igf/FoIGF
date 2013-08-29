@@ -294,7 +294,7 @@ class MeetingSession extends DataObject {
     
 		$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
 		$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID));
-		if($this->Speakers()){
+		if($this->Speakers()->Count() != 0){
 			$speakers = $this->Speakers();
 			$speakerArray = array();
 			foreach($speakers as $speaker){
@@ -313,7 +313,7 @@ class MeetingSession extends DataObject {
 				$list->push($session);
 			}
 		}
-    	
+    	error_log('here');
     	return $list->limit(3);
     }
 
