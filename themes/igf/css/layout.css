@@ -95,12 +95,25 @@ b { font-weight: 500; }
 #SessionsHolder #searchbar .mglass { margin-left: -5px; }
 #SessionsHolder #searchbar form { margin-left: -10px; }
 #SessionsHolder #searchbar .logo { margin-left: 5px; }
+#SessionsHolder .pagination { text-align: center; }
+#SessionsHolder .pagination .pages { border-radius: 0px; text-align: center; }
+#SessionsHolder .pagination .pages a { border-radius: 0px; width: 20px; border-left-width: 1px; border-right-width: 0px; }
+#SessionsHolder .pagination .pages a.active { background: #e0e0e0; }
+#SessionsHolder .pagination .pages a.last { border-right-width: 1px; }
 
 /*Sessions -------------------------------------------------- */
 .sessions { padding-bottom: 50px; }
 .sessions .link { text-align: right; padding-top: 10px; }
 .sessions .link .btn { color: white; }
-.sessions .session-tile { padding: 0px; padding-bottom: 0px; border: 1px solid #d8d8d8; margin-bottom: 20px; }
+.sessions .session-tile { padding: 0px; padding-bottom: 0px; border: 1px solid #d8d8d8; margin-bottom: 20px; /*
+		.no-vid{
+			padding: 4px;
+			img{
+				width: 100%;
+				
+			}
+			
+		}*/ }
 .sessions .session-tile .vidthumb { padding: 4px; height: 100%; }
 .sessions .session-tile .vidthumb .thumb { position: relative; margin-top: -40px; top: 0px; }
 .sessions .session-tile .vidthumb .icon { position: relative; z-index: 1; top: 0px; left: 10px; }
@@ -150,7 +163,7 @@ b { font-weight: 500; }
 /* thumbnails -------------------------------------------------- */
 .thumbnails { margin-left: 0px; }
 
-.thumbnail { -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; text-decoration: none; }
+.thumbnail { -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; text-decoration: none; min-height: 140px; }
 
 /* Search Results */
 .searchResults .results { border-bottom: 1px solid #e0e0e0; margin-bottom: 10px; padding-bottom: 10px; }
