@@ -36,83 +36,27 @@ class Page_Controller extends ContentController {
 		}
 	}
 
-	public function allTags() {
-		$sessions = MeetingSession::get();
+	/**
+	 * Create tag cloud object for front end weighting
+	 * 
+	 * @param $limit if ommited will return all tags.
+	 * @param $sort TRUE or FALSE. if TRUE will sort tags by weight, high to low.
+	 * @param $filter Meeting->ID or FALSE. if Meeting->ID will filter MeetingSession->Tags by Meeting.
+	 * @return ArrayList.
+	 */
+	public function popularTags($limit = null, $sort = null, $filter = null) {
+		$uniqueTags = MeetingSession::get_unique_tags($filter);
+		$allTags = MeetingSession::get_all_tags($filter);
+		$list = GroupedList::create($allTags);
+		$list = $list->GroupedBy('Tag', 'Tags');
 
-		$uniqueTagsArray = array();
-		foreach($sessions as $session) {
-			$tags = preg_split("*,*", trim($session->Tags));
-			foreach($tags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$uniqueTagsArray[$tag] = $tag;
-				}
-			}
-		}
-
+		$count = $allTags->Count();
 		$output = new ArrayList();
-		$link = "";
-		if($page = SessionsHolder::get()->First()) {
-			$link = $page->Link('tag');
-		}
+		$link = (SessionsHolder::get()->First() ? SessionsHolder::get()->First()->Link('tag') : "");
 
-
-		foreach($uniqueTagsArray as $tag) {
-			$tagsList = $this->allTagsList();
-			$count = $tagsList->Count();
-			$filteredList = $tagsList->filter('Tag', $tag);
-			$weight = $filteredList->Count();
-			$percent = ($weight / $count) * 100;
-
-			if($percent <= 1) {
-				$size = "14px";
-			} elseif($percent <= 3) {
-				$size = "16px";
-			} elseif($percent <= 5) {
-				$size = "18px";
-			} elseif($percent <= 10) {
-				$size = "20px";
-			} elseif($percent <= 20) {
-				$size = "22px";
-			}
-
-			$output->push(new ArrayData(array(
-				'Tag' => $tag,
-				'Link' => $link . '/' . urlencode($tag),
-				'URLTag' => urlencode($tag),
-				'Weight' => $percent,
-				'Size' => $size
-			)));
-		}
-		
-		return $output;
-	}
-
-	public function popularTags($limit = 20) {
-		$sessions = MeetingSession::get();
-
-		$uniqueTagsArray = array();
-		foreach($sessions as $session) {
-			$tags = preg_split("*,*", trim($session->Tags));
-			foreach($tags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$uniqueTagsArray[$tag] = $tag;
-				}
-			}
-		}
-
-		$output = new ArrayList();
-		$link = "";
-		if($page = SessionsHolder::get()->First()) {
-			$link = $page->Link('tag');
-		}
-
-		foreach($uniqueTagsArray as $tag) {
-			$tagsList = $this->allTagsList();
-			$count = $tagsList->Count();
-			$filteredList = $tagsList->filter('Tag', $tag);
-			$weight = $filteredList->Count();
+		foreach($uniqueTags as $tag) {
+			$item = $list->find('Tag', $tag);
+			$weight = $item->Tags->Count();
 			$percent = ($weight / $count) * 100;
 
 			if($percent <= 1) {
@@ -135,27 +79,14 @@ class Page_Controller extends ContentController {
 				'Size' => $size
 			)));
 		}
-		$output->sort('Weight', 'DESC');
-
-		return new ArrayList(array_slice($output->items, 0, $limit));
-	}
-
-	public function allTagsList() {
-		$sessions = MeetingSession::get();
-		$tagsList = new ArrayList();
-		foreach($sessions as $session) {
-			$tags = preg_split("*,*", trim($session->Tags));
-			foreach($tags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$tagsList->push(new ArrayData(array(
-						'Tag' => $tag
-					)));
-				}
-			}
+		if($sort) {
+			$output->sort('Weight', 'DESC');
 		}
-		return $tagsList;
-	}
 
+		if($limit) {
+			return new ArrayList(array_slice($output->items, 0, $limit));
+		}
+		return $output;
+	}
 
 }

@@ -39,8 +39,13 @@ class MeetingSession extends DataObject {
 
 	public static $summary_fields = array(
 		'Title',
-		'Date'
+		'Date',
+		'Meeting.Title'
 	);
+
+	public static $field_labels = array(
+		'Meeting.Title' => 'Meeting'
+		);
 
 	static $searchable_fields = array(
 		'Title',
@@ -289,7 +294,7 @@ class MeetingSession extends DataObject {
     
 		$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
 		$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID));
-		if($this->Speakers()){
+		if($this->Speakers()->Count() != 0){
 			$speakers = $this->Speakers();
 			$speakerArray = array();
 			foreach($speakers as $speaker){
@@ -308,8 +313,47 @@ class MeetingSession extends DataObject {
 				$list->push($session);
 			}
 		}
-    	
+    	error_log('here');
     	return $list->limit(3);
+    }
+
+    // static tag functions
+    public static function get_unique_tags($filter = null) {
+    	$sessions = MeetingSession::get();
+    	if($filter) {
+    		$sessions = $sessions->filter('MeetingID', $filter);
+    	}
+		$uniqueTagsArray = array();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$uniqueTagsArray[$tag] = $tag;
+				}
+			}
+		}
+		return $uniqueTagsArray;
+    }
+
+    public static function get_all_tags($filter = null) {
+    	$sessions = MeetingSession::get();
+    	if($filter) {
+    		$sessions = $sessions->filter('MeetingID', $filter);
+    	}
+		$tagsList = new ArrayList();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$tagsList->push(new ArrayData(array(
+						'Tag' => $tag
+					)));
+				}
+			}
+		}
+		return $tagsList;
     }
 
 }

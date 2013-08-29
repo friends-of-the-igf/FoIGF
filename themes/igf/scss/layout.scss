@@ -384,6 +384,29 @@ b{
 			margin-left: 5px;
 		}
 	}
+
+	.pagination{
+		text-align: center;
+		.pages{
+			border-radius: 0px;
+			text-align: center;
+			a{
+				border-radius: 0px;
+				width:20px;
+				border-left-width: 1px;
+				border-right-width: 0px;
+			}
+			a.active{
+				background: $grayLight;
+				
+			}
+			a.last{
+				border-right-width: 1px;
+			}
+
+		}
+	}
+	
 }
 
 /*Sessions -------------------------------------------------- */
@@ -422,6 +445,15 @@ b{
 				left: 10px;
 			}
 		}
+/*
+		.no-vid{
+			padding: 4px;
+			img{
+				width: 100%;
+				
+			}
+			
+		}*/
 
 		.text-wrap{
 			padding: 4px;
@@ -624,6 +656,7 @@ b{
 .thumbnail {
 	@include border-radius(0);
 	text-decoration: none;
+	min-height: 140px;
 }
 
 /* Search Results */
