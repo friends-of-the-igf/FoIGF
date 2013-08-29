@@ -42,9 +42,10 @@
 				</div>
 			</div>
 			<div class="pagination pagination-centered">
-			<ul class='pages'>
-				
-			</ul>
+				<ul class='pages'>
+					
+				</ul>
+			</div>
 		</div>
 
 	</div>
