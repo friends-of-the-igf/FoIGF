@@ -19,7 +19,7 @@
 				<h3>$Sessions Sessions in $Meetings Meetings match your criteria</h3>
 			<% end_with %>
 		</div>
-		<div id="sessions-paged" class="row-fluid ">
+		<div id="sessions-paged" class="row-fluid" data-pages="$PageCount" data-filter={$getFilter}>
 			<div class="span12">
 			<% if getSessions %>
 					<% loop getSessions %>
@@ -32,13 +32,20 @@
 				<% end_if %>
 			</div>	
 		</div>
-		<div class="row-fluid more">
-			<div class=" span4 button">
-				<a id="prev" class="btn btn-primary">Show Less</a>
+		<div class="more">
+			<div class="row-fluid">
+				<div class=" span4 button">
+					<a id="prev" class="btn btn-primary">Prev</a>
+				</div>
+				<div class="offset4 span4 button">
+					<a id="next" class="btn btn-primary">Next</a>
+				</div>
 			</div>
-			<div class="offset4 span4 button">
-				<a id="next" class="btn btn-primary"> Show More</a>
-			</div>
+			<div class="pagination pagination-centered">
+			<ul class='pages'>
+				
+			</ul>
 		</div>
+
 	</div>
 </div>

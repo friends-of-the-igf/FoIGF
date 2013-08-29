@@ -38,18 +38,149 @@ $('#tag-head').on('click', function(){
 
 //pagination----------
 var page = 0;
-$('.more').show();
+var filter = $('#sessions-paged').data('filter');
+var pageCount = $('#sessions-paged').data('pages');
+
+var pages = pageCount;
+if(pageCount > 12){
+	pages = 12;
+}
+
+
+for(var i = 0; i < pageCount; i++){
+	if(i == pageCount-1){
+		$('.pages').append('<li><a class="page last" data-page="'+i+'">'+(i+1)+'</div>');
+	} else {
+		$('.pages').append('<li><a class="page" data-page="'+i+'">'+(i+1)+'</div>');
+	}
+}
+
+$('.page').each(function(){
+	if($(this).data('page') == page){
+		$(this).addClass('active')
+	} else{
+		$(this).removeClass('active')
+	}
+})
+
+
+
+if(pageCount > 1){
+	$('.more').show();
+} else {
+	$('.more').hide();
+}
+
+if(page == 0){
+	$('#prev').hide();
+}
+
+
+
 $('#next').on('click', function(){
 	page++;
-	url = $('#Form_FilterForm').data('url') +'nextPage';
-	$.post(url, {pager:page}, function(data){
-		alert(data);
-		// $('#sessions-paged').html(data);
-		// window.scrollTo(0,0);
-	});
+	url = $('#Form_FilterForm').data('url') +'changePage';
+	$('html').css('cursor', 'wait');
+	$.post(url, {pager:page, filter:filter }, function(data){
 
+		$('#sessions-paged').html(data);
+
+		$('html').css('cursor', 'default');
+
+		window.scrollTo(0,0);
+
+		$('#prev').show();
 	
-})
+		if(page == pageCount){
+			$('#next').hide();
+		}
+		$('.page').each(function(){
+			if($(this).data('page') == page){
+				$(this).addClass('active')
+			} else{
+				$(this).removeClass('active')
+			}
+		})
+	});	
+
+});
+
+$('#prev').on('click', function(){
+	page--;
+	url = $('#Form_FilterForm').data('url') +'changePage';
+	$('html').css('cursor', 'wait');
+	$.post(url, {pager:page, filter:filter}, function(data){
+		$('#sessions-paged').html(data);
+		$('html').css('cursor', 'default');
+		window.scrollTo(0,0);
+
+		$('#next').show();
+		
+		if(page == 0){
+			$('#prev').hide();
+		}
+		$('.page').each(function(){
+			if($(this).data('page') == page){
+				$(this).addClass('active')
+			} else{
+				$(this).removeClass('active')
+			}
+		})
+	});	
+});
+
+$('.page').on('click', function(){
+	oldPage = page;
+	page = $(this).data('page');
+	url = $('#Form_FilterForm').data('url') +'changePage';
+	$('html').css('cursor', 'wait');
+	$.post(url, {pager:page, filter:filter}, function(data){
+
+		$('#sessions-paged').html(data);
+
+		$('html').css('cursor', 'default');
+
+		window.scrollTo(0,0);
+	
+		if(page == pageCount-1){
+			$('#next').hide();
+		} else {
+			$('#next').show();
+		}
+		
+		if(page == 0){
+			$('#prev').hide();
+		} else {
+			$('#prev').show();
+		}
+
+		$('.page').each(function(){
+			if($(this).data('page') == page){
+				$(this).addClass('active')
+			} else{
+				$(this).removeClass('active')
+			}
+		})
+
+
+
+
+		// if(pageCount > 12){
+		// 	if(page != pageCount){
+		// 		if(page >= 5){
+		// 			$('.page').each(function(){
+		// 				newIndex = $(this).data('page')+1;
+		// 				$(this).data('page') = newIndex;
+		// 				$(this).html(newIndex+1);
+		// 			})
+		// 		}
+		// 	}
+		// }
+	});	
+});
+
+
+
 
 	// var index = 1;
 
