@@ -10,8 +10,6 @@ class Meeting extends DataObject {
 		
 	);
 
-	public static $default_sort='StartDate';
-
 	public static $has_one = array(
 		'Location' => 'Location',
 		'Image' => 'Image'
@@ -23,9 +21,7 @@ class Meeting extends DataObject {
 	);
 
 	public static $summary_fields = array(
-		'Title',
-		'StartDate',
-		'EndDate'
+		'Title'
 	);
 
 	static $searchable_fields = array(
@@ -245,7 +241,7 @@ class Meeting extends DataObject {
 		$sessionIndex = 0;
 		$j = 1;
 
-		while ($sessionIndex <= 15 ) {
+		while ($sessionIndex <= 19 ) {
 			
 
 			$session = $sessions->limit(1, $sessionIndex)->first();

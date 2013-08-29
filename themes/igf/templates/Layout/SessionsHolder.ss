@@ -8,7 +8,7 @@
 		<div class='tags'>
 			<h5 id="tag-head">View Tags</h5>
 			<div id="tag-list">
-			 
+				<% loop popularTags %><a href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
 			</div>
 		</div>
 
