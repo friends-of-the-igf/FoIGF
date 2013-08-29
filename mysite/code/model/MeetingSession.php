@@ -287,33 +287,37 @@ class MeetingSession extends DataObject {
     		foreach($this->RelatedSessions() as $related){
     			$list->push($related);
     		}
-    		if($list->Count() >= 3){
-    			return $list->limit(3);
-    		}
     	} 
-    
-		$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
-		$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID));
-		if($this->Speakers()->Count() != 0){
-			$speakers = $this->Speakers();
-			$speakerArray = array();
-			foreach($speakers as $speaker){
-				array_push($speakerArray, $speaker->Name);
+   
+    	if($list->Count() < 3){
+			$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
+			if($this->Speakers()->Count() != 0){
+				$speakers = $this->Speakers();
+				$speakerArray = array();
+				foreach($speakers as $speaker){
+					array_push($speakerArray, $speaker->Name);
+				}
+				$stSessions = $sessions->filter(array('TopicID' => $this->TopicID, 'MemberID' => $speakerArray));
+				foreach($stSessions as $session){
+					if($session->ID != $this->ID){
+						$list->push($session);
+					}
+				}
+				if($list->Count() < 3){
+					$remainder = 3 - $list->Count();
+					$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID));
+					for($i = 0; $i < $remainder; $i++){
+						foreach($topicSessions as $tSession){
+								if($tSession->ID != $this->ID){
+									$list->push($tSession);
+								}	
+						}
+					}
+				}
 			}
-			$speakerSessions = $sessions->filter(array('MemberID' => $speakerArray));
-			if($speakerSessions->Count >= 3){
-				$sessions = $speakerSessions;
-			} 
-		} else {
 			
-			$sessions = $topicSessions;
 		}
-		foreach($sessions as $session){
-			if($session->ID != $this->ID){
-				$list->push($session);
-			}
-		}
-    	error_log('here');
+
     	return $list->limit(3);
     }
 
