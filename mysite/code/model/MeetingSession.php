@@ -317,4 +317,43 @@ class MeetingSession extends DataObject {
     	return $list->limit(3);
     }
 
+    // static tag functions
+    public static function get_unique_tags($filter = null) {
+    	$sessions = MeetingSession::get();
+    	if($filter) {
+    		$sessions = $sessions->filter('MeetingID', $filter);
+    	}
+		$uniqueTagsArray = array();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$uniqueTagsArray[$tag] = $tag;
+				}
+			}
+		}
+		return $uniqueTagsArray;
+    }
+
+    public static function get_all_tags($filter = null) {
+    	$sessions = MeetingSession::get();
+    	if($filter) {
+    		$sessions = $sessions->filter('MeetingID', $filter);
+    	}
+		$tagsList = new ArrayList();
+		foreach($sessions as $session) {
+			$tags = preg_split("*,*", trim($session->Tags));
+			foreach($tags as $tag) {
+				if($tag != "") {
+					$tag = strtolower($tag);
+					$tagsList->push(new ArrayData(array(
+						'Tag' => $tag
+					)));
+				}
+			}
+		}
+		return $tagsList;
+    }
+
 }
