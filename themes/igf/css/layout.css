@@ -24,7 +24,7 @@ b { font-weight: 500; }
 
 /* Navigation -------------------------------------------------- */
 #navigation .navbar-inner { background: #303030; }
-#navigation .navbar-inner .container .brand { padding-top: 12px; padding-right: 15px; }
+#navigation .navbar-inner .container .brand { padding-top: 12px; padding-right: 15px; padding-bottom: 16px; }
 #navigation .navbar-inner .container .social-icons { padding-top: 15px; margin-right: -1px; }
 #navigation .navbar-inner .container .social-icons .social { padding: 0 3px; }
 #navigation .navbar-inner .container ul { text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
@@ -95,7 +95,7 @@ b { font-weight: 500; }
 #SessionsHolder #searchbar .mglass { margin-left: -5px; }
 #SessionsHolder #searchbar form { margin-left: -10px; }
 #SessionsHolder #searchbar .logo { margin-left: 5px; }
-#SessionsHolder .pagination { text-align: center; }
+#SessionsHolder .pagination { display: none; text-align: center; }
 #SessionsHolder .pagination .pages { border-radius: 0px; text-align: center; }
 #SessionsHolder .pagination .pages a { border-radius: 0px; width: 20px; border-left-width: 1px; border-right-width: 0px; }
 #SessionsHolder .pagination .pages a.active { background: #e0e0e0; }
@@ -163,7 +163,7 @@ b { font-weight: 500; }
 /* thumbnails -------------------------------------------------- */
 .thumbnails { margin-left: 0px; }
 
-.thumbnail { -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; text-decoration: none; min-height: 140px; }
+.thumbnail { -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; text-decoration: none; min-height: 120px; }
 
 /* Search Results */
 .searchResults .results { border-bottom: 1px solid #e0e0e0; margin-bottom: 10px; padding-bottom: 10px; }

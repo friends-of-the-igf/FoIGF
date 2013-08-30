@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 			</a>
 
-			<a class="brand" href="$BaseURL"><img src="{$ThemeDir}/images/icons/logo.png"></a>
+			<a class="brand" href="$BaseURL"><img src="{$ThemeDir}/images/logo.png"></a>
 
 			<div class="nav-collapse collapse">
 				<ul class="nav">
@@ -18,16 +18,9 @@
 						<li class="divider-vertical"></li>
 				</ul>
 				<div class="social-icons pull-right visible-desktop">
-					<a href="$SiteConfig.FacebookURL" class="social"><img src="{$ThemeDir}/images/icons/facebook-light.png"></a>
-					<a href="$SiteConfig.TwitterURL" class="social"><img src="{$ThemeDir}/images/icons/twitter-light.png"></a>
+					<% if $SiteConfig.FacebookURL %><a href="$SiteConfig.FacebookURL" class="social"><img src="{$ThemeDir}/images/fb.png"></a><% end_if %>
+					<% if $SiteConfig.TwitterURL %><a href="$SiteConfig.TwitterURL" class="social"><img src="{$ThemeDir}/images/twitter.png"></a><% end_if %>
 				</div>
-				<ul class="nav pull-right">
-					<% loop $Menu(1).Limit(5, 3) %>
-					
-					<li class="$LinkingMode"><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
-					
-					<% end_loop %>
-				</ul>
 			</div>
 		</div>
 	</div>

@@ -61,6 +61,7 @@ b{
 			.brand {
 				padding-top: 12px;
 				padding-right: 15px;
+				padding-bottom: 16px;
 			}
 			.social-icons {
 				padding-top:15px;
@@ -386,6 +387,7 @@ b{
 	}
 
 	.pagination{
+		display: none;
 		text-align: center;
 		.pages{
 			border-radius: 0px;
@@ -656,7 +658,7 @@ b{
 .thumbnail {
 	@include border-radius(0);
 	text-decoration: none;
-	min-height: 140px;
+	min-height: 120px;
 }
 
 /* Search Results */
