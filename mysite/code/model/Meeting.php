@@ -185,6 +185,8 @@ class Meeting extends DataObject {
 				$size = "20px";
 			} elseif($percent <= 10) {
 				$size = "22px";
+			} else {
+				$size = "22px";
 			}
 
 			$output->push(new ArrayData(array(
