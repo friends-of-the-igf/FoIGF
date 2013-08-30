@@ -1,12 +1,10 @@
 <div class="session-tile thumbnail">
 	<div class="vidthumb">
 		<% if getVideoThumb %>
-		<a href="$Link">
-			<img class="icon" width="40px" height="40px" src="{$ThemeDir}/images/youtube-play.png" />
-			$getVideoThumb
-		</a>
-		<% else %>
-			<img width="100%"  src="http://placehold.it/170x127&text=No+Video+Available" />
+			<a href="$Link">
+				<img class="icon" width="40px" height="40px" src="{$ThemeDir}/images/youtube-play.png" />
+				$getVideoThumb
+			</a>
 		<% end_if %>
 	</div>
 	<div class="text-wrap">

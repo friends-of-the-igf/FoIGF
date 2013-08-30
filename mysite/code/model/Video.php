@@ -14,7 +14,7 @@ class Video extends DataObject {
 		$fields = new FieldList();
 		$fields->push(new TextField('YouTubeID', 'YouTube ID (can be ID or full URL)'));
         $fields->push(new LabelField('OR', 'OR'));
-        $fields->push(new TextAreaField('WebcastCode', 'Webcast Embed Code (from webcast.intgovforum.org)'));
+        $fields->push(new TextAreaField('WebcastCode', 'Webcast Embed Code (from webcast.intgovforum.org. Pause video, select embed tab, click copy code then paste code here)'));
 		return $fields;
 	}
 
