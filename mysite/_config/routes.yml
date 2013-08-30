@@ -5,4 +5,6 @@ Director:
   rules:
     'session//$ID!/$Action': 'SessionController',
     'meeting//$ID!/$Action': 'MeetingController',
-    'transcript//$ID': 'TranscriptController'
+    'transcript//$ID!': 'TranscriptController',
+    'item//$ID!': 'LinkItemController',
+    'proposal//$ID!': 'ProposalController'

@@ -26,7 +26,11 @@
   <div class="span6 section right-divide">
     <h5>Meeting Information</h5>
     <% loop LinkItems %>
-      <a href="$Url"><% if Title %>$Title<% else %>$Url<% end_if %></a><% if not Last %> | <% end_if %>
+      <% if Type == 'URL' %>
+        <a href="$Url">$Title</a><% if not Last %> | <% end_if %>
+      <% else_if Type == 'Text' %>
+        <a href="item/$ID">$Title</a><% if not Last %> | <% end_if %>
+      <% end_if %>
     <% end_loop %>
   </div>
   <div class="span3 section">

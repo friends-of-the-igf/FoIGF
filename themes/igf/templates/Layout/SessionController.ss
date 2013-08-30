@@ -20,7 +20,10 @@
 			<div>
 				<% if Transcript %> <a href="$Transcript.Link" class="btn"><b>Read full session transcript</b></a> 
 				<% else_if  TranscriptContent %><% if Videos || Content %>  <a href="transcript/$ID" class="btn" target="_blank"><b>Read full session transcript</b></a> <% end_if %><% end_if %>
-				<% if ProposalLink %><a href="$ProposalLink" class="btn" target="_blank"><b>View Original proposal</b></a><% end_if %>
+				<% if ProposalLink %><a href="$ProposalLink" class="btn" target="_blank"><b>View Original proposal</b></a>
+				<% else_if Proposal %><a href="$Proposal.Link" class="btn" target="_blank"><b>View Original proposal</b></a>
+				<% else_if ProposalContent %><a href="proposal/$ID" class="btn" target="_blank"><b>View Original proposal</b></a>
+				<% end_if %>
 			</div>
 			<div class="content">
 				<% if Content %>

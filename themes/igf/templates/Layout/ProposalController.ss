@@ -8,13 +8,13 @@
 			</h4>
 			<div class="row">
 				<div class="span10">
-					<h5>Full Session Transcript</h5>
+					<h5>Original Proposal</h5>
 				</div>
 				<div class="span2">
 					<a href="$Link">Back to Session</a>
 				</div>
 			</div>
-			$TranscriptContent
+			$ProposalContent
 		</div>	
 	</div>
 	<% end_with %>
