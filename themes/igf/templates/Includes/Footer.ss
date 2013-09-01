@@ -18,12 +18,12 @@
 					<% loop $Menu(1).Limit(5, 3) %>
 					<li><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
 					<% end_loop %>
-					<li><a href="$SiteConfig.FacebookURL" title="Facebook"><img src="{$ThemeDir}/images/icons/facebook-dark.png" class='social'></a><a href="$SiteConfig.TwitterURL" title="Tiwtter"><img src="{$ThemeDir}/images/icons/twitter-dark.png" class='social'></a></li>
-					
+
+					<li><% if $SiteConfig.FacebookURL %><a href="$SiteConfig.FacebookURL" title="Facebook"><img src="{$ThemeDir}/images/fb.png" class='social'></a><% end_if %><% if $SiteConfig.TwitterURL %><a href="$SiteConfig.TwitterURL" title="Tiwtter"><img src="{$ThemeDir}/images/twitter.png" class='social'></a><% end_if %></li>			
 				</ul>
 			</div>
 			<div class="span2 logo">		
-					<img src="{$ThemeDir}/images/icons/igf-logo-dark.png"/>	
+					<img src="{$ThemeDir}/images/igf-logo.png"/>	
 			</div>
 			<div class="span2">
 				<div class='website'>
