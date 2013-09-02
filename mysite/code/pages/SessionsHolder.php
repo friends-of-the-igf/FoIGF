@@ -68,6 +68,9 @@ class SessionsHolder_Controller extends Page_Controller {
 		}
 		$t->setEmptyString('-select-');
 		$fields->push($s = new TextField('Speaker', 'Speaker'));
+		if(isset($_GET['speaker']) && $_GET['speaker'] != null){
+			$s->setValue(Member::get()->byID($_GET['speaker'])->Name);
+		}
 
 		$s->setAttribute('placeholder', 'Start typing...');
 		$s->setAttribute('autocomplete', 'off');
