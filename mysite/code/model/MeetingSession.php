@@ -305,34 +305,34 @@ class MeetingSession extends DataObject {
     		}
     	} 
    
-    	if($list->Count() < 3){
-			$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
-			if($this->Speakers()->Count() != 0){
-				$speakers = $this->Speakers();
-				$speakerArray = array();
-				foreach($speakers as $speaker){
-					array_push($speakerArray, $speaker->Name);
-				}
-				$stSessions = $sessions->filter(array('TopicID' => $this->TopicID, 'MemberID' => $speakerArray));
-				foreach($stSessions as $session){
-					if($session->ID != $this->ID){
-						$list->push($session);
-					}
-				}
-				if($list->Count() < 3){
-					$remainder = 3 - $list->Count();
-					$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID));
-					for($i = 0; $i < $remainder; $i++){
-						foreach($topicSessions as $tSession){
-								if($tSession->ID != $this->ID){
-									$list->push($tSession);
-								}	
-						}
-					}
-				}
-			}
+  //   	if($list->Count() < 3){
+		// 	$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
+		// 	if($this->Speakers()->Count() != 0){
+		// 		$speakers = $this->Speakers();
+		// 		$speakerArray = array();
+		// 		foreach($speakers as $speaker){
+		// 			array_push($speakerArray, $speaker->Name);
+		// 		}
+		// 		$stSessions = $sessions->filter(array('TopicID' => $this->TopicID, 'MemberID' => $speakerArray));
+		// 		foreach($stSessions as $session){
+		// 			if($session->ID != $this->ID){
+		// 				$list->push($session);
+		// 			}
+		// 		}
+		// 		if($list->Count() < 3){
+		// 			$remainder = 3 - $list->Count();
+		// 			$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID));
+		// 			for($i = 0; $i < $remainder; $i++){
+		// 				foreach($topicSessions as $tSession){
+		// 						if($tSession->ID != $this->ID){
+		// 							$list->push($tSession);
+		// 						}	
+		// 				}
+		// 			}
+		// 		}
+		// 	}
 			
-		}
+		// }
 
     	return $list->limit(3);
     }
