@@ -85,8 +85,9 @@ b { font-weight: 500; }
 #SessionsHolder #filter-form { cursor: pointer; }
 #SessionsHolder #tag-head { cursor: pointer; }
 #SessionsHolder #wrap { background: white; }
-#SessionsHolder .sessions { background: none; margin-left: 9px; padding-left: 20px; padding-right: 20px; padding-top: 30px; height: 100%; }
+#SessionsHolder .sessions { background: none; margin-left: 0px; padding-left: 20px; padding-right: 20px; padding-top: 30px; height: 100%; }
 #SessionsHolder .sessions .heading { padding-left: 10px; }
+#SessionsHolder .sessions .col { margin-left: 1%; }
 #SessionsHolder .sessions .more { display: none; }
 #SessionsHolder .sessions .more .button { text-align: center; }
 #SessionsHolder .sessions .more .button a { width: 90px; }
@@ -173,12 +174,8 @@ b { font-weight: 500; }
 
 /*Responsiveness -------------------------------------------------- */
 @media (min-width: 1200px) { #ses-wrap .session-tile .vidthumb { width: 49%; display: inline-block; vertical-align: top; }
-  #ses-wrap .session-tile .text-wrap { height: 3; width: 40%; display: inline-block; }
-  #SessionsHolder #searchbar { border: none; }
-  #SessionsHolder #searchbar .search .mglass { margin-left: -15px; }
-  #SessionsHolder #searchbar .search form { margin-left: -20px; }
-  #SessionsHolder #searchbar .logo { margin-left: 5px; } }
-@media (max-width: 1200px) { #filter-wrap form fieldset select { width: 90%; }
+  #ses-wrap .session-tile .text-wrap { height: 3; width: 40%; display: inline-block; } }
+@media (max-width: 1200px) { #filter-wrap form fieldset select { width: 100%; }
   #filter-wrap form fieldset #Speaker input { width: 90%; } }
 @media (max-width: 767px) { body { padding: 0px; }
   body #wrap { padding-left: 20px; padding-right: 20px; }

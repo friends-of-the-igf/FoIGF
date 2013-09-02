@@ -38,17 +38,8 @@ class CustomMember extends DataExtension {
 	public function updateCMSFields(FieldList $fields){
 		$fields->removeByName('UserName');
 		$fields->insertBefore(new TextField('Username', 'Username'), 'Email');
-
-	}
-
-
-	public function onBeforeWrite() {
-		parent::onBeforeWrite();
-
-		if($this->owner->inGroup('Speakers') && !$this->owner->Speaker){
-			$this->owner->Speaker = true;
-		}
-
+		$fields->removeByName('BioLink');
+		$fields->insertBefore(new TextField('BioLink', 'Link to Bio'), 'Email');
 	}
 
 }

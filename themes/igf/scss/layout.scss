@@ -364,7 +364,7 @@ b{
 
 	.sessions{
 		background: none;
-		margin-left: 9px;
+		margin-left: 0px;
 		padding-left: 20px;
 		padding-right: 20px;
 		padding-top: 30px;
@@ -372,6 +372,10 @@ b{
 
 		.heading{
 			padding-left: 10px;
+		}
+
+		.col{
+			margin-left: 1%;
 		}
 
 		.more{
@@ -386,18 +390,14 @@ b{
 	}
 	#filter-wrap{
 		
-
 		
-		.filter{
 
+		.filter{
 			margin-top: 20px;
 			background: $grayLighter;
 			border: 1px $grayMedium solid;
-		
 			padding-left: 10%;
 			padding-right: 10%;
-			
-			
 			margin-bottom: 20px;
 			color: black;
 
@@ -773,24 +773,6 @@ b{
 				display: inline-block;			
 			}
 		}
-
-	}
-
-	#SessionsHolder{
-		#searchbar{	
-			border: none;
-			.search{
-				.mglass{
-					margin-left: -15px;
-				}
-				form{
-					margin-left: -20px;
-				}
-			}
-			.logo{
-				margin-left: 5px;
-			}
-		}
 	}
 }
 @media (max-width: 1200px) {
@@ -800,7 +782,7 @@ b{
 			fieldset{
 			
 				select{
-					width: 90%;
+					width: 100%;
 				}
 				#Speaker{
 					input {
@@ -811,6 +793,8 @@ b{
 			}
 		}
 	}
+
+	
 }
 
 @media (max-width: 767px) {
@@ -943,6 +927,7 @@ b{
 
 
 	#searchbar{
+
 		margin-left: -20px;
 		margin-right: -20px;
 
