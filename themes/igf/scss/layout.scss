@@ -15,12 +15,9 @@ body {
 
 	background-color: white;
 	min-height: 100%;
-	position: relative;
-	
 
 	#wrap{
 		min-height: 810px;
-	
 	}
 }
 
@@ -29,29 +26,36 @@ a{
 	cursor: pointer;
 	transition: all 0.2s linear;
 }
+
 .heading{
 	padding-bottom: 10px;
 }
+
 h3{
 	font-weight: normal;
 	font-size: 30px;
 	color: $grayDarkest;
 	margin: 0px;
 }
+
 h4{
 	font-weight: 500;
 }
+
 .btn{
 	padding: 10px 10px;
 	text-transform:uppercase;
 	font-size: 13px;
 }
+
 .subtext{
 	color: $grayFade;
 }
+
 .small{
 	font-size: 12px;
 }
+
 b{
 	font-weight: 500;
 }
@@ -59,9 +63,7 @@ b{
 
 /* Navigation -------------------------------------------------- */
 #navigation {
-	font-family: Georgia, serif;
-	
-	
+	font-family: Georgia, serif;	
 	.navbar-inner {
 		background: $grayDarkest;
 
@@ -71,13 +73,16 @@ b{
 				padding-right: 15px;
 				padding-bottom: 16px;
 			}
+
 			.social-icons {
 				padding-top:15px;
 				margin-right: 5px;
+
 				.social {
 					padding: 0 1px;
 				}
 			}
+
 			ul{
 				margin-left: 70px;
 				font-size: 15px;
@@ -93,20 +98,22 @@ b{
 						line-height: 12px;
 						border-bottom: 2px $grayDarkest solid;
 						box-shadow: none;
+
 						&:hover {
 							background:none;
 							border-bottom: 2px $blue solid;
 						}
 					}
+
 					&.active {
+
 						a {
 							color:white;
 							background: $grayDarkest;
 							border-bottom: 2px $blue solid;
 						}
 					}
-				}
-				
+				}		
 			}
 		}
 	}
@@ -116,7 +123,6 @@ b{
 #searchbar{
 	margin-top: -1px;
 	background: $blue;
-	
 
 	.search{
 		margin-top: -10px;
@@ -141,10 +147,12 @@ b{
 			width: 85%;
 			display:inline-block;
 		}
+
 		#Search{
 			display:inline-block;
 			width: 80%;
 			margin-right: 0px;
+
 			input{
 				width: 90%;
 				height:35px;
@@ -154,21 +162,22 @@ b{
 			}
 			::-webkit-input-placeholder { 
 				font-size: 14px;
-				    color:    $grayDark;
-				}
+				color: $grayDark;
+			}
 			:-moz-placeholder { 
 				font-size: 14px;
-			    color:    $grayDark;
+			    color: $grayDark;
 			}
 			::-moz-placeholder {
 				font-size: 14px;
-			    color:    $grayDark;
+			    color: $grayDark;
 			}
 			:-ms-input-placeholder { 
 				font-size: 14px;
-			    color:    $grayDark;
+			    color: $grayDark;
 			}
 		}
+
 		#CustomSearchForm_CustomSearchForm_action_customResults{
 			-webkit-font-smoothing: antialiased;
 			display: inline-block;
@@ -177,8 +186,7 @@ b{
 			padding: 5px 10px;
 			font-size: 13px;
 			text-transform:uppercase;
-			border: 1px solid $blueDarker;
-				
+			border: 1px solid $blueDarker;		
 		}
 	}
 
@@ -190,7 +198,6 @@ b{
 
 /*Footer -------------------------------------------------- */
 #footer{
-
 	width: 100%;
 	background: $grayDarkest;
 	position: relative;
@@ -200,10 +207,8 @@ b{
 		font-weight: bold;
 	}
 
-
-
-
 	.container{
+
 		.row{
 			padding: 0px 20px 0px 20px;
 		}
@@ -264,6 +269,7 @@ b{
 			}
 			ul{
 				padding-top: 10px;
+
 				li{
 					padding: 0px;
 					width: 45%;
@@ -278,8 +284,6 @@ b{
 			padding-top: 30px;
 			float: right;
 		}
-
-	
 
 		.website{
 			a{
@@ -304,12 +308,15 @@ b{
 			line-height: 35px;
 		}
 	}
+
 	.twitter{
 		margin-bottom: 50px;
 		border: 1px solid $grayMedium;
 	}
+
 	.speakers{
 		padding-bottom: 50px;
+
 		.link{
 			text-align: right;
 			padding-top: 20px;
@@ -325,10 +332,8 @@ b{
 	}
 
 	.tags-wrap{
-
 		margin-bottom: 40px;
 		border: 1px $grayMedium solid;
-		
 		background: $grayLighter;
 		min-height: 100px;
 
@@ -381,8 +386,10 @@ b{
 
 		.more{
 			display:none;
+
 			.button{
 				text-align: center;
+
 				a{
 					width: 90px;
 				}
@@ -415,7 +422,7 @@ b{
 
 				ul{
 					list-style-type: none;
-						margin-left: 0px;
+					margin-left: 0px;
 
 					input{
 						margin-top: 0px;
@@ -438,6 +445,7 @@ b{
 				}
 			}
 		}
+
 		.tags{
 			padding-right: 20px;
 			padding-bottom: 30px;
@@ -446,6 +454,7 @@ b{
 				color: $blueDarker;
 			}
 		}
+
 		#tag-list{
 			display: none;
 		}
@@ -490,23 +499,24 @@ b{
 			color:white;
 		}		
 	}
+
 	.session-tile{
 		padding: 0px;
 		padding-bottom: 0px;
 		border: 1px solid $grayMedium;
 		margin-bottom: 20px;
 	
-
 		.vidthumb{
 			padding: 4px;
 			height: 100%;
+
 			.thumb{
 				position: relative;
 				margin-top: -40px;
 				top: 0px;
 			
 			}
-			
+
 			.icon{
 				position: relative;
 				z-index: 1;
@@ -529,6 +539,7 @@ b{
 				padding: 0;
 				margin: 0;
 			}
+
 			a{
 				color:$blueLight;	
 			}
@@ -575,6 +586,7 @@ b{
 
 	.video{
 		height: 300px;
+
 		embed{
 			height: 100%;
 			width: 100%;
@@ -695,8 +707,7 @@ b{
 		padding-top: 10px;
 	}
 
-	.links{
-		
+	.links{	
 		margin-bottom: 10px;
 		border: 1px $grayMedium solid;
 		
@@ -789,7 +800,6 @@ b{
 	#filter-wrap{
 		form{
 			fieldset{
-			
 				select{
 					width: 100%;
 				}
@@ -807,7 +817,6 @@ b{
 }
 
 @media (max-width: 767px) {
-
 	body{
 		padding: 0px;
 
@@ -816,10 +825,6 @@ b{
 			padding-right: 20px;
 		}
 	}
-
-
-
-
 
 	#navigation {
 		.navbar-inner {
@@ -877,9 +882,6 @@ b{
 			}
 		}
 
-		
-		
-
 		.sessions{
 			margin-left: 0px;
 			padding-left: 5px;
@@ -936,7 +938,6 @@ b{
 
 
 	#searchbar{
-
 		margin-left: -20px;
 		margin-right: -20px;
 
@@ -958,22 +959,23 @@ b{
 				input{
 					width:60%;
 				}
-					::-webkit-input-placeholder { 
-				font-size: 14px;
+
+				::-webkit-input-placeholder { 
+					font-size: 14px;
 				    color:    $white;
 				}
-			:-moz-placeholder { 
-				font-size: 14px;
-			    color:    $white;
-			}
-			::-moz-placeholder {
-				font-size: 14px;
-			    color:    $white;
-			}
-			:-ms-input-placeholder { 
-				font-size: 14px;
-			    color:    $white;
-			}
+				:-moz-placeholder { 
+					font-size: 14px;
+				    color:    $white;
+				}
+				::-moz-placeholder {
+					font-size: 14px;
+				    color:    $white;
+				}
+				:-ms-input-placeholder { 
+					font-size: 14px;
+				    color:    $white;
+				}
 			}
 		}
 	}
@@ -1036,6 +1038,7 @@ b{
 		}
 		.social{
 			text-align: center;
+
 			.span4{
 				display: inline-block;
 				width: 30%;
@@ -1045,9 +1048,10 @@ b{
 	.sessions{
 		.heading{
 			div{
-					width: 100%;
-					display: inline-block;
+				width: 100%;
+				display: inline-block;
 				}
+
 				div.link{
 					text-align: left;
 				}
@@ -1069,7 +1073,6 @@ b{
 
 
 	#footer{
-
 		width: 100%;
 		background: $grayDarkest;
 		position: relative;
@@ -1086,7 +1089,6 @@ b{
 			padding-bottom: 30px;
 			padding-top: 30px;
 
-		
 			.section{
 				display: inline-block;
 				width:49%;
@@ -1122,8 +1124,6 @@ b{
 				padding-top: 0px;
 				float: right;
 			}
-
-
 		}
 	}
 }
@@ -1173,9 +1173,11 @@ b{
 		.search{
 			fieldset{
 				width: 100%;
+
 				#Search{
 					display: inline-block;
 					width: 80%;
+					
 					input{
 						width:85%;
 					}

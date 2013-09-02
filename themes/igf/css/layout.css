@@ -2,7 +2,7 @@
 -------------------------------------------------- */
 html { height: 100%; }
 
-body { -webkit-font-smoothing: antialiased; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004); background-color: white; min-height: 100%; position: relative; }
+body { -webkit-font-smoothing: antialiased; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004); background-color: white; min-height: 100%; /*position: relative;*/ }
 body #wrap { min-height: 810px; }
 
 /* Generic Classes -------------------------------------------------- */
