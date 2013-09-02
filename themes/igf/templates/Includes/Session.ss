@@ -1,12 +1,14 @@
 <div class="session-tile thumbnail">
-	<div class="vidthumb">
-		<% if getVideoThumb %>
-			<a href="$Link">
-				<img class="icon" width="40px" height="40px" src="{$ThemeDir}/images/youtube-play.png" />
-				$getVideoThumb
-			</a>
-		<% end_if %>
-	</div>
+	<% if getVideoThumb %>
+		<div class="vidthumb">
+		
+				<a href="$Link">
+					<img class="icon" width="40px" height="40px" src="{$ThemeDir}/images/youtube-play.png" />
+					$getVideoThumb
+				</a>
+			
+		</div>
+	<% end_if %>
 	<div class="text-wrap">
 		<div>
 			<p><b><a class="title" href="$Link">$Title</a></b></p>		

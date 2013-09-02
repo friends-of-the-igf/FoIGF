@@ -80,11 +80,12 @@
 				<% end_if %>
 			</div>
 			<div class="sessions">
-				
+				<% if getRelatedSessions %>
 					<h5>Related Sessions</h5>
 					<% loop getRelatedSessions %>
 						<% include Session %>
 					<% end_loop %>
+				<% end_if %>
 			
 			</div>
 		</div>
