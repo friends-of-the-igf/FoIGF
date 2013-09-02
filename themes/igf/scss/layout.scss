@@ -12,7 +12,6 @@ html {
 body {
 	-webkit-font-smoothing: antialiased;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
-	font-weight:500;
 
 	background-color: white;
 	min-height: 100%;
@@ -93,6 +92,7 @@ b{
 						text-shadow: 0.5px 0px $gray;
 						line-height: 12px;
 						border-bottom: 2px $grayDarkest solid;
+						box-shadow: none;
 						&:hover {
 							background:none;
 							border-bottom: 2px $blue solid;
@@ -537,6 +537,10 @@ b{
 			}
 		}
 
+		.nov{
+			width: 90% !important;
+			}
+
 		.tags{
 			font-size: 13px;
 			background: $grayLighter;
@@ -761,6 +765,7 @@ b{
 @media (min-width: 1200px) {
 	#ses-wrap{
 		.session-tile{
+
 			.vidthumb{
 				width: 49%;
 				display: inline-block;
@@ -771,6 +776,10 @@ b{
 				height:3;
 				width: 40%;
 				display: inline-block;			
+			}
+
+			.nov{
+				width: 90%;
 			}
 		}
 	}
@@ -808,7 +817,7 @@ b{
 		}
 	}
 
-	
+
 
 
 
@@ -949,6 +958,22 @@ b{
 				input{
 					width:60%;
 				}
+					::-webkit-input-placeholder { 
+				font-size: 14px;
+				    color:    $white;
+				}
+			:-moz-placeholder { 
+				font-size: 14px;
+			    color:    $white;
+			}
+			::-moz-placeholder {
+				font-size: 14px;
+			    color:    $white;
+			}
+			:-ms-input-placeholder { 
+				font-size: 14px;
+			    color:    $white;
+			}
 			}
 		}
 	}
@@ -958,6 +983,15 @@ b{
 		.btn{
 			margin-bottom: 10px;
 		}
+
+		#searchbar{
+			.search{
+				.mglass{
+					margin-top: 10px;
+					}
+				}
+			}
+
 
 		.social-icons{
 			text-align: center;
@@ -1179,7 +1213,7 @@ b{
 	}
 	#meetings-wrap{
 		.span3{
-			height:275px;
+			height:150px;
 		}
 	}
 

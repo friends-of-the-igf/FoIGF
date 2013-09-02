@@ -69,7 +69,7 @@ class SessionsHolder_Controller extends Page_Controller {
 		$t->setEmptyString('-select-');
 		$fields->push($s = new TextField('Speaker', 'Speaker'));
 
-		$s->setAttribute('placeholder', 'Start typing to select from list');
+		$s->setAttribute('placeholder', 'Start typing...');
 		$s->setAttribute('autocomplete', 'off');
 		$s->setAttribute('data-provide', 'typeahead');
 		$s->setAttribute('class', 'typeahead');
@@ -129,13 +129,14 @@ class SessionsHolder_Controller extends Page_Controller {
 			foreach(Member::get() as $member){
 				if($member->Name == $data['Speaker']){
 					$speaker['MemberID'] = $member->ID;
-				} else {
-					$speaker['MemberID'] = 0;
-				}
+				} 
 			}
-			if(count($speaker > 0)){
+			if(!empty($speaker)){
 				$filterList['Speaker'] = $speaker;
-			}			
+			}else{
+				$speaker['MemberID'] = 0;
+				$filterList['Speaker'] = $speaker;
+			}		
 		}
 
 		if(isset($data['Sort']) && $data['Sort'] != null){
