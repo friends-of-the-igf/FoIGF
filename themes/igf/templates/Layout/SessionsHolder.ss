@@ -4,13 +4,14 @@
 		<div class="filter">
 			<h5 id="filter-form">Filter Sessions</h5>
 			$FilterForm
-		</div>
-		<div class='tags'>
+			<div class='tags'>
 			<h5 id="tag-head">View Tags</h5>
 			<div id="tag-list">
 				<% loop popularTags %><a href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
 			</div>
 		</div>
+	</div>
+		
 
 	</div>
 	<div class="sessions span9">

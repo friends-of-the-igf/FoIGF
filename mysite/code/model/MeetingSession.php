@@ -11,7 +11,10 @@ class MeetingSession extends DataObject {
 		'TranscriptContent' => 'HTMLText',
 		'ProposalLink' => 'Text',
 		'SortOrder' => 'Int',
-		'URLSegment' => 'Varchar(255)'
+		'URLSegment' => 'Varchar(255)',
+		'ProposalContent' => 'HTMLText',
+		'TranscriptType' => 'Text',
+		'ProposalType' => 'Text'
 	
 	);
 
@@ -77,7 +80,7 @@ class MeetingSession extends DataObject {
 
 		$mainTab = new Tab('Main');
 		$transcriptTab = new Tab('Transcript');
-		$filesTab = new Tab('Files');
+		$proposalTab = new Tab('Proposal');
 		$videosTab = new Tab('Videos');
 		$speakersTab = new Tab('View Speakers');
 		$addSpeakersTab = new Tab('Add Speakers');
@@ -86,7 +89,7 @@ class MeetingSession extends DataObject {
 		$tabset = new TabSet("Root",
 			$mainTab,
 			$transcriptTab,
-			$filesTab,
+			$proposalTab,
 			$videosTab,
 			$addSpeakersTab,
 			$speakersTab,
@@ -95,7 +98,7 @@ class MeetingSession extends DataObject {
 		$fields->push( $tabset );
 
 		$mainTab->push(new TextField('Title', 'Title'));
-		$mainTab->push(new TextField('ProposalLink', 'Link to Proposal'));
+		
 		$mainTab->push($date = new DateField('Date', 'Date'));
 		$date->setConfig('showcalendar', true);
 		$date->setConfig('jQueryUI.changeMonth', true);
@@ -128,10 +131,23 @@ class MeetingSession extends DataObject {
 		}
 		$mainTab->push(new HTMLEditorField('Content', 'Content'));
 
-		$transcriptTab->push(new HTMLEditorField('TranscriptContent', 'TranscriptContent'));
+		$transcriptTab->push(new OptionsetField('TranscriptType', 'Transcript Type (Select one and click save)', array('File' => 'File', 'Text' => 'Text')));
+		if($this->TranscriptType == 'Text'){
+			$transcriptTab->push(new HTMLEditorField('TranscriptContent', 'Transcript Content'));
+		} elseif($this->TranscriptType == 'File' ){
+			$transcriptTab->push(new UploadField('Transcript', 'Transcript'));
+		}
 
-		$filesTab->push(new UploadField('Transcript', 'Transcript'));
-		$filesTab->push(new UploadField('Proposal', 'Proposal'));
+
+		$proposalTab->push(new OptionsetField('ProposalType', 'Proposal Type (Select one and click save)', array('URL' => 'URL', 'File' => 'File', 'Text' => 'Text')));
+		if($this->ProposalType == 'URL'){
+			$proposalTab->push(new TextField('ProposalLink', 'Link to Proposal'));
+		} elseif($this->ProposalType =='File'){
+			$proposalTab->push(new UploadField('Proposal', 'Proposal'));
+		} elseif($this->ProposalType == 'Text'){
+			$proposalTab->push(new HTMLEditorField('ProposalContent', 'Proposal Content'));
+		}
+
 
 		if($this->ID) {
 			$group = $this;
@@ -289,34 +305,34 @@ class MeetingSession extends DataObject {
     		}
     	} 
    
-    	if($list->Count() < 3){
-			$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
-			if($this->Speakers()->Count() != 0){
-				$speakers = $this->Speakers();
-				$speakerArray = array();
-				foreach($speakers as $speaker){
-					array_push($speakerArray, $speaker->Name);
-				}
-				$stSessions = $sessions->filter(array('TopicID' => $this->TopicID, 'MemberID' => $speakerArray));
-				foreach($stSessions as $session){
-					if($session->ID != $this->ID){
-						$list->push($session);
-					}
-				}
-				if($list->Count() < 3){
-					$remainder = 3 - $list->Count();
-					$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID));
-					for($i = 0; $i < $remainder; $i++){
-						foreach($topicSessions as $tSession){
-								if($tSession->ID != $this->ID){
-									$list->push($tSession);
-								}	
-						}
-					}
-				}
-			}
+  //   	if($list->Count() < 3){
+		// 	$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID');
+		// 	if($this->Speakers()->Count() != 0){
+		// 		$speakers = $this->Speakers();
+		// 		$speakerArray = array();
+		// 		foreach($speakers as $speaker){
+		// 			array_push($speakerArray, $speaker->Name);
+		// 		}
+		// 		$stSessions = $sessions->filter(array('TopicID' => $this->TopicID, 'MemberID' => $speakerArray));
+		// 		foreach($stSessions as $session){
+		// 			if($session->ID != $this->ID){
+		// 				$list->push($session);
+		// 			}
+		// 		}
+		// 		if($list->Count() < 3){
+		// 			$remainder = 3 - $list->Count();
+		// 			$topicSessions = $sessions->filter(array('TopicID' => $this->TopicID));
+		// 			for($i = 0; $i < $remainder; $i++){
+		// 				foreach($topicSessions as $tSession){
+		// 						if($tSession->ID != $this->ID){
+		// 							$list->push($tSession);
+		// 						}	
+		// 				}
+		// 			}
+		// 		}
+		// 	}
 			
-		}
+		// }
 
     	return $list->limit(3);
     }

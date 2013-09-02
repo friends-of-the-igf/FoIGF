@@ -10,6 +10,9 @@ class Meeting extends DataObject {
 		
 	);
 
+	public static $default_sort = 'StartDate';
+
+
 	public static $has_one = array(
 		'Location' => 'Location',
 		'Image' => 'Image'
@@ -21,7 +24,8 @@ class Meeting extends DataObject {
 	);
 
 	public static $summary_fields = array(
-		'Title'
+		'Title',
+		'StartDate'
 	);
 
 	static $searchable_fields = array(
@@ -175,15 +179,15 @@ class Meeting extends DataObject {
 			$weight = $filteredList->Count();
 			$percent = ($weight / $count) * 100;
 
-			if($percent <= 1) {
+			if($percent <= 3) {
 				$size = "14px";
-			} elseif($percent <= 2) {
-				$size = "16px";
-			} elseif($percent <= 3) {
-				$size = "18px";
 			} elseif($percent <= 5) {
-				$size = "20px";
+				$size = "16px";
 			} elseif($percent <= 10) {
+				$size = "18px";
+			} elseif($percent <= 20) {
+				$size = "20px";
+			} elseif($percent <= 30) {
 				$size = "22px";
 			} else {
 				$size = "22px";

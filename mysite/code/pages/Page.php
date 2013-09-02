@@ -89,4 +89,15 @@ class Page_Controller extends ContentController {
 		return $output;
 	}
 
+	public function getMeetings() {
+		$meetings = Meeting::get()->Sort('StartDate', 'DESC');
+		return $meetings;
+	}
+
+	public function meetingsLink(){
+		return MeetingsHolder::get()->First()->Link();
+
+	}
+
+
 }
