@@ -356,6 +356,7 @@ b{
 	}
 	#tag-head{
 		cursor: pointer;
+		color: $blue;
 	}
 
 	#wrap{
@@ -442,13 +443,13 @@ b{
 		.tags{
 			padding-right: 20px;
 			padding-bottom: 30px;
-			h5{
-				color: $grayDarkest;
-			}
+			
 			a{
 				color: $blueDarker;
 			}
-			
+		}
+		#tag-list{
+			display: none;
 		}
 	}
 	
