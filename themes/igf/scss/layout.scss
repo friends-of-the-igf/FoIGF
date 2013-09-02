@@ -391,8 +391,6 @@ b{
 	}
 	#filter-wrap{
 		
-		
-
 		.filter{
 			margin-top: 20px;
 			background: $grayLighter;
@@ -457,6 +455,7 @@ b{
 	.pagination{
 		display: none;
 		text-align: center;
+
 		.pages{
 			border-radius: 0px;
 			text-align: center;
@@ -1069,71 +1068,64 @@ b{
 	}
 
 
-#footer{
+	#footer{
 
-	width: 100%;
-	background: $grayDarkest;
-	position: relative;
+		width: 100%;
+		background: $grayDarkest;
+		position: relative;
 
-	span{
-		color: white;
-		font-weight: bold;
-	}
-
-
-
-
-	.container{
-		height: 100%;
-		padding-left: 20px;
-		padding-right: 20px;
-		padding-bottom: 30px;
-		padding-top: 30px;
-
-		
-
-		.section{
-
-			display: inline-block;
-			width:49%;
+		span{
+			color: white;
+			font-weight: bold;
 		}
 
-		#meeting-list{
-			display: none;
-		}
-
-		.element-outer{
+		.container{
 			height: 100%;
-			padding-right: 0px;
-			border: none;
-
-		}
-		.element-inner{
-			border: none;
-			padding-top: 0px;
-		
-		}
-
-		.element{
-			padding-top: 0px;
-			float: left;
-		}
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-bottom: 30px;
+			padding-top: 30px;
 
 		
+			.section{
+				display: inline-block;
+				width:49%;
+			}
 
-		.meetings{
-			display: none;
+			#meeting-list{
+				display: none;
+			}
+
+			.element-outer{
+				height: 100%;
+				padding-right: 0px;
+				border: none;
+
+			}
+			.element-inner{
+				border: none;
+				padding-top: 0px;
+			
+			}
+
+			.element{
+				padding-top: 0px;
+				float: left;
+			}
+
+			.meetings{
+				display: none;
+			}
+
+			.logo{
+				width: 160px;
+				padding-top: 0px;
+				float: right;
+			}
+
+
 		}
-
-		.logo{
-			width: 160px;
-			padding-top: 0px;
-			float: right;
-		}
-
-
 	}
-}
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
@@ -1151,8 +1143,6 @@ b{
 	}
 
 	#SessionsHolder{
-	
-
 		#filter-wrap{
 			#Topic{
 				ul{
@@ -1160,13 +1150,10 @@ b{
 						input{
 							display: block;
 						}
-
 					}
 				}
 			}
-
 		}
-
 	}
 
 	#navigation {
@@ -1212,6 +1199,7 @@ b{
 			}
 		}	
 	}
+
 	#meetings-wrap{
 		.span3{
 			height:150px;
