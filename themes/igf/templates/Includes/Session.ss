@@ -1,15 +1,15 @@
 <div class="session-tile thumbnail">
 	<% if getVideoThumb %>
 		<div class="vidthumb">
-		
-				<a href="$Link">
-					<img class="icon" width="40px" height="40px" src="{$ThemeDir}/images/youtube-play.png" />
-					$getVideoThumb
-				</a>
-			
+			<a href="$Link">
+				<img class="icon" width="40px" height="40px" src="{$ThemeDir}/images/youtube-play.png" />
+				$getVideoThumb
+			</a>	
 		</div>
-	<% end_if %>
 	<div class="text-wrap">
+	<% else %>
+	<div class="text-wrap nov">
+	<% end_if %>
 		<div>
 			<p><b><a class="title" href="$Link">$Title</a></b></p>		
 			<p><a href="$Type.Link">$Type.Name</a> in <a href="$Meeting.Location.Link">$Meeting.Location.City</a></p>
