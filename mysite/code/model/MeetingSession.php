@@ -82,8 +82,7 @@ class MeetingSession extends DataObject {
 		$transcriptTab = new Tab('Transcript');
 		$proposalTab = new Tab('Proposal');
 		$videosTab = new Tab('Videos');
-		$speakersTab = new Tab('View Speakers');
-		$addSpeakersTab = new Tab('Add Speakers');
+		$speakersTab = new Tab('Speakers');
 		$sessionsTab = new Tab('RelatedSessions');
 		
 		$tabset = new TabSet("Root",
@@ -91,7 +90,6 @@ class MeetingSession extends DataObject {
 			$transcriptTab,
 			$proposalTab,
 			$videosTab,
-			$addSpeakersTab,
 			$speakersTab,
 			$sessionsTab
 		);
@@ -157,16 +155,22 @@ class MeetingSession extends DataObject {
 			$videosTab->push($gridField);
 		}
 
-		$addSpeakersTab->push(new TextField('FirstName', 'First Name'));
-		$addSpeakersTab->push(new TextField('Surname', 'Surname'));
-		$addSpeakersTab->push(new TextField('Bio', 'Link to Bio'));
+		$speakersTab->push(new TextField('FirstName', 'First Name'));
+		$speakersTab->push(new TextField('Surname', 'Surname'));
+		$speakersTab->push(new TextField('Bio', 'Link to Bio'));
 
 		if($this->ID) {
 			$group = $this;
 			$config = new GridFieldConfig_RelationEditor();
 			$config->getComponentByType('GridFieldAddExistingAutocompleter')
 				->setResultsFormat('$Title ($Email)')->setSearchFields(array('FirstName', 'Surname', 'Email'));
+			$config->removeComponent($config->getComponentByType('GridFieldAddNewButton'));
 			$memberList = GridField::create('Speakers',false, $this->Speakers(), $config);
+			$speakersTab->push(new HeaderField('NewSpeaker', 'New Speaker'));
+			$speakersTab->push(new TextField('FirstName', 'First Name'));
+			$speakersTab->push(new TextField('Surname', 'Surname'));
+			$speakersTab->push(new TextField('Bio', 'Link to Bio'));
+			$speakersTab->push(new HeaderField('AddedSpeakers', 'Added Speakers'));
 			$speakersTab->push($memberList);
 		}
 
@@ -189,24 +193,38 @@ class MeetingSession extends DataObject {
 			if(Member::get()->filter(array('FirstName' => $this->record['FirstName'], 'Surname' => $this->record['Surname']))->Count() > 0){
 				$member = Member::get()->filter(array('FirstName' => $this->record['FirstName'], 'Surname' => $this->record['Surname']))->First();
 				$this->Speakers()->add($member);
+				$member->BioLink = $this->record['Bio'];
 				if(!$member->inGroup('Speakers')){
 					$member->addToGroupByCode('speaker');
+
 				}
+				$member->write();
 			} else{
 				$member = new Member();
-				$member->FirstName = $this->record['FirstName'];
-				$member->Surname = $this->record['Surname'];
 				$username = substr($this->record['Surname'], 0, 5);
 				$username .= substr($this->record['FirstName'], 0, 3);
-				$member->Username = strtolower($username);
-				$member->Email = 'speaker@igf.com';
-				$member->Password = 'igf123';
-				$member->BioLink = $this->record['Bio'];
-				$member->write();
-				$member->addToGroupByCode('speakers');
-				$this->Speakers()->add($member);
+				if(Member::get()->filter(array('Username' => strtolower($username)))->Count() == 0){
+					$member->Username = strtolower($username);
+					$member->FirstName = $this->record['FirstName'];
+					$member->Surname = $this->record['Surname'];
+					$member->Email = 'speaker@igf.com';
+					$member->Password = 'igf123';
+					$member->BioLink = $this->record['Bio'];
+					$member->write();
+					$member->addToGroupByCode('speakers');
+					$this->Speakers()->add($member);
+				} else {
+					$member = Member::get()->filter(array('Username' => strtolower($username)))->First();
+					if($this->record['Bio'] != null){
+						$member->BioLink = $this->record['Bio'];
+					}
+					$member->write();
+					$member->addToGroupByCode('speakers');
+					$this->Speakers()->add($member);
+				}
 			}
 		}
+	
 		
 
 		
