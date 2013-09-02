@@ -201,6 +201,12 @@ class SessionsHolder_Controller extends Page_Controller {
 	    		$sessions = $meeting->MeetingSessions();
 	    	}
 
+	    	if(array_key_exists('Speaker', $getFilter)){
+	    		$speaker = $getFilter['Speaker'];
+	    		$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'ASC');
+	    		$sessions = $sessions->filter($speaker);
+	    	}
+
 
     	} else {
 
@@ -230,6 +236,13 @@ class SessionsHolder_Controller extends Page_Controller {
 	    		$getFilter['Meeting'] = $_GET['meeting'];
 	    		$meeting = Meeting::get()->byID($_GET['meeting']);
 	    		$sessions = $meeting->MeetingSessions();
+	    	}
+
+	    	if(isset($_GET['speaker']) && $_GET['speaker'] != null){
+	    		$speaker['MemberID'] = $_GET['speaker'];
+	    		$getFilter['Speaker'] = $speaker;
+	    		$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'ASC');
+	    		$sessions = $sessions->filter($speaker);
 	    	}
 
 	    	if(!empty($getFilter)){

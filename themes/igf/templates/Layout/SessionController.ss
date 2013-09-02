@@ -73,7 +73,7 @@
 								<% else %>
 									$Name<br/>
 								<% end_if %>
-								<a>$MeetingSessions.Count Sessions</a>
+								<a href="$Link">$MeetingSessions.Count Sessions</a>
 							</div>
 						</div>
 					<% end_loop %>

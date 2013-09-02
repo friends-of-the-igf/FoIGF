@@ -42,4 +42,13 @@ class CustomMember extends DataExtension {
 		$fields->insertBefore(new TextField('BioLink', 'Link to Bio'), 'Email');
 	}
 
+	public function Link(){
+			$link = "";
+		if($page = SessionsHolder::get()->First()) {
+			$link = $page->Link('?speaker=').$this->owner->ID;
+		}
+
+		return $link;
+	}
+
 }
