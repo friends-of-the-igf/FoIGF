@@ -54,7 +54,8 @@ class MeetingSession extends DataObject {
 		'Title',
 		'Tags',
 		'Content',
-		'TranscriptContent'
+		'TranscriptContent',
+		'Meeting.Title'
 	);
 
 	// fields to return
@@ -185,6 +186,7 @@ class MeetingSession extends DataObject {
 	}
 
 	public function onBeforeWrite() {
+		error_log('Meeting ID 1: '.$this->MeetingID);
 
 		parent::onBeforeWrite();
 
@@ -235,8 +237,6 @@ class MeetingSession extends DataObject {
 				$this->Tags = $this->NewTags;
 			}
 			$this->NewTags = null;
-
-			$this->write();
 		}
 
 		if(!$this->URLSegment || $this->URLSegment = 'session/0') {
@@ -249,6 +249,7 @@ class MeetingSession extends DataObject {
 		if(!Type::get()->byID($this->TypeID)){
 			$this->TypeID = Type::get()->filter(array('Name' => 'Other'))->First()->ID;
 		}
+		error_log('Meeting ID 2: '.$this->MeetingID);
 		
 	}
 
