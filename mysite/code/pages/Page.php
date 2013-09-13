@@ -69,6 +69,8 @@ class Page_Controller extends ContentController {
 				$size = "20px";
 			} elseif($percent <= 10) {
 				$size = "22px";
+			} else {
+				$size = "23px";
 			}
 
 			$output->push(new ArrayData(array(
