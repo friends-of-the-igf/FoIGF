@@ -145,6 +145,7 @@ b{
 		#Search{
 			display:inline-block;
 			width: 80%;
+			margin-right: 0px;
 
 			input{
 				width: 90%;
@@ -711,9 +712,6 @@ b{
 		padding-top: 10px;
 		border-bottom: 1px $grayMedium solid;
 
-		.switch{
-
-		}
 		.switch:hover{
 			text-decoration: none;
 		}
@@ -737,7 +735,6 @@ b{
 			
 		}
 		
-
 		.span2{
 			margin: 3px;
 		}
@@ -1116,7 +1113,7 @@ b{
 			padding-bottom: 30px;
 			padding-top: 30px;
 
-			.section{
+			.f-section{
 				display: inline-block;
 				width:49%;
 			}
@@ -1197,13 +1194,15 @@ b{
 	}
 
 	#searchbar{
+
 		.search{
 			fieldset{
-				width: 100%;
+				width: 100% !important;
 
 				#Search{
 					display: inline-block;
 					width: 80%;
+					margin-right: 0px;
 					
 					input{
 						width:85%;
@@ -1247,11 +1246,6 @@ b{
 				padding-top: 8px;
 				padding-left: 6px;
 
-				.span4{
-					margin-right: 18px;
-					display: inline-block;
-					width: 20%;
-				}
 			}
 		}
 

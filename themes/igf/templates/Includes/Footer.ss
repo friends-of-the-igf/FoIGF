@@ -1,7 +1,7 @@
 <div id="footer">
 	<div class="container">
 		<div class="row-fluid">
-			<div class="span3 section">
+			<div class="span3 f-section">
 				<div class="element-outer">
 					<div class="element-inner">
 						<div class="element">
@@ -23,7 +23,7 @@
 			
 			</div>
 				
-			<div id="meeting-list" class="span5 section">
+			<div id="meeting-list" class="span5 f-section">
 				<div class="element-outer">
 					<div class="element-inner">
 						<div class="element">
