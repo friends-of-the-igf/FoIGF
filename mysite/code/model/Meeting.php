@@ -285,4 +285,50 @@ class Meeting extends DataObject {
 
 	}
 
+	public function meetingDays(){
+		
+		$dayList0 = new ArrayList();
+		$dayList1 = new ArrayList();
+		$dayList2 = new ArrayList();
+		$dayList3 = new ArrayList();
+		$dayList4 = new ArrayList();
+		$day0 = date('Y-m-d', strtotime($this->StartDate.'-1 day'));
+		$day1 = date('Y-m-d', strtotime($this->StartDate));
+		$day2 = date('Y-m-d', strtotime($this->StartDate.'+1 day'));
+		$day3 = date('Y-m-d', strtotime($this->StartDate.'+2 day'));
+		$day4 = date('Y-m-d', strtotime($this->StartDate.'+3 day'));
+		
+		$sessions = $this->MeetingSessions();
+		foreach($sessions as $session){
+			$date = date('Y-m-d', strtotime($session->Date));
+			switch($date){
+				case $day0:
+					$dayList0->push($session);
+					break;
+				case $day1:
+					$dayList1->push($session);
+					break;
+				case $day2:
+					$dayList2->push($session);
+					break;
+				case $day3:
+					$dayList3->push($session);
+					break;
+				case $day4:
+					$dayList4->push($session);
+					break;
+			}
+		}	
+
+		$data = array(
+			'Day0' => array('Date'=> date('l j F Y', strtotime($day0)), 'List' => $this->makeColumns($dayList0)),
+			'Day1' => array('Date'=> date('l j F Y', strtotime($day1)), 'List' => $this->makeColumns($dayList1)),
+			'Day2' => array('Date'=> date('l j F Y', strtotime($day2)), 'List' => $this->makeColumns($dayList2)),
+			'Day3' => array('Date'=> date('l j F Y', strtotime($day3)), 'List' => $this->makeColumns($dayList3)),
+			'Day4' => array('Date'=> date('l j F Y', strtotime($day4)), 'List' => $this->makeColumns($dayList4))
+			);
+
+		return new ArrayData($data);
+	}
+
 }

@@ -18,8 +18,8 @@
 						
 				</ul>
 				<div class="social-icons pull-right visible-desktop">
-					<% if $SiteConfig.TwitterURL %><a href="$SiteConfig.TwitterURL" class="social"><img src="{$ThemeDir}/images/twitter.png"></a><% end_if %>
-					<% if $SiteConfig.FacebookURL %><a href="$SiteConfig.FacebookURL" class="social"><img src="{$ThemeDir}/images/fb.png"></a><% end_if %>
+					<% if $SiteConfig.TwitterURL %><a href="$SiteConfig.TwitterURL" ><img src="{$ThemeDir}/images/twitter.png"></a><% end_if %>
+					<% if $SiteConfig.FacebookURL %><a href="$SiteConfig.FacebookURL" ><img src="{$ThemeDir}/images/fb.png"></a><% end_if %>
 				</div>
 			</div>
 		</div>

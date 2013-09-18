@@ -66,21 +66,35 @@ class SessionsHolder_Controller extends Page_Controller {
 		if(isset($_GET['type']) && $_GET['type'] != null){
 			$t->setValue($_GET['type']);
 		}
+		$fields->push($d = new DropdownField('Day', 'Day of Meeting', array(
+			'0' => 'Day 0',
+			'1' => 'Day 1',
+			'2' => 'Day 2',
+			'3' => 'Day 3',
+			'4' => 'Day 4'
+			)));
+		if(isset($_GET['day']) && $_GET['day'] != null){
+			$d->setValue($_GET['day']);
+		}
+		$d->setEmptyString('-select-');
+
+
 		$t->setEmptyString('-select-');
 		$fields->push($s = new TextField('Speaker', 'Speaker'));
 		if(isset($_GET['speaker']) && $_GET['speaker'] != null){
 			$s->setValue(Member::get()->byID($_GET['speaker'])->Name);
 		}
+		
 
 		$s->setAttribute('placeholder', 'Start typing...');
 		$s->setAttribute('autocomplete', 'off');
 		$s->setAttribute('data-provide', 'typeahead');
 		$s->setAttribute('class', 'typeahead');
 
-		$fields->push($topic = new CheckboxSetField('Topic', 'Topics', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
-		if(isset($_GET['topic']) && $_GET['topic'] != null){
-			$topic->setValue($_GET['topic']);
-		}
+		// $fields->push($topic = new CheckboxSetField('Topic', 'Topics', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
+		// if(isset($_GET['topic']) && $_GET['topic'] != null){
+		// 	$topic->setValue($_GET['topic']);
+		// }
 
 		$sortOptions = array(
 			'Latest' => 'Latest', 
@@ -109,7 +123,7 @@ class SessionsHolder_Controller extends Page_Controller {
 	}
 
 	public function doSearch($data, $form){
-
+		error_log($data['Day']);
 
 		$filter = array();
 		$filterList = array();
@@ -122,8 +136,8 @@ class SessionsHolder_Controller extends Page_Controller {
 		if(isset($data['Type']) && $data['Type'] != null){
 				$filter['TypeID'] = $data['Type'];		
 		}
-		if(isset($data['Topic']) && $data['Topic'] != null){
-				$filter['TopicID'] = $data['Topic'];
+		if(isset($data['Day']) && $data['Day'] != null){
+				$filter['Day'] = $data['Day'];		
 		}
 		if(count($filter > 0)){
 			$filterList['Filter'] = $filter;
@@ -402,6 +416,10 @@ class SessionsHolder_Controller extends Page_Controller {
 			}
 		}
 		return json_encode($speakers);
+	}
+
+	public function getTopics(){
+		return Topic::get()->sort('Name', 'ASC');
 	}
 
 	public function tag(){

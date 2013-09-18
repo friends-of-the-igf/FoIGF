@@ -14,7 +14,8 @@ class MeetingSession extends DataObject {
 		'URLSegment' => 'Varchar(255)',
 		'ProposalContent' => 'HTMLText',
 		'TranscriptType' => 'Text',
-		'ProposalType' => 'Text'
+		'ProposalType' => 'Text',
+		'Day' => 'Text'
 	
 	);
 
@@ -186,7 +187,7 @@ class MeetingSession extends DataObject {
 	}
 
 	public function onBeforeWrite() {
-		error_log('Meeting ID 1: '.$this->MeetingID);
+		
 
 		parent::onBeforeWrite();
 
@@ -227,9 +228,7 @@ class MeetingSession extends DataObject {
 			}
 		}
 	
-		
-
-		
+		//add new tags
 		if($this->NewTags) {
 			if($this->Tags != null){
 				$this->Tags .= ',' . $this->NewTags;
@@ -239,17 +238,48 @@ class MeetingSession extends DataObject {
 			$this->NewTags = null;
 		}
 
+		//save a url segment
 		if(!$this->URLSegment || $this->URLSegment = 'session/0') {
 			$this->URLSegment = $this->Link();
 		}
 
+		//default topics and types
 		if(!Topic::get()->byID($this->TopicID)){
 			$this->TopicID = Topic::get()->filter(array('Name' => 'Other'))->First()->ID;
 		}
 		if(!Type::get()->byID($this->TypeID)){
 			$this->TypeID = Type::get()->filter(array('Name' => 'Other'))->First()->ID;
 		}
-		error_log('Meeting ID 2: '.$this->MeetingID);
+
+		if($this->Day == null){
+			//determine day of meeting
+			$day0 = date('Y-m-d', strtotime($this->Meeting()->StartDate.'-1 day'));
+			$day1 = date('Y-m-d', strtotime($this->Meeting()->StartDate));
+			$day2 = date('Y-m-d', strtotime($this->Meeting()->StartDate.'+1 day'));
+			$day3 = date('Y-m-d', strtotime($this->Meeting()->StartDate.'+2 day'));
+			$day4 = date('Y-m-d', strtotime($this->Meeting()->StartDate.'+3 day'));
+			
+			$date = date('Y-m-d', strtotime($this->Date));
+			switch($date){
+				case $day0:
+					$this->Day = 0;
+					break;
+				case $day1:
+					$this->Day = 1;
+					break;
+				case $day2:
+					$this->Day = 2;
+					break;
+				case $day3:
+					$this->Day = 3;
+					break;
+				case $day4:
+					$this->Day = 4;
+					break;
+			}
+		}
+		
+	
 		
 	}
 
