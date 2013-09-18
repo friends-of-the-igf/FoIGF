@@ -22,6 +22,8 @@ class MeetingController extends Page_Controller {
 				return $this->httpError(404);
 			}
 		}
+
+		Requirements::javascript('themes/igf/javascript/meetingcontroller.js');
 	}
 
 	public function getMeeting() {

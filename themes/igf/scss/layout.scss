@@ -73,12 +73,10 @@ b{
 				padding-right: 15px;
 				padding-bottom: 16px;
 			}
-
 			.social-icons {
 				padding-top:15px;
 				margin-right: 5px;
-
-				.social {
+				a {
 					padding: 0 1px;
 				}
 			}
@@ -101,7 +99,7 @@ b{
 
 						&:hover {
 							background:none;
-							border-bottom: 2px $blue solid;
+							border-bottom: 2px $linkRed solid;
 						}
 					}
 
@@ -110,7 +108,7 @@ b{
 						a {
 							color:white;
 							background: $grayDarkest;
-							border-bottom: 2px $blue solid;
+							border-bottom: 2px $linkRed solid;
 						}
 					}
 				}		
@@ -127,12 +125,13 @@ b{
 	.search{
 		margin-top: -10px;
 
-		label{
-			display: none;
-		}
-
 		form{
 			margin-bottom: 10px;
+
+				fieldset{
+					width: 85%;
+					display:inline-block;
+				}
 		}
 
 		.mglass{
@@ -140,18 +139,12 @@ b{
 			margin-bottom: -62px;
 			margin-left: 5px;
 			margin-top: 0px;
-
 		}
 
-		fieldset{
-			width: 85%;
-			display:inline-block;
-		}
-
+	
 		#Search{
 			display:inline-block;
 			width: 80%;
-			margin-right: 0px;
 
 			input{
 				width: 90%;
@@ -189,11 +182,6 @@ b{
 			border: 1px solid $blueDarker;		
 		}
 	}
-
-	.logo{
-		text-align: right;
-		padding-top: 15px;
-	}
 }
 
 /*Footer -------------------------------------------------- */
@@ -208,7 +196,6 @@ b{
 	}
 
 	.container{
-
 		.row{
 			padding: 0px 20px 0px 20px;
 		}
@@ -245,12 +232,13 @@ b{
 					color: $white;
 					font-size: 14px;
 					text-shadow: 0px -2px 1px $grayDarkest;
-				}
-				a:hover{
-					text-decoration: none;
-					color: $grayMedium;
-				}
 
+					&:hover{
+						text-decoration: none;
+						color: $grayMedium;
+					}
+				}
+				
 				.social{
 					padding-right: 5px;
 				}
@@ -356,6 +344,22 @@ b{
 
 /*SessionsHolder -------------------------------------------------- */
 #SessionsHolder{
+
+	.topic-filt{
+		background: $grayLighter;
+		border: 1px solid $grayMedium;
+		padding-top: 10px;
+		margin-top: 10px;
+		ul{
+			list-style-type: none;
+			li{
+				a{
+					color:$grayDark;
+				}
+			}
+		}
+	}
+
 	#filter-form{
 		cursor: pointer;
 	}
@@ -642,9 +646,6 @@ b{
 		min-height: 140px;
 	}
 
-
-	
-
 	#meetings-wrap{
 		padding-top: 30px;
 		padding-bottom: 100px;
@@ -680,16 +681,14 @@ b{
 	}
 
 	.header{
-		
 		padding-top: 30px;
 		padding-bottom: 10px;
 		margin-bottom: 10px;
 	}
 
 	.tags-wrap{
-		margin-bottom: 0px;
+		margin-bottom: 20px;
 		border: 1px $grayMedium solid;
-		border-bottom: none;
 		background: $grayLighter;
 		min-height: 100px;
 
@@ -697,29 +696,60 @@ b{
 			padding: 10px;
 		}
 
-
 		a{
 			text-decoration: none;
 		}
 	}
 
+	.sessions{
+		.heading{
+			border-bottom: 1px $grayMedium solid;
+		}
+	}
+
 	.ses{
 		padding-top: 10px;
+		border-bottom: 1px $grayMedium solid;
+
+		.switch{
+
+		}
+		.switch:hover{
+			text-decoration: none;
+		}
+
+		.arrow{
+			float: right;
+		}
 	}
 
 	.links{	
-		margin-bottom: 10px;
 		border: 1px $grayMedium solid;
+		border-bottom: none;
 		
 		.section{
-			padding: 10px;
-			height: 95px;
-			margin-left: 10px;
+			padding: 3px;
+			min-height: 95px;
+			.span3{
+				padding-top: 10px;
+				margin: 0px;
+			}
 			
+		}
+		
+
+		.span2{
+			margin: 3px;
 		}
 
 		.right-divide{
+			
 			border-right: 1px $grayMedium solid;
+			img{
+				display: inline-block;
+				float: left;
+				padding-right: 5px;
+			}
 		}
 	
 		a{
@@ -808,12 +838,9 @@ b{
 						width: 90%;
 					}
 				}
-
 			}
 		}
 	}
-
-	
 }
 
 @media (max-width: 767px) {

@@ -27,27 +27,25 @@ b { font-weight: 500; }
 #navigation .navbar-inner { background: #414141; }
 #navigation .navbar-inner .container .brand { padding-top: 12px; padding-right: 15px; padding-bottom: 16px; }
 #navigation .navbar-inner .container .social-icons { padding-top: 15px; margin-right: 5px; }
-#navigation .navbar-inner .container .social-icons .social { padding: 0 1px; }
+#navigation .navbar-inner .container .social-icons a { padding: 0 1px; }
 #navigation .navbar-inner .container ul { margin-left: 70px; font-size: 15px; letter-spacing: 1px; font-weight: 500 !important; }
 #navigation .navbar-inner .container ul li a { padding: 19px 2px 2px 3px; margin-left: 20px; margin-right: 20px; color: white; text-shadow: 0.5px 0px #696b6f; line-height: 12px; border-bottom: 2px #414141 solid; box-shadow: none; }
-#navigation .navbar-inner .container ul li a:hover { background: none; border-bottom: 2px #00a9d8 solid; }
-#navigation .navbar-inner .container ul li.active a { color: white; background: #414141; border-bottom: 2px #00a9d8 solid; }
+#navigation .navbar-inner .container ul li a:hover { background: none; border-bottom: 2px #d53f55 solid; }
+#navigation .navbar-inner .container ul li.active a { color: white; background: #414141; border-bottom: 2px #d53f55 solid; }
 
 /* Search -------------------------------------------------- */
 #searchbar { margin-top: -1px; background: #00a9d8; }
 #searchbar .search { margin-top: -10px; }
-#searchbar .search label { display: none; }
 #searchbar .search form { margin-bottom: 10px; }
+#searchbar .search form fieldset { width: 85%; display: inline-block; }
 #searchbar .search .mglass { position: relative; margin-bottom: -62px; margin-left: 5px; margin-top: 0px; }
-#searchbar .search fieldset { width: 85%; display: inline-block; }
-#searchbar .search #Search { display: inline-block; width: 80%; margin-right: 0px; }
+#searchbar .search #Search { display: inline-block; width: 80%; }
 #searchbar .search #Search input { width: 90%; height: 35px; border: none; padding-left: 40px; }
 #searchbar .search #Search ::-webkit-input-placeholder { font-size: 14px; color: #535353; }
 #searchbar .search #Search :-moz-placeholder { font-size: 14px; color: #535353; }
 #searchbar .search #Search ::-moz-placeholder { font-size: 14px; color: #535353; }
 #searchbar .search #Search :-ms-input-placeholder { font-size: 14px; color: #535353; }
 #searchbar .search #CustomSearchForm_CustomSearchForm_action_customResults { -webkit-font-smoothing: antialiased; display: inline-block; width: 90px; height: 43px; padding: 5px 10px; font-size: 13px; text-transform: uppercase; border: 1px solid #0077a8; }
-#searchbar .logo { text-align: right; padding-top: 15px; }
 
 /*Footer -------------------------------------------------- */
 #footer { width: 100%; background: #414141; position: relative; }
@@ -82,6 +80,9 @@ b { font-weight: 500; }
 #HomePage .tags-wrap a { text-decoration: none; }
 
 /*SessionsHolder -------------------------------------------------- */
+#SessionsHolder .topic-filt { background: #f3f3f3; border: 1px solid #d8d8d8; padding-top: 10px; margin-top: 10px; }
+#SessionsHolder .topic-filt ul { list-style-type: none; }
+#SessionsHolder .topic-filt ul li a { color: #535353; }
 #SessionsHolder #filter-form { cursor: pointer; }
 #SessionsHolder #tag-head { cursor: pointer; color: #00a9d8; }
 #SessionsHolder #wrap { background: white; }
@@ -151,13 +152,19 @@ b { font-weight: 500; }
 /* meeting -------------------------------------------------- */
 #MeetingController h5 { font-size: 16px; color: #414141; }
 #MeetingController .header { padding-top: 30px; padding-bottom: 10px; margin-bottom: 10px; }
-#MeetingController .tags-wrap { margin-bottom: 0px; border: 1px #d8d8d8 solid; border-bottom: none; background: #f3f3f3; min-height: 100px; }
+#MeetingController .tags-wrap { margin-bottom: 20px; border: 1px #d8d8d8 solid; background: #f3f3f3; min-height: 100px; }
 #MeetingController .tags-wrap .tags { padding: 10px; }
 #MeetingController .tags-wrap a { text-decoration: none; }
-#MeetingController .ses { padding-top: 10px; }
-#MeetingController .links { margin-bottom: 10px; border: 1px #d8d8d8 solid; }
-#MeetingController .links .section { padding: 10px; height: 95px; margin-left: 10px; }
+#MeetingController .sessions .heading { border-bottom: 1px #d8d8d8 solid; }
+#MeetingController .ses { padding-top: 10px; border-bottom: 1px #d8d8d8 solid; }
+#MeetingController .ses .switch:hover { text-decoration: none; }
+#MeetingController .ses .arrow { float: right; }
+#MeetingController .links { border: 1px #d8d8d8 solid; border-bottom: none; }
+#MeetingController .links .section { padding: 3px; min-height: 95px; }
+#MeetingController .links .section .span3 { padding-top: 10px; margin: 0px; }
+#MeetingController .links .span2 { margin: 3px; }
 #MeetingController .links .right-divide { border-right: 1px #d8d8d8 solid; }
+#MeetingController .links .right-divide img { display: inline-block; float: left; padding-right: 5px; }
 #MeetingController .links a { text-decoration: underline; }
 #MeetingController #speakers-wrap .thumbnail > img { margin-left: 0; margin-right: 0; }
 
