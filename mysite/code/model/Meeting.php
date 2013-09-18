@@ -25,8 +25,14 @@ class Meeting extends DataObject {
 
 	public static $summary_fields = array(
 		'Title',
-		'StartDate'
+		'StartDate',
+		'Location.City'
 	);
+
+	public static $field_labels = array(
+		'Location.City' => 'Location',
+		'StartDate' => 'Date'
+		);
 
 	static $searchable_fields = array(
 		'Title'
