@@ -91,10 +91,10 @@ class SessionsHolder_Controller extends Page_Controller {
 		$s->setAttribute('data-provide', 'typeahead');
 		$s->setAttribute('class', 'typeahead');
 
-		// $fields->push($topic = new CheckboxSetField('Topic', 'Topics', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
-		// if(isset($_GET['topic']) && $_GET['topic'] != null){
-		// 	$topic->setValue($_GET['topic']);
-		// }
+		$fields->push($topic = new CheckboxSetField('Topic', 'Topics', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
+		if(isset($_GET['topic']) && $_GET['topic'] != null){
+			$topic->setValue($_GET['topic']);
+		}
 
 		$sortOptions = array(
 			'Latest' => 'Latest', 
@@ -139,6 +139,10 @@ class SessionsHolder_Controller extends Page_Controller {
 		if(isset($data['Day']) && $data['Day'] != null){
 				$filter['Day'] = $data['Day'];		
 		}
+		if(isset($data['Topic']) && $data['Topic'] != null){
+			$filter['TopicID'] = $data['Topic'];
+		}
+
 		if(count($filter > 0)){
 			$filterList['Filter'] = $filter;
 		}

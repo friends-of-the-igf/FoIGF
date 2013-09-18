@@ -1,33 +1,4 @@
-<div class="row-fluid topic-filt">
-	<div class="span4">
-		<% if Topics %>
-			<ul>
-				<li><a id="all" href='$Link'>All Sessions</a></li>
-				<% loop Topics.Limit(4) %>
-				<li><a class="topic" data-id="$ID" href='$Link'>$Name</a></li>
-				<% end_loop %>
-			</ul>
-		<% end_if %>
-	</div>
-	<div class="span4">
-		<% if Topics %>
-			<ul>
-				<% loop Topics.Limit(5, 5) %>
-				<li><a class="topic" data-id="$ID"  href='$Link'>$Name</a></li>
-				<% end_loop %>
-			</ul>
-		<% end_if %>
-	</div>
-	<div class="span4">
-		<% if Topics %>
-			<ul>
-				<% loop Topics.Limit(5, 10) %>
-				<li><a class="topic" data-id="$ID"  href='$Link'>$Name</a></li>
-				<% end_loop %>
-			</ul>
-		<% end_if %>
-	</div>
-</div>
+
 <div class="row-fluid">
 	<div id='filter-wrap' class="span3">
 		<div class="filter">
