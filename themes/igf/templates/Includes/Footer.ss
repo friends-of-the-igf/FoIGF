@@ -53,7 +53,7 @@
 			
 					
 		
-			<div class="offset2 span2 section">
+			<div class="offset2 span2 f-section">
 				
 					<div class="element">
 						<div class="logo">
