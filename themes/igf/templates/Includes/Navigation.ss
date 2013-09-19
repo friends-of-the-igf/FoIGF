@@ -15,8 +15,14 @@
 					<% loop $Menu(1).Limit(3) %>
 						<li class="$LinkingMode"><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
 					<% end_loop %>
+					<% if $SiteConfig.CanViewType == LoggedInUsers %>
+						<% if $CurrentMember %>
+							<li class=""><a class="blue" href="#" title="Regional and National IGFs">Regional and National IGFs</a></li>
+						<% end_if %>
+					<% else %>
 						<li class=""><a class="blue" href="#" title="Regional and National IGFs">Regional and National IGFs</a></li>
-						
+					<% end_if %>
+					
 				</ul>
 				<div class="social-icons pull-right visible-desktop">
 					<% if $SiteConfig.TwitterURL %><a href="$SiteConfig.TwitterURL" ><img alt="Twitter" src="{$ThemeDir}/images/twitter.png"></a><% end_if %>

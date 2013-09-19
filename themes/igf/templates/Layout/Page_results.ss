@@ -11,40 +11,40 @@
             <% loop $Results %> 
              <% if ClassName == Meeting %>
             <li>
-                <strong>Meeting</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
+                <strong>Meeting</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
                 <p>$Content.LimitWordCountXML</p>
             </li>
             <% else_if ClassName == Location %> 
                 <% loop Meetings %>
                     <li>
-                       <strong>Meeting</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
+                       <strong>Meeting</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
                         <p>$Content.LimitWordCountXML</p>
                     </li>
                 <% end_loop %>
             <% else_if ClassName == MeetingSession %>
             <li>
-                <strong>Session</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
+                <strong>Session</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
                 <p>$Content.LimitWordCountXML</p>
             
             </li>
             <% else_if ClassName == Topic %>
                 <% loop MeetingSessions %>
                      <li>
-                        <strong>Session</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
+                        <strong>Session</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
                         <p>$Content.LimitWordCountXML</p>
                      </li>
                 <% end_loop %> 
             <% else_if ClassName == Type %>
                 <% loop MeetingSessions %>
                      <li>
-                        <strong>Session</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
+                        <strong>Session</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
                         <p>$Content.LimitWordCountXML</p>
                      </li>
                 <% end_loop %> 
             <% else_if ClassName == Member %>
                 <% loop MeetingSessions %>
                      <li>
-                        <strong>Session</strong> - <a class="searchResultHeader" href="$URLSegment">$Title</a>
+                        <strong>Session</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
                         <p>$Content.LimitWordCountXML</p>
                      </li>
                 <% end_loop %> 

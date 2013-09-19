@@ -10,7 +10,7 @@
 <div class="row-fluid tags-wrap">
   <div class="span12 tags">
     <h5>Popular Topics</h5>
-    <% loop popularTags(30, true) %><a href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
+    <% loop popularTags(30, true) %><a title="$Tag" href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
   </div>
 </div>
 <div class="sessions">
@@ -19,7 +19,7 @@
 		<h3>Recently added sessions</h3>
 		</div>
 		<div class="span4 link">
-			<a href='$sessionLink' class="btn btn-primary">Browse Sessions</a>
+			<a title="Browse Sessions" href='$sessionLink' class="btn btn-primary">Browse Sessions</a>
 		</div>
 	</div>
 	<div class="row-fluid ses">

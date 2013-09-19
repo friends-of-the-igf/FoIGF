@@ -11,7 +11,13 @@
 											<li><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
 									<% end_if %>
 								<% end_loop %>
-								<li class="buff"><a class="blue" href="#" title="Regional and National IGFs">Regional and National IGFs</a></li>
+								<% if $SiteConfig.CanViewType == LoggedInUsers %>
+									<% if $CurrentMember %>
+										<li class="buff"><a class="blue" href="#" title="Regional and National IGFs">Regional and National IGFs</a></li>
+									<% end_if %>
+								<% else %>
+									<li class="buff"><a class="blue" href="#" title="Regional and National IGFs">Regional and National IGFs</a></li>
+								<% end_if %>
 								<li><% if $SiteConfig.TwitterURL %><a href="$SiteConfig.TwitterURL" title="Tiwtter"><img alt="Twitter" src="{$ThemeDir}/images/twitter.png" class='social'></a><% end_if %><% if $SiteConfig.FacebookURL %><a href="$SiteConfig.FacebookURL" title="Facebook"><img alt="Facebook" src="{$ThemeDir}/images/fb.png" class='social'></a><% end_if %></li>			
 							</ul>
 						</div>

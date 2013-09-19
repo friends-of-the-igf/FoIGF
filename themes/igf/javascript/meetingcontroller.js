@@ -62,29 +62,29 @@ $(document).ready(function() {
 
 	function changeArrow(){
 		if($('#listZero').css('display') == 'none'){
-			$('.arrow').find('#dayZero').html('&#9650');
-		} else if($('#listZero').css('display') == 'block') {
 			$('.arrow').find('#dayZero').html('&#9660');
+		} else if($('#listZero').css('display') == 'block') {
+			$('.arrow').find('#dayZero').html('&#9650');
 		}
 		if($('#listOne').css('display') == 'none'){
-			$('.arrow').find('#dayOne').html('&#9650');
-		} else if($('#listOne').css('display') == 'block') {
 			$('.arrow').find('#dayOne').html('&#9660');
+		} else if($('#listOne').css('display') == 'block') {
+			$('.arrow').find('#dayOne').html('&#9650');
 		}
 		if($('#listTwo').css('display') == 'none'){
-			$('.arrow').find('#dayTwo').html('&#9650');
-		} else if($('#listTwo').css('display') == 'block') {
 			$('.arrow').find('#dayTwo').html('&#9660');
+		} else if($('#listTwo').css('display') == 'block') {
+			$('.arrow').find('#dayTwo').html('&#9650');
 		}
 		if($('#listThree').css('display') == 'none'){
-			$('.arrow').find('#dayThree').html('&#9650');
-		} else if($('#listThree').css('display') == 'block') {
 			$('.arrow').find('#dayThree').html('&#9660');
+		} else if($('#listThree').css('display') == 'block') {
+			$('.arrow').find('#dayThree').html('&#9650');
 		}
 		if($('#listFour').css('display') == 'none'){
-			$('.arrow').find('#dayFour').html('&#9650');
-		} else if($('#listFour').css('display') == 'block') {
 			$('.arrow').find('#dayFour').html('&#9660');
+		} else if($('#listFour').css('display') == 'block') {
+			$('.arrow').find('#dayFour').html('&#9650');
 		}
 	}
 
