@@ -2,13 +2,13 @@
 <div class="row-fluid">
 	<div id='filter-wrap' class="span3">
 		<div class="filter">
-			<h5 id="filter-form">Filter Sessions <span class="arrow">&#9660</span></h5>
+			<h5 id="filter-form">Filter Sessions <span class="arrow">&#9650</span></h5>
 			$FilterForm
-			<a id="Form_FilterForm" class="underline clear"> clear filter </a>
+			<a title="Clear Filter" id="Form_FilterForm" class="underline clear"> clear filter </a>
 			<div class='tags'>
-			<h5 id="tag-head">View sessions by tag <span class="arrow">&#9650</span></h5>
+			<h5 id="tag-head">View sessions by tag <span class="arrow">&#9660</span></h5>
 			<div id="tag-list">
-				<% loop popularTags %><a href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
+				<% loop popularTags %><a title="$Tag" href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
 			</div>
 		</div>
 	</div>
@@ -36,10 +36,10 @@
 		<div class="more">
 			<div class="row-fluid">
 				<div class=" span4 button">
-					<a id="prev" class="btn btn-primary">Prev</a>
+					<a title="Previous Page" id="prev" class="btn btn-primary">Prev</a>
 				</div>
 				<div class="offset4 span4 button">
-					<a id="next" class="btn btn-primary">Next</a>
+					<a title="Next" id="next" class="btn btn-primary">Next</a>
 				</div>
 			</div>
 			<div class="pagination pagination-centered">

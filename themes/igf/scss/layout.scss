@@ -61,7 +61,7 @@ b{
 }
 
 .blue{
-	color: $blue;
+	color: $blue !important;
 }
 
 
@@ -99,6 +99,7 @@ b{
 				}
 
 				li {
+					z-index: 2;
 					a {
 						padding: 28px 2px 4px 3px;
 						margin-left: 20px;
@@ -108,9 +109,11 @@ b{
 						line-height: 12px;
 						border-bottom: 2px $grayDarkest solid;
 						box-shadow: none;
+						background: $grayDarkest;
+						z-index: 2;
 
 						&:hover {
-							background:none;
+							background: $grayDarkest;
 							border-bottom: 2px $blue solid;
 						}
 					}

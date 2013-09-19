@@ -20,26 +20,26 @@ $(document).ready(function() {
 //filter form---------
 
 if($('#Form_FilterForm').css('display') == 'none'){	
-	$('#filter-form').find('.arrow').html('&#9650');
+	$('#filter-form').find('.arrow').html('&#9660');
 }
 
 $('#filter-form').on('click', function(){
 	if($('#Form_FilterForm').css('display') == 'none'){	
 		$('#Form_FilterForm').show();
-		$('#filter-form').find('.arrow').html('&#9660');
+		$('#filter-form').find('.arrow').html('&#9650');
 	} else {
 		$('#Form_FilterForm').hide();
-		$('#filter-form').find('.arrow').html('&#9650');
+		$('#filter-form').find('.arrow').html('&#9660');
 	}
 })
 
 $('#tag-head').on('click', function(){
 	if($('#tag-list').css('display') == 'none'){	
 		$('#tag-list').show();
-		$('#tag-head').find('.arrow').html('&#9660');
+		$('#tag-head').find('.arrow').html('&#9650');
 	} else {
 		$('#tag-list').hide();
-		$('#tag-head').find('.arrow').html('&#9650');
+		$('#tag-head').find('.arrow').html('&#9660');
 	}
 })
 

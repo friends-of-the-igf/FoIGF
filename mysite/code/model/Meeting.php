@@ -158,7 +158,7 @@ class Meeting extends DataObject {
 		}
 	}
 
-	public function allTags() {
+	public function popularTags() {
 		$sessions = $this->MeetingSessions();
 
 		$uniqueTagsArray = array();
@@ -207,8 +207,11 @@ class Meeting extends DataObject {
 				'Size' => $size
 			)));
 		}
+		$output->sort('Weight', 'DESC');
 		
-		return $output;
+		$limit = 20;
+		
+		return new ArrayList(array_slice($output->items, 0, $limit));
 	}
 
 	public function allTagsList() {
@@ -325,9 +328,7 @@ class Meeting extends DataObject {
 					break;
 			}
 		}	
-		error_log($dayList0->Count());
-		error_log($dayList1->Count());
-
+		
 		$data = array(
 			'Day0' => array('Date'=> date('l j F Y', strtotime($day0)), 'List' => $this->makeColumns($dayList0), 'Count' => $dayList0->Count()),
 			'Day1' => array('Date'=> date('l j F Y', strtotime($day1)), 'List' => $this->makeColumns($dayList1), 'Count' => $dayList1->Count()),

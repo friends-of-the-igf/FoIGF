@@ -2,7 +2,7 @@
 <div class="row-fluid header">
   <div class="span12">
     <h3>$Title</h3>
-    <h4 class="subtext">$StartDate.Format(j)-$EndDate.Long - in <a href="$Location.Link">$Location.Name</a><% if Website %> - <a href="$Website">$Website</a><% end_if %></h4>
+    <h4 class="subtext">$StartDate.Format(j)-$EndDate.Long - in <a title="$Location.Name" href="$Location.Link">$Location.Name</a><% if Website %> - <a title="$Website" href="$Website">$Website</a><% end_if %></h4>
   </div>    
 </div>
 <div class="row-fluid links">
@@ -11,14 +11,14 @@
     <% if Image %>
       $Image.SetSize(120,95)
     <% else %>
-      <img src="http://placehold.it/120x95" />
+      <img alt="No Image for meeting" src="http://placehold.it/120x95" />
     <% end_if %>
     <h5>Meeting Information</h5>
     <% loop LinkItems %>
       <% if Type == 'URL' %>
-        <a href="$Url">$Title</a><% if not Last %> | <% end_if %>
+        <a title="$Title" href="$Url">$Title</a><% if not Last %> | <% end_if %>
       <% else_if Type == 'Text' %>
-        <a href="item/$ID">$Title</a><% if not Last %> | <% end_if %>
+        <a title="$Title" href="item/$ID">$Title</a><% if not Last %> | <% end_if %>
       <% end_if %>
     <% end_loop %>
   </div>
@@ -43,8 +43,8 @@
 </div>
 <div class="row-fluid tags-wrap">
   <div class="span12 tags">
-    <h5>Topics covered</h5>
-      <% loop $allTags %><a href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
+    <h5>Popular Tags</h5>
+      <% loop $popularTags %><a title="$Tag" href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
   </div>
 </div>
 <div class="sessions">
@@ -53,7 +53,7 @@
       <h3>$MeetingSessions.Count Session<% if $MeetingSessions.Count != 1 %>s<% end_if %></h3>
     </div>
     <div class="span4 link">
-      <a href="$FilterLink" class="btn btn-primary">Filter Sessions</a>
+      <a title="Filter Sessions" href="$FilterLink" class="btn btn-primary">Filter Sessions</a>
     </div>
   </div>
   <% if MeetingSessions %>
@@ -64,7 +64,7 @@
             <div class="span12">
               <div class="row-fluid ">
                 <div class="span12">
-                  <h4><a id="dayZero" class='switch'>Day 0: </a>$Date <span class="arrow"><a id="dayZero" class="switch">&#9650</a></span></h4>
+                  <h4><a title="Day Zero" id="dayZero" class='switch'>Day 0: </a>$Date <span class="arrow"><a id="dayZero" class="switch">&#9660</a></span></h4>
                 </div>
               </div>
               <div id="listZero" class="row-fluid list">
@@ -86,7 +86,7 @@
             <div class="span12">
               <div class="row-fluid ">
                 <div class="span12">
-                  <h4><a id="dayOne" class='switch'>Day 1: </a>$Date <span class="arrow"><a id="dayOne" class="switch">&#9650</a></span></h4>
+                  <h4><a title="Day One" id="dayOne" class='switch'>Day 1: </a>$Date <span class="arrow"><a id="dayOne" class="switch">&#9660</a></span></h4>
                 </div>
               </div>
               <div id="listOne" class="row-fluid list">
@@ -108,7 +108,7 @@
             <div class="span12">
               <div class="row-fluid list">
                 <div class="span12">
-                  <h4><a id="dayTwo" class='switch'>Day 2: </a>$Date <span class="arrow"><a id="dayTwo" class="switch">&#9650</a></span></h4>
+                  <h4><a title="Day Two" id="dayTwo" class='switch'>Day 2: </a>$Date <span class="arrow"><a id="dayTwo" class="switch">&#9660</a></span></h4>
                 </div>
               </div>
               <div id="listTwo" class="row-fluid list">
@@ -130,7 +130,7 @@
             <div class="span12">
               <div class="row-fluid ">
                 <div class="span12">
-                  <h4><a id="dayThree" class='switch'>Day 3: </a>$Date <span class="arrow"><a id="dayThree" class="switch">&#9650</a></span></h4>
+                  <h4><a title="Day Three" id="dayThree" class='switch'>Day 3: </a>$Date <span class="arrow"><a id="dayThree" class="switch">&#9660</a></span></h4>
                 </div>
               </div>
               <div id="listThree" class="row-fluid">
@@ -152,7 +152,7 @@
             <div class="span12">
               <div class="row-fluid list"> 
                 <div class="span12">
-                  <h4><a id="dayFour" class='switch'>Day 4: </a>$Date <span class="arrow"><a id="dayFour" class="switch">&#9650</a></span></h4>
+                  <h4><a title="Day Four" id="dayFour" class='switch'>Day 4: </a>$Date <span class="arrow"><a id="dayFour" class="switch">&#9660</a></span></h4>
                 </div>
               </div>
               <div id="listFour" class="row-fluid ">

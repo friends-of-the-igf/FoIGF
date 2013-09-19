@@ -4,7 +4,7 @@
 		<div class="span12">
 			<h3>$Title</h3>
 			<h4 class="subtext">
-				$Date.Long - A <a href="$Type.Link">$Type.Name</a> on <a href="$Topic.Link">$Topic.Name</a> in <a href="$Meeting.Location.Link">$Meeting.Location.Name</a>
+				$Date.Long - A <a title="$Type.Name" href="$Type.Link">$Type.Name</a> on <a title="$Topic.Name" href="$Topic.Link">$Topic.Name</a> in <a title="$Meeting.Location.Name" href="$Meeting.Location.Link">$Meeting.Location.Name</a>
 			</h4>
 		</div>	
 	</div>
@@ -18,11 +18,11 @@
 			<% end_loop %>
 			<% end_if %>
 			<div>
-				<% if Transcript %> <a href="$Transcript.Link" class="btn"><b>Read full session transcript</b></a> 
-				<% else_if  TranscriptContent %><% if Videos || Content %>  <a href="transcript/$ID" class="btn" target="_blank"><b>Read full session transcript</b></a> <% end_if %><% end_if %>
-				<% if ProposalLink %><a href="$ProposalLink" class="btn" target="_blank"><b>View Original proposal</b></a>
-				<% else_if Proposal %><a href="$Proposal.Link" class="btn" target="_blank"><b>View Original proposal</b></a>
-				<% else_if ProposalContent %><a href="proposal/$ID" class="btn" target="_blank"><b>View Original proposal</b></a>
+				<% if Transcript %> <a title="Read full session transcript" href="$Transcript.Link" class="btn"><b>Read full session transcript</b></a> 
+				<% else_if  TranscriptContent %><% if Videos || Content %>  <a title="Read full session transcript" href="transcript/$ID" class="btn" target="_blank"><b>Read full session transcript</b></a> <% end_if %><% end_if %>
+				<% if ProposalLink %><a title="View Original proposal" href="$ProposalLink" class="btn" target="_blank"><b>View Original proposal</b></a>
+				<% else_if Proposal %><a title="View Original proposal" href="$Proposal.Link" class="btn" target="_blank"><b>View Original proposal</b></a>
+				<% else_if ProposalContent %><a title="View Original proposal" href="proposal/$ID" class="btn" target="_blank"><b>View Original proposal</b></a>
 				<% end_if %>
 			</div>
 			<div class="content">
@@ -58,7 +58,7 @@
 				<% if TagsCollection %>
 					<h5>Tagged</h5>
 					<% loop TagsCollection %>
-						<a href="$Link">$Tag</a><% if not Last %>,<% end_if %>
+						<a title="$Tag" href="$Link">$Tag</a><% if not Last %>,<% end_if %>
 					<% end_loop %>
 				<% end_if %>
 			</div>
@@ -69,11 +69,11 @@
 						<div class='row-fluid speaker'>
 							<div class='span9'>
 								<% if BioLink %>
-									<a class="no-dec" href="$BioLink">$Name</a><br/>
+									<a title="$Name" class="no-dec" href="$BioLink">$Name</a><br/>
 								<% else %>
 									$Name<br/>
 								<% end_if %>
-								<a href="$Link">$MeetingSessions.Count Sessions</a>
+								<a title="$MeetingSessions.Count Sessions" href="$Link">$MeetingSessions.Count Sessions</a>
 							</div>
 						</div>
 					<% end_loop %>
