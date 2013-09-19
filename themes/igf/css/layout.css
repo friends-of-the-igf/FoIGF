@@ -22,7 +22,7 @@ h4 { font-weight: 500; }
 
 b { font-weight: 500; }
 
-.blue { color: #0098cd; }
+.blue { color: #0098cd !important; }
 
 /* Navigation -------------------------------------------------- */
 #navigation { height: 75px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }

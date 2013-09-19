@@ -123,7 +123,6 @@ class SessionsHolder_Controller extends Page_Controller {
 	}
 
 	public function doSearch($data, $form){
-		error_log($data['Day']);
 
 		$filter = array();
 		$filterList = array();

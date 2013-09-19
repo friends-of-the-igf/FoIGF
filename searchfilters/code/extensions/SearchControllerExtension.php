@@ -45,6 +45,7 @@ class SearchControllerExtension extends Extension {
 	}
 
 	public function customResults($data, $form, $request) {
+		
 	
 		$data = array(
 			'Results' => $form->getResults(20),

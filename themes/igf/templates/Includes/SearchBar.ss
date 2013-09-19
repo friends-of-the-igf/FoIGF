@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row-fluid">
 			<div class="search span9">
-				<img class='mglass' src="{$ThemeDir}/images/icons/search.png">
+				<img alt="Search" class='mglass' src="{$ThemeDir}/images/icons/search.png">
 				$CustomSearchForm
 			</div>
 			

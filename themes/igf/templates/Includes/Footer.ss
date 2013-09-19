@@ -8,14 +8,11 @@
 							<ul class="col-footer">
 								<% loop $Menu(1).limit(2) %>
 									<% if ClassName != MeetingsHolder %>
-										<% if Pos == 2 || Pos == 5 %>
-											<li class="buff"><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
-										<% else %>
 											<li><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
-										<% end_if %>
 									<% end_if %>
 								<% end_loop %>
-								<li><% if $SiteConfig.TwitterURL %><a href="$SiteConfig.TwitterURL" title="Tiwtter"><img src="{$ThemeDir}/images/twitter.png" class='social'></a><% end_if %><% if $SiteConfig.FacebookURL %><a href="$SiteConfig.FacebookURL" title="Facebook"><img src="{$ThemeDir}/images/fb.png" class='social'></a><% end_if %></li>			
+								<li class="buff"><a class="blue" href="#" title="Regional and National IGFs">Regional and National IGFs</a></li>
+								<li><% if $SiteConfig.TwitterURL %><a href="$SiteConfig.TwitterURL" title="Tiwtter"><img alt="Twitter" src="{$ThemeDir}/images/twitter.png" class='social'></a><% end_if %><% if $SiteConfig.FacebookURL %><a href="$SiteConfig.FacebookURL" title="Facebook"><img alt="Facebook" src="{$ThemeDir}/images/fb.png" class='social'></a><% end_if %></li>			
 							</ul>
 						</div>
 					</div>
@@ -57,7 +54,7 @@
 				
 					<div class="element">
 						<div class="logo">
-							<img src="{$ThemeDir}/images/igf-logo.png"/>
+							<img alt="IGF" src="{$ThemeDir}/images/igf-logo.png"/>
 							<div class='website'>
 								<span>Official IGF Website</span>
 								<a>www.intgovforum.org</a>
