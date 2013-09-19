@@ -32,8 +32,9 @@ b { font-weight: 500; }
 #navigation .navbar-inner .container .social-icons a { padding: 0 1px; }
 #navigation .navbar-inner .container ul { margin-left: 70px; font-size: 17px; letter-spacing: 1px; font-weight: 500 !important; }
 #navigation .navbar-inner .container ul .blue { color: #0098cd; }
-#navigation .navbar-inner .container ul li a { padding: 28px 2px 4px 3px; margin-left: 20px; margin-right: 20px; color: white; text-shadow: 0.5px 0px #696b6f; line-height: 12px; border-bottom: 2px #414141 solid; box-shadow: none; }
-#navigation .navbar-inner .container ul li a:hover { background: none; border-bottom: 2px #0098cd solid; }
+#navigation .navbar-inner .container ul li { z-index: 2; }
+#navigation .navbar-inner .container ul li a { padding: 28px 2px 4px 3px; margin-left: 20px; margin-right: 20px; color: white; text-shadow: 0.5px 0px #696b6f; line-height: 12px; border-bottom: 2px #414141 solid; box-shadow: none; background: #414141; z-index: 2; }
+#navigation .navbar-inner .container ul li a:hover { background: #414141; border-bottom: 2px #0098cd solid; }
 #navigation .navbar-inner .container ul li .blue { color: #0098cd; }
 #navigation .navbar-inner .container ul li.active a { color: white; background: #414141; border-bottom: 2px #0098cd solid; }
 
