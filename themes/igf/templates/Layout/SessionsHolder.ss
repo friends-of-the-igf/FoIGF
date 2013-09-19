@@ -4,6 +4,7 @@
 		<div class="filter">
 			<h5 id="filter-form">Filter Sessions <span class="arrow">&#9660</span></h5>
 			$FilterForm
+			<a id="Form_FilterForm" class="underline clear"> clear filter </a>
 			<div class='tags'>
 			<h5 id="tag-head">View sessions by tag <span class="arrow">&#9650</span></h5>
 			<div id="tag-list">
@@ -12,7 +13,6 @@
 		</div>
 	</div>
 		
-
 	</div>
 	<div class="sessions span9">
 		<div class="heading">

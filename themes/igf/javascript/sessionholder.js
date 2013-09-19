@@ -43,6 +43,14 @@ $('#tag-head').on('click', function(){
 	}
 })
 
+$('.clear').on('click', function(){
+	$(':input','#Form_FilterForm')
+	 .not(':button, :submit, :reset, :hidden')
+	 .val('')
+	 .removeAttr('checked')
+	 .removeAttr('selected');
+});
+
 
 //pagination----------
 var page = 0;

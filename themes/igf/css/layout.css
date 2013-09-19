@@ -22,19 +22,23 @@ h4 { font-weight: 500; }
 
 b { font-weight: 500; }
 
+.blue { color: #0098cd; }
+
 /* Navigation -------------------------------------------------- */
-#navigation { font-family: Georgia, serif; }
-#navigation .navbar-inner { background: #414141; }
-#navigation .navbar-inner .container .brand { padding-top: 12px; padding-right: 15px; padding-bottom: 16px; }
-#navigation .navbar-inner .container .social-icons { padding-top: 15px; margin-right: 5px; }
+#navigation { height: 75px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+#navigation .navbar-inner { height: 75px; background: #414141; }
+#navigation .navbar-inner .container .brand { padding-top: 23px; padding-right: 15px; padding-bottom: 16px; }
+#navigation .navbar-inner .container .social-icons { padding-top: 21px; margin-right: 5px; }
 #navigation .navbar-inner .container .social-icons a { padding: 0 1px; }
-#navigation .navbar-inner .container ul { margin-left: 70px; font-size: 15px; letter-spacing: 1px; font-weight: 500 !important; }
-#navigation .navbar-inner .container ul li a { padding: 19px 2px 2px 3px; margin-left: 20px; margin-right: 20px; color: white; text-shadow: 0.5px 0px #696b6f; line-height: 12px; border-bottom: 2px #414141 solid; box-shadow: none; }
-#navigation .navbar-inner .container ul li a:hover { background: none; border-bottom: 2px #d53f55 solid; }
-#navigation .navbar-inner .container ul li.active a { color: white; background: #414141; border-bottom: 2px #d53f55 solid; }
+#navigation .navbar-inner .container ul { margin-left: 70px; font-size: 17px; letter-spacing: 1px; font-weight: 500 !important; }
+#navigation .navbar-inner .container ul .blue { color: #0098cd; }
+#navigation .navbar-inner .container ul li a { padding: 28px 2px 4px 3px; margin-left: 20px; margin-right: 20px; color: white; text-shadow: 0.5px 0px #696b6f; line-height: 12px; border-bottom: 2px #414141 solid; box-shadow: none; }
+#navigation .navbar-inner .container ul li a:hover { background: none; border-bottom: 2px #0098cd solid; }
+#navigation .navbar-inner .container ul li .blue { color: #0098cd; }
+#navigation .navbar-inner .container ul li.active a { color: white; background: #414141; border-bottom: 2px #0098cd solid; }
 
 /* Search -------------------------------------------------- */
-#searchbar { margin-top: -1px; background: #00a9d8; }
+#searchbar { margin-top: -1px; background: #0098cd; }
 #searchbar .search { margin-top: -10px; }
 #searchbar .search form { margin-bottom: 10px; }
 #searchbar .search form fieldset { width: 85%; display: inline-block; }
@@ -84,7 +88,7 @@ b { font-weight: 500; }
 #SessionsHolder .topic-filt ul { list-style-type: none; }
 #SessionsHolder .topic-filt ul li a { color: #535353; }
 #SessionsHolder #filter-form { cursor: pointer; }
-#SessionsHolder #tag-head { cursor: pointer; color: #00a9d8; }
+#SessionsHolder #tag-head { cursor: pointer; color: #0098cd; }
 #SessionsHolder #wrap { background: white; }
 #SessionsHolder .sessions { background: none; margin-left: 0px; padding-left: 20px; padding-right: 20px; padding-top: 30px; height: 100%; }
 #SessionsHolder .sessions .heading { padding-left: 10px; }
@@ -93,12 +97,13 @@ b { font-weight: 500; }
 #SessionsHolder .sessions .more .button { text-align: center; }
 #SessionsHolder .sessions .more .button a { width: 90px; }
 #SessionsHolder #filter-wrap .filter { margin-top: 20px; background: #f3f3f3; border: 1px #d8d8d8 solid; padding-left: 10%; padding-right: 10%; margin-bottom: 20px; color: black; }
-#SessionsHolder #filter-wrap .filter h5 { color: #00a9d8; font-size: 15px; }
+#SessionsHolder #filter-wrap .filter h5 { color: #0098cd; font-size: 15px; }
 #SessionsHolder #filter-wrap .filter form { margin-right: label; margin-right-font-weight: bold; }
 #SessionsHolder #filter-wrap .filter form ul { list-style-type: none; margin-left: 0px; }
 #SessionsHolder #filter-wrap .filter form ul input { margin-top: 0px; }
 #SessionsHolder #filter-wrap .filter form ul label { font-size: 12px !important; font-weight: normal; display: inline-block; }
 #SessionsHolder #filter-wrap .filter form .Actions input { height: 43px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+#SessionsHolder #filter-wrap .filter .underline { text-decoration: underline; }
 #SessionsHolder #filter-wrap .tags { padding-right: 20px; padding-bottom: 30px; }
 #SessionsHolder #filter-wrap .tags a { color: #0077a8; }
 #SessionsHolder #filter-wrap #tag-list { display: none; }
@@ -128,7 +133,7 @@ b { font-weight: 500; }
 #ses-wrap { padding-top: 30px; }
 #ses-wrap .main div { padding-bottom: 20px; }
 #ses-wrap .main h5 { font-size: 16px; }
-#ses-wrap .main .content h5 { color: #00a9d8; }
+#ses-wrap .main .content h5 { color: #0098cd; }
 #ses-wrap .main p { padding-bottom: 10px; }
 #ses-wrap .video { height: 300px; }
 #ses-wrap .video embed { height: 100%; width: 100%; }
