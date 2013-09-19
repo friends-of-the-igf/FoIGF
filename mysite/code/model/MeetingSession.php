@@ -55,8 +55,7 @@ class MeetingSession extends DataObject {
 		'Title',
 		'Tags',
 		'Content',
-		'TranscriptContent',
-		'Meeting.Title'
+		'TranscriptContent'
 	);
 
 	// fields to return
@@ -330,14 +329,16 @@ class MeetingSession extends DataObject {
 	public function getVideo(){
 		if($this->Videos()->Count() != 0) {
 			$vid = $this->Videos()->first();
-			return '<iframe width="100%" height="100%" class="youtube-player" type="text/html" src="http://www.youtube.com/v/'.$vid->YouTubeID.'?controls=0&showinfo=0&html5=1" frameborder="0"></iframe>';
+			return $vid;
 		}
     }
 
     public function getVideoThumb(){
     	if($this->Videos()->Count() != 0) {
 			$vid = $this->Videos()->first();
-			return '<img width="100%" height="100%" class="thumb" src="http://img.youtube.com/vi/'.$vid->YouTubeID.'/0.jpg" />';
+			if($vid->YouTubeID != '' && $vid->YouTubeID != null){
+				return '<img width="100%" height="100%" class="thumb" src="http://img.youtube.com/vi/'.$vid->YouTubeID.'/0.jpg" />';
+			}
    		}
     }
 
@@ -424,5 +425,6 @@ class MeetingSession extends DataObject {
 		}
 		return $tagsList;
     }
+
 
 }

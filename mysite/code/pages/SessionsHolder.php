@@ -54,7 +54,7 @@ class SessionsHolder_Controller extends Page_Controller {
 	
 		
 
-		$fields->push($m = new DropdownField('Meeting', 'Meeting', Meeting::get()->sort('StartDate','DESC')->map('ID', 'getYearLocation')));
+		$fields->push($m = new DropdownField('Meeting', 'by Meeting', Meeting::get()->sort('StartDate','DESC')->map('ID', 'getYearLocation')));
 		if(isset($_GET['location']) && $_GET['location'] != null){
 			$m->setValue(Location::get()->byID($_GET['location'])->Meetings()->First()->ID);
 		}
@@ -62,11 +62,11 @@ class SessionsHolder_Controller extends Page_Controller {
 			$m->setValue(Meeting::get()->byID($_GET['meeting'])->ID);
 		}
 		$m->setEmptyString('-select-');
-		$fields->push($t = new DropdownField('Type', 'Session type', Type::get()->map('ID', 'Name')));
+		$fields->push($t = new DropdownField('Type', 'by Type', Type::get()->map('ID', 'Name')));
 		if(isset($_GET['type']) && $_GET['type'] != null){
 			$t->setValue($_GET['type']);
 		}
-		$fields->push($d = new DropdownField('Day', 'Day of Meeting', array(
+		$fields->push($d = new DropdownField('Day', 'by Day', array(
 			'0' => 'Day 0',
 			'1' => 'Day 1',
 			'2' => 'Day 2',
@@ -80,7 +80,7 @@ class SessionsHolder_Controller extends Page_Controller {
 
 
 		$t->setEmptyString('-select-');
-		$fields->push($s = new TextField('Speaker', 'Speaker'));
+		$fields->push($s = new TextField('Speaker', 'by Speaker'));
 		if(isset($_GET['speaker']) && $_GET['speaker'] != null){
 			$s->setValue(Member::get()->byID($_GET['speaker'])->Name);
 		}
@@ -91,7 +91,7 @@ class SessionsHolder_Controller extends Page_Controller {
 		$s->setAttribute('data-provide', 'typeahead');
 		$s->setAttribute('class', 'typeahead');
 
-		$fields->push($topic = new CheckboxSetField('Topic', 'Topics', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
+		$fields->push($topic = new CheckboxSetField('Topic', 'by Topic', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
 		if(isset($_GET['topic']) && $_GET['topic'] != null){
 			$topic->setValue($_GET['topic']);
 		}

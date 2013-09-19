@@ -7,12 +7,19 @@
 			</a>	
 		</div>
 	<div class="text-wrap">
+	<% else_if Video.WebcastCode %>
+	
+		<div class="vidthumb">
+			<img class="icon" width="40px" height="40px" src="{$ThemeDir}/images/youtube-play.png" />
+			<img width="100%" height="100%" class="thumb" src="$Meeting.Image.URL" />
+		</div>
+	<div class="text-wrap">
 	<% else %>
 	<div class="text-wrap nov">
 	<% end_if %>
 		<div>
 			<p><b><a class="title" href="$Link">$Title</a></b></p>		
-			<p><a href="$Type.Link">$Type.Name</a> in <a href="$Meeting.Location.Link">$Meeting.Location.City</a></p>
+			<p><a href="$Type.Link">$Type.Name</a> in <a href="$Meeting.Location.Link">$Meeting.Location.City</a> on <a href="$Topic.Link">$Topic.Name</a></p>
 			<p class="subtext small"><b>$Date.Long | $Views view<% if Views != 1 %>s<% end_if %></b></p>
 		</div>
 	</div>

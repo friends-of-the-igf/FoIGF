@@ -325,13 +325,15 @@ class Meeting extends DataObject {
 					break;
 			}
 		}	
+		error_log($dayList0->Count());
+		error_log($dayList1->Count());
 
 		$data = array(
-			'Day0' => array('Date'=> date('l j F Y', strtotime($day0)), 'List' => $this->makeColumns($dayList0)),
-			'Day1' => array('Date'=> date('l j F Y', strtotime($day1)), 'List' => $this->makeColumns($dayList1)),
-			'Day2' => array('Date'=> date('l j F Y', strtotime($day2)), 'List' => $this->makeColumns($dayList2)),
-			'Day3' => array('Date'=> date('l j F Y', strtotime($day3)), 'List' => $this->makeColumns($dayList3)),
-			'Day4' => array('Date'=> date('l j F Y', strtotime($day4)), 'List' => $this->makeColumns($dayList4))
+			'Day0' => array('Date'=> date('l j F Y', strtotime($day0)), 'List' => $this->makeColumns($dayList0), 'Count' => $dayList0->Count()),
+			'Day1' => array('Date'=> date('l j F Y', strtotime($day1)), 'List' => $this->makeColumns($dayList1), 'Count' => $dayList1->Count()),
+			'Day2' => array('Date'=> date('l j F Y', strtotime($day2)), 'List' => $this->makeColumns($dayList2), 'Count' => $dayList2->Count()),
+			'Day3' => array('Date'=> date('l j F Y', strtotime($day3)), 'List' => $this->makeColumns($dayList3), 'Count' => $dayList3->Count()),
+			'Day4' => array('Date'=> date('l j F Y', strtotime($day4)), 'List' => $this->makeColumns($dayList4), 'Count' => $dayList4->Count())
 			);
 
 		return new ArrayData($data);
