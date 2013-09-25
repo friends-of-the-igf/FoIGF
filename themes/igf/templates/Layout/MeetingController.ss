@@ -64,7 +64,7 @@
             <div class="span12">
               <div class="row-fluid ">
                 <div class="span12">
-                  <h4><a title="Day Zero" id="dayZero" class='switch'>Day 0: </a>$Date <span class="arrow"><a id="dayZero" class="switch">&#9660</a></span></h4>
+                  <h4><a title="Day Zero" id="dayZero" class='switch'>Day 0: </a>$Date <span class="arrow"><a id="dayZeroIcon" class="switch">&#9660</a></span></h4>
                 </div>
               </div>
               <div id="listZero" class="row-fluid list">
@@ -86,7 +86,7 @@
             <div class="span12">
               <div class="row-fluid ">
                 <div class="span12">
-                  <h4><a title="Day One" id="dayOne" class='switch'>Day 1: </a>$Date <span class="arrow"><a id="dayOne" class="switch">&#9660</a></span></h4>
+                  <h4><a title="Day One" id="dayOne" class='switch'>Day 1: </a>$Date <span class="arrow"><a id="dayOneIcon" class="switch">&#9660</a></span></h4>
                 </div>
               </div>
               <div id="listOne" class="row-fluid list">
@@ -108,7 +108,7 @@
             <div class="span12">
               <div class="row-fluid list">
                 <div class="span12">
-                  <h4><a title="Day Two" id="dayTwo" class='switch'>Day 2: </a>$Date <span class="arrow"><a id="dayTwo" class="switch">&#9660</a></span></h4>
+                  <h4><a title="Day Two" id="dayTwo" class='switch'>Day 2: </a>$Date <span class="arrow"><a id="dayTwoIcon" class="switch">&#9660</a></span></h4>
                 </div>
               </div>
               <div id="listTwo" class="row-fluid list">
@@ -130,7 +130,7 @@
             <div class="span12">
               <div class="row-fluid ">
                 <div class="span12">
-                  <h4><a title="Day Three" id="dayThree" class='switch'>Day 3: </a>$Date <span class="arrow"><a id="dayThree" class="switch">&#9660</a></span></h4>
+                  <h4><a title="Day Three" id="dayThree" class='switch'>Day 3: </a>$Date <span class="arrow"><a id="dayThreeIcon" class="switch">&#9660</a></span></h4>
                 </div>
               </div>
               <div id="listThree" class="row-fluid">
@@ -152,7 +152,7 @@
             <div class="span12">
               <div class="row-fluid list"> 
                 <div class="span12">
-                  <h4><a title="Day Four" id="dayFour" class='switch'>Day 4: </a>$Date <span class="arrow"><a id="dayFour" class="switch">&#9660</a></span></h4>
+                  <h4><a title="Day Four" id="dayFour" class='switch'>Day 4: </a>$Date <span class="arrow"><a id="dayFourIcon" class="switch">&#9660</a></span></h4>
                 </div>
               </div>
               <div id="listFour" class="row-fluid ">
