@@ -296,18 +296,25 @@ class Meeting extends DataObject {
 
 	public function meetingDays(){
 		
+		//initial lists for each day
 		$dayList0 = new ArrayList();
 		$dayList1 = new ArrayList();
 		$dayList2 = new ArrayList();
 		$dayList3 = new ArrayList();
 		$dayList4 = new ArrayList();
+
+		//date for each say of meeting
 		$day0 = date('Y-m-d', strtotime($this->StartDate.'-1 day'));
 		$day1 = date('Y-m-d', strtotime($this->StartDate));
 		$day2 = date('Y-m-d', strtotime($this->StartDate.'+1 day'));
 		$day3 = date('Y-m-d', strtotime($this->StartDate.'+2 day'));
 		$day4 = date('Y-m-d', strtotime($this->StartDate.'+3 day'));
 		
+		//get all sessions from this meeting and sort by topic id
 		$sessions = $this->MeetingSessions();
+
+
+		//go through each meeting session and assign them to an array list based on which day of the meeting they occur
 		foreach($sessions as $session){
 			$date = date('Y-m-d', strtotime($session->Date));
 			switch($date){
@@ -328,16 +335,113 @@ class Meeting extends DataObject {
 					break;
 			}
 		}	
-		
-		$data = array(
-			'Day0' => array('Date'=> date('l j F Y', strtotime($day0)), 'List' => $this->makeColumns($dayList0), 'Count' => $dayList0->Count()),
-			'Day1' => array('Date'=> date('l j F Y', strtotime($day1)), 'List' => $this->makeColumns($dayList1), 'Count' => $dayList1->Count()),
-			'Day2' => array('Date'=> date('l j F Y', strtotime($day2)), 'List' => $this->makeColumns($dayList2), 'Count' => $dayList2->Count()),
-			'Day3' => array('Date'=> date('l j F Y', strtotime($day3)), 'List' => $this->makeColumns($dayList3), 'Count' => $dayList3->Count()),
-			'Day4' => array('Date'=> date('l j F Y', strtotime($day4)), 'List' => $this->makeColumns($dayList4), 'Count' => $dayList4->Count())
-			);
+	
 
-		return new ArrayData($data);
+		//add lists for each day to parent list
+		$dayLists = new ArrayList(array($dayList0, $dayList1, $dayList2, $dayList3, $dayList4));
+
+		$day_array['Day0']['Date'] = date('l j F Y', strtotime($day0));
+		$day_array['Day0']['Day'] = 'Day 0';
+		$day_array['Day0']['Count'] = $dayList0->Count();
+
+		$day_array['Day1']['Date'] = date('l j F Y', strtotime($day1));
+		$day_array['Day1']['Day'] = 'Day 1';
+		$day_array['Day1']['Count'] = $dayList1->Count();
+
+		$day_array['Day2']['Date'] = date('l j F Y', strtotime($day2));
+		$day_array['Day2']['Day'] = 'Day 2';
+		$day_array['Day2']['Count'] = $dayList2->Count();
+
+		$day_array['Day3']['Date'] = date('l j F Y', strtotime($day3));
+		$day_array['Day3']['Day'] = 'Day 3';
+		$day_array['Day3']['Count'] = $dayList3->Count();
+
+		$day_array['Day4']['Date'] = date('l j F Y', strtotime($day4));
+		$day_array['Day4']['Day'] = 'Day 4';
+		$day_array['Day4']['Count'] = $dayList4->Count();
+
+	
+
+		//get all topics
+	 	$topics = Topic::get();
+
+	 	//set a counter to zero;
+	 	$count = 0;
+
+	 	//loop over the day lists
+		foreach($dayLists as $dayList){
+		
+			//create a key for the day array based on which day of the meeting is is. 
+			$day_key = 'Day'.$count;
+
+			//create an array list to hold topics
+			$topicList = new ArrayList();
+			
+			//iterate over the topics
+			foreach($topics as $topic){
+				if($topic->Title != "Other"){
+					//create an array for each topic
+					$topic_arr = array();
+
+					//set the title of the array 
+					$topic_arr['Title'] = $topic->Title;
+					$topic_sessions = new ArrayList();
+
+					//get all sessions from the current day that match the current topic
+					foreach($dayList as $d){
+						if($d->TopicID == $topic->ID){
+							$topic_sessions->push($d);
+						}
+					}
+					
+
+					$topic_arr['Count'] = $topic_sessions->Count();
+					//format the sessions into columns and add the formatted list to the topic array
+					$topic_arr['Sessions'] = $this->makeColumns($topic_sessions);
+
+					//create an arraydata based on the topic array
+					$topicData = new ArrayData($topic_arr);
+
+					//add topic arraydata to topic list
+					$topicList->push($topicData);
+				}
+			}
+
+			//add other
+			$other = $topics->filter(array('Name' => 'Other'))->First();
+
+			$topic_arr = array();
+
+			//set the title of the array 
+			$topic_arr['Title'] = $other->Title;
+			$topic_sessions = new ArrayList();
+
+			//get all sessions from the current day that match the current topic
+			foreach($dayList as $d){
+				if($d->TopicID == $other->ID){
+					$topic_sessions->push($d);
+				}
+			}
+			
+
+			$topic_arr['Count'] = $topic_sessions->Count();
+			//format the sessions into columns and add the formatted list to the topic array
+			$topic_arr['Sessions'] = $this->makeColumns($topic_sessions);
+
+			//create an arraydata based on the topic array
+			$topicData = new ArrayData($topic_arr);
+
+			//add topic arraydata to topic list
+			$topicList->push($topicData);
+		
+			//create a second level array under the key for the current day and assign the topicList as the List
+			$day_array[$day_key]['Topics'] = $topicList;
+
+			//increase count for key
+			$count++;
+		}
+		
+		return new ArrayList($day_array);
 	}
 
 }

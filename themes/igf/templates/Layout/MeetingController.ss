@@ -57,118 +57,35 @@
     </div>
   </div>
   <% if MeetingSessions %>
-    <% with meetingDays %>
-      <% with Day0 %>
+    <% loop MeetingDays %>
         <% if Count != 0 %>
           <div class="row-fluid ses">
             <div class="span12">
-              <div class="row-fluid ">
-                <div class="span12">
-                  <h4><a title="Day Zero" id="dayZero" class='switch'>Day 0: </a>$Date <span class="arrow"><a id="dayZero" class="switch">&#9660</a></span></h4>
-                </div>
-              </div>
-              <div id="listZero" class="row-fluid list">
-                <% loop List %>
-                  <div class="span3">
-                    <% loop Columns %>
-                      <% include Session %>
+              <h4><a class='switch'>$Day: </a>$Date <span class="arrow"><a class="switch">&#9660</a></span></h4>
+            </div>
+            <div class="row-fluid list">
+              <% loop Topics %>
+              <% if Count != 0 %>
+                <div class="row-fluid topics">
+                  <div class="span12">
+                    <h5><a class='topic-switch'>$Title ($Count)</a> <span class="topic-arrow"><a class="topic-switch">&#9660</a></span></h5>
+                  </div>
+                  <div class="row-fluid topic-list">
+                    <% loop Sessions %>
+                      <div class="span3">
+                        <% loop Columns %>
+                          <% include Session %>
+                        <% end_loop %>
+                      </div>
                     <% end_loop %>
                   </div>
-                <% end_loop %>
-              </div>
+                </div>
+                <% end_if %>
+              <% end_loop %>
             </div>
           </div>
         <% end_if %>
-      <% end_with %>
-      <% with Day1 %>
-        <% if Count != 0 %>
-          <div class="row-fluid ses">
-            <div class="span12">
-              <div class="row-fluid ">
-                <div class="span12">
-                  <h4><a title="Day One" id="dayOne" class='switch'>Day 1: </a>$Date <span class="arrow"><a id="dayOne" class="switch">&#9660</a></span></h4>
-                </div>
-              </div>
-              <div id="listOne" class="row-fluid list">
-                <% loop List %>
-                  <div class="span3">
-                    <% loop Columns %>
-                      <% include Session %>
-                    <% end_loop %>
-                  </div>
-                <% end_loop %>
-              </div>
-            </div>
-          </div>
-        <% end_if %>
-      <% end_with %>
-      <% with Day2 %>
-        <% if Count != 0 %>
-          <div class="row-fluid ses">
-            <div class="span12">
-              <div class="row-fluid list">
-                <div class="span12">
-                  <h4><a title="Day Two" id="dayTwo" class='switch'>Day 2: </a>$Date <span class="arrow"><a id="dayTwo" class="switch">&#9660</a></span></h4>
-                </div>
-              </div>
-              <div id="listTwo" class="row-fluid list">
-                <% loop List %>
-                  <div class="span3">
-                    <% loop Columns %>
-                      <% include Session %>
-                    <% end_loop %>
-                  </div>
-                <% end_loop %>
-              </div>
-            </div>
-          </div>
-        <% end_if %>
-      <% end_with %>
-      <% with Day3 %>
-        <% if Count != 0 %>
-          <div class="row-fluid ses">
-            <div class="span12">
-              <div class="row-fluid ">
-                <div class="span12">
-                  <h4><a title="Day Three" id="dayThree" class='switch'>Day 3: </a>$Date <span class="arrow"><a id="dayThree" class="switch">&#9660</a></span></h4>
-                </div>
-              </div>
-              <div id="listThree" class="row-fluid">
-                <% loop List %>
-                  <div class="span3">
-                    <% loop Columns %>
-                      <% include Session %>
-                    <% end_loop %>
-                  </div>
-                <% end_loop %>
-              </div>
-            </div>
-          </div>
-        <% end_if %>
-      <% end_with %>
-      <% with Day4 %>
-        <% if Count != 0 %>
-          <div class="row-fluid ses">
-            <div class="span12">
-              <div class="row-fluid list"> 
-                <div class="span12">
-                  <h4><a title="Day Four" id="dayFour" class='switch'>Day 4: </a>$Date <span class="arrow"><a id="dayFour" class="switch">&#9660</a></span></h4>
-                </div>
-              </div>
-              <div id="listFour" class="row-fluid ">
-                <% loop List %>
-                  <div class="span3">
-                    <% loop Columns %>
-                      <% include Session %>
-                    <% end_loop %>
-                  </div>
-                <% end_loop %>
-              </div>
-            </div>
-          </div>
-        <% end_if %>
-      <% end_with %>
-    <% end_with %>
+      <% end_loop %>
   <% end_if %>
 </div>
 <% end_with %>
