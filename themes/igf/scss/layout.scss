@@ -534,7 +534,6 @@ b{
 	
 		.vidthumb{
 			padding: 4px;
-			height: 100%;
 
 			.thumb{
 				position: relative;
@@ -746,6 +745,13 @@ b{
 
 		.arrow{
 			float: right;
+		}
+
+		.topics{
+			h5{
+				font-weight: normal;
+				font-size: 14px;
+			}
 		}
 	}
 

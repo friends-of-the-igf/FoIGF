@@ -119,7 +119,7 @@ b { font-weight: 500; }
 .sessions .link { text-align: right; padding-top: 10px; }
 .sessions .link .btn { color: white; }
 .sessions .session-tile { padding: 0px; padding-bottom: 0px; border: 1px solid #d8d8d8; margin-bottom: 20px; }
-.sessions .session-tile .vidthumb { padding: 4px; height: 100%; }
+.sessions .session-tile .vidthumb { padding: 4px; }
 .sessions .session-tile .vidthumb .thumb { position: relative; margin-top: -40px; top: 0px; }
 .sessions .session-tile .vidthumb .icon { position: relative; z-index: 1; top: 0px; left: 10px; }
 .sessions .session-tile .text-wrap { padding: 4px; margin: 5px; }
@@ -166,6 +166,7 @@ b { font-weight: 500; }
 #MeetingController .ses { padding-top: 10px; border-bottom: 1px #d8d8d8 solid; }
 #MeetingController .ses .switch:hover { text-decoration: none; }
 #MeetingController .ses .arrow { float: right; }
+#MeetingController .ses .topics h5 { font-weight: normal; font-size: 14px; }
 #MeetingController .links { border: 1px #d8d8d8 solid; border-bottom: none; }
 #MeetingController .links .section { padding: 3px; min-height: 95px; }
 #MeetingController .links .section .span3 { padding-top: 10px; margin: 0px; }
