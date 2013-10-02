@@ -9,7 +9,7 @@
 </div>
 <div class="row-fluid tags-wrap">
   <div class="span12 tags">
-    <h5>Popular Topics</h5>
+    <h5>Popular Tags</h5>
     <% loop popularTags(30, true) %><a title="$Tag" href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
   </div>
 </div>
