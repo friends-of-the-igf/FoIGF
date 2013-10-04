@@ -1,9 +1,5 @@
 <div class="row-fluid content">
-	<div class="span1">
-		<span class='st_facebook_vcount' displayText='Facebook'></span>
-		<span class='st_twitter_vcount' displayText='Tweet'></span>
-	</div>
-	<div class="span11 text">
+	<div class="span12 text">
 	$Content
 	</div>
 </div>
