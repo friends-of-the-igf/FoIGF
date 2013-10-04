@@ -321,11 +321,11 @@ b{
 		
 		
 	}
-
 	.twitter{
-		margin-bottom: 50px;
-		border: 1px solid $grayMedium;
+		text-align: right;
+		margin-top: 15px;
 	}
+
 
 	.speakers{
 		padding-bottom: 50px;
@@ -350,7 +350,7 @@ b{
 			border: 1px $grayMedium solid;
 			min-height: 100px;
 			padding: 10px 20px;
-			height: 240px;
+			height: 230px;
 			
 			&.topics{
 				background: $grayLighter;
@@ -381,9 +381,6 @@ b{
 				}
 
 			}
-		}
-		h3{
-			margin-bottom: 10px;
 		}
 
 		a{
