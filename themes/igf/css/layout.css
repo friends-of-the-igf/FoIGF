@@ -84,8 +84,8 @@ b { font-weight: 500; }
 #HomePage .sub-main .span6.topics { background: #f3f3f3; }
 #HomePage .sub-main .span6.topics ul { margin: 0px; }
 #HomePage .sub-main .span6.topics ul li { display: inline-block; list-style-type: none; width: 49%; }
-#HomePage .sub-main .span6.featured .span8 { padding: 20px; }
-#HomePage .sub-main .span6.featured img { padding-top: 20px; }
+#HomePage .sub-main .span6.featured .span8 { padding: 10px 0px; }
+#HomePage .sub-main .span6.featured img { padding: 10px 0px; }
 #HomePage .sub-main .span6.featured h3 { font-size: 28px; line-height: 28px; }
 #HomePage .sub-main .span6.featured h4 { font-weight: normal; font-size: 16px; }
 #HomePage .sub-main h3 { margin-bottom: 10px; }
