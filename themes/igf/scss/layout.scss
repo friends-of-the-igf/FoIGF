@@ -304,16 +304,22 @@ b{
 
 /*HomePage -------------------------------------------------- */
 #HomePage{	
+
+	.text{
+		font-family: Georgia, serif;
+		color: $grayDarkest;
+		
+	}
 	.content{
 		padding-top: 50px;
 		padding-bottom: 50px;
-		
+
 		.text{
-			font-family: Georgia, serif;
-			color: $grayDarkest;
 			font-size: 35px;
 			line-height: 35px;
 		}
+		
+		
 	}
 
 	.twitter{
@@ -338,26 +344,47 @@ b{
 		}
 	}
 
-	.tags-wrap{
-		margin-bottom: 40px;
-		border: 1px $grayMedium solid;
-		background: $grayLighter;
-		min-height: 100px;
+	.sub-main{
+		.span6{
+			margin-bottom: 40px;
+			border: 1px $grayMedium solid;
+			min-height: 100px;
+			padding: 10px 20px;
+			height: 240px;
+			
+			&.topics{
+				background: $grayLighter;
+				ul{
+					margin: 0px;
+					li{
+						display: inline-block;
+						list-style-type: none;
+						width:49%;
+					}
+				}
+			}
+			&.featured{
+				h3{
+					font-size: 28px;
+					line-height: 28px;
+				}
+				h4{
+					font-weight: normal;
+					font-size: 16px;
+				}
 
-		.tags{
-			padding: 10px;
-
-			h5{
-				font-family: Georgia, serif;
-				font-weight: normal;
-				font-size: 22px;
-				color: $grayDarkest;
-			}	
+			}
+		}
+		h3{
+			margin-bottom: 10px;
 		}
 
 		a{
 			text-decoration: none;
 		}
+
+
+		
 	}
 }
 

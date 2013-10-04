@@ -56,4 +56,12 @@ class HomePage_Controller extends Page_Controller {
 
 		return $list;
 	}
+
+	public function getTopics(){
+		return Topic::get()->sort('Name', 'ASC');
+	}
+
+	public function getFeaturedMeeting(){
+		return Meeting::get()->sort('StartDate', 'DESC')->First();
+	}
 }
