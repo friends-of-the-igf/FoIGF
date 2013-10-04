@@ -364,6 +364,13 @@ b{
 				}
 			}
 			&.featured{
+				.span8{
+					padding:20px;
+				}
+				img{
+					padding-top: 20px;
+				}
+
 				h3{
 					font-size: 28px;
 					line-height: 28px;
