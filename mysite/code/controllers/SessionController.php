@@ -7,6 +7,8 @@ class SessionController extends Page_Controller {
 	);
 
 	public static $allowed_actions = array(
+        'TagForm',
+        'saveTags'
 	);
 
 	protected $meetingsession = null;
@@ -33,10 +35,12 @@ class SessionController extends Page_Controller {
 					$meetingsession->write();
 				}
 			}
-			
+			Session::set('CurrentSession', $meetingsession);
 			$this->meetingsession = $meetingsession;
 		} else {
-			if($this->request->param('Action') != 'CustomSearchForm'){
+			if($this->request->param('Action') == 'CustomSearchForm' || $this->request->param('Action') == 'TagForm'){
+				return;
+			}else{
 				return $this->httpError(404);
 			}
 		}
@@ -53,5 +57,37 @@ class SessionController extends Page_Controller {
 	public function getClassName() {
 		return 'SessionController';
 	}
+
+	// public function TagForm(){
+	// 	$fields = new FieldList();
+
+	// 	$fields->push($t = new TextField('Tags', 'Add Tags'));
+	// 	$t->setAttribute('placeholder', 'Enter tags separated by commas');
+
+	// 	$actions = new FieldList($b = new FormAction('saveTags', 'Save'));
+	// 	$b->addExtraClass('btn');
+	// 	$b->addExtraClass('btn-primary');
+
+	// 	$form = new Form($this, 'TagForm', $fields, $actions);
+
+	// 	return $form;
+	// }
+
+	// public function saveTags($data, $form){
+	// 	$meetingsession = Session::get('CurrentSession');
+		
+	// 	if($data['Tags'] != null && isset($data['Tags'])){
+	// 		if($meetingsession->Tags != null){
+				
+	// 			$meetingsession->Tags .= ',' . $data['Tags'];
+	// 		} else {
+	// 			$meetingsession->Tags = $data['Tags'];
+	// 		}
+	// 		$meetingsession->write();
+	// 	}
+	// 	return $this->redirectBack();
+
+	// }
+
 
 }
