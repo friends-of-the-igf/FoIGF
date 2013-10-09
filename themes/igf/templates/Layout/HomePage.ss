@@ -4,6 +4,7 @@
 	</div>
 </div>
 <div class="row-fluid sub-main">
+	
 	<% if Topics %>
   	<div class="span6 topics">
   		<h3 class='text'>Browse sessions by topic</h3>
@@ -25,6 +26,7 @@
 		</div>
 		<% end_with %>
 	</div>
+
 </div>
 <div class="sessions">
 	<div class="row-fluid heading">

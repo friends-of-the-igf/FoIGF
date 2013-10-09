@@ -84,7 +84,7 @@ b { font-weight: 500; }
 #HomePage .sub-main .span6 { margin-bottom: 40px; border: 1px #d8d8d8 solid; min-height: 100px; padding: 10px 20px; height: 230px; }
 #HomePage .sub-main .span6.topics { background: #f3f3f3; }
 #HomePage .sub-main .span6.topics ul { margin: 0px; }
-#HomePage .sub-main .span6.topics ul li { display: inline-block; list-style-type: none; width: 49%; }
+#HomePage .sub-main .span6.topics ul li { vertical-align: top; display: inline-block; list-style-type: none; width: 49%; }
 #HomePage .sub-main .span6.featured .span8 { padding: 10px 0px; }
 #HomePage .sub-main .span6.featured img { padding: 10px 0px; }
 #HomePage .sub-main .span6.featured h3 { font-size: 28px; line-height: 28px; }
@@ -146,10 +146,16 @@ b { font-weight: 500; }
 #ses-wrap .video { height: 300px; }
 #ses-wrap .video embed { height: 100%; width: 100%; }
 #ses-wrap .speaker .no-dec { text-decoration: none; color: #696b6f; }
+#ses-wrap .session-side { margin-bottom: 10px; }
 #ses-wrap .session-side a { text-decoration: underline; }
 #ses-wrap .session-side div { padding-bottom: 5px; }
 #ses-wrap .view-count { padding: 15px 0 5px 0; background-color: #f3f3f3; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 #ses-wrap .view-count b { font-size: 1.5em; }
+#ses-wrap #Form_TagForm { margin-bottom: 0px; }
+#ses-wrap #Form_TagForm label { font-weight: bold; font-size: 14px; }
+#ses-wrap #Form_TagForm fieldset { display: inline-block; width: 70%; }
+#ses-wrap #Form_TagForm fieldset #Tags input { width: 100%; padding: 10px; margin-bottom: 0px; }
+#ses-wrap #Form_TagForm .Actions { text-align: right; margin-bottom: 10px; display: inline-block; width: 28%; }
 
 /* meetings holder -------------------------------------------------- */
 #MeetingsHolder .promo { background: #f3f3f3; border: 1px solid #d8d8d8; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; margin-top: 30px; margin-bottom: 20px; }
@@ -195,11 +201,19 @@ b { font-weight: 500; }
 .searchResults .results ul li { margin-bottom: 10px; margin-right: 20px; padding-bottom: 5px; border-bottom: 1px solid #e0e0e0; }
 .searchResults .results ul li a { font-size: 16px; }
 
+/* Regional and National IGFS */
+#Regional { margin: 10px; }
+#Regional #Regional-Meetings .regional-tile { margin-bottom: 20px; border: 1px solid #d8d8d8; padding: 20px; }
+#Regional #Regional-Meetings .regional-tile a, #Regional #Regional-Meetings .regional-tile p, #Regional #Regional-Meetings .regional-tile h4 { word-wrap: break-word; }
+#Regional #Regional-Meetings .regional-tile h4 { margin-top: 0px; font-family: Georgia, serif; color: #414141; }
+#Regional #Regional-Meetings .regional-tile.first { margin-left: 0px; }
+
 /*Responsiveness -------------------------------------------------- */
 @media (min-width: 1200px) { #ses-wrap .session-tile .vidthumb { width: 49%; display: inline-block; vertical-align: top; }
   #ses-wrap .session-tile .text-wrap { height: 3; width: 40%; display: inline-block; }
   #ses-wrap .session-tile .nov { width: 90%; } }
-@media (max-width: 1200px) { #filter-wrap form fieldset select { width: 100%; }
+@media (max-width: 1200px) { #HomePage .sub-main .span6 { height: 270px; }
+  #filter-wrap form fieldset select { width: 100%; }
   #filter-wrap form fieldset #Speaker input { width: 90%; } }
 #navigation .navbar-inner .container ul { margin-left: 20px; }
 
@@ -217,6 +231,9 @@ b { font-weight: 500; }
   #SessionsHolder #filter-wrap .filter { padding: 0px; background: none; border: none; margin-left: 0px; width: 100%; }
   #SessionsHolder #filter-wrap .filter .tags { padding-bottom: 0px; }
   #SessionsHolder .sessions { margin-left: 0px; padding-left: 5px; padding-right: 5px; padding-top: 10px; }
+  #HomePage .sub-main .span6 { height: 100%; }
+  #HomePage .sub-main .span6.featured .span8 { display: inline-block; width: 70%; vertical-align: middle; }
+  #HomePage .sub-main .span6.featured .span4 { display: inline-block; width: 20%; }
   #HomePage h3 { font-size: 20px; }
   #HomePage .content { padding-bottom: 10px; }
   #HomePage .content .span1 { padding-bottom: 10px; }
@@ -261,7 +278,8 @@ b { font-weight: 500; }
   #footer .container .element { padding-top: 0px; float: left; }
   #footer .container .meetings { display: none; }
   #footer .container .logo { width: 160px; padding-top: 0px; float: right; } }
-@media (min-width: 768px) and (max-width: 979px) { #HomePage .content .span1 { padding-top: 30px; }
+@media (min-width: 768px) and (max-width: 979px) { #HomePage .sub-main .span6 { height: 310px; }
+  #HomePage .content .span1 { padding-top: 30px; }
   #HomePage .content .text { padding: 10px; }
   #SessionsHolder #filter-wrap #Topic ul li input { display: block; }
   #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
