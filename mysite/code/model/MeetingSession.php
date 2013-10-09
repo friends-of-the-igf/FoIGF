@@ -55,7 +55,8 @@ class MeetingSession extends DataObject {
 		'Title',
 		'Tags',
 		'Content',
-		'TranscriptContent'
+		'TranscriptContent',
+		'ProposalContent'
 	);
 
 	// fields to return
@@ -63,12 +64,13 @@ class MeetingSession extends DataObject {
 		'Title',
 		'Content',
 		'TranscriptContent',
+		'ProposalContent',
 		'URLSegment'
 	);
 
 	// set index
 	public static $indexes = array(
-		"fulltext (Title, Tags, Content, TranscriptContent)"
+		"fulltext (Title, Tags, Content, TranscriptContent, ProposalContent)"
     );
 
     // REQUIRED: object table must be set to MyISAM
