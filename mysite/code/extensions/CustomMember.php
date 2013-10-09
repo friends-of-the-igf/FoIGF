@@ -3,7 +3,8 @@ class CustomMember extends DataExtension {
 
 	static $db = array(
 		'Username' => 'Text',
-		'BioLink' => 'Text'
+		'BioLink' => 'Text',
+		'Tagger' => 'Boolean'
 		);
 
 	static $has_one = array(
@@ -40,6 +41,9 @@ class CustomMember extends DataExtension {
 		$fields->insertBefore(new TextField('Username', 'Username'), 'Email');
 		$fields->removeByName('BioLink');
 		$fields->insertBefore(new TextField('BioLink', 'Link to Bio'), 'Email');
+		$fields->removeByName('Tagger');
+		$fields->insertBefore(new CheckboxField('Tagger', 'Can add tags to their Sessions'), 'Email');
+
 	}
 
 	public function Link(){
