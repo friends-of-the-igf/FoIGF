@@ -23,13 +23,13 @@ class RegionalNationalController extends Page_Controller{
 		if($type_reg != null){
 			$reg_id = $type_reg->ID;
 		} else {
-			$reg_id = 0
+			$reg_id = 0;
 		}
 		$type_nat = RNType::get()->filter(array('Title' => 'National'))->First();
 		if($type_nat != null){
 			$nat_id = $type_nat->ID;
 		} else {
-			$nat_id = 0
+			$nat_id = 0;
 		}
 		$other_meetings = RNMeeting::get()->exclude('TypeID', array(1, 2))->Sort('Title', 'ASC');
 
