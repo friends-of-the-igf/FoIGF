@@ -150,11 +150,61 @@ b{
 
 		form{
 			margin-bottom: 10px;
+			width: 100%;
 
-				fieldset{
-					width: 85%;
+			fieldset{
+				display:inline;
+				width: 75%;
+				padding: 0;
+				margin: 0;
+
+				#Search{
 					display:inline-block;
+					margin-right: 0px;
+					width: 100%;
+
+					input{
+						width: 90%;
+						height:35px;
+						border: none;
+						padding-left: 40px;
+						margin: 0;
+					}
+					::-webkit-input-placeholder { 
+						font-size: 14px;
+						color: $grayDark;
+					}
+					:-moz-placeholder { 
+						font-size: 14px;
+					    color: $grayDark;
+					}
+					::-moz-placeholder {
+						font-size: 14px;
+					    color: $grayDark;
+					}
+					:-ms-input-placeholder { 
+						font-size: 14px;
+					    color: $grayDark;
+					}
 				}
+			}
+			.Actions {
+				display: inline-block;
+				width: 20%;
+				padding: 0;
+				margin: 0;
+
+				#Form_SearchForm_action_results{
+					-webkit-font-smoothing: antialiased;
+					display: inline-block;
+					width:90px;
+					height:43px;
+					padding: 5px 10px;
+					font-size: 13px;
+					text-transform:uppercase;
+					border: 1px solid $blueDarker;		
+				}
+			}
 		}
 
 		.mglass{
@@ -162,48 +212,6 @@ b{
 			margin-bottom: -62px;
 			margin-left: 5px;
 			margin-top: 0px;
-		}
-
-	
-		#Search{
-			display:inline-block;
-			width: 80%;
-			margin-right: 0px;
-
-			input{
-				width: 90%;
-				height:35px;
-				border: none;
-				padding-left: 40px;
-
-			}
-			::-webkit-input-placeholder { 
-				font-size: 14px;
-				color: $grayDark;
-			}
-			:-moz-placeholder { 
-				font-size: 14px;
-			    color: $grayDark;
-			}
-			::-moz-placeholder {
-				font-size: 14px;
-			    color: $grayDark;
-			}
-			:-ms-input-placeholder { 
-				font-size: 14px;
-			    color: $grayDark;
-			}
-		}
-
-		#CustomSearchForm_CustomSearchForm_action_customResults{
-			-webkit-font-smoothing: antialiased;
-			display: inline-block;
-			width:90px;
-			height:43px;
-			padding: 5px 10px;
-			font-size: 13px;
-			text-transform:uppercase;
-			border: 1px solid $blueDarker;		
 		}
 	}
 }
@@ -1051,8 +1059,14 @@ b{
 		
 		.search{
 			form{
+				padding-left: 20px;
 				fieldset{
-					width:100%;
+					width:70%;
+				}
+				.Actions {
+					width: 90px;
+
+					margin-left: 10px;
 				}
 			}
 				.mglass{
@@ -1060,7 +1074,6 @@ b{
 				}
 				
 				#Search{
-					padding-left: 20px;
 					width: 60%;
 					
 					input{
@@ -1285,18 +1298,13 @@ b{
 	}
 
 	#searchbar{
-
 		.search{
-			fieldset{
-				width: 100% !important;
-
-				#Search{
-					display: inline-block;
-					width: 80%;
-					margin-right: 0px;
-					
-					input{
-						width:85%;
+			form {
+				fieldset{
+					#Search{
+						input{
+							width:85%;
+						}
 					}
 				}
 			}

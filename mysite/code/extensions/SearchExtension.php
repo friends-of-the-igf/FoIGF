@@ -6,8 +6,10 @@ class SearchExtension extends Extension {
 		$searchField->setAttribute('placeholder', "Search for Sessions, Meetings and Tags...");
 		$fields = new FieldList($searchField);
 		$form = new Form($this->owner, 'SearchForm', $fields, new FieldList(
-			new FormAction('results', 'Search')
+			$action = new FormAction('results', 'Search')
 		));
+		$action->addExtraClass('btn');
+		$action->addExtraClass('btn-primary');
 		$form->setFormMethod('get');
 		$form->disableSecurityToken();
 		return $form;
