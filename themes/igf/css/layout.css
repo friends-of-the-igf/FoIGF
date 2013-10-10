@@ -201,24 +201,63 @@ b { font-weight: 500; }
 .searchResults .results ul li { margin-bottom: 10px; margin-right: 20px; padding-bottom: 5px; border-bottom: 1px solid #e0e0e0; }
 .searchResults .results ul li a { font-size: 16px; }
 
-/* Regional and National IGFS */
+/* Regional and National IGFS------------- */
 #Regional { margin: 10px; }
 #Regional #Regional-Meetings .regional-tile { margin-bottom: 20px; border: 1px solid #d8d8d8; padding: 20px; }
 #Regional #Regional-Meetings .regional-tile a, #Regional #Regional-Meetings .regional-tile p, #Regional #Regional-Meetings .regional-tile h4 { word-wrap: break-word; }
 #Regional #Regional-Meetings .regional-tile h4 { margin-top: 0px; font-family: Georgia, serif; color: #414141; }
 #Regional #Regional-Meetings .regional-tile.first { margin-left: 0px; }
+#Regional #map { position: relative; }
+#Regional #map .country { position: absolute; top: 0px; left: 0px; }
+#Regional #map .country#africa { left: 482px; top: 222px; }
+#Regional #map .country#asia { left: 759px; top: 170px; }
+#Regional #map .country#south-america { left: 283px; top: 334px; }
+
+/* About Page ----------------------------------------------------- */
+#AboutPage #contentWrap { margin-top: 30px; margin-bottom: 30px; border: 1px solid #d8d8d8; padding: 0px; }
+#AboutPage h3 { font-family: Georgia, serif; }
+#AboutPage #intro, #AboutPage #explanation { padding: 20px; }
+#AboutPage #intro { font-size: 20px; font-family: Georgia, serif; line-height: 19px; }
+#AboutPage #explanation p { width: 95%; word-wrap: break-word; }
+#AboutPage #top-section { border-bottom: 1px solid #d8d8d8; }
+#AboutPage #top-section #top-right { position: relative; border-left: 1px solid #d8d8d8; }
+#AboutPage #top-section #top-right #stats { border-bottom: 1px solid #d8d8d8; height: 60%; }
+#AboutPage #top-section #top-right #stats .span6 { height: 100%; padding: 5px; text-align: center; vertical-align: middle; line-height: 40px; font-size: 40px; }
+#AboutPage #top-section #top-right #stats .span6 p { margin: 0px; text-transform: uppercase; font-size: 20px; color: #919294; }
+#AboutPage #top-section #top-right #stats #sessions { border-right: 1px solid #d8d8d8; }
+#AboutPage #top-section #top-right #contact { padding: 20px; font-size: 16px; word-wrap: break-word; }
+#AboutPage #top-section #top-right #contact p { width: 90%; }
+#AboutPage #top-section #top-right #contact a { text-decoration: underline; }
+#AboutPage #main { border-bottom: 1px solid #d8d8d8; }
+#AboutPage #main .span6#left-col { border-right: 1px solid #d8d8d8; }
+#AboutPage #main .span6#left-col #topics, #AboutPage #main .span6#left-col #countries { height: 100%; padding: 20px; text-align: center; vertical-align: middle; line-height: 40px; font-size: 40px; }
+#AboutPage #main .span6#left-col #topics p, #AboutPage #main .span6#left-col #countries p { margin: 0px; text-transform: uppercase; font-size: 20px; color: #919294; }
+#AboutPage #main .span6#left-col #topics { border-right: 1px solid #d8d8d8; }
+#AboutPage #main .span6#left-col #countries { margin-left: 0px; padding: 0px; }
+#AboutPage #main .span6#left-col #countries #map { float: left; display: inline-block; width: 60%; }
+#AboutPage #main .span6#left-col #countries #stat { padding-top: 20px; padding-left: 20px; float: left; display: inline-block; width: 30%; }
+#AboutPage #main .span6#left-col #who { padding: 20px; border-bottom: 1px solid #d8d8d8; }
+#AboutPage #main .span6#right-col { margin-left: 0px; padding: 20px; }
 
 /*Responsiveness -------------------------------------------------- */
-@media (min-width: 1200px) { #ses-wrap .session-tile .vidthumb { width: 49%; display: inline-block; vertical-align: top; }
+@media (min-width: 1200px) { #AboutPage #intro, #AboutPage #top-right { height: 240px; }
+  #ses-wrap .session-tile .vidthumb { width: 49%; display: inline-block; vertical-align: top; }
   #ses-wrap .session-tile .text-wrap { height: 3; width: 40%; display: inline-block; }
   #ses-wrap .session-tile .nov { width: 90%; } }
 @media (max-width: 1200px) { #HomePage .sub-main .span6 { height: 270px; }
+  #AboutPage #intro, #AboutPage #top-right { height: 320px; }
   #filter-wrap form fieldset select { width: 100%; }
   #filter-wrap form fieldset #Speaker input { width: 90%; } }
 #navigation .navbar-inner .container ul { margin-left: 20px; }
 
 @media (max-width: 767px) { body { padding: 0px; }
   body #wrap { padding-left: 20px; padding-right: 20px; }
+  #AboutPage #intro, #AboutPage #top-right { height: 100%; }
+  #AboutPage #intro { border-bottom: 1px solid #d8d8d8; }
+  #AboutPage #top-right { border: none; }
+  #AboutPage #sessions { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
+  #AboutPage #topics { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
+  #AboutPage #left-col { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
   #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
   #SessionsHolder #filter-form { cursor: pointer; }
@@ -278,7 +317,8 @@ b { font-weight: 500; }
   #footer .container .element { padding-top: 0px; float: left; }
   #footer .container .meetings { display: none; }
   #footer .container .logo { width: 160px; padding-top: 0px; float: right; } }
-@media (min-width: 768px) and (max-width: 979px) { #HomePage .sub-main .span6 { height: 310px; }
+@media (min-width: 768px) and (max-width: 979px) { #AboutPage #intro, #AboutPage #top-right { height: 400px; }
+  #HomePage .sub-main .span6 { height: 310px; }
   #HomePage .content .span1 { padding-top: 30px; }
   #HomePage .content .text { padding: 10px; }
   #SessionsHolder #filter-wrap #Topic ul li input { display: block; }

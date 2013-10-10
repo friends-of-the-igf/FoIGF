@@ -907,7 +907,7 @@ b{
 	}
 }
 
-/* Regional and National IGFS */
+/* Regional and National IGFS------------- */
 #Regional{
 	margin: 10px;
 	#Regional-Meetings{
@@ -934,6 +934,162 @@ b{
 		}
 	}
 
+	#map{
+		position: relative;
+
+		.country{
+
+			position: absolute;
+			top:0px;
+			left:0px;
+			&#africa{
+				left:482px;
+				top:222px;
+			}
+			&#asia{
+				left:759px;
+				top:170px;
+			}
+			&#south-america{
+				left:283px;
+				top:334px;
+			}
+		}
+	}
+
+
+}
+
+/* About Page ----------------------------------------------------- */
+
+#AboutPage{
+	#contentWrap{
+		margin-top: 30px;
+		margin-bottom: 30px;
+		border: 1px solid $grayMedium;
+		padding: 0px;
+	}
+	h3{
+		font-family: Georgia, serif;
+	}
+	#intro, #explanation{
+		padding: 20px;
+	}
+	#intro{
+		font-size: 20px;
+		font-family: Georgia, serif;
+		line-height: 19px;
+	}
+	#explanation{
+		p{
+			width: 95%;
+			word-wrap:break-word;
+		}
+		
+	}
+	#top-section{
+		border-bottom: 1px solid $grayMedium;
+
+		#top-right{
+			position: relative;
+			border-left: 1px solid $grayMedium;
+			#stats{
+				border-bottom: 1px solid $grayMedium;
+				height: 60%;
+				.span6{
+					height: 100%;
+					padding: 5px;
+					text-align: center;
+					vertical-align: middle;
+					line-height: 40px;
+					font-size: 40px;
+
+					p{
+						margin: 0px;
+						text-transform: uppercase;
+						font-size: 20px;
+						color: $grayFade;
+					}
+				}
+
+				#sessions{
+					border-right: 1px solid $grayMedium;
+				}
+				
+			}
+			#contact{
+				padding: 20px;
+				font-size: 16px;
+				word-wrap:break-word;
+				p{
+					width: 90%;
+				}
+				a{
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	
+	
+	#main{
+		border-bottom: 1px solid $grayMedium;
+		.span6{
+			&#left-col{
+				border-right: 1px solid $grayMedium;
+
+				#topics, #countries{
+
+					height: 100%;
+					padding: 20px;
+					text-align: center;
+					vertical-align: middle;
+					line-height: 40px;
+					font-size: 40px;
+
+					p{
+						margin: 0px;
+						text-transform: uppercase;
+						font-size: 20px;
+						color: $grayFade;
+					}
+				}
+				#topics{
+					border-right: 1px solid $grayMedium;
+				}
+				#countries{
+					margin-left: 0px;
+					padding: 0px;
+					#map{
+						float:left;
+						display: inline-block;
+						width: 60%;
+					}
+					#stat{
+						padding-top: 20px;
+						padding-left: 20px;
+						float:left;
+						display: inline-block;
+						width:30%;
+		
+					}
+				}
+
+				#who{
+					padding: 20px;
+					border-bottom: 1px solid $grayMedium;
+				}
+			}
+			&#right-col{
+				margin-left: 0px;
+				padding: 20px;
+			}
+
+		}
+	}
+	
+
 }
 
 
@@ -941,6 +1097,12 @@ b{
 /*Responsiveness -------------------------------------------------- */
 
 @media (min-width: 1200px) {
+	#AboutPage{
+		#intro, #top-right{
+			height: 240px;
+		}
+
+	}
 	#ses-wrap{
 		.session-tile{
 
@@ -970,6 +1132,12 @@ b{
 			}
 		}
 	}
+	#AboutPage{
+		#intro, #top-right{
+			height: 320px;
+		}
+
+	}
 
 	#filter-wrap{
 		form{
@@ -998,7 +1166,9 @@ b{
 			ul{
 				margin-left: 20px;
 			}
-			}}}
+		}
+	}
+}
 
 @media (max-width: 767px) {
 	body{
@@ -1008,6 +1178,33 @@ b{
 			padding-left: 20px;
 			padding-right: 20px;
 		}
+	}
+
+	#AboutPage{
+		#intro, #top-right{
+			height: 100%;
+		}
+		#intro{
+			border-bottom: 1px solid $grayMedium;
+		}
+
+		#top-right{
+			border: none;
+		}
+
+		#sessions{
+			border-right: none !important;
+			border-bottom: 1px solid $grayMedium;
+		}
+		#topics{
+			border-right: none !important;
+			border-bottom: 1px solid $grayMedium;
+		}
+		#left-col{
+			border-right: none !important;
+			border-bottom: 1px solid $grayMedium;
+		}
+
 	}
 
 	#navigation {
@@ -1343,6 +1540,14 @@ b{
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+
+	#AboutPage{
+		#intro, #top-right{
+			height: 400px;
+		}
+
+
+	}
 
 	#HomePage{
 		.sub-main{
