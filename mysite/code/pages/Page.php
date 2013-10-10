@@ -21,8 +21,8 @@ class Page extends SiteTree {
 class Page_Controller extends ContentController {
 
 	public static $allowed_actions = array(
-		'CustomSearchForm',
-		'customResults',
+		'SearchForm',
+		'results'
 	);
 
 	public function init() {
@@ -100,6 +100,5 @@ class Page_Controller extends ContentController {
 		return MeetingsHolder::get()->First()->Link();
 
 	}
-
 
 }

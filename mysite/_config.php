@@ -27,18 +27,19 @@ Email::setAdminEmail("ben@stripetheweb.com");
 
 DataObject::add_extension('SiteConfig', 'CustomSiteConfig');
 DataObject::add_extension('Member', 'CustomMember');
-Object::useCustomClass('SearchForm', 'CustomSearchForm');
+Object::add_extension('ContentController', 'SearchExtension');
 Member::set_unique_identifier_field('Username');
 
+// fulltextsearch/solr
+SearchUpdater::bind_manipulation_capture();
+Solr::configure_server(isset($solr_config) ? $solr_config : array(
+	'host' => 'localhost',
+	'indexstore' => array(
+		'mode' => 'file',
+		'path' => BASE_PATH . '/.solr'
+	),
+	'extraspath' => Director::baseFolder() . '/mysite/data/solr/'
+));
 
-FulltextSearchable::enable();
-
-CustomSearchFilter::set_search_objects(array('Meeting', 'MeetingSession', 'Location', 'Topic', 'Type'));
-CustomSearchForm::set_return_objects(array('Location', 'Topic', 'Type'));
-
-Object::add_extension('MeetingSession', "FulltextSearchable('Title', 'Date', 'Tags', 'Content', 'TranscriptContent', 'ProposalContent')");
-Object::add_extension('Meeting', "FulltextSearchable('Title')");
-Object::add_extension('Location', "FulltextSearchable('City', 'Country')");
-Object::add_extension('Topic', "FulltextSearchable('Name')");
-Object::add_extension('Type', "FulltextSearchable('Name')");
-
+DataObject::add_extension('File', 'FileTextExtractable');
+DataObject::add_extension('File', 'CustomFileExtension');

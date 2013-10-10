@@ -48,6 +48,11 @@
                         <p>$Content.LimitWordCountXML</p>
                      </li>
                 <% end_loop %> 
+            <% else_if ClassName == File %>
+            <li>
+                <strong>File</strong> - <a title="Go to $Title" class="searchResultHeader" href="$Link">$Title</a>
+                <p></p>
+            </li>
             <% end_if %>
             <% end_loop %>
         </ul>

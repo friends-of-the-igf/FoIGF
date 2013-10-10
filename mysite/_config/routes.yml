@@ -8,3 +8,5 @@ Director:
     'transcript//$ID!': 'TranscriptController',
     'item//$ID!': 'LinkItemController',
     'proposal//$ID!': 'ProposalController'
+SolrCellTextExtractor:
+  base_url: 'http://localhost:8983/solr/MyIndex/update/extract'

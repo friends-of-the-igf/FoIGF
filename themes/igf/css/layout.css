@@ -242,7 +242,7 @@ b { font-weight: 500; }
   #SessionController .social-icons .view { margin-top: 3px; vertical-align: top; }
   #SessionController .social-icons .view .view-count { padding-top: 25px; width: 65px; margin-top: 0px; }
   #SessionController .social-icons .view .view-count p { margin-top: -10px; }
-  #MeetingController .section { min-height: 102px !important; padding: 3px !important; }
+  #MeetingController .section { min-height: 102px!important; padding: 3px !important; }
   #MeetingController .section .social { width: 100%; text-align: center; padding-bottom: 15px; }
   #MeetingController .section .social .span3 { display: inline-block; width: 45%; }
   #MeetingController .section .social .span3 .st_googleplus_vcount { margin-left: 20px; }

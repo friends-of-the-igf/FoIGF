@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0b855a6ed88f0cc95f32b801d58b5eb2",
+    "hash": "d450afb93f63ec627b2486a6f9b22ca7",
     "packages": [
         {
             "name": "composer/installers",
@@ -46,7 +46,7 @@
                 {
                     "name": "Kyle Robinson Young",
                     "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama",
+                    "homepage": "http://dontkry.com",
                     "role": "Developer"
                 }
             ],
@@ -79,17 +79,215 @@
             "time": "2013-08-20 04:37:09"
         },
         {
-            "name": "silverstripe/cms",
-            "version": "3.0.5",
+            "name": "guzzle/common",
+            "version": "dev-master",
+            "target-dir": "Guzzle/Common",
             "source": {
                 "type": "git",
-                "url": "https://github.com/silverstripe/silverstripe-cms.git",
-                "reference": "e809e0775eb9fbc4a996da765a5840f2eb7a7b1d"
+                "url": "https://github.com/guzzle/common.git",
+                "reference": "5126e268446c7e7df961b89128d71878e0652432"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-cms/zipball/e809e0775eb9fbc4a996da765a5840f2eb7a7b1d",
-                "reference": "e809e0775eb9fbc4a996da765a5840f2eb7a7b1d",
+                "url": "https://api.github.com/repos/guzzle/common/zipball/5126e268446c7e7df961b89128d71878e0652432",
+                "reference": "5126e268446c7e7df961b89128d71878e0652432",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/event-dispatcher": ">=2.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Common": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Common libraries used by Guzzle",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "collection",
+                "common",
+                "event",
+                "exception"
+            ],
+            "time": "2013-10-02 20:47:00"
+        },
+        {
+            "name": "guzzle/http",
+            "version": "dev-master",
+            "target-dir": "Guzzle/Http",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/http.git",
+                "reference": "3420035adcf312d62a2e64f3e6b3e3e590121786"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/http/zipball/3420035adcf312d62a2e64f3e6b3e3e590121786",
+                "reference": "3420035adcf312d62a2e64f3e6b3e3e590121786",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/common": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/stream": "self.version",
+                "php": ">=5.3.2"
+            },
+            "suggest": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Http": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "HTTP libraries used by Guzzle",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "Guzzle",
+                "client",
+                "curl",
+                "http",
+                "http client"
+            ],
+            "time": "2013-09-20 22:05:53"
+        },
+        {
+            "name": "guzzle/parser",
+            "version": "dev-master",
+            "target-dir": "Guzzle/Parser",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/parser.git",
+                "reference": "a25c2ddda1c52fb69a4ee56eb530b13ddd9573c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/parser/zipball/a25c2ddda1c52fb69a4ee56eb530b13ddd9573c2",
+                "reference": "a25c2ddda1c52fb69a4ee56eb530b13ddd9573c2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Parser": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Interchangeable parsers used by Guzzle",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "URI Template",
+                "cookie",
+                "http",
+                "message",
+                "url"
+            ],
+            "time": "2013-07-11 22:46:03"
+        },
+        {
+            "name": "guzzle/stream",
+            "version": "dev-master",
+            "target-dir": "Guzzle/Stream",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/stream.git",
+                "reference": "a86111d9ac7db31d65a053c825869409fe8fc83f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/stream/zipball/a86111d9ac7db31d65a053c825869409fe8fc83f",
+                "reference": "a86111d9ac7db31d65a053c825869409fe8fc83f",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/common": "self.version",
+                "php": ">=5.3.2"
+            },
+            "suggest": {
+                "guzzle/http": "To convert Guzzle request objects to PHP streams"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Stream": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle stream wrapper component",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "Guzzle",
+                "component",
+                "stream"
+            ],
+            "time": "2013-07-30 22:07:23"
+        },
+        {
+            "name": "silverstripe/cms",
+            "version": "3.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe/silverstripe-cms.git",
+                "reference": "92e0c410b8c3db09c394916ace4ecb89b61f7ddb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-cms/zipball/92e0c410b8c3db09c394916ace4ecb89b61f7ddb",
+                "reference": "92e0c410b8c3db09c394916ace4ecb89b61f7ddb",
                 "shasum": ""
             },
             "require": {
@@ -123,7 +321,7 @@
                 "cms",
                 "silverstripe"
             ],
-            "time": "2013-02-18 00:20:00"
+            "time": "2013-10-02 10:19:23"
         },
         {
             "name": "silverstripe/compass",
@@ -162,16 +360,16 @@
         },
         {
             "name": "silverstripe/framework",
-            "version": "3.0.5",
+            "version": "3.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silverstripe/silverstripe-framework.git",
-                "reference": "9ceef6be0700d3111ece4c0375b76812506a8d11"
+                "reference": "e4adff48bcf4f0fe75692a27dbd2669aad4b1e7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/9ceef6be0700d3111ece4c0375b76812506a8d11",
-                "reference": "9ceef6be0700d3111ece4c0375b76812506a8d11",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-framework/zipball/e4adff48bcf4f0fe75692a27dbd2669aad4b1e7b",
+                "reference": "e4adff48bcf4f0fe75692a27dbd2669aad4b1e7b",
                 "shasum": ""
             },
             "require": {
@@ -204,7 +402,144 @@
                 "framework",
                 "silverstripe"
             ],
-            "time": "2013-02-19 23:39:00"
+            "time": "2013-10-06 23:31:28"
+        },
+        {
+            "name": "silverstripe/fulltextsearch",
+            "version": "dev-3.0-compat",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe-labs/silverstripe-fulltextsearch.git",
+                "reference": "9e841b83c78b2ea33fb6a22ff561ce1814b6c552"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe-labs/silverstripe-fulltextsearch/zipball/9e841b83c78b2ea33fb6a22ff561ce1814b6c552",
+                "reference": "9e841b83c78b2ea33fb6a22ff561ce1814b6c552",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/framework": "3.0.*"
+            },
+            "require-dev": {
+                "hafriedlander/silverstripe-phockito": "*",
+                "silverstripe/cms": "3.0.*"
+            },
+            "type": "silverstripe-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Hamish Friedlander",
+                    "email": "hamish@silverstripe.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Adds support for Fulltext Search engines like Sphinx and Solr to SilverStripe CMS",
+            "keywords": [
+                "fulltext",
+                "silverstripe",
+                "solr",
+                "sphinx"
+            ],
+            "time": "2013-09-27 08:06:21"
+        },
+        {
+            "name": "silverstripe/textextraction",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe-labs/silverstripe-textextraction.git",
+                "reference": "a380bb7c8fb4a5d56558a2c69dffece323aeead9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe-labs/silverstripe-textextraction/zipball/a380bb7c8fb4a5d56558a2c69dffece323aeead9",
+                "reference": "a380bb7c8fb4a5d56558a2c69dffece323aeead9",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "guzzle/http": "*",
+                "php": ">=5.3.2",
+                "silverstripe/framework": "~3.0"
+            },
+            "type": "silverstripe-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "SilverStripe",
+                    "homepage": "http://silverstripe.com"
+                },
+                {
+                    "name": "The SilverStripe Community",
+                    "homepage": "http://silverstripe.org"
+                }
+            ],
+            "description": "Text Extraction API for SilverStripe CMS (mostly used with 'fulltextsearch' module)",
+            "homepage": "http://silverstripe.org",
+            "keywords": [
+                "fulltext",
+                "pdf",
+                "silverstripe"
+            ],
+            "time": "2013-05-07 20:21:56"
+        },
+        {
+            "name": "symfony/event-dispatcher",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/EventDispatcher",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/EventDispatcher.git",
+                "reference": "9b4fe5757870682eb2251e283228a66d938265a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/9b4fe5757870682eb2251e283228a66d938265a8",
+                "reference": "9b4fe5757870682eb2251e283228a66d938265a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/dependency-injection": "~2.0"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\EventDispatcher\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-09-19 09:47:34"
         },
         {
             "name": "undefinedoffset/sortablegridfield",
@@ -212,12 +547,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/UndefinedOffset/SortableGridField.git",
-                "reference": "1e963bfef17acd2b52eacfd2d58617f122651aa2"
+                "reference": "0.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UndefinedOffset/SortableGridField/zipball/1e963bfef17acd2b52eacfd2d58617f122651aa2",
-                "reference": "1e963bfef17acd2b52eacfd2d58617f122651aa2",
+                "url": "https://api.github.com/repos/UndefinedOffset/SortableGridField/zipball/0.2.0",
+                "reference": "0.2.0",
                 "shasum": ""
             },
             "require": {

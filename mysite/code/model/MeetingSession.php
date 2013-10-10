@@ -280,8 +280,6 @@ class MeetingSession extends DataObject {
 			}
 		}
 		
-	
-		
 	}
 
 
