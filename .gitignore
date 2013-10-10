@@ -8,3 +8,5 @@ cms/
 vendor/
 compass/
 sortablegridfield/
+fulltextsearch/
+textextraction/
