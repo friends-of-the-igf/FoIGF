@@ -7,9 +7,15 @@ class MyIndex extends SolrIndex {
 		$this->addClass('Meeting');
 		$this->addClass('MeetingSession');
 		$this->addClass('File');
+		$this->addClass('Location');
+		$this->addClass('Topic');
+		$this->addClass('Type');
 
 		$this->addFulltextField('Title');
 		$this->addFulltextField('Content');
+		$this->addFulltextField('Tags');
+		$this->addFulltextField('TranscriptContent');
+		$this->addFulltextField('ProposalContent');
 		$this->addFulltextField('Location.City');
 		$this->addFulltextField('Location.Country');
 		$this->addFulltextField('Type.Name');

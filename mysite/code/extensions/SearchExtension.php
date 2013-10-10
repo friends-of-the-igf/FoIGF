@@ -2,8 +2,11 @@
 class SearchExtension extends Extension {
 
 	public function SearchForm() {
-		$searchField = new TextField("Search", "");
+		$query = isset($_GET['Search']) && $_GET['Search'] ? $_GET['Search'] : '';
+
+		$searchField = new TextField("Search", "", $query);
 		$searchField->setAttribute('placeholder', "Search for Sessions, Meetings and Tags...");
+
 		$fields = new FieldList($searchField);
 		$form = new Form($this->owner, 'SearchForm', $fields, new FieldList(
 			$action = new FormAction('results', 'Search')

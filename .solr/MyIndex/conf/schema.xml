@@ -421,9 +421,15 @@
 		<field name='Meeting_Title' type='text' indexed='true' stored='true' multiValued=''/>
 		<field name='MeetingSession_Title' type='text' indexed='true' stored='true' multiValued=''/>
 		<field name='File_Title' type='text' indexed='true' stored='true' multiValued=''/>
+		<field name='Location_Title' type='text' indexed='true' stored='true' multiValued=''/>
+		<field name='Topic_Title' type='text' indexed='true' stored='true' multiValued=''/>
+		<field name='Type_Title' type='text' indexed='true' stored='true' multiValued=''/>
 		<field name='SiteTree_Content' type='htmltext' indexed='true' stored='true' multiValued=''/>
 		<field name='MeetingSession_Content' type='htmltext' indexed='true' stored='true' multiValued=''/>
 		<field name='File_Content' type='text' indexed='true' stored='true' multiValued=''/>
+		<field name='MeetingSession_Tags' type='text' indexed='true' stored='true' multiValued=''/>
+		<field name='MeetingSession_TranscriptContent' type='htmltext' indexed='true' stored='true' multiValued=''/>
+		<field name='MeetingSession_ProposalContent' type='htmltext' indexed='true' stored='true' multiValued=''/>
 		<field name='Meeting_Location_City' type='text' indexed='true' stored='true' multiValued=''/>
 		<field name='Meeting_Location_Country' type='text' indexed='true' stored='true' multiValued=''/>
 		<field name='MeetingSession_Type_Name' type='text' indexed='true' stored='true' multiValued=''/>
@@ -437,9 +443,15 @@
 	<copyField source='Meeting_Title' dest='_text' />
 	<copyField source='MeetingSession_Title' dest='_text' />
 	<copyField source='File_Title' dest='_text' />
+	<copyField source='Location_Title' dest='_text' />
+	<copyField source='Topic_Title' dest='_text' />
+	<copyField source='Type_Title' dest='_text' />
 	<copyField source='SiteTree_Content' dest='_text' />
 	<copyField source='MeetingSession_Content' dest='_text' />
 	<copyField source='File_Content' dest='_text' />
+	<copyField source='MeetingSession_Tags' dest='_text' />
+	<copyField source='MeetingSession_TranscriptContent' dest='_text' />
+	<copyField source='MeetingSession_ProposalContent' dest='_text' />
 	<copyField source='Meeting_Location_City' dest='_text' />
 	<copyField source='Meeting_Location_Country' dest='_text' />
 	<copyField source='MeetingSession_Type_Name' dest='_text' />

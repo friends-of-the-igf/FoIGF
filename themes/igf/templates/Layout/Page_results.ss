@@ -8,53 +8,37 @@
     <% if $Results %>
     <div class='results'>
         <ul id="meetingResults">
-            <% loop $Results %> 
-             <% if ClassName == Meeting %>
+        <% loop $Results %> 
+            <% if ClassName == Meeting %>
             <li>
                 <strong>Meeting</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
                 <p>$Content.LimitWordCountXML</p>
             </li>
-            <% else_if ClassName == Location %> 
-                <% loop Meetings %>
-                    <li>
-                       <strong>Meeting</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
-                        <p>$Content.LimitWordCountXML</p>
-                    </li>
-                <% end_loop %>
             <% else_if ClassName == MeetingSession %>
             <li>
                 <strong>Session</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
                 <p>$Content.LimitWordCountXML</p>
             
             </li>
+            <% else_if ClassName == Location %> 
+            <li>
+                <strong>Location</strong> - <a title="Find sessions in $Name" class="searchResultHeader" href="$Link">$Name</a>
+            </li>
             <% else_if ClassName == Topic %>
-                <% loop MeetingSessions %>
-                     <li>
-                        <strong>Session</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
-                        <p>$Content.LimitWordCountXML</p>
-                     </li>
-                <% end_loop %> 
+            <li>
+                <strong>Topic</strong> - <a title="Find sessions in $Name" class="searchResultHeader" href="$Link">$Name</a>
+            </li>
             <% else_if ClassName == Type %>
-                <% loop MeetingSessions %>
-                     <li>
-                        <strong>Session</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
-                        <p>$Content.LimitWordCountXML</p>
-                     </li>
-                <% end_loop %> 
-            <% else_if ClassName == Member %>
-                <% loop MeetingSessions %>
-                     <li>
-                        <strong>Session</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
-                        <p>$Content.LimitWordCountXML</p>
-                     </li>
-                <% end_loop %> 
+            <li>
+                <strong>Type</strong> - <a title="Find sessions in $Name" class="searchResultHeader" href="$Link">$Name</a>
+            </li>
             <% else_if ClassName == File %>
             <li>
                 <strong>File</strong> - <a title="Go to $Title" class="searchResultHeader" href="$Link">$Title</a>
-                <p></p>
+                <p>$FileContentCache.LimitWordCountXML</p>
             </li>
             <% end_if %>
-            <% end_loop %>
+        <% end_loop %>
         </ul>
     </div>
     <% else %>

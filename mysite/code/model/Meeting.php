@@ -393,7 +393,6 @@ class Meeting extends DataObject {
 							$topic_sessions->push($d);
 						}
 					}
-					
 
 					$topic_arr['Count'] = $topic_sessions->Count();
 					//format the sessions into columns and add the formatted list to the topic array
