@@ -44,6 +44,7 @@ b { font-weight: 500; }
 #searchbar .search { margin-top: -10px; }
 #searchbar .search form { margin-bottom: 10px; }
 #searchbar .search form fieldset { width: 85%; display: inline-block; }
+#searchbar .search form fieldset label { display: none; }
 #searchbar .search .mglass { position: relative; margin-bottom: -62px; margin-left: 5px; margin-top: 0px; }
 #searchbar .search #Search { display: inline-block; width: 80%; margin-right: 0px; }
 #searchbar .search #Search input { width: 90%; height: 35px; border: none; padding-left: 40px; }

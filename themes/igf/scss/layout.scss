@@ -155,6 +155,9 @@ b{
 			margin-bottom: 10px;
 
 				fieldset{
+					label{
+						display:none;
+					}
 					width: 85%;
 					display:inline-block;
 				}
