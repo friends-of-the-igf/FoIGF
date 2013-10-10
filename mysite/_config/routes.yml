@@ -7,6 +7,7 @@ Director:
     'meeting//$ID!/$Action': 'MeetingController',
     'transcript//$ID!': 'TranscriptController',
     'item//$ID!': 'LinkItemController',
-    'proposal//$ID!': 'ProposalController'
+    'proposal//$ID!': 'ProposalController',
+    'regional//$ID': 'RegionalNationalController'
 SolrCellTextExtractor:
   base_url: 'http://localhost:8983/solr/MyIndex/update/extract'

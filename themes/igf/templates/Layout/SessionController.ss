@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		<div class="span4">
-			<div class="row-fluid social-icons">    
+			<div class="row-fluid social-icons session-side">    
 				<div class="span3">
 					<span class='st_twitter_vcount' displayText='Tweet'></span>
 				</div>
@@ -62,6 +62,11 @@
 					<% end_loop %>
 				<% end_if %>
 			</div>
+			<% if Top.CurrentMember.Tagger %>
+				<div class='add-tags'>
+					$Top.TagForm
+				</div>
+			<% end_if %>
 			<div class="session-side">
 				<% if Speakers %>
 					<h5>Speakers</h5>

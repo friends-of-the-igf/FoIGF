@@ -1,0 +1,17 @@
+<?php
+class RegionalMeetingAdmin extends ModelAdmin {
+
+	public static $managed_models = array(
+		'RNMeeting',
+		'RNType',
+		'RNRegion'
+
+	);
+
+	static $url_segment = 'regional-national-meeting';
+
+	static $menu_title = 'Reg/Nat Meetings';
+
+	static $model_importers = array();
+
+}

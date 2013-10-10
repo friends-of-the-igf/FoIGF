@@ -17,10 +17,10 @@
 					<% end_loop %>
 					<% if $SiteConfig.CanViewType == LoggedInUsers %>
 						<% if $CurrentMember %>
-							<li class=""><a class="blue" href="#" title="Regional and National IGFs">Regional and National IGFs</a></li>
+							<li class=""><a class="blue" href="regional" title="Regional and National IGFs">Regional and National IGFs</a></li>
 						<% end_if %>
 					<% else %>
-						<li class=""><a class="blue" href="#" title="Regional and National IGFs">Regional and National IGFs</a></li>
+						<li class=""><a class="blue" href="regional" title="Regional and National IGFs">Regional and National IGFs</a></li>
 					<% end_if %>
 					
 				</ul>

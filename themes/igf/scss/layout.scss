@@ -52,6 +52,8 @@ h4{
 	color: $grayFade;
 }
 
+
+
 .small{
 	font-size: 12px;
 }
@@ -59,6 +61,7 @@ h4{
 b{
 	font-weight: 500;
 }
+
 
 .blue{
 	color: $blue !important;
@@ -358,6 +361,7 @@ b{
 	}
 
 	.sub-main{
+
 		.span6{
 			margin-bottom: 40px;
 			border: 1px $grayMedium solid;
@@ -366,10 +370,12 @@ b{
 			height: 230px;
 			
 			&.topics{
+
 				background: $grayLighter;
 				ul{
 					margin: 0px;
 					li{
+						vertical-align: top;
 						display: inline-block;
 						list-style-type: none;
 						width:49%;
@@ -377,6 +383,7 @@ b{
 				}
 			}
 			&.featured{
+				
 				.span8{
 					padding: 10px 0px;
 				}
@@ -598,12 +605,14 @@ b{
 		.text-wrap{
 			padding: 4px;
 			margin: 5px;
-			
+
 			.title{
 				font-family: Georgia, serif;
 				color: $grayDarkest;
 				font-size: 14px;
 			}
+						
+			
 
 			p{
 				padding: 0;
@@ -671,6 +680,8 @@ b{
 	}
 
 	.session-side{
+		margin-bottom: 10px;
+
 		a{
 			text-decoration: underline;
 		}
@@ -689,6 +700,34 @@ b{
 		}
 	}
 
+	#Form_TagForm{
+		margin-bottom: 0px;
+		label{
+			font-weight: bold;
+			font-size: 14px;
+		}
+		fieldset{
+			display: inline-block;
+			width:70%;
+			#Tags{
+				
+				input{
+					width:100%;
+					padding:10px;
+					margin-bottom: 0px;
+				}
+			}
+			
+		}
+
+		
+		.Actions{
+			text-align: right;
+			margin-bottom: 10px;
+			display: inline-block;
+			width:28%;
+		}
+	}
 
 }
 
@@ -876,9 +915,215 @@ b{
 	}
 }
 
+/* Regional and National IGFS------------- */
+#Regional{
+	margin: 10px;
+	#Regional-Meetings{
+		.regional-tile{
+			
+			margin-bottom: 20px;
+			border: 1px solid $grayMedium;
+			padding: 20px;
+
+			a, p, h4{
+				word-wrap:break-word;
+			}
+
+			h4{
+				margin-top: 0px;
+				font-family: Georgia, serif;
+				color: $grayDarkest;
+
+			}
+
+			&.first{
+				margin-left: 0px;
+			}
+		}
+	}
+
+	#map{
+		z-index: 1;
+		position: relative;
+
+		
+
+		map{
+			z-index: 3
+			area{
+				cursor: pointer !important;
+			}
+
+		}
+		
+		.country{
+			z-index: 2;
+			display:none;
+			position: absolute;
+			top:0px;
+			left:0px;
+		}
+		/*	&#africa{
+				left:482px;
+				top:222px;
+			}
+			&#asia{
+				left:759px;
+				top:170px;
+			}
+			&#south-america{
+				left:283px;
+				top:334px;
+			}*/
+		
+	}
+
+
+}
+
+/* About Page ----------------------------------------------------- */
+
+#AboutPage{
+	#contentWrap{
+		margin-top: 30px;
+		margin-bottom: 30px;
+		border: 1px solid $grayMedium;
+		padding: 0px;
+	}
+	h3{
+		font-family: Georgia, serif;
+	}
+	#intro, #explanation{
+		padding: 20px;
+	}
+	#intro{
+		font-size: 20px;
+		font-family: Georgia, serif;
+		line-height: 19px;
+	}
+	#explanation{
+		p{
+			width: 95%;
+			word-wrap:break-word;
+		}
+		
+	}
+	#top-section{
+		border-bottom: 1px solid $grayMedium;
+
+		#top-right{
+			position: relative;
+			border-left: 1px solid $grayMedium;
+			#stats{
+				border-bottom: 1px solid $grayMedium;
+				height: 60%;
+				.span6{
+					height: 100%;
+					padding: 5px;
+					text-align: center;
+					vertical-align: middle;
+					line-height: 40px;
+					font-size: 40px;
+
+					p{
+						margin: 0px;
+						text-transform: uppercase;
+						font-size: 20px;
+						color: $grayFade;
+					}
+				}
+
+				#sessions{
+					border-right: 1px solid $grayMedium;
+				}
+				
+			}
+			#contact{
+				padding: 20px;
+				font-size: 16px;
+				word-wrap:break-word;
+				p{
+					width: 90%;
+				}
+				a{
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	
+	
+	#main{
+		border-bottom: 1px solid $grayMedium;
+		.span6{
+			&#left-col{
+				border-right: 1px solid $grayMedium;
+
+				#topics, #countries{
+
+					height: 100%;
+					padding: 20px;
+					text-align: center;
+					vertical-align: middle;
+					line-height: 40px;
+					font-size: 40px;
+
+					p{
+						margin: 0px;
+						text-transform: uppercase;
+						font-size: 20px;
+						color: $grayFade;
+					}
+				}
+				#topics{
+					border-right: 1px solid $grayMedium;
+				}
+				#countries{
+					margin-left: 0px;
+					padding: 0px;
+					#map{
+						float:left;
+						display: inline-block;
+						width: 60%;
+					}
+					#stat{
+						padding-top: 20px;
+						padding-left: 20px;
+						float:left;
+						display: inline-block;
+						width:30%;
+		
+					}
+				}
+
+				#who{
+					padding: 20px;
+					border-bottom: 1px solid $grayMedium;
+				}
+			}
+			&#right-col{
+				margin-left: 0px;
+				padding: 20px;
+			}
+
+		}
+	}
+	
+
+}
+
+
+
 /*Responsiveness -------------------------------------------------- */
 
 @media (min-width: 1200px) {
+	#AboutPage{
+		#intro, #top-right{
+			height: 240px;
+		}
+
+	}
 	#ses-wrap{
 		.session-tile{
 
@@ -901,6 +1146,19 @@ b{
 	}
 }
 @media (max-width: 1200px) {
+	#HomePage{
+		.sub-main{
+			.span6{
+				height:270px;
+			}
+		}
+	}
+	#AboutPage{
+		#intro, #top-right{
+			height: 320px;
+		}
+
+	}
 
 	#filter-wrap{
 		form{
@@ -929,7 +1187,9 @@ b{
 			ul{
 				margin-left: 20px;
 			}
-			}}}
+		}
+	}
+}
 
 @media (max-width: 767px) {
 	body{
@@ -939,6 +1199,33 @@ b{
 			padding-left: 20px;
 			padding-right: 20px;
 		}
+	}
+
+	#AboutPage{
+		#intro, #top-right{
+			height: 100%;
+		}
+		#intro{
+			border-bottom: 1px solid $grayMedium;
+		}
+
+		#top-right{
+			border: none;
+		}
+
+		#sessions{
+			border-right: none !important;
+			border-bottom: 1px solid $grayMedium;
+		}
+		#topics{
+			border-right: none !important;
+			border-bottom: 1px solid $grayMedium;
+		}
+		#left-col{
+			border-right: none !important;
+			border-bottom: 1px solid $grayMedium;
+		}
+
 	}
 
 	#navigation {
@@ -1006,6 +1293,28 @@ b{
 	}
 
 	#HomePage{
+	.sub-main{
+
+		.span6{
+		
+			height: 100%;
+			
+			
+			&.featured{
+			
+				.span8{
+					display: inline-block;
+					width:70%;
+					vertical-align: middle;
+				}
+				.span4{
+					display: inline-block;
+					width: 20%;
+					
+				}
+			}
+		}
+	}
 		h3{
 			font-size: 20px;
 		}
@@ -1258,7 +1567,22 @@ b{
 
 @media (min-width: 768px) and (max-width: 979px) {
 
+	#AboutPage{
+		#intro, #top-right{
+			height: 400px;
+		}
+
+
+	}
+
 	#HomePage{
+		.sub-main{
+			.span6{
+				height:310px;
+			}
+		}
+	
+
 		.content{
 			.span1{
 				padding-top: 30px;
