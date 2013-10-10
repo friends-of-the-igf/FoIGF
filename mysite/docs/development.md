@@ -16,4 +16,14 @@ custom js goes in the themes/nad/javascript dir
 ## for live
 turn on Session view count through global settings
 
+## search
+requires solr setup
+
+### file extraction
+run task to extract already existing file content
+dev/tasks/FileExtractionTask
+
 ## tasks
+dev/tasks/FileExtractionTask
+dev/tasks/Solr_Configure
+dev/tasks/Solr_Reindex
