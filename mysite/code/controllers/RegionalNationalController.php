@@ -75,6 +75,16 @@ class RegionalNationalController extends Page_Controller{
 		
 	}
 
+	public function getRegionIDs(){
+		$regions = RNRegion::get();
+		$list = array();
+		foreach ($regions as $region) {
+			$title = str_replace(' ', '', $region->Title);
+			$list[$region->Title] = $region->ID;
+		}
+		return new ArrayData($list);
+	}
+
 
 	
 

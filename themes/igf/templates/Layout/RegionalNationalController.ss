@@ -1,19 +1,34 @@
 <div id="Regional" data-url="$Link"> 
 	<div id="map">
-		<img  src="$ThemeDir/images/map/map.png">
-		<a id="africa" class='country'><img src="$ThemeDir/images/map/default/africa.png"></a>
-		<a id="asia" class='country'><img src="$ThemeDir/images/map/default/asia.png"></a>
-		<a id="south-america" class='country'><img src="$ThemeDir/images/map/default/south-america.png"></a>
-		<a id="north-america" class='country'><img src="$ThemeDir/images/map/default/north-america.png"></a>
+		<img src="$ThemeDir/images/map/map.png" usemap="#world-map">
+		<img id="north-america" class="country" src="$ThemeDir/images/map/north-america.png" usemap="#world-map"/>
+		<img id="south-america" class="country"  src="$ThemeDir/images/map/south-america.png" usemap="#world-map"/>
+		<img id="asia" class="country"  src="$ThemeDir/images/map/asia.png" usemap="#world-map"/>
+		<img id="europe" class="country"  src="$ThemeDir/images/map/europe.png" usemap="#world-map"/>
+		<img id="pacific" class="country"  src="$ThemeDir/images/map/pacific.png" usemap="#world-map"/>
+		<img id="africa" class="country"  src="$ThemeDir/images/map/africa.png" usemap="#world-map"/>
+		
+		<% with RegionIDS %>
+		<map id="world-map" name="world-map">
+			<area data-id="$Pacific" shape="poly" alt="Pacific" title="" continent="pacific" href='#' coords="932,454,896,482,930,576,1034,572,1090,586,1144,576,1140,530,1080,488,994,422,964,442"   target="" />
+
+			<area data-id="$Africa"shape="poly" alt="Africa" title="" continent="africa" href='#' coords="606,542,692,512,732,456,710,432,688,408,714,384,736,348,742,332,756,306,732,288,726,248,678,222,648,228,636,242,648,256,646,262,640,266,622,262,610,268,592,258,592,248,552,248,502,262,484,348,520,386"  target="" />
+
+			<area data-id="$Asia" shape="poly" alt="Asia" title="" href='#' coords="774,302,790,358,804,376,834,378,868,414,936,442,976,430,990,418,996,418,1014,430,1048,442,1096,470,1146,454,1136,406,1118,384,1116,352,1102,322,1064,328,1058,338,1022,314,994,334,994,356,972,354,960,320,972,290,994,272,1024,260,1030,234,1006,220,980,224,976,220,962,216,950,204,946,192,924,182,910,176,896,172,880,172,866,182,873,190,855,189,834,189,814,188,796,204,782,236,777,244,777,287,777,300,776,303" continent="asia" target="" />
+
+			<area data-id="$Europe" shape="poly" alt="Europe" title="" data-id="" continent="europe" href='#' coords="520,216,518,242,525,251,531,253,557,245,585,244,593,244,593,256,624,256,639,257,634,239,660,220,682,220,726,244,726,247,729,254,729,261,735,287,754,301,774,303,772,236,799,193,823,179,863,186,868,187,858,179,882,167,907,170,915,173,932,182,948,192,953,199,956,206,964,210,970,216,978,220,982,220,992,220,1005,218,1014,224,1027,220,1033,224,1042,214,1056,189,1068,170,1087,168,1086,153,1143,139,1156,126,1160,99,1152,73,1116,79,1100,83,1077,80,1058,74,1031,73,1050,58,1065,47,1037,44,994,48,979,50,976,64,963,63,935,58,917,52,917,47,904,38,900,30,861,14,841,12,836,29,846,36,837,43,828,49,816,56,795,64,781,62,780,38,776,25,759,12,744,10,724,12,692,16,686,19,682,25,657,21,623,16,592,24,577,28,577,41,587,53,597,64,613,71,622,75,617,80,601,83,591,94,579,109,565,124,547,122,533,123,523,126,516,136,510,153,511,190,516,195,526,196,531,206,532,213,525,215" target=""/>
+
+			<area data-id="$NorthAmerica" shape="poly" alt="North-America" title="" continent="north-america" href='#' coords="288,356,302,338,322,330,330,318,350,312,318,300,312,288,294,276,290,264,310,250,326,238,348,230,386,220,410,210,370,180,370,160,348,138,358,112,368,100,354,84,334,78,314,62,306,50,306,40,322,26,368,4,264,4,244,22,220,22,170,38,144,62,136,66,120,70,100,80,68,70,30,68,10,90,-6,188,14,190,34,176,60,174,78,156,90,162,108,176,110,198,126,208,136,208,132,226,136,246,146,266,160,292,174,302,188,324,208,340,236,350,260,360,274,354"  target="" />
+
+			<area data-id="$SouthAmerica" shape="poly" alt="South America" title="" continent="south-america" href='#' coords="275,362,278,377,298,373,286,388,280,406,277,425,283,452,299,471,309,484,309,500,298,527,296,542,285,582,299,615,313,618,338,623,355,621,353,606,356,585,370,568,386,553,415,518,431,495,447,460,448,439,455,416,453,403,443,389,407,377,388,371,374,361,372,347,360,339,343,333,317,335,299,346,292,357" />
+		</map>
+		<% end_with %>
+
+		
+
+
 
 	</div>
-	<% if Regions %>
-	<ul>
-		<% loop Regions %>
-		<li><a class="region" data-id="$ID" > $Title </a></li>
-		<% end_loop %>
-	</ul>
-	<% end_if %>
 	<div id="Regional-Meetings">
 		<% with MeetingsData %>
 			<% include RegionalMeetings %>

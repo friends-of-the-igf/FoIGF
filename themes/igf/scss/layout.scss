@@ -935,14 +935,27 @@ b{
 	}
 
 	#map{
+		z-index: 1;
 		position: relative;
 
-		.country{
+		
 
+		map{
+			z-index: 3
+			area{
+				cursor: pointer !important;
+			}
+
+		}
+		
+		.country{
+			z-index: 2;
+			display:none;
 			position: absolute;
 			top:0px;
 			left:0px;
-			&#africa{
+		}
+		/*	&#africa{
 				left:482px;
 				top:222px;
 			}
@@ -953,8 +966,8 @@ b{
 			&#south-america{
 				left:283px;
 				top:334px;
-			}
-		}
+			}*/
+		
 	}
 
 

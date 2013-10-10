@@ -6,10 +6,7 @@ $(document).ready(function() {
 
 
 
-	$('.region').on('click', function(){
-		var id = $(this).data('id');
-		loadRegion(id);
-	})
+	
 
 	function loadRegion(id){
 		url = $('#Regional').data('url') +'getMeetingsData';
@@ -19,45 +16,43 @@ $(document).ready(function() {
 			$('html').css('cursor', 'default');
 		});
 	}
-	$('.country').hover(
-		function(){
-			var country = $(this).attr('id');
+
+	$('area').on('click', function(e){
+		e.preventDefault();
+		$('area').removeClass('active');
+		$('.country').fadeOut('fast');
+
+		$(this).addClass('active');
+		var id = $(this).data('id');
+		loadRegion(id);
+		var region = $(this).attr('continent');
+		$('.country').fadeOut('fast');
+		var highlight = $('img[id*=' + region + ']');
+		highlight.fadeIn('fast');
+	});
+
+	// $('area').hover(function() {
+	
 		
-			$(this).find('img').attr('src', 'themes/igf/images/map/hover/'+country+'.png');
-		},
-		function(){
-			var country = $(this).attr('id');
-			if(!$(this).hasClass('active')){
-				$(this).find('img').attr('src', 'themes/igf/images/map/default/'+country+'.png');
-			}
-		});
-
-	$('.country').on('click',
-		function(){
-			var country = $(this).attr('id');
-			$('.country').each(function(i){
-				if($(this).attr('id') != country){
-					$(this).find('img').attr('src', 'themes/igf/images/map/default/'+$(this).attr('id')+'.png');
-				}
-			})
-			$(this).find('img').attr('src', 'themes/igf/images/map/hover/'+country+'.png');
-			$(this).addClass('active');
-		});
-
-
-
-
-	//africa
-	// $('#africa').on('hover', function(){
-	// 	$(this).find('img').attr('src', 'themes/igf/images/map/hover/africa.png');
-	// },
-	// function(){
-	// 	$(this).find('img').attr('src', 'themes/igf/images/map/default/africa.png');
+	// 	var region = $(this).attr('continent');
+	// 	var highlight = $('img[id*=' + region + ']');
+	// 	highlight.fadeIn('fast');
+		
+	// 	},
+	// 	function(){
+	// 		if($(this).hasClass('active') == false){
+	// 		$(this).mouseout(function() {
+	// 			highlight.fadeOut('fast');
+	// 		});
+	// 	}
+	// 	//console.log(highlight);
+		
 	// });
 
-	// $('#africa').on('click', function(){
-	// 	$(this).find('img').attr('src', 'themes/igf/images/map/hover/africa.png');
-	// });
+	
+
+
+
 	
 
 

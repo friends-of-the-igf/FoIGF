@@ -207,11 +207,20 @@ b { font-weight: 500; }
 #Regional #Regional-Meetings .regional-tile a, #Regional #Regional-Meetings .regional-tile p, #Regional #Regional-Meetings .regional-tile h4 { word-wrap: break-word; }
 #Regional #Regional-Meetings .regional-tile h4 { margin-top: 0px; font-family: Georgia, serif; color: #414141; }
 #Regional #Regional-Meetings .regional-tile.first { margin-left: 0px; }
-#Regional #map { position: relative; }
-#Regional #map .country { position: absolute; top: 0px; left: 0px; }
-#Regional #map .country#africa { left: 482px; top: 222px; }
-#Regional #map .country#asia { left: 759px; top: 170px; }
-#Regional #map .country#south-america { left: 283px; top: 334px; }
+#Regional #map { z-index: 1; position: relative; /*	&#africa{
+		left:482px;
+		top:222px;
+	}
+	&#asia{
+		left:759px;
+		top:170px;
+	}
+	&#south-america{
+		left:283px;
+		top:334px;
+	}*/ }
+#Regional #map map { z-index: 3 area; z-index-cursor: pointer !important; }
+#Regional #map .country { z-index: 2; display: none; position: absolute; top: 0px; left: 0px; }
 
 /* About Page ----------------------------------------------------- */
 #AboutPage #contentWrap { margin-top: 30px; margin-bottom: 30px; border: 1px solid #d8d8d8; padding: 0px; }
