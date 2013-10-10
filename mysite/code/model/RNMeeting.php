@@ -14,8 +14,16 @@ class RNMeeting extends DataObject{
 		'Region' => 'RNRegion'
 		);
 
+	static $belongs_many_many = array(
+		'Regions' => 'RNRegion'
+		);
+
+
 	public function getCMSFields(){
 		$fields = new FieldList();
+
+
+		
 		$fields->push( new TextField('Title', 'Title'));
 		$fields->push( new TextField('Website', 'Website'));
 
@@ -24,10 +32,16 @@ class RNMeeting extends DataObject{
 			$fields->push(new DropdownField('TypeID', 'Type', $types->map('ID', 'Title')));			
 		}
 
-		$regions = RNRegion::get()->sort('Title');
-		if($regions->Count()) {
-			$fields->push(new DropdownField('RegionID', 'Region', $regions->map('ID', 'Title')));			
-		}	
+
+		if($this->ID) {
+			$group = $this;
+			$config = new GridFieldConfig_RelationEditor();
+			$config->getComponentByType('GridFieldAddExistingAutocompleter')
+				->setResultsFormat('$Title')->setSearchFields(array('Title'));
+			$config->removeComponent($config->getComponentByType('GridFieldAddNewButton'));
+			$regionList = GridField::create('Regions','Regions', $this->Regions(), $config);
+			$fields->push($regionList);
+		}
 
 
 		return $fields;

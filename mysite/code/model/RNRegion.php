@@ -8,9 +8,10 @@ class RNRegion extends DataObject{
 	
 		);
 
-	static $has_many = array(
-		'Meetings' => 'RNMeetings'
+	static $many_many = array(
+		'Meetings' => 'RNMeeting'
 		);
+
 
 	public function getCMSFields(){
 		$fields = new FieldList();

@@ -27,14 +27,14 @@ class RegionalNationalController extends Page_Controller{
 		if($type_nat != null){
 			$nat_id = $type_nat->ID;
 		}
-		$other_meetings = RNMeeting::get()->exclude('TypeID', array(1, 2));
+		$other_meetings = RNMeeting::get()->exclude('TypeID', array(1, 2))->Sort('Title', 'ASC');
 
 		if(array_key_exists('id', $_POST)){
 			if(isset($_POST['id']) && $_POST['id'] != null){
 
 				$region = RNRegion::get()->byID($_POST['id']);
 				
-				$meetings = RNMeeting::get()->filter(array('RegionID' => $_POST['id']));
+				$meetings = $region->Meetings()->Sort('Title', 'ASC');
 				
 				$reg_count = $meetings->filter(array('TypeID' => $reg_id))->Count();
 				$nat_count = $meetings->filter(array('TypeID' => $nat_id))->Count();
@@ -54,7 +54,7 @@ class RegionalNationalController extends Page_Controller{
 				return $meetingData->renderWith('RegionalMeetings');
 			}
 		} else {
-			$meetings =  RNMeeting::get();
+			$meetings =  RNMeeting::get()->Sort('Title', 'ASC');
 			
 			$reg_count = $meetings->filter(array('TypeID' => $reg_id))->Count();
 			
@@ -63,7 +63,7 @@ class RegionalNationalController extends Page_Controller{
 			$r_n_meetings = $meetings->filter('TypeID', array($reg_id, $nat_id));
 
 			$data = array(
-				'Region' => null,
+				'Region' => 'all over the world',
 				'RegCount' => $reg_count,
 				'NatCount' => $nat_count,
 				'Meetings' => $r_n_meetings,
@@ -73,6 +73,16 @@ class RegionalNationalController extends Page_Controller{
 			return new ArrayData($data);
 		}
 		
+	}
+
+	public function getRegionIDs(){
+		$regions = RNRegion::get();
+		$list = array();
+		foreach ($regions as $region) {
+			$title = str_replace(' ', '', $region->Title);
+			$list[$region->Title] = $region->ID;
+		}
+		return new ArrayData($list);
 	}
 
 
