@@ -7,13 +7,25 @@ class SessionContentReport extends SS_Report {
 	}
 	
 	function sourceRecords($params, $sort, $limit) {
-		$sessions = MeetingSession::get()->sort($sort);
+		
+		if(isset($_REQUEST['filters']['MeetingID'])) {
+			$sessions = MeetingSession::get()->filter('MeetingID', $_REQUEST['filters']['MeetingID'])->sort($sort);
+		} else {
+			$sessions = MeetingSession::get()->sort($sort);
+		}
+
 		$list = new ArrayList();
-		foreach($sessions as $session) {
-			if(!$session->Content) {
-				$list->push($session);
+
+		if(isset($_REQUEST['filters']['Type'])) {
+			$type = $_REQUEST['filters']['Type'];
+
+			foreach($sessions as $session) {
+				if(!$session->$type) {
+					$list->push($session);
+				}
 			}
 		}
+
 		return $list;
 	}
 
@@ -26,13 +38,45 @@ class SessionContentReport extends SS_Report {
 				"Title" => "Meeting"
 			),
 			"Title" => array(
-				"title" => "Title"
+				"title" => "Title",
+				'formatting' => '<a href=\"admin/sessions/MeetingSession/EditForm/field/MeetingSession/item/{$ID}/edit\" title=\"Edit session\">{$value}</a>'
 			),
 			"Date" => array(
 				"Title" => "Date"
 			)
 		);
 		
+		return $fields;
+	}
+
+	function parameterFields() {
+		$fields = new FieldList();
+
+		$meetings = Meeting::get()->sort('StartDate');
+		if($meetings->Count() != 0) {
+			$list = array("" => "-All-");
+			foreach($meetings as $meeting) {
+				$list[$meeting->ID] = $meeting->StartDate . ' : ' . $meeting->Location()->City . ', ' . $meeting->Location()->Country;
+			}
+			$fields->push(new DropdownField('MeetingID','Filter by Meeting year', $list));
+		}
+
+		$types = array(
+			'All' => '-All-',
+			'Content' => 'Content',
+			'Date' => 'Date',
+			'Day' => 'Day',
+			'TranscriptContent' => 'Transcript Content',
+			'TranscriptID' => 'Transcript File',
+			'ProposalContent' => 'Proposal Content',
+			'ProposalID' => 'Proposal File',
+			'MeetingID' => 'Meeting',
+			'TypeID' => 'Type',
+			'Topic' => 'Topic'
+		);
+
+		$fields->push(new DropdownField('Type','Filter by session with missing information', $types));
+
 		return $fields;
 	}
 
