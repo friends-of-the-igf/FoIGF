@@ -7,20 +7,20 @@
 				<span class="icon-bar"></span>
 			</a>
 
-			<a class="brand" href="$BaseURL"><img alt="Friends of the IGF" src="{$ThemeDir}/images/logo.png"></a>
+			<a class="brand" title="Go home" href="$BaseURL"><img alt="Friends of the IGF" src="{$ThemeDir}/images/logo.png"></a>
 
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 						
 					<% loop $Menu(1).Limit(3) %>
-						<li class="$LinkingMode"><a href="$Link" title="$Title.XML">$MenuTitle.XML</a></li>
+						<li class="$LinkingMode"><a href="$Link" title="Go to $Title.XML">$MenuTitle.XML</a></li>
 					<% end_loop %>
 					<% if $SiteConfig.CanViewType == LoggedInUsers %>
 						<% if $CurrentMember %>
-							<li class=""><a class="blue" href="regional" title="Regional and National IGFs">Regional and National IGFs</a></li>
+							<li class=""><a class="blue" href="regional" title="Go to Regional and National IGFs">Regional and National IGFs</a></li>
 						<% end_if %>
 					<% else %>
-						<li class=""><a class="blue" href="regional" title="Regional and National IGFs">Regional and National IGFs</a></li>
+						<li class=""><a class="blue" href="regional" title="Go to Regional and National IGFs">Regional and National IGFs</a></li>
 					<% end_if %>
 					
 				</ul>

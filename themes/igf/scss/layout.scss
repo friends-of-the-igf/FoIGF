@@ -162,6 +162,7 @@ b{
 				margin: 0;
 
 				#Search{
+
 					display:inline-block;
 					margin-right: 0px;
 					width: 100%;
@@ -174,18 +175,22 @@ b{
 						margin: 0;
 					}
 					::-webkit-input-placeholder { 
+						font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 						font-size: 14px;
 						color: $grayDark;
 					}
 					:-moz-placeholder { 
+						font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 						font-size: 14px;
 					    color: $grayDark;
 					}
 					::-moz-placeholder {
+						font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 						font-size: 14px;
 					    color: $grayDark;
 					}
 					:-ms-input-placeholder { 
+						font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 						font-size: 14px;
 					    color: $grayDark;
 					}

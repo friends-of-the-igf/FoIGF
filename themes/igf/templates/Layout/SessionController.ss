@@ -4,7 +4,7 @@
 		<div class="span12">
 			<h3>$Title</h3>
 			<h4 class="subtext">
-				$Date.Long - A <a title="$Type.Name" href="$Type.Link">$Type.Name</a> on <a title="$Topic.Name" href="$Topic.Link">$Topic.Name</a> in <a title="$Meeting.Location.Name" href="$Meeting.Location.Link">$Meeting.Location.Name</a>
+				$Date.Long - A <a title="Search Session by $Type.Name" href="$Type.Link">$Type.Name</a> on <a title=" Search Session by $Topic.Name" href="$Topic.Link">$Topic.Name</a> in <a title="Search Session by $Meeting.Location.Name" href="$Meeting.Location.Link">$Meeting.Location.Name</a>
 			</h4>
 		</div>	
 	</div>
@@ -58,7 +58,7 @@
 				<% if TagsCollection %>
 					<h5>Tagged</h5>
 					<% loop TagsCollection %>
-						<a title="$Tag" href="$Link">$Tag</a><% if not Last %>,<% end_if %>
+						<a title="Search Session by $Tag" href="$Link">$Tag</a><% if not Last %>,<% end_if %>
 					<% end_loop %>
 				<% end_if %>
 			</div>
@@ -74,11 +74,11 @@
 						<div class='row-fluid speaker'>
 							<div class='span9'>
 								<% if BioLink %>
-									<a title="$Name" class="no-dec" href="$BioLink">$Name</a><br/>
+									<a title="Search Session by $Name" class="no-dec" href="$BioLink">$Name</a><br/>
 								<% else %>
 									$Name<br/>
 								<% end_if %>
-								<a title="$MeetingSessions.Count Sessions" href="$Link">$MeetingSessions.Count Sessions</a>
+								<a title="Search Session by $MeetingSessions.Count Sessions" href="$Link">$MeetingSessions.Count Sessions</a>
 							</div>
 						</div>
 					<% end_loop %>

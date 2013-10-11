@@ -7,7 +7,7 @@
 				$SearchForm
 			</div>
 			<div class="twitter span3">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
+				<a title="Share this page" href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
  
 			</div>
 		</div>

@@ -6,13 +6,13 @@
 		<div id="top-right" class='span5 equ'>
 			<div id="stats" class="row-fluid">
 					<div id="sessions" class="span6">
-						<p><img src="$ThemeDir/images/speech.png"></p>
+						<p><img alt="Sessions" src="$ThemeDir/images/speech.png"></p>
 						$SessionCount
 						<p>Sessions</p>
 					</div>
 					<div id="speakers" class="span6 ">
 						$SpeakerCount
-						<p><img src="$ThemeDir/images/people.png"></p>
+						<p><img alt="Speakers" src="$ThemeDir/images/people.png"></p>
 						<p>Speakers</p>
 					</div>
 			</div>
@@ -37,7 +37,7 @@
 				</div>
 				<div id="countries" class="span8">
 					<div id="map">
-						<img src="$ThemeDir/images/map-small.png">
+						<img alt="WorldMap" src="$ThemeDir/images/map-small.png">
 					</div>
 					<div id="stat">
 						$CountryCount

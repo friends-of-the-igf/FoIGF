@@ -4,7 +4,7 @@
 	<% loop Meetings %>
 
 	<div class="span3<% if First || Modulus(4) == 1 %> first <% end_if %> <% if not First && Modulus(5) == 1 %> last <% end_if %>">
-		<a title="$Title" href="$Link" class="thumbnail">
+		<a title="Go to $Title" href="$Link" class="thumbnail">
 			<div class='img-wrap'>
 			<% if Image %>
 		    $Image.SetSize(400,300)

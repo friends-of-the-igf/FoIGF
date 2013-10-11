@@ -19,7 +19,7 @@
 	<% end_if %>
 		<div>
 			<p><b><a class="title" title="$Title" href="$Link">$Title</a></b></p>		
-			<p><a title="$Type.Name" href="$Type.Link">$Type.Name</a> in <a title="$Meeting.Location.City" href="$Meeting.Location.Link">$Meeting.Location.City</a> on <a title="$Topic.Name" href="$Topic.Link">$Topic.Name</a></p>
+			<p><a title="Search Session by $Type.Name" href="$Type.Link">$Type.Name</a> in <a title="Search Session by $Meeting.Location.City" href="$Meeting.Location.Link">$Meeting.Location.City</a> on <a title="Search Session by $Topic.Name" href="$Topic.Link">$Topic.Name</a></p>
 			<p class="subtext small"><b>$Date.Long | $Views view<% if Views != 1 %>s<% end_if %></b></p>
 		</div>
 	</div>
@@ -27,7 +27,7 @@
 		<div class="tags subtext">
 				<b>Tagged:</b>
 				<% loop TagsCollection %>
-					<a title="$Tag" href="$Link">$Tag</a><% if not Last %>,<% end_if %>
+					<a title="Search Session by $Tag" href="$Link">$Tag</a><% if not Last %>,<% end_if %>
 				<% end_loop %>
 		</div>
 	<% end_if %>

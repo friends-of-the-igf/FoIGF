@@ -8,7 +8,7 @@
 			<div class='tags'>
 			<h5 id="tag-head">View sessions by tag <span class="arrow">&#9660</span></h5>
 			<div id="tag-list">
-				<% loop popularTags %><a title="$Tag" href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
+				<% loop popularTags %><a title="Search Session by $Tag" href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
 			</div>
 		</div>
 	</div>

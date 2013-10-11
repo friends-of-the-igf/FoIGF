@@ -1,2 +1,2 @@
 
-<img class="span1" src="http://placehold.it/74x74">
+<img alt="Speaker" class="span1" src="http://placehold.it/74x74">

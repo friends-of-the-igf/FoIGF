@@ -1,12 +1,12 @@
 <div id="Regional" data-url="$Link"> 
 	<div id="map">
-		<img src="$ThemeDir/images/map/map.png" usemap="#world-map">
-		<img id="north-america" class="country" src="$ThemeDir/images/map/north-america.png" usemap="#world-map"/>
-		<img id="south-america" class="country"  src="$ThemeDir/images/map/south-america.png" usemap="#world-map"/>
-		<img id="asia" class="country"  src="$ThemeDir/images/map/asia.png" usemap="#world-map"/>
-		<img id="europe" class="country"  src="$ThemeDir/images/map/europe.png" usemap="#world-map"/>
-		<img id="pacific" class="country"  src="$ThemeDir/images/map/pacific.png" usemap="#world-map"/>
-		<img id="africa" class="country"  src="$ThemeDir/images/map/africa.png" usemap="#world-map"/>
+		<img src="$ThemeDir/images/map/map.png" usemap="#world-map" alt="World Map">
+		<img alt="North America" id="north-america" class="country" src="$ThemeDir/images/map/north-america.png" usemap="#world-map"/>
+		<img alt="South America" id="south-america" class="country"  src="$ThemeDir/images/map/south-america.png" usemap="#world-map"/>
+		<img alt="Asia" id="asia" class="country"  src="$ThemeDir/images/map/asia.png" usemap="#world-map"/>
+		<img alt="Europe" id="europe" class="country"  src="$ThemeDir/images/map/europe.png" usemap="#world-map"/>
+		<img alt="Pacific" id="pacific" class="country"  src="$ThemeDir/images/map/pacific.png" usemap="#world-map"/>
+		<img alt="Africa" id="africa" class="country"  src="$ThemeDir/images/map/africa.png" usemap="#world-map"/>
 		
 		<% with RegionIDS %>
 		<map id="world-map" name="world-map">

@@ -46,10 +46,10 @@ b { font-weight: 500; }
 #searchbar .search form fieldset { display: inline; width: 75%; padding: 0; margin: 0; }
 #searchbar .search form fieldset #Search { display: inline-block; margin-right: 0px; width: 100%; }
 #searchbar .search form fieldset #Search input { width: 90%; height: 35px; border: none; padding-left: 40px; margin: 0; }
-#searchbar .search form fieldset #Search ::-webkit-input-placeholder { font-size: 14px; color: #535353; }
-#searchbar .search form fieldset #Search :-moz-placeholder { font-size: 14px; color: #535353; }
-#searchbar .search form fieldset #Search ::-moz-placeholder { font-size: 14px; color: #535353; }
-#searchbar .search form fieldset #Search :-ms-input-placeholder { font-size: 14px; color: #535353; }
+#searchbar .search form fieldset #Search ::-webkit-input-placeholder { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; color: #535353; }
+#searchbar .search form fieldset #Search :-moz-placeholder { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; color: #535353; }
+#searchbar .search form fieldset #Search ::-moz-placeholder { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; color: #535353; }
+#searchbar .search form fieldset #Search :-ms-input-placeholder { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; color: #535353; }
 #searchbar .search form .Actions { display: inline-block; width: 20%; padding: 0; margin: 0; }
 #searchbar .search form .Actions #Form_SearchForm_action_results { -webkit-font-smoothing: antialiased; display: inline-block; width: 90px; height: 43px; padding: 5px 10px; font-size: 13px; text-transform: uppercase; border: 1px solid #0077a8; }
 #searchbar .search .mglass { position: relative; margin-bottom: -62px; margin-left: 5px; margin-top: 0px; }
@@ -310,7 +310,7 @@ b { font-weight: 500; }
   #SessionController .social-icons .view { margin-top: 3px; vertical-align: top; }
   #SessionController .social-icons .view .view-count { padding-top: 25px; width: 65px; margin-top: 0px; }
   #SessionController .social-icons .view .view-count p { margin-top: -10px; }
-  #MeetingController .section { min-height: 102px!important; padding: 3px !important; }
+  #MeetingController .section { min-height: 102px !important; padding: 3px !important; }
   #MeetingController .section .social { width: 100%; text-align: center; padding-bottom: 15px; }
   #MeetingController .section .social .span3 { display: inline-block; width: 45%; }
   #MeetingController .section .social .span3 .st_googleplus_vcount { margin-left: 20px; }

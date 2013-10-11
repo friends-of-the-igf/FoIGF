@@ -2,7 +2,7 @@
 <div class="row-fluid header">
   <div class="span12">
     <h3>$Title</h3>
-    <h4 class="subtext">$StartDate.Format(j)-$EndDate.Long - in <a title="$Location.Name" href="$Location.Link">$Location.Name</a><% if Website %> - <a title="$Website" href="$Website">$Website</a><% end_if %></h4>
+    <h4 class="subtext">$StartDate.Format(j)-$EndDate.Long - in <a title="Search Session by $Location.Name" href="$Location.Link">$Location.Name</a><% if Website %> - <a title="Go to $Website" href="$Website">$Website</a><% end_if %></h4>
   </div>    
 </div>
 <div class="row-fluid links">
@@ -16,9 +16,9 @@
     <h5>Meeting Information</h5>
     <% loop LinkItems %>
       <% if Type == 'URL' %>
-        <a title="$Title" href="$Url">$Title</a><% if not Last %> | <% end_if %>
+        <a title="View $Title" href="$Url">$Title</a><% if not Last %> | <% end_if %>
       <% else_if Type == 'Text' %>
-        <a title="$Title" href="item/$ID">$Title</a><% if not Last %> | <% end_if %>
+        <a title="View $Title" href="item/$ID">$Title</a><% if not Last %> | <% end_if %>
       <% end_if %>
     <% end_loop %>
   </div>
@@ -44,7 +44,7 @@
 <div class="row-fluid tags-wrap">
   <div class="span12 tags">
     <h5>Popular Tags</h5>
-      <% loop $popularTags %><a title="$Tag" href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
+      <% loop $popularTags %><a title="Search Session by $Tag" href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
   </div>
 </div>
 <div class="sessions">
@@ -61,14 +61,14 @@
         <% if Count != 0 %>
           <div class="row-fluid ses">
             <div class="span12">
-              <h4><a class='switch'>$Day: </a>$Date <span class="arrow"><a class="switch">&#9660</a></span></h4>
+              <h4><a title="Toggle Day" class='switch'>$Day: </a>$Date <span class="arrow"><a class="switch">&#9660</a></span></h4>
             </div>
             <div class="row-fluid list">
               <% loop Topics %>
               <% if Count != 0 %>
                 <div class="row-fluid topics">
                   <div class="span12">
-                    <h5><a class='topic-switch'>$Title ($Count)</a> <span class="topic-arrow"><a class="topic-switch">&#9660</a></span></h5>
+                    <h5><a title="Toggle topic" class='topic-switch'>$Title ($Count)</a> <span class="topic-arrow"><a class="topic-switch">&#9660</a></span></h5>
                   </div>
                   <div class="row-fluid topic-list">
                     <% loop Sessions %>

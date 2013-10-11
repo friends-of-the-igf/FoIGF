@@ -10,7 +10,7 @@
   		<h3 class='text'>Browse sessions by topic</h3>
   		<ul>
 	  		<% loop Topics %>
-	  			<li><a href='$Link'>$Title</a></li>
+	  			<li><a title="Browse Sessions by $Title" href='$Link'>$Title</a></li>
 	  		<% end_loop %>
 	  	</ul>
 	</div>
@@ -22,7 +22,7 @@
 		</div>
 		<div class="span8">
 			<h3 class='text'>"$Title"</h3>
-			<h4>$StartDate.Format(j)-$EndDate.Long <% if Website %> | <a title="$Website" href="$Website">$Website</a><% end_if %> </h4>
+			<h4>$StartDate.Format(j)-$EndDate.Long <% if Website %> | <a title="Go to $Website" href="$Website">$Website</a><% end_if %> </h4>
 		</div>
 		<% end_with %>
 	</div>
