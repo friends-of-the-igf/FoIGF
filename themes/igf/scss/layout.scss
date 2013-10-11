@@ -1010,7 +1010,7 @@ b{
 			border-left: 1px solid $grayMedium;
 			#stats{
 				border-bottom: 1px solid $grayMedium;
-				height: 60%;
+				height: 145px;
 				.span6{
 					height: 100%;
 					padding: 5px;
@@ -1049,9 +1049,14 @@ b{
 	
 	
 	#main{
+	
 		border-bottom: 1px solid $grayMedium;
 		.span6{
 			&#left-col{
+				height: 100%;
+				
+				bottom: 0px;
+				left: 0px;
 				border-right: 1px solid $grayMedium;
 
 				#topics, #countries{
@@ -1070,33 +1075,43 @@ b{
 						color: $grayFade;
 					}
 				}
-				#topics{
-					border-right: 1px solid $grayMedium;
-				}
-				#countries{
-					margin-left: 0px;
-					padding: 0px;
-					#map{
-						float:left;
-						display: inline-block;
-						width: 60%;
+				#panel{
+					
+					bottom: 0px;
+					height: 120px;
+					#topics{
+						border-right: 1px solid $grayMedium;
 					}
-					#stat{
-						padding-top: 20px;
-						padding-left: 20px;
-						float:left;
-						display: inline-block;
-						width:30%;
-		
+					#countries{
+						margin-left: 0px;
+						padding: 0px;
+						#map{
+							float:left;
+							display: inline-block;
+							width: 60%;
+						}
+						#stat{
+							padding-top: 20px;
+							padding-left: 20px;
+							float:left;
+							display: inline-block;
+							width:30%;
+			
+						}
 					}
 				}
-
-				#who{
-					padding: 20px;
+				#upper-panel{
 					border-bottom: 1px solid $grayMedium;
+					#who{
+						height: 100%;
+						margin-bottom: 120px;
+						padding: 20px;
+						
+					}
 				}
 			}
 			&#right-col{
+				right:0px;
 				margin-left: 0px;
 				padding: 20px;
 			}
@@ -1164,6 +1179,11 @@ b{
 			height: 320px;
 		}
 
+	  	#stat{
+
+	  		padding-left: 0px !important;
+	  	}
+
 	}
 
 	#filter-wrap{
@@ -1210,6 +1230,9 @@ b{
 	#AboutPage{
 		#intro, #top-right{
 			height: 100%;
+			#stats{
+				height: 100% !important;
+			}
 		}
 		#intro{
 			border-bottom: 1px solid $grayMedium;
@@ -1230,6 +1253,9 @@ b{
 		#left-col{
 			border-right: none !important;
 			border-bottom: 1px solid $grayMedium;
+			#panel{
+				height: 100% !important;
+			}
 		}
 
 	}
@@ -1574,12 +1600,24 @@ b{
 @media (min-width: 768px) and (max-width: 979px) {
 
 	#AboutPage{
-		#intro, #top-right{
-			height: 400px;
+		
+		 #top-section{
+			#intro, #top-right{
+				height: 400px;
+			}
+	
 		}
 
+	  	#stat{
+
+	  		padding-left: 0px;
+	  	}
+
+	  
 
 	}
+	
+
 
 	#HomePage{
 		.sub-main{

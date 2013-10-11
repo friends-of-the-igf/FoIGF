@@ -25,12 +25,12 @@
 	</div>
 	<div id="main" class="row-fluid">
 		<div id="left-col" class="span6">
-			<div  class="row-fluid">
+			<div id="upper-panel"  class="row-fluid">
 				<div id="who" class="span12">
 					$WhoIGF
 				</div>
 			</div>
-			<div class="row-fluid">
+			<div id="panel" class="row-fluid">
 				<div id="topics" class="span4">
 					$TopicCount
 					<p>Topics</p>
@@ -45,6 +45,7 @@
 					</div>
 				</div>
 			</div>
+			<div style="clear:both"></div>
 		</div>
 		<div id="right-col" class="span6">
 			$WhatIGF

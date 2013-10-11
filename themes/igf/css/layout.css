@@ -220,7 +220,7 @@ b { font-weight: 500; }
 #AboutPage #explanation p { width: 95%; word-wrap: break-word; }
 #AboutPage #top-section { border-bottom: 1px solid #d8d8d8; }
 #AboutPage #top-section #top-right { position: relative; border-left: 1px solid #d8d8d8; }
-#AboutPage #top-section #top-right #stats { border-bottom: 1px solid #d8d8d8; height: 60%; }
+#AboutPage #top-section #top-right #stats { border-bottom: 1px solid #d8d8d8; height: 145px; }
 #AboutPage #top-section #top-right #stats .span6 { height: 100%; padding: 5px; text-align: center; vertical-align: middle; line-height: 40px; font-size: 40px; }
 #AboutPage #top-section #top-right #stats .span6 p { margin: 0px; text-transform: uppercase; font-size: 20px; color: #919294; }
 #AboutPage #top-section #top-right #stats #sessions { border-right: 1px solid #d8d8d8; }
@@ -228,19 +228,20 @@ b { font-weight: 500; }
 #AboutPage #top-section #top-right #contact p { width: 90%; }
 #AboutPage #top-section #top-right #contact a { text-decoration: underline; }
 #AboutPage #main { border-bottom: 1px solid #d8d8d8; }
-#AboutPage #main .span6#left-col { border-right: 1px solid #d8d8d8; }
+#AboutPage #main .span6#left-col { height: 100%; bottom: 0px; left: 0px; border-right: 1px solid #d8d8d8; }
 #AboutPage #main .span6#left-col #topics, #AboutPage #main .span6#left-col #countries { height: 100%; padding: 20px; text-align: center; vertical-align: middle; line-height: 40px; font-size: 40px; }
 #AboutPage #main .span6#left-col #topics p, #AboutPage #main .span6#left-col #countries p { margin: 0px; text-transform: uppercase; font-size: 20px; color: #919294; }
-#AboutPage #main .span6#left-col #topics { border-right: 1px solid #d8d8d8; }
-#AboutPage #main .span6#left-col #countries { margin-left: 0px; padding: 0px; }
-#AboutPage #main .span6#left-col #countries #map { float: left; display: inline-block; width: 60%; }
-#AboutPage #main .span6#left-col #countries #stat { padding-top: 20px; padding-left: 20px; float: left; display: inline-block; width: 30%; }
-#AboutPage #main .span6#left-col #who { padding: 20px; border-bottom: 1px solid #d8d8d8; }
-#AboutPage #main .span6#right-col { margin-left: 0px; padding: 20px; }
+#AboutPage #main .span6#left-col #panel { bottom: 0px; height: 120px; }
+#AboutPage #main .span6#left-col #panel #topics { border-right: 1px solid #d8d8d8; }
+#AboutPage #main .span6#left-col #panel #countries { margin-left: 0px; padding: 0px; }
+#AboutPage #main .span6#left-col #panel #countries #map { float: left; display: inline-block; width: 60%; }
+#AboutPage #main .span6#left-col #panel #countries #stat { padding-top: 20px; padding-left: 20px; float: left; display: inline-block; width: 30%; }
+#AboutPage #main .span6#left-col #upper-panel { border-bottom: 1px solid #d8d8d8; }
+#AboutPage #main .span6#left-col #upper-panel #who { height: 100%; margin-bottom: 120px; padding: 20px; }
+#AboutPage #main .span6#right-col { right: 0px; margin-left: 0px; padding: 20px; }
 
 /* Contact Page -------------------------------------------------- */
 #ContactPage #contentWrap { margin-top: 20px; }
-#ContactPage .form { margin-right: auto; margin-left: auto; }
 
 /*Responsiveness -------------------------------------------------- */
 @media (min-width: 1200px) { #AboutPage #intro, #AboutPage #top-right { height: 240px; }
@@ -249,6 +250,7 @@ b { font-weight: 500; }
   #ses-wrap .session-tile .nov { width: 90%; } }
 @media (max-width: 1200px) { #HomePage .sub-main .span6 { height: 270px; }
   #AboutPage #intro, #AboutPage #top-right { height: 320px; }
+  #AboutPage #stat { padding-left: 0px !important; }
   #filter-wrap form fieldset select { width: 100%; }
   #filter-wrap form fieldset #Speaker input { width: 90%; } }
 #navigation .navbar-inner .container ul { margin-left: 20px; }
@@ -256,11 +258,13 @@ b { font-weight: 500; }
 @media (max-width: 767px) { body { padding: 0px; }
   body #wrap { padding-left: 20px; padding-right: 20px; }
   #AboutPage #intro, #AboutPage #top-right { height: 100%; }
+  #AboutPage #intro #stats, #AboutPage #top-right #stats { height: 100% !important; }
   #AboutPage #intro { border-bottom: 1px solid #d8d8d8; }
   #AboutPage #top-right { border: none; }
   #AboutPage #sessions { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
   #AboutPage #topics { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
   #AboutPage #left-col { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
+  #AboutPage #left-col #panel { height: 100% !important; }
   #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
   #SessionsHolder #filter-form { cursor: pointer; }
@@ -322,7 +326,8 @@ b { font-weight: 500; }
   #footer .container .element { padding-top: 0px; float: left; }
   #footer .container .meetings { display: none; }
   #footer .container .logo { width: 160px; padding-top: 0px; float: right; } }
-@media (min-width: 768px) and (max-width: 979px) { #AboutPage #intro, #AboutPage #top-right { height: 400px; }
+@media (min-width: 768px) and (max-width: 979px) { #AboutPage #top-section #intro, #AboutPage #top-section #top-right { height: 400px; }
+  #AboutPage #stat { padding-left: 0px; }
   #HomePage .sub-main .span6 { height: 310px; }
   #HomePage .content .span1 { padding-top: 30px; }
   #HomePage .content .text { padding: 10px; }
