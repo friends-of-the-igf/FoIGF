@@ -32,14 +32,14 @@ $(document).ready(function() {
 	});
 
 	$('area').hover(function() {
-			alert('nasty');
+			
 		var region = $(this).attr('continent');
 		var highlight = $('img[id*=' + region + ']');
 		highlight.fadeIn('fast');
 		
 		},
 		function(){
-			alert($(this).hasClass('active'));
+			
 			if($(this).hasClass('active') == false){
 			var region = $(this).attr('continent');
 			var highlight = $('img[id*=' + region + ']');
