@@ -62,7 +62,7 @@
 					<% end_loop %>
 				<% end_if %>
 			</div>
-			<% if Top.CurrentMember.Tagger %>
+			<% if Top.CurrentMember.Tagger && Taggable %>
 				<div class='add-tags'>
 					$Top.TagForm
 				</div>

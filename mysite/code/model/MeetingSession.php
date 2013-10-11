@@ -426,5 +426,15 @@ class MeetingSession extends DataObject {
 		return $tagsList;
     }
 
+    public function Taggable(){
+    	$member = Member::CurrentUser();
+    	$speakers = $this->Speakers();
+    	foreach($speakers as $speaker){
+    		if($member->ID == $speaker->ID){
+    			return true;
+    		}
+    	}
+    }
+
 
 }
