@@ -28,10 +28,9 @@ b { font-weight: 500; }
 #navigation { height: 75px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 #navigation .navbar-inner { height: 75px; background: #323232; }
 #navigation .navbar-inner .container .brand { padding-top: 23px; padding-right: 15px; padding-bottom: 16px; }
-#navigation .navbar-inner .container .social-icons { padding-top: 21px; margin-right: 5px; }
-#navigation .navbar-inner .container .social-icons a { padding: 0 1px; }
 #navigation .navbar-inner .container ul { margin-left: 40px; font-size: 17px; letter-spacing: 1px; font-weight: 500 !important; }
 #navigation .navbar-inner .container ul .blue { color: #0098cd; }
+#navigation .navbar-inner .container ul.pull-right { float: right; }
 #navigation .navbar-inner .container ul li { z-index: 2; }
 #navigation .navbar-inner .container ul li a { padding: 28px 2px 4px 3px; margin-left: 10px; margin-right: 10px; color: white; text-shadow: 0.5px 0px #696b6f; line-height: 12px; border-bottom: 2px #323232 solid; box-shadow: none; background: #323232; z-index: 2; }
 #navigation .navbar-inner .container ul li a:hover { background: #323232; border-bottom: 2px #0098cd solid; }
@@ -209,20 +208,9 @@ b { font-weight: 500; }
 #Regional #Regional-Meetings .regional-tile a, #Regional #Regional-Meetings .regional-tile p, #Regional #Regional-Meetings .regional-tile h4 { word-wrap: break-word; }
 #Regional #Regional-Meetings .regional-tile h4 { margin-top: 0px; font-family: Georgia, serif; color: #414141; }
 #Regional #Regional-Meetings .regional-tile.first { margin-left: 0px; }
-#Regional #map { z-index: 1; position: relative; /*	&#africa{
-		left:482px;
-		top:222px;
-	}
-	&#asia{
-		left:759px;
-		top:170px;
-	}
-	&#south-america{
-		left:283px;
-		top:334px;
-	}*/ }
-#Regional #map map { z-index: 3 area; z-index-cursor: pointer !important; }
-#Regional #map .country { z-index: 2; display: none; position: absolute; top: 0px; left: 0px; }
+#Regional *:focus { outline: none; outline-width: 0; }
+#Regional #map { position: relative; }
+#Regional #map .country { display: none; position: absolute; top: 0px; left: 0px; }
 
 /* About Page ----------------------------------------------------- */
 #AboutPage #contentWrap { margin-top: 30px; margin-bottom: 30px; border: 1px solid #d8d8d8; padding: 0px; }
@@ -249,6 +237,10 @@ b { font-weight: 500; }
 #AboutPage #main .span6#left-col #countries #stat { padding-top: 20px; padding-left: 20px; float: left; display: inline-block; width: 30%; }
 #AboutPage #main .span6#left-col #who { padding: 20px; border-bottom: 1px solid #d8d8d8; }
 #AboutPage #main .span6#right-col { margin-left: 0px; padding: 20px; }
+
+/* Contact Page -------------------------------------------------- */
+#ContactPage #contentWrap { margin-top: 20px; }
+#ContactPage .form { margin-right: auto; margin-left: auto; }
 
 /*Responsiveness -------------------------------------------------- */
 @media (min-width: 1200px) { #AboutPage #intro, #AboutPage #top-right { height: 240px; }

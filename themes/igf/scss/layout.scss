@@ -83,15 +83,10 @@ b{
 				padding-right: 15px;
 				padding-bottom: 16px;
 			}
-			.social-icons {
-				padding-top:21px;
-				margin-right: 5px;
-				a {
-					padding: 0 1px;
-				}
-			}
+			
 
 			ul{
+
 				margin-left: 40px;
 				font-size: 17px;
 				letter-spacing: 1px;
@@ -100,6 +95,9 @@ b{
 				.blue{
 					color: $blue;
 				}
+				&.pull-right{
+						float:right;
+					}
 
 				li {
 					z-index: 2;
@@ -132,6 +130,7 @@ b{
 							border-bottom: 2px $blue solid;
 						}
 					}
+					
 				}		
 			}
 		}
@@ -951,41 +950,26 @@ b{
 			}
 		}
 	}
+	*:focus{
+		outline: none;
+		outline-width: 0;
+	}
 
 	#map{
-		z-index: 1;
+		
 		position: relative;
 
 		
 
-		map{
-			z-index: 3
-			area{
-				cursor: pointer !important;
-			}
-
-		}
-		
 		.country{
-			z-index: 2;
+			
 			display:none;
 			position: absolute;
 			top:0px;
 			left:0px;
+			
 		}
-		/*	&#africa{
-				left:482px;
-				top:222px;
-			}
-			&#asia{
-				left:759px;
-				top:170px;
-			}
-			&#south-america{
-				left:283px;
-				top:334px;
-			}*/
-		
+
 	}
 
 
@@ -1122,6 +1106,18 @@ b{
 	
 
 }
+
+/* Contact Page -------------------------------------------------- */
+
+#ContactPage{
+	#contentWrap{
+		margin-top: 20px;
+	}
+	.form{
+	
+	}
+}
+
 
 
 

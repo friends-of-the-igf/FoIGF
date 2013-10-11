@@ -8,6 +8,8 @@
 			$SuccessMessage
 		</div>
 		<% end_if %>
-		$ContactForm
+		<div class="form">
+			$ContactForm
+		</div>
 	</div>
 </div>

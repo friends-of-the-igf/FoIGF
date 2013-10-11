@@ -22,12 +22,14 @@
 					<% else %>
 						<li class=""><a class="blue" href="regional" title="Go to Regional and National IGFs">Regional and National IGFs</a></li>
 					<% end_if %>
-					
 				</ul>
-				<div class="social-icons pull-right visible-desktop">
-					<% if $SiteConfig.TwitterURL %><a href="$SiteConfig.TwitterURL" ><img alt="Twitter" src="{$ThemeDir}/images/twitter.png"></a><% end_if %>
-					<% if $SiteConfig.FacebookURL %><a href="$SiteConfig.FacebookURL" ><img alt="Facebook" src="{$ThemeDir}/images/fb.png"></a><% end_if %>
-				</div>
+				<ul class="nav pull-right">
+					<% loop $Menu(1) %>
+						<% if $ClassName == AboutPage || $ClassName == ContactPage %>
+							<li class="$LinkingMode"><a href="$Link" title="Go to $Title.XML">$MenuTitle.XML</a></li>
+						<% end_if %>
+					<% end_loop %>
+				</ul>
 			</div>
 		</div>
 	</div>

@@ -84,7 +84,7 @@ class RegionalNationalController extends Page_Controller{
 		$list = array();
 		foreach ($regions as $region) {
 			$title = str_replace(' ', '', $region->Title);
-			$list[$region->Title] = $region->ID;
+			$list[$title] = $region->ID;
 		}
 		return new ArrayData($list);
 	}
