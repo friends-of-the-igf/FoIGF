@@ -18,7 +18,7 @@
 	<div class="text-wrap nov">
 	<% end_if %>
 		<div>
-			<p><b><a class="title" title="$Title" href="$Link">$Title</a></b></p>		
+			<p><b><a class="title" title="Go to $Title" href="$Link">$Title</a></b></p>		
 			<p><a title="Search Session by $Type.Name" href="$Type.Link">$Type.Name</a> in <a title="Search Session by $Meeting.Location.City" href="$Meeting.Location.Link">$Meeting.Location.City</a> on <a title="Search Session by $Topic.Name" href="$Topic.Link">$Topic.Name</a></p>
 			<p class="subtext small"><b>$Date.Long | $Views view<% if Views != 1 %>s<% end_if %></b></p>
 		</div>
