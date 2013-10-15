@@ -4,7 +4,7 @@ jQuery.noConflict();
 $(document).ready(function() {
 
 	$('#Form_SearchForm').submit(function(e){
-		if($.trim($('#Form_SearchForm').val() ) == ''){
+		if($.trim($('#Form_SearchForm_Search').val() ) == ''){
 			e.preventDefault();
 		}
 	});
