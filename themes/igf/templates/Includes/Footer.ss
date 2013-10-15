@@ -11,14 +11,20 @@
 											<li><a href="$Link" title="Go to$Title.XML">$MenuTitle.XML</a></li>
 									<% end_if %>
 								<% end_loop %>
-								<% if $SiteConfig.CanViewType == LoggedInUsers %>
-									<% if $CurrentMember %>
+								<% if $SiteConfig.ShowRegional %>
+									<% if $SiteConfig.CanViewType == LoggedInUsers %>
+										<% if $CurrentMember %>
+											<li class="buff"><a class="blue" href="#" title="Go to Regional and National IGFs">Regional and National IGFs</a></li>
+										<% end_if %>
+									<% else %>
 										<li class="buff"><a class="blue" href="#" title="Go to Regional and National IGFs">Regional and National IGFs</a></li>
 									<% end_if %>
-								<% else %>
-									<li class="buff"><a class="blue" href="#" title="Go to Regional and National IGFs">Regional and National IGFs</a></li>
 								<% end_if %>
-								<li><% if $SiteConfig.TwitterURL %><a href="$SiteConfig.TwitterURL" title="Tiwtter"><img alt="Twitter" src="{$ThemeDir}/images/twitter.png" class='social'></a><% end_if %><% if $SiteConfig.FacebookURL %><a href="$SiteConfig.FacebookURL" title="Facebook"><img alt="Facebook" src="{$ThemeDir}/images/fb.png" class='social'></a><% end_if %></li>			
+								<% loop $Menu(1) %>
+									<% if $ClassName == AboutPage || $ClassName == ContactPage %>
+										<li class="$LinkingMode"><a href="$Link" title="Go to $Title.XML">$MenuTitle.XML</a></li>
+									<% end_if %>
+								<% end_loop %>		
 							</ul>
 						</div>
 					</div>

@@ -11,12 +11,14 @@ class TranscriptAssignTask extends BuildTask{
 		$t_count = 0;
 		foreach(MeetingSession::get() as $session){
 			if($session->TranscriptType == null){
-				if($session->TranscriptID == null || $session->TranscriptID == 0){
+				if($session->TranscriptContent != null){
 					$session->TranscriptType = 'Text';
 					$t_count++;
-				} else {
+				} else if($session->TranscriptID != 0) {
 					$session->TranscriptType = 'File';
 					$f_count++;
+				} else {
+					$session->TranscriptType = null;
 				}
 				$session->write();
 			}

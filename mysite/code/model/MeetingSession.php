@@ -171,7 +171,18 @@ class MeetingSession extends DataObject {
 			//existing
  			$speakersTab->push(new HeaderField('ExistingSpeakers', 'Add Existing Speakers'));
 
-			$speakers = Group::get()->filter(array('Title' => 'Speakers'))->First()->Members()->map()->toArray();
+			// $speakers = Group::get()->filter(array('Title' => 'Speakers'))->First()->Members();
+
+			$meeting = $this->Meeting();
+			$sib_sessions = $meeting->MeetingSessions();
+			$list = new ArrayList();
+			foreach($sib_sessions as $session){
+				$s_speakers = $session->Speakers();
+				foreach($s_speakers as $speak){
+					$list->push($speak);
+				}
+			}
+			$speakers = $list->map();
 			asort($speakers);
 			$speakersTab->push(ListboxField::create('ExistSpeakers', 'Speakers To Add')
 				->setMultiple(true)
@@ -184,8 +195,6 @@ class MeetingSession extends DataObject {
 			$speakersTab->push(new TextField('FirstName', 'First Name'));
 			$speakersTab->push(new TextField('Surname', 'Surname'));
 			$speakersTab->push(new TextField('Bio', 'Link to Bio'));
-
-			
 
 			
 
