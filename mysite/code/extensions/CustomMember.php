@@ -11,6 +11,10 @@ class CustomMember extends DataExtension {
 		'ProfilePhoto' => 'Image'
 		);
 
+	
+
+
+
 	public static $belongs_many_many = array(
 		'MeetingSessions' => 'MeetingSession'
 	);
@@ -44,6 +48,10 @@ class CustomMember extends DataExtension {
 		$fields->removeByName('Tagger');
 		$fields->insertBefore(new CheckboxField('Tagger', 'Can add tags to their Sessions'), 'Email');
 
+	}
+
+	public function updateSummaryFields(&$fields){
+		$fields['BioLink'] = 'Bio Link';
 	}
 
 	public function Link(){

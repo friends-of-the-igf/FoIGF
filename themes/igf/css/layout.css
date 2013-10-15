@@ -214,7 +214,7 @@ b { font-weight: 500; }
 
 /* About Page ----------------------------------------------------- */
 #AboutPage #contentWrap { margin-top: 30px; margin-bottom: 30px; border: 1px solid #d8d8d8; padding: 0px; }
-#AboutPage h3 { font-family: Georgia, serif; }
+#AboutPage h3 { font-family: Georgia, serif; margin-bottom: 10px; }
 #AboutPage #intro, #AboutPage #explanation { padding: 20px; }
 #AboutPage #intro { font-size: 20px; font-family: Georgia, serif; line-height: 19px; }
 #AboutPage #explanation p { width: 95%; word-wrap: break-word; }
@@ -228,17 +228,17 @@ b { font-weight: 500; }
 #AboutPage #top-section #top-right #contact p { width: 90%; }
 #AboutPage #top-section #top-right #contact a { text-decoration: underline; }
 #AboutPage #main { border-bottom: 1px solid #d8d8d8; }
-#AboutPage #main .span6#left-col { height: 100%; bottom: 0px; left: 0px; border-right: 1px solid #d8d8d8; }
-#AboutPage #main .span6#left-col #topics, #AboutPage #main .span6#left-col #countries { height: 100%; padding: 20px; text-align: center; vertical-align: middle; line-height: 40px; font-size: 40px; }
+#AboutPage #main .span6#left-col { height: 100%; border-right: 1px solid #d8d8d8; }
+#AboutPage #main .span6#left-col #topics, #AboutPage #main .span6#left-col #countries { height: 100%; padding-top: 0px; padding: 20px; text-align: center; vertical-align: middle; line-height: 40px; font-size: 40px; }
 #AboutPage #main .span6#left-col #topics p, #AboutPage #main .span6#left-col #countries p { margin: 0px; text-transform: uppercase; font-size: 20px; color: #919294; }
-#AboutPage #main .span6#left-col #panel { bottom: 0px; height: 120px; }
-#AboutPage #main .span6#left-col #panel #topics { border-right: 1px solid #d8d8d8; }
+#AboutPage #main .span6#left-col #panel { height: 120px; }
+#AboutPage #main .span6#left-col #panel #topics { padding-top: 30px; border-right: 1px solid #d8d8d8; }
 #AboutPage #main .span6#left-col #panel #countries { margin-left: 0px; padding: 0px; }
 #AboutPage #main .span6#left-col #panel #countries #map { float: left; display: inline-block; width: 60%; }
 #AboutPage #main .span6#left-col #panel #countries #stat { padding-top: 20px; padding-left: 20px; float: left; display: inline-block; width: 30%; }
 #AboutPage #main .span6#left-col #upper-panel { border-bottom: 1px solid #d8d8d8; }
-#AboutPage #main .span6#left-col #upper-panel #who { height: 100%; margin-bottom: 120px; padding: 20px; }
-#AboutPage #main .span6#right-col { right: 0px; margin-left: 0px; padding: 20px; }
+#AboutPage #main .span6#left-col #upper-panel #who { height: 100%; min-height: 380px; margin-bottom: 10px; padding: 20px; }
+#AboutPage #main .span6#right-col { margin-left: 0px; padding: 20px; }
 
 /* Contact Page -------------------------------------------------- */
 #ContactPage #contentWrap { margin-top: 20px; }
@@ -251,6 +251,7 @@ b { font-weight: 500; }
 @media (max-width: 1200px) { #HomePage .sub-main .span6 { height: 270px; }
   #AboutPage #intro, #AboutPage #top-right { height: 320px; }
   #AboutPage #stat { padding-left: 0px !important; }
+  #AboutPage #who { margin-bottom: 50px !important; }
   #filter-wrap form fieldset select { width: 100%; }
   #filter-wrap form fieldset #Speaker input { width: 90%; } }
 #navigation .navbar-inner .container ul { margin-left: 20px; }
@@ -264,6 +265,7 @@ b { font-weight: 500; }
   #AboutPage #sessions { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
   #AboutPage #topics { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
   #AboutPage #left-col { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
+  #AboutPage #left-col #who { min-height: 0px !important; }
   #AboutPage #left-col #panel { height: 100% !important; }
   #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
   #navigation .navbar-inner .container .social-icons { display: none !important; }
@@ -327,7 +329,10 @@ b { font-weight: 500; }
   #footer .container .meetings { display: none; }
   #footer .container .logo { width: 160px; padding-top: 0px; float: right; } }
 @media (min-width: 768px) and (max-width: 979px) { #AboutPage #top-section #intro, #AboutPage #top-section #top-right { height: 400px; }
-  #AboutPage #stat { padding-left: 0px; }
+  #AboutPage #main #left-col { width: 100%; }
+  #AboutPage #main #left-col #who { min-height: 0px !important; }
+  #AboutPage #main #left-col #panel { border-bottom: 1px solid #d8d8d8; }
+  #AboutPage #main #right-col { width: 100%; }
   #HomePage .sub-main .span6 { height: 310px; }
   #HomePage .content .span1 { padding-top: 30px; }
   #HomePage .content .text { padding: 10px; }

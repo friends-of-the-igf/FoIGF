@@ -15,12 +15,14 @@
 					<% loop $Menu(1).Limit(3) %>
 						<li class="$LinkingMode"><a href="$Link" title="Go to $Title.XML">$MenuTitle.XML</a></li>
 					<% end_loop %>
-					<% if $SiteConfig.CanViewType == LoggedInUsers %>
-						<% if $CurrentMember %>
+					<% if $SiteConfig.ShowRegional %>
+						<% if $SiteConfig.CanViewType == LoggedInUsers %>
+							<% if $CurrentMember %>
+								<li class=""><a class="blue" href="regional" title="Go to Regional and National IGFs">Regional and National IGFs</a></li>
+							<% end_if %>
+						<% else %>
 							<li class=""><a class="blue" href="regional" title="Go to Regional and National IGFs">Regional and National IGFs</a></li>
 						<% end_if %>
-					<% else %>
-						<li class=""><a class="blue" href="regional" title="Go to Regional and National IGFs">Regional and National IGFs</a></li>
 					<% end_if %>
 				</ul>
 				<ul class="nav pull-right">

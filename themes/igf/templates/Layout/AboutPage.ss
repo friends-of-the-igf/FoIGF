@@ -18,7 +18,7 @@
 			</div>
 			<div id="contact" class="row-fluid">
 				<div class="span12">
-					<p>$ContactText <a href="contact">Contact Us</a></p>
+					<p>$ContactText <a href="mailto:contact@friendsoftheigf.org">Contact Us</a></p>
 				</div>
 			</div>
 		</div>

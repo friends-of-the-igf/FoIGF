@@ -158,9 +158,6 @@ class MeetingSession extends DataObject {
 			$videosTab->push($gridField);
 		}
 
-		$speakersTab->push(new TextField('FirstName', 'First Name'));
-		$speakersTab->push(new TextField('Surname', 'Surname'));
-		$speakersTab->push(new TextField('Bio', 'Link to Bio'));
 
 		if($this->ID) {
 			$group = $this;
@@ -168,11 +165,31 @@ class MeetingSession extends DataObject {
 			$config->getComponentByType('GridFieldAddExistingAutocompleter')
 				->setResultsFormat('$Title ($Email)')->setSearchFields(array('FirstName', 'Surname', 'Email'));
 			$config->removeComponent($config->getComponentByType('GridFieldAddNewButton'));
+			$config->removeComponent($config->getComponentByType('GridFieldAddExistingAutocompleter'));
 			$memberList = GridField::create('Speakers',false, $this->Speakers(), $config);
-			$speakersTab->push(new HeaderField('NewSpeaker', 'New Speaker'));
+
+			//existing
+ 			$speakersTab->push(new HeaderField('ExistingSpeakers', 'Add Existing Speakers'));
+
+			$speakers = Group::get()->filter(array('Title' => 'Speakers'))->First()->Members()->map()->toArray();
+			asort($speakers);
+			$speakersTab->push(ListboxField::create('ExistSpeakers', 'Speakers To Add')
+				->setMultiple(true)
+				->setSource($speakers)
+			);
+
+			//new
+			$speakersTab->push(new HeaderField('NewSpeaker', 'Add New Speaker'));
+
 			$speakersTab->push(new TextField('FirstName', 'First Name'));
 			$speakersTab->push(new TextField('Surname', 'Surname'));
 			$speakersTab->push(new TextField('Bio', 'Link to Bio'));
+
+			
+
+			
+
+			//added
 			$speakersTab->push(new HeaderField('AddedSpeakers', 'Added Speakers'));
 			$speakersTab->push($memberList);
 		}
@@ -225,6 +242,18 @@ class MeetingSession extends DataObject {
 					$member->write();
 					$member->addToGroupByCode('speakers');
 					$this->Speakers()->add($member);
+				}
+			}
+		}
+
+		if(array_key_exists('ExistSpeakers', $this->record) && $this->record['ExistSpeakers'] != null){
+			$existing_new = explode(',', $this->record['ExistSpeakers']);
+			if(!empty($existing_new)){
+				foreach($existing_new as $speakerID){
+					if(strlen($speakerID) > 0){
+						$this->Speakers()->add(Member::get()->byID($speakerID));
+					}
+					
 				}
 			}
 		}

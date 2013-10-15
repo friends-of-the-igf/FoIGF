@@ -31,7 +31,7 @@
 <div class="sessions">
 	<div class="row-fluid heading">
 		<div class="span8">
-		<h3>Popular sessions</h3>
+		<h3>Most viewed sessions</h3>
 		</div>
 	</div>
 	<div class="row-fluid ses">

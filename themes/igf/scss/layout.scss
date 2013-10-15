@@ -986,6 +986,7 @@ b{
 	}
 	h3{
 		font-family: Georgia, serif;
+		margin-bottom: 10px;
 	}
 	#intro, #explanation{
 		padding: 20px;
@@ -1054,14 +1055,12 @@ b{
 		.span6{
 			&#left-col{
 				height: 100%;
-				
-				bottom: 0px;
-				left: 0px;
 				border-right: 1px solid $grayMedium;
 
 				#topics, #countries{
 
 					height: 100%;
+					padding-top: 0px;
 					padding: 20px;
 					text-align: center;
 					vertical-align: middle;
@@ -1077,12 +1076,15 @@ b{
 				}
 				#panel{
 					
-					bottom: 0px;
+					
 					height: 120px;
+				
 					#topics{
+						padding-top: 30px;
 						border-right: 1px solid $grayMedium;
 					}
 					#countries{
+						
 						margin-left: 0px;
 						padding: 0px;
 						#map{
@@ -1104,14 +1106,14 @@ b{
 					border-bottom: 1px solid $grayMedium;
 					#who{
 						height: 100%;
-						margin-bottom: 120px;
+						min-height: 380px;
+						margin-bottom: 10px;
 						padding: 20px;
 						
 					}
 				}
 			}
 			&#right-col{
-				right:0px;
 				margin-left: 0px;
 				padding: 20px;
 			}
@@ -1184,6 +1186,10 @@ b{
 	  		padding-left: 0px !important;
 	  	}
 
+	  	#who{
+	  		margin-bottom: 50px !important;
+	  	}
+
 	}
 
 	#filter-wrap{
@@ -1253,6 +1259,9 @@ b{
 		#left-col{
 			border-right: none !important;
 			border-bottom: 1px solid $grayMedium;
+			#who{
+				min-height: 0px !important;
+			}
 			#panel{
 				height: 100% !important;
 			}
@@ -1608,10 +1617,31 @@ b{
 	
 		}
 
-	  	#stat{
+		#main{
+			#left-col{
+				width: 100%;
+				
+					#who{
+						min-height: 0px !important;
+					}
+				
+				#panel{
+					border-bottom: 1px solid $grayMedium;
+					#topics{
 
-	  		padding-left: 0px;
-	  	}
+					}
+					#countries{
+
+					}
+
+				}
+			}
+
+			#right-col{
+				width: 100%;
+			}
+		}
+
 
 	  
 

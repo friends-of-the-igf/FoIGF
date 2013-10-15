@@ -25,7 +25,7 @@ class HomePage_Controller extends Page_Controller {
 		$j = 1;
 		
 		while ($i <= 11) {
-			$session = MeetingSession::get()->sort('Created', 'DESC')->limit(1, $i)->first();
+			$session = MeetingSession::get()->sort('Views', 'DESC')->limit(1, $i)->first();
 			if($session) {
 				switch ($j) {
 					case 1:

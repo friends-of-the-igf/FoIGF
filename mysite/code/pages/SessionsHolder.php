@@ -51,9 +51,10 @@ class SessionsHolder_Controller extends Page_Controller {
 	public function FilterForm(){
 		$fields = new FieldList();
 
-	
-		
-
+		$fields->push($topic = new CheckboxSetField('Topic', 'by Topic', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
+		if(isset($_GET['topic']) && $_GET['topic'] != null){
+			$topic->setValue($_GET['topic']);
+		}
 		$fields->push($m = new DropdownField('Meeting', 'by Meeting', Meeting::get()->sort('StartDate','DESC')->map('ID', 'getYearLocation')));
 		if(isset($_GET['location']) && $_GET['location'] != null){
 			$m->setValue(Location::get()->byID($_GET['location'])->Meetings()->First()->ID);
@@ -91,10 +92,6 @@ class SessionsHolder_Controller extends Page_Controller {
 		$s->setAttribute('data-provide', 'typeahead');
 		$s->setAttribute('class', 'typeahead');
 
-		$fields->push($topic = new CheckboxSetField('Topic', 'by Topic', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
-		if(isset($_GET['topic']) && $_GET['topic'] != null){
-			$topic->setValue($_GET['topic']);
-		}
 
 		$sortOptions = array(
 			'Latest' => 'Latest', 
