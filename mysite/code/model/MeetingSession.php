@@ -26,7 +26,8 @@ class MeetingSession extends DataObject {
 		'Proposal' => 'File',
 		'Meeting' => 'Meeting',
 		'Type' => 'Type',
-		'Topic' => 'Topic'
+		'Topic' => 'Topic',
+		'Organiser' => 'Member'
 	);
 
 	public static $has_many = array(
@@ -42,6 +43,7 @@ class MeetingSession extends DataObject {
 		);
 
 	public static $summary_fields = array(
+		'ID',
 		'Title',
 		'Date',
 		'Meeting.Title'
@@ -466,12 +468,10 @@ class MeetingSession extends DataObject {
 
     public function Taggable(){
     	$member = Member::CurrentUser();
-    	$speakers = $this->Speakers();
-    	foreach($speakers as $speaker){
-    		if($member->ID == $speaker->ID){
-    			return true;
-    		}
-    	}
+		if($member && $member->ID == $this->OrganiserID){
+			return true;
+		}
+    	
     }
 
 

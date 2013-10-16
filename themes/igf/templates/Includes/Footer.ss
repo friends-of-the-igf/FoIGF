@@ -22,9 +22,15 @@
 								<% end_if %>
 								<% loop $Menu(1) %>
 									<% if $ClassName == AboutPage || $ClassName == ContactPage %>
-										<li class="$LinkingMode"><a href="$Link" title="Go to $Title.XML">$MenuTitle.XML</a></li>
+										<li class="$LinkingMode buff"><a href="$Link" title="Go to $Title.XML">$MenuTitle.XML</a></li>
 									<% end_if %>
-								<% end_loop %>		
+								<% end_loop %>	
+								<% if CurrentMember %>
+									<li><a title='Click here to log out' href="security/logout">Log out </a></li>
+								<% else %>
+									<li><a title='Click here to log in' href="security/login">Login</a></li>
+								<% end_if %>
+
 							</ul>
 						</div>
 					</div>

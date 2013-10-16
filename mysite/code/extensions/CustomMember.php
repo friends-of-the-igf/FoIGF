@@ -11,8 +11,9 @@ class CustomMember extends DataExtension {
 		'ProfilePhoto' => 'Image'
 		);
 
-	
-
+	static $has_many = array(
+		'OrganisedSessions' => 'MeetingSession'
+		);
 
 
 	public static $belongs_many_many = array(
@@ -47,6 +48,13 @@ class CustomMember extends DataExtension {
 		$fields->insertBefore(new TextField('BioLink', 'Link to Bio'), 'Email');
 		$fields->removeByName('Tagger');
 		$fields->insertBefore(new CheckboxField('Tagger', 'Can add tags to their Sessions'), 'Email');
+
+
+		$config = new GridFieldConfig_RelationEditor();
+		$config->getComponentByType('GridFieldAddExistingAutocompleter')
+			->setResultsFormat('$Title $Date')->setSearchFields(array('Title', 'Date'));
+		$sessionList = GridField::create('OrganisedSessions', 'Organised Sessions', $this->owner->OrganisedSessions(), $config);
+		$fields->addFieldToTab('Root.OrganisedSessions', $sessionList);
 
 	}
 
