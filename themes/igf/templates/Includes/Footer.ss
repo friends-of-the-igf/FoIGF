@@ -26,7 +26,7 @@
 									<% end_if %>
 								<% end_loop %>	
 								<% if CurrentMember %>
-									<li><a title='Click here to log out' href="security/logout">Log out </a></li>
+									<li><a title='Click here to log out' href="security/logout">Logout</a></li>
 								<% else %>
 									<li><a title='Click here to log in' href="security/login">Login</a></li>
 								<% end_if %>
