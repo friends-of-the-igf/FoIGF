@@ -30,14 +30,11 @@
 								<% else %>
 									<li><a title='Click here to log in' href="security/login">Login</a></li>
 								<% end_if %>
-
 							</ul>
 						</div>
 					</div>
 				</div>
-			
 			</div>
-				
 			<div id="meeting-list" class="span5 f-section">
 				<div class="element-outer">
 					<div class="element-inner">
@@ -48,13 +45,9 @@
 							<ul class="col-footer">
 								<% loop getMeetings %>
 									<% if Odd %>
-								
 										<li><a class="left-col" href="$Link" title="Go to $StartDate.Year() - $Location.City">$StartDate.Year() - $Location.City</a></li>
-							
 									<% else_if Even %>
-							
 										<li><a class="right-col" href="$Link" title="Go to $StartDate.Year() - $Location.City">$StartDate.Year() - $Location.City</a></li>
-								
 									<% end_if %>
 								<% end_loop %>
 								</ul>
@@ -64,12 +57,8 @@
 				</div>
 			</div>
 		</div>
-		
-			
-					
-		
+
 			<div class="offset2 span2 f-section">
-				
 					<div class="element">
 						<div class="logo">
 							<img alt="IGF" src="{$ThemeDir}/images/igf-logo.png"/>
@@ -78,7 +67,6 @@
 								<a href="http://www.intgovforum.org" title="Go to www.intgovforum.org">www.intgovforum.org</a>
 							</div>
 						</div>
-					
 				</div>
 			</div>
 		</div>
