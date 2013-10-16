@@ -42,7 +42,7 @@ class SessionController extends Page_Controller {
 			Session::set('CurrentSession', $meetingsession);
 			$this->meetingsession = $meetingsession;
 		} else {
-			if($this->request->param('Action') == 'CustomSearchForm' || $this->request->param('Action') == 'TagForm' || $this->request->param('Action') == 'getTags'){
+			if($this->request->param('Action') == 'SearchForm' || $this->request->param('Action') == 'TagForm' || $this->request->param('Action') == 'getTags'){
 				return;
 			}else{
 				return $this->httpError(404);

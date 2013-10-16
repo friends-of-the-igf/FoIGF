@@ -18,7 +18,7 @@ class MeetingController extends Page_Controller {
 		if($meeting = Meeting::get()->ByID($id)) {
 			$this->meeting = $meeting;
 		} else {
-			if($this->request->param('Action') != 'CustomSearchForm'){
+			if($this->request->param('Action') != 'SearchForm'){
 				return $this->httpError(404);
 			}
 		}
