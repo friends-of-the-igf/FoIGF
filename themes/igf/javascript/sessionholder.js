@@ -42,155 +42,157 @@ $('#tag-head').on('click', function(){
 		$('#tag-head').find('.arrow').html('&#9660');
 	}
 })
-
-$('.clear').on('click', function(){
-	$(':input','#Form_FilterForm')
-	 .not(':button, :submit, :reset, :hidden')
-	 .val('')
-	 .removeAttr('checked')
-	 .removeAttr('selected');
-});
+$('.more').show();
+$('#next').show();
+$('#prev').show();
+// $('.clear').on('click', function(){
+// 	$(':input','#Form_FilterForm')
+// 	 .not(':button, :submit, :reset, :hidden')
+// 	 .val('')
+// 	 .removeAttr('checked')
+// 	 .removeAttr('selected');
+// });
 
 
 //pagination----------
-var page = 0;
-var filter = $('#sessions-paged').data('filter');
-var pageCount = $('#sessions-paged').data('pages');
+// var page = 0;
+// var filter = $('#sessions-paged').data('filter');
+// var pageCount = $('#sessions-paged').data('pages');
 
-var pages = pageCount;
-if(pageCount > 12){
-	pages = 12;
-}
-
-
-for(var i = 0; i < pageCount; i++){
-	if(i == pageCount-1){
-		$('.pages').append('<li><a class="page last" data-page="'+i+'">'+(i+1)+'</div>');
-	} else {
-		$('.pages').append('<li><a class="page" data-page="'+i+'">'+(i+1)+'</div>');
-	}
-}
-
-$('.page').each(function(){
-	if($(this).data('page') == page){
-		$(this).addClass('active')
-	} else{
-		$(this).removeClass('active')
-	}
-})
+// var pages = pageCount;
+// if(pageCount > 12){
+// 	pages = 12;
+// }
 
 
+// for(var i = 0; i < pageCount; i++){
+// 	if(i == pageCount-1){
+// 		$('.pages').append('<li><a class="page last" data-page="'+i+'">'+(i+1)+'</div>');
+// 	} else {
+// 		$('.pages').append('<li><a class="page" data-page="'+i+'">'+(i+1)+'</div>');
+// 	}
+// }
 
-if(pageCount > 1){
-	$('.more').show();
-} else {
-	$('.more').hide();
-}
-
-if(page == 0){
-	$('#prev').hide();
-}
+// $('.page').each(function(){
+// 	if($(this).data('page') == page){
+// 		$(this).addClass('active')
+// 	} else{
+// 		$(this).removeClass('active')
+// 	}
+// })
 
 
 
-$('#next').on('click', function(){
-	page++;
-	url = $('#Form_FilterForm').data('url') +'changePage';
-	$('html').css('cursor', 'wait');
-	$.post(url, {pager:page, filter:filter }, function(data){
+// if(pageCount > 1){
+// 	$('.more').show();
+// } else {
+// 	$('.more').hide();
+// }
 
-		$('#sessions-paged').html(data);
+// if(page == 0){
+// 	$('#prev').hide();
+// }
 
-		$('html').css('cursor', 'default');
 
-		window.scrollTo(0,0);
 
-		$('#prev').show();
+// $('#next').on('click', function(){
+// 	page++;
+// 	url = $('#Form_FilterForm').data('url') +'changePage';
+// 	$('html').css('cursor', 'wait');
+// 	$.post(url, {pager:page, filter:filter }, function(data){
+
+// 		$('#sessions-paged').html(data);
+
+// 		$('html').css('cursor', 'default');
+
+// 		window.scrollTo(0,0);
+
+// 		$('#prev').show();
 	
-		if(page == pageCount){
-			$('#next').hide();
-		}
-		$('.page').each(function(){
-			if($(this).data('page') == page){
-				$(this).addClass('active')
-			} else{
-				$(this).removeClass('active')
-			}
-		})
-	});	
+// 		if(page == pageCount){
+// 			$('#next').hide();
+// 		}
+// 		$('.page').each(function(){
+// 			if($(this).data('page') == page){
+// 				$(this).addClass('active')
+// 			} else{
+// 				$(this).removeClass('active')
+// 			}
+// 		})
+// 	});	
 
-});
+// });
 
-$('#prev').on('click', function(){
-	page--;
-	url = $('#Form_FilterForm').data('url') +'changePage';
-	$('html').css('cursor', 'wait');
-	$.post(url, {pager:page, filter:filter}, function(data){
-		$('#sessions-paged').html(data);
-		$('html').css('cursor', 'default');
-		window.scrollTo(0,0);
+// $('#prev').on('click', function(){
+// 	page--;
+// 	url = $('#Form_FilterForm').data('url') +'changePage';
+// 	$('html').css('cursor', 'wait');
+// 	$.post(url, {pager:page, filter:filter}, function(data){
+// 		$('#sessions-paged').html(data);
+// 		$('html').css('cursor', 'default');
+// 		window.scrollTo(0,0);
 
-		$('#next').show();
+// 		$('#next').show();
 		
-		if(page == 0){
-			$('#prev').hide();
-		}
-		$('.page').each(function(){
-			if($(this).data('page') == page){
-				$(this).addClass('active')
-			} else{
-				$(this).removeClass('active')
-			}
-		})
-	});	
-});
+// 		if(page == 0){
+// 			$('#prev').hide();
+// 		}
+// 		$('.page').each(function(){
+// 			if($(this).data('page') == page){
+// 				$(this).addClass('active')
+// 			} else{
+// 				$(this).removeClass('active')
+// 			}
+// 		})
+// 	});	
+// });
 
-$('.page').on('click', function(){
-	oldPage = page;
-	page = $(this).data('page');
-	url = $('#Form_FilterForm').data('url') +'changePage';
-	$('html').css('cursor', 'wait');
-	$.post(url, {pager:page, filter:filter}, function(data){
+// $('.page').on('click', function(){
+// 	oldPage = page;
+// 	page = $(this).data('page');
+// 	url = $('#Form_FilterForm').data('url') +'changePage';
+// 	$('html').css('cursor', 'wait');
+// 	$.post(url, {pager:page, filter:filter}, function(data){
 
-		$('#sessions-paged').html(data);
+// 		$('#sessions-paged').html(data);
 
-		$('html').css('cursor', 'default');
+// 		$('html').css('cursor', 'default');
 
-		window.scrollTo(0,0);
+// 		window.scrollTo(0,0);
 	
-		if(page == pageCount-1){
-			$('#next').hide();
-		} else {
-			$('#next').show();
-		}
+// 		if(page == pageCount-1){
+// 			$('#next').hide();
+// 		} else {
+// 			$('#next').show();
+// 		}
 		
-		if(page == 0){
-			$('#prev').hide();
-		} else {
-			$('#prev').show();
-		}
+// 		if(page == 0){
+// 			$('#prev').hide();
+// 		} else {
+// 			$('#prev').show();
+// 		}
 
-		$('.page').each(function(){
-			if($(this).data('page') == page){
-				$(this).addClass('active')
-			} else{
-				$(this).removeClass('active')
-			}
-		})
+// 		$('.page').each(function(){
+// 			if($(this).data('page') == page){
+// 				$(this).addClass('active')
+// 			} else{
+// 				$(this).removeClass('active')
+// 			}
+// 		})
 
-	});	
-});
+// 	});	
+// });
 
 
-var currentTopic = getParameterByName('topic');
-if(currentTopic == ''){
-	$('#all').css('color', '#D53F55');
-}
-$('.topic').each(function(){
-	if($(this).data('id') == currentTopic){
-		$(this).css('color', '#D53F55');
-	}
-})
+// var currentTopic = getParameterByName('topic');
+// if(currentTopic == ''){
+// 	$('#all').css('color', '#D53F55');
+// }
+// $('.topic').each(function(){
+// 	if($(this).data('id') == currentTopic){
+// 		$(this).css('color', '#D53F55');
+// 	}
+// })
 
 
 

@@ -61,7 +61,7 @@ class Video extends DataObject {
 
 	public function getVideo(){
         if($this->YouTubeID != null){
-            return '<iframe width="100%" height="100%" class="youtube-player" type="text/html" src="http://www.youtube.com/embed/'.$this->YouTubeID.'?controls=0&showinfo=0&html5=1" frameborder="0"></iframe>';
+            return '<iframe width="100%" height="100%" class="youtube-player" type="text/html" src="http://www.youtube.com/embed/'.$this->YouTubeID.'?controls=1&showinfo=0&html5=1" frameborder="0"></iframe>';
         } elseif ($this->WebcastCode != null){
 
             return $this->WebcastCode;

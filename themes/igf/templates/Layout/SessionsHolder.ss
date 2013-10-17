@@ -4,7 +4,7 @@
 		<div class="filter">
 			<h5 id="filter-form">Filter Sessions <span class="arrow">&#9650</span></h5>
 			$FilterForm
-			<a title="Clear Filter" id="Form_FilterForm" class="underline clear"> clear filter </a>
+			<a title="Clear Filter" href="$URLSegment" class="underline clear"> clear filter </a>
 			<div class='tags'>
 			<h5 id="tag-head">View sessions by tag <span class="arrow">&#9660</span></h5>
 			<div id="tag-list">
@@ -36,10 +36,14 @@
 		<div class="more">
 			<div class="row-fluid">
 				<div class=" span4 button">
-					<a title="Previous Page" id="prev" class="btn btn-primary">Prev</a>
+					<% if PreviousPage %>
+					<a title="Previous Page" id="prev" class="btn btn-primary" href="$previousPage">Prev</a>
+					<% end_if %>
 				</div>
 				<div class="offset4 span4 button">
-					<a title="Next" id="next" class="btn btn-primary">Next</a>
+					<% if NextPage %>
+						<a title="Next" id="next" class="btn btn-primary" href="$nextPage">Next</a>
+					<% end_if %>
 				</div>
 			</div>
 			<div class="pagination pagination-centered">
