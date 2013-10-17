@@ -262,7 +262,7 @@ class SessionsHolder_Controller extends Page_Controller {
     		$getFilter['Day'] = $_GET['day'];
     	}
 
-
+    	//Speaker
     	if(isset($_GET['speaker']) && $_GET['speaker'] != null){
     		$speaker['MemberID'] = $_GET['speaker'];
     	}

@@ -998,8 +998,9 @@ b{
 	}
 	#explanation{
 		p{
-			width: 95%;
+			width: 90%;
 			word-wrap:break-word;
+			padding-right: 20px;
 		}
 		
 	}
@@ -1217,7 +1218,7 @@ b{
 			
 
 			ul{
-				margin-left: 20px;
+				margin-left: 0px;
 			}
 		}
 	}
@@ -1226,8 +1227,11 @@ b{
 @media (max-width: 767px) {
 	body{
 		padding: 0px;
+		width: 100%;
+
 
 		#wrap{
+
 			padding-left: 20px;
 			padding-right: 20px;
 		}
@@ -1270,17 +1274,38 @@ b{
 	}
 
 	#navigation {
+		width: auto;
 		.navbar-inner {
 			.container {
-				.btn-navbar{
-					margin-top: 10px;
+				.brand{
+					padding-right: 0px;
 				}
-				.social-icons{
-					display:none !important;
+				.btn-navbar{
+					margin-top: 20px;
 				}	
+				.nav-collapse{
+					.nav{
+						z-index: 2 !important;
+						margin-bottom: 0px;
+						&.pull-right{
+							float: none;
+						}
+						li{
+							z-index: 2!important;
+							a{
+								margin-bottom: 0px;
+								border-radius: 0px;
+								padding: 10px 10px 10px 10px;
+								z-index: 2!important;
+
+							}
+						}
+					}
+				}
 			}
 		}
 	}
+
 
 	#SessionsHolder{
 
@@ -1402,49 +1427,62 @@ b{
 	}
 
 
-	#searchbar{
+	#searchbar{	
 		margin-left: -20px;
 		margin-right: -20px;
 
-		
+		.twitter{
+			text-align: left !important;
+			padding-left: 20px;
+		}
 		.search{
 			form{
 				padding-left: 20px;
+				width: 290px;
 				fieldset{
-					width:70%;
+					width: 190px !important;
 				}
 				.Actions {
-					width: 90px;
+					width: 75px;
 
 					margin-left: 10px;
+					input{
+						width: 75px!important;
+						padding: 0px !important;
+					}
 				}
 			}
 				.mglass{
 					margin-left: 25px;
+					z-index: -1!important;
 				}
+				img{
+					z-index: -1!important;
+				}
+
 				
 				#Search{
-					width: 60%;
+					width: 140px !important;
 					
 					input{
-						width:60%;
+						width: 140px !important;
 					}
 
 					::-webkit-input-placeholder { 
 						font-size: 14px;
-					    color:    $white;
+					    color:    $white!important;
 					}
 					:-moz-placeholder { 
 						font-size: 14px;
-					    color:    $white;
+					    color:    $white!important;
 					}
 					::-moz-placeholder {
 						font-size: 14px;
-					    color:    $white;
+					    color:    $white!important;
 					}
 					:-ms-input-placeholder { 
 						font-size: 14px;
-					    color:    $white;
+					    color:    $white!important;
 					}
 				}
 			}
@@ -1567,7 +1605,7 @@ b{
 
 			.f-section{
 				display: inline-block;
-				width:49%;
+				width:40%;
 			}
 
 			#meeting-list{
@@ -1607,6 +1645,7 @@ b{
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
+
 
 	#AboutPage{
 		
@@ -1687,10 +1726,26 @@ b{
 			.container {
 				.btn-navbar{
 					margin-top: 10px;
-				}
-				.social-icons{
-					display:none !important;
 				}	
+				.nav-collapse{
+					.nav{
+						z-index: 2;
+						margin-bottom: 0px;
+						&.pull-right{
+							float: none;
+						}
+						li{
+							z-index: 2;
+							a{
+								margin-bottom: 0px;
+								border-radius: 0px;
+								padding: 10px 10px 10px 10px;
+
+
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -1705,6 +1760,9 @@ b{
 						}
 					}
 				}
+			}
+			img{
+				z-index: 1;
 			}
 		}
 	}
@@ -1761,3 +1819,4 @@ b{
 		}
 	}
 }
+
