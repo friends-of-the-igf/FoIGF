@@ -15,17 +15,6 @@
 	  	</ul>
 	</div>
 	<% end_if %>
-	<div class="span4 official">
-  		<h3 class='text'>Official IGF Website</h3>
-  		<div class='logo'>
-  			<a title="Go to the Official IGF Website" href="http://www.intgovforum.org">
-				$OfficialLogo.CroppedImage(170,180)
-			</a>
-		
-				
-			<h4>Official Website | <a title="Go to the Official IGF Website" href="http://www.intgovforum.org"> www.intgovforum.org</a> </h4>
-		</div>
-  	</div>
 	<% if FeaturedMeeting %>
 	<div class="span4 featured">
 		<h3 class='text'>Next IGF</h3>
@@ -40,6 +29,17 @@
 		<% end_with %>
 	</div>
 	<% end_if %>
+	<div class="span4 official">
+  		<h3 class='text'>Official IGF Website</h3>
+  		<div class='logo'>
+  			<a title="Go to the Official IGF Website" href="http://www.intgovforum.org">
+				$OfficialLogo.CroppedImage(170,180)
+			</a>
+		
+				
+			<h4>Official Website | <a title="Go to the Official IGF Website" href="http://www.intgovforum.org"> www.intgovforum.org</a> </h4>
+		</div>
+  	</div>
 
 </div>
 <div class="sessions">
