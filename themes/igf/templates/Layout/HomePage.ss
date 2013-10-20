@@ -6,8 +6,8 @@
 <div class="row-fluid sub-main">
 	
 	<% if Topics %>
-  	<div class="span6 topics">
-  		<h3 class='text'>Browse sessions by topic</h3>
+  	<div class="span4 topics">
+  		<h3 class='text'>Browse sessions <span class="extra">by topic</span></h3>
   		<ul>
 	  		<% loop Topics %>
 	  			<li><a title="Browse Sessions by $Title" href='$Link'>$Title</a></li>
@@ -15,17 +15,31 @@
 	  	</ul>
 	</div>
 	<% end_if %>
-	<div class="span6 featured">
-		<% with FeaturedMeeting %>
-		<div class="span4">
-			$Image.CroppedImage(180,170)
+	<div class="span4 official">
+  		<h3 class='text'>Official IGF Website</h3>
+  		<div class='logo'>
+  			<a title="Go to the Official IGF Website" href="http://www.intgovforum.org">
+				$OfficialLogo.CroppedImage(170,180)
+			</a>
+		
+				
+			<h4>Official Website | <a title="Go to the Official IGF Website" href="http://www.intgovforum.org"> www.intgovforum.org</a> </h4>
 		</div>
-		<div class="span8">
-			<h3 class='text'>"$Title"</h3>
+  	</div>
+	<% if FeaturedMeeting %>
+	<div class="span4 featured">
+		<h3 class='text'>Next IGF</h3>
+		<% with FeaturedMeeting %>
+		<div class='logo'>
+			<a title="View Meeting" href="$Link">
+				$Image.CroppedImage(190,180)
+			</a>
+	
 			<h4>$StartDate.Format(j)-$EndDate.Long <% if Website %> | <a title="Go to $Website" href="$Website">$Website</a><% end_if %> </h4>
 		</div>
 		<% end_with %>
 	</div>
+	<% end_if %>
 
 </div>
 <div class="sessions">

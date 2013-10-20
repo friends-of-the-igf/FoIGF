@@ -1,5 +1,17 @@
 <?php 
 class HomePage extends Page {
+
+	static $has_one = array(
+		'OfficialLogo' => 'Image'
+		);
+
+	public function getCMSFields(){
+		$fields = parent::getCMSFields();
+
+		$fields->addFieldToTab('Root.Logo', new UploadField('OfficialLogo', 'Official Logo'));
+
+		return $fields;
+	}
 	
 }
 class HomePage_Controller extends Page_Controller {

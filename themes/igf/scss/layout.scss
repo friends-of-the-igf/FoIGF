@@ -371,13 +371,15 @@ b{
 
 	.sub-main{
 
-		.span6{
+		.span4{
 			margin-bottom: 40px;
 			border: 1px $grayMedium solid;
 			min-height: 100px;
 			padding: 10px 20px;
-			height: 230px;
-			
+			height: 320px;
+			.logo{
+				text-align: center;
+			}
 			&.topics{
 
 				background: $grayLighter;
@@ -387,26 +389,26 @@ b{
 						vertical-align: top;
 						display: inline-block;
 						list-style-type: none;
-						width:49%;
+						width:100%;
+						margin-left: 10px;
 					}
 				}
 			}
-			&.featured{
+
+			&.official, &.featured{
 				
-				.span8{
-					padding: 10px 0px;
-				}
+			
+
 				img{
-					padding: 10px 0px;
+					text-align: center;
+					margin-left: -10px;
+					padding: 15px 0px;
 				}
 
-				h3{
-					font-size: 28px;
-					line-height: 28px;
-				}
+				
 				h4{
 					font-weight: normal;
-					font-size: 16px;
+					font-size: 17px;
 				}
 
 			}
@@ -1172,11 +1174,17 @@ b{
 @media (max-width: 1200px) {
 	#HomePage{
 		.sub-main{
-			.span6{
-				height:270px;
+			.span4{
+				height:370px;
+				&.featured{
+					h3{
+						padding-bottom: 28px;
+					}
+				}
 			}
 		}
 	}
+
 	#AboutPage{
 		#intro, #top-right{
 			height: 320px;
@@ -1689,11 +1697,22 @@ b{
 
 
 	#HomePage{
-		.sub-main{
-			.span6{
-				height:310px;
+			.sub-main{
+				.span4{
+					height:420px;
+					&.topics{
+						span.extra{
+							display: none;
+						}
+					}
+					&.featured{
+						img{
+							padding-bottom: 25px;
+						}
+					}
+				}
 			}
-		}
+
 	
 
 		.content{
