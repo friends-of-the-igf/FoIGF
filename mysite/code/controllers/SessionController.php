@@ -50,14 +50,12 @@ class SessionController extends Page_Controller {
 		}
 	}
 
+	//returns the current meeting session
 	public function getMeetingSession() {
 		return $this->meetingsession;
 	}
-
-	public function getTitle() {
-		return $this->meetingsession->Title;
-	}
-
+	
+	//callable class name on template
 	public function getClassName() {
 		return 'SessionController';
 	}
@@ -82,7 +80,9 @@ class SessionController extends Page_Controller {
 	}
 
 	public function saveTags($data, $form){
+
 		$meetingsession = Session::get('CurrentSession');
+
 		if($data['Tags'] != null && isset($data['Tags'])){
 			//make an array of the tags currently attached to sesseion		
 			$oldTagList = array();	
@@ -107,8 +107,7 @@ class SessionController extends Page_Controller {
 			$tagsToAdd = array_diff($newTagList, $oldTagList);
 		
 			if(!empty($tagsToAdd)){
-				foreach($tagsToAdd as $tag){
-					
+				foreach($tagsToAdd as $tag){				
 					if($meetingsession->Tags != null){
 						$meetingsession->Tags .= ','.$tag;
 					} else {

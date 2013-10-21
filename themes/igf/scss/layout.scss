@@ -4,10 +4,6 @@
 
 /* Body
 -------------------------------------------------- */
-html {
-	height: 100%;
-
-}
 
 body {
 	-webkit-font-smoothing: antialiased;
@@ -52,8 +48,6 @@ h4{
 	color: $grayFade;
 }
 
-
-
 .small{
 	font-size: 12px;
 }
@@ -62,7 +56,6 @@ b{
 	font-weight: 500;
 }
 
-
 .blue{
 	color: $blue !important;
 }
@@ -70,7 +63,6 @@ b{
 
 /* Navigation -------------------------------------------------- */
 #navigation {
-	height:75px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 	.navbar-inner {
@@ -78,59 +70,47 @@ b{
 		background: $grayAlt;
 
 		.container {
+
 			.brand {
 				padding-top: 23px;
 				padding-right: 15px;
 				padding-bottom: 16px;
 			}
 			
-
 			ul{
-
 				margin-left: 40px;
 				font-size: 17px;
 				letter-spacing: 1px;
-				font-weight: 500 !important;
+				font-weight: 500;
 
-				.blue{
-					color: $blue;
-				}
 				&.pull-right{
 						float:right;
 					}
 
 				li {
-					z-index: 2;
 					a {
 						padding: 28px 2px 4px 3px;
-						margin-left: 10px;
-						margin-right: 10px;
+						margin: 0px 10px;
 						color: $white;
 						text-shadow: 0.5px 0px $gray;
 						line-height: 12px;
 						border-bottom: 2px $grayAlt solid;
 						box-shadow: none;
 						background: $grayAlt;
-						z-index: 2;
 
 						&:hover {
 							background: $grayAlt;
 							border-bottom: 2px $blue solid;
 						}
 					}
-					.blue{
-						color: $blue;
-					}
-
+			
 					&.active {
-
 						a {
 							color:white;
 							background: $grayAlt;
 							border-bottom: 2px $blue solid;
 						}
 					}
-					
 				}		
 			}
 		}
@@ -138,6 +118,7 @@ b{
 }
 
 /* Search -------------------------------------------------- */
+
 #searchbar{
 	margin-top: -1px;
 	background: $blue;
@@ -1232,53 +1213,214 @@ b{
 	}
 }
 
+@media (min-width: 768px) and (max-width: 979px) {
+
+	#HomePage{
+			.sub-main{
+				.span4{
+					height:420px;
+					&.topics{
+						span.extra{
+							display: none;
+						}
+					}
+					&.featured{
+						img{
+							padding-bottom: 25px;
+						}
+					}
+				}
+			}
+		.content{
+			.span1{
+				padding-top: 30px;
+			}
+			.text{
+				padding: 10px;
+
+			}
+		}
+	}
+
+	#AboutPage{
+		 #top-section{
+			#intro, #top-right{
+				height: 400px;
+			}
+		}
+		#main{
+			.span6#left-col{
+				width: 100%;
+				#upper-panel{
+					#who{
+						min-height: 0px ;
+					}
+				}
+				#panel{
+					border-bottom: 1px solid $grayMedium;
+				}
+			}
+			#right-col{
+				width: 100%;
+			}
+		}
+	}
+	
+	#SessionsHolder{
+		#filter-wrap{
+			#Topic{
+				ul{
+					li{
+						input{
+							display: block;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	#navigation {
+		.navbar-inner {
+			.container {
+				.btn-navbar{
+					margin-top: 10px;
+				}	
+				.nav-collapse{
+					.nav{
+						z-index: 2;
+						margin-bottom: 0px;
+						&.pull-right{
+							float: none;
+						}
+						li{
+							z-index: 2;
+							a{
+								margin-bottom: 0px;
+								border-radius: 0px;
+								padding: 10px 10px 10px 10px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	#searchbar{
+		.search{
+			form {
+				fieldset{
+					#Search{
+						input{
+							width:85%;
+						}
+					}
+				}
+			}
+			img{
+				z-index: 1;
+			}
+		}
+	}
+		
+
+	#SessionController{
+		.social-icons{
+			.span3{
+				width:45%;
+				margin-left: 2.5%;
+				margin-right: 2.5%;
+				padding-bottom: 10px;
+				.view-count{
+					width: 65px;
+				}
+			}
+		}	
+	}
+
+	#MeetingsHolder{
+		.thumbnail {
+			@include border-radius(0);
+			text-decoration: none;
+			min-height: 280px;
+		}
+
+		#meetings-wrap{
+			padding-top: 30px;
+			padding-bottom: 100px;
+			min-height: 200px;
+		}
+	}
+
+	#MeetingController{
+		.section{
+			width:100%;
+			padding: 3px !important;
+			margin-left: 0px !important;
+
+			.social{
+				width:100%;
+				text-align: center;
+				padding-left: 25px;
+			}
+		}
+		.section.right-divide{
+			border-bottom: 1px $grayMedium solid;
+			border-right: none;
+		}
+	}
+}
+
+
 @media (max-width: 767px) {
 	body{
 		padding: 0px;
 		width: 100%;
 
-
 		#wrap{
-
 			padding-left: 20px;
 			padding-right: 20px;
 		}
 	}
 
 	#AboutPage{
-		#intro, #top-right{
-			height: 100%;
-			#stats{
-				height: 100% !important;
-			}
-		}
+
 		#intro{
+			height: 100%;
 			border-bottom: 1px solid $grayMedium;
 		}
 
 		#top-right{
+			height: 100%;
 			border: none;
-		}
-
-		#sessions{
-			border-right: none !important;
-			border-bottom: 1px solid $grayMedium;
-		}
-		#topics{
-			border-right: none !important;
-			border-bottom: 1px solid $grayMedium;
-		}
-		#left-col{
-			border-right: none !important;
-			border-bottom: 1px solid $grayMedium;
-			#who{
-				min-height: 0px !important;
-			}
-			#panel{
+			#stats{
 				height: 100% !important;
-			}
+				#sessions{
+					border-right: none !important;
+					border-bottom: 1px solid $grayMedium;
+				}
+			}		
 		}
 
+		#main{
+			.span6#left-col{
+				border-right: none;
+				border-bottom: 1px solid $grayMedium;
+				#upperpanel{
+					#who{
+						min-height: 0px;
+					}
+				}
+				#panel{
+					height: 100%;
+					#topics{
+						border-right: none;
+						border-bottom: 1px solid $grayMedium;
+					}
+				}
+			}
+		}
 	}
 
 	#navigation {
@@ -1293,19 +1435,18 @@ b{
 				}	
 				.nav-collapse{
 					.nav{
-						z-index: 2 !important;
+						z-index: 2;
 						margin-bottom: 0px;
 						&.pull-right{
 							float: none;
 						}
 						li{
-							z-index: 2!important;
+							z-index: 2;
 							a{
 								margin-bottom: 0px;
 								border-radius: 0px;
 								padding: 10px 10px 10px 10px;
-								z-index: 2!important;
-
+								z-index: 2;
 							}
 						}
 					}
@@ -1316,7 +1457,6 @@ b{
 
 
 	#SessionsHolder{
-
 		#filter-form{
 			cursor: pointer;
 		}
@@ -1650,192 +1790,5 @@ b{
 	}
 
 	
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
-
-
-	#AboutPage{
-		
-		 #top-section{
-			#intro, #top-right{
-				height: 400px;
-			}
-	
-		}
-
-		#main{
-			#left-col{
-				width: 100%;
-				
-					#who{
-						min-height: 0px !important;
-					}
-				
-				#panel{
-					border-bottom: 1px solid $grayMedium;
-					#topics{
-
-					}
-					#countries{
-
-					}
-
-				}
-			}
-
-			#right-col{
-				width: 100%;
-			}
-		}
-
-
-	  
-
-	}
-	
-
-
-	#HomePage{
-			.sub-main{
-				.span4{
-					height:420px;
-					&.topics{
-						span.extra{
-							display: none;
-						}
-					}
-					&.featured{
-						img{
-							padding-bottom: 25px;
-						}
-					}
-				}
-			}
-
-	
-
-		.content{
-			.span1{
-				padding-top: 30px;
-			}
-			.text{
-				padding: 10px;
-
-			}
-		}
-	}
-
-	#SessionsHolder{
-		#filter-wrap{
-			#Topic{
-				ul{
-					li{
-						input{
-							display: block;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	#navigation {
-		.navbar-inner {
-			.container {
-				.btn-navbar{
-					margin-top: 10px;
-				}	
-				.nav-collapse{
-					.nav{
-						z-index: 2;
-						margin-bottom: 0px;
-						&.pull-right{
-							float: none;
-						}
-						li{
-							z-index: 2;
-							a{
-								margin-bottom: 0px;
-								border-radius: 0px;
-								padding: 10px 10px 10px 10px;
-
-
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	#searchbar{
-		.search{
-			form {
-				fieldset{
-					#Search{
-						input{
-							width:85%;
-						}
-					}
-				}
-			}
-			img{
-				z-index: 1;
-			}
-		}
-	}
-		
-
-	#SessionController{
-		.social-icons{
-			.span3{
-				width:45%;
-				margin-left: 2.5%;
-				margin-right: 2.5%;
-				padding-bottom: 10px;
-
-				.view-count{
-					width: 65px;
-				}
-			}
-		}	
-	}
-
-	#MeetingsHolder{
-		.thumbnail {
-			@include border-radius(0);
-			text-decoration: none;
-			min-height: 280px;
-		}
-
-		#meetings-wrap{
-			padding-top: 30px;
-			padding-bottom: 100px;
-			min-height: 200px;
-		}
-	}
-
-	#MeetingController{
-		.section{
-			width:100%;
-			padding: 3px !important;
-			margin-left: 0px !important;
-
-			.social{
-				width:100%;
-				text-align: center;
-				padding-left: 25px;
-
-
-			}
-		}
-
-		.section.right-divide{
-			
-			border-bottom: 1px $grayMedium solid;
-			border-right: none;
-		}
-	}
 }
 

@@ -1,7 +1,5 @@
 /* Body
 -------------------------------------------------- */
-html { height: 100%; }
-
 body { -webkit-font-smoothing: antialiased; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004); background-color: white; min-height: 100%; }
 body #wrap { min-height: 810px; }
 
@@ -25,16 +23,13 @@ b { font-weight: 500; }
 .blue { color: #0098cd !important; }
 
 /* Navigation -------------------------------------------------- */
-#navigation { height: 75px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+#navigation { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 #navigation .navbar-inner { height: 75px; background: #323232; }
 #navigation .navbar-inner .container .brand { padding-top: 23px; padding-right: 15px; padding-bottom: 16px; }
-#navigation .navbar-inner .container ul { margin-left: 40px; font-size: 17px; letter-spacing: 1px; font-weight: 500 !important; }
-#navigation .navbar-inner .container ul .blue { color: #0098cd; }
+#navigation .navbar-inner .container ul { margin-left: 40px; font-size: 17px; letter-spacing: 1px; font-weight: 500; }
 #navigation .navbar-inner .container ul.pull-right { float: right; }
-#navigation .navbar-inner .container ul li { z-index: 2; }
-#navigation .navbar-inner .container ul li a { padding: 28px 2px 4px 3px; margin-left: 10px; margin-right: 10px; color: white; text-shadow: 0.5px 0px #696b6f; line-height: 12px; border-bottom: 2px #323232 solid; box-shadow: none; background: #323232; z-index: 2; }
+#navigation .navbar-inner .container ul li a { padding: 28px 2px 4px 3px; margin: 0px 10px; color: white; text-shadow: 0.5px 0px #696b6f; line-height: 12px; border-bottom: 2px #323232 solid; box-shadow: none; background: #323232; }
 #navigation .navbar-inner .container ul li a:hover { background: #323232; border-bottom: 2px #0098cd solid; }
-#navigation .navbar-inner .container ul li .blue { color: #0098cd; }
 #navigation .navbar-inner .container ul li.active a { color: white; background: #323232; border-bottom: 2px #0098cd solid; }
 
 /* Search -------------------------------------------------- */
@@ -256,24 +251,48 @@ b { font-weight: 500; }
   #filter-wrap form fieldset #Speaker input { width: 90%; } }
 #navigation .navbar-inner .container ul { margin-left: 0px; }
 
+@media (min-width: 768px) and (max-width: 979px) { #HomePage .sub-main .span4 { height: 420px; }
+  #HomePage .sub-main .span4.topics span.extra { display: none; }
+  #HomePage .sub-main .span4.featured img { padding-bottom: 25px; }
+  #HomePage .content .span1 { padding-top: 30px; }
+  #HomePage .content .text { padding: 10px; }
+  #AboutPage #top-section #intro, #AboutPage #top-section #top-right { height: 400px; }
+  #AboutPage #main .span6#left-col { width: 100%; }
+  #AboutPage #main .span6#left-col #upper-panel #who { min-height: 0px; }
+  #AboutPage #main .span6#left-col #panel { border-bottom: 1px solid #d8d8d8; }
+  #AboutPage #main #right-col { width: 100%; }
+  #SessionsHolder #filter-wrap #Topic ul li input { display: block; }
+  #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
+  #navigation .navbar-inner .container .nav-collapse .nav { z-index: 2; margin-bottom: 0px; }
+  #navigation .navbar-inner .container .nav-collapse .nav.pull-right { float: none; }
+  #navigation .navbar-inner .container .nav-collapse .nav li { z-index: 2; }
+  #navigation .navbar-inner .container .nav-collapse .nav li a { margin-bottom: 0px; border-radius: 0px; padding: 10px 10px 10px 10px; }
+  #searchbar .search form fieldset #Search input { width: 85%; }
+  #searchbar .search img { z-index: 1; }
+  #SessionController .social-icons .span3 { width: 45%; margin-left: 2.5%; margin-right: 2.5%; padding-bottom: 10px; }
+  #SessionController .social-icons .span3 .view-count { width: 65px; }
+  #MeetingsHolder .thumbnail { -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; text-decoration: none; min-height: 280px; }
+  #MeetingsHolder #meetings-wrap { padding-top: 30px; padding-bottom: 100px; min-height: 200px; }
+  #MeetingController .section { width: 100%; padding: 3px !important; margin-left: 0px !important; }
+  #MeetingController .section .social { width: 100%; text-align: center; padding-left: 25px; }
+  #MeetingController .section.right-divide { border-bottom: 1px #d8d8d8 solid; border-right: none; } }
 @media (max-width: 767px) { body { padding: 0px; width: 100%; }
   body #wrap { padding-left: 20px; padding-right: 20px; }
-  #AboutPage #intro, #AboutPage #top-right { height: 100%; }
-  #AboutPage #intro #stats, #AboutPage #top-right #stats { height: 100% !important; }
-  #AboutPage #intro { border-bottom: 1px solid #d8d8d8; }
-  #AboutPage #top-right { border: none; }
-  #AboutPage #sessions { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
-  #AboutPage #topics { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
-  #AboutPage #left-col { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
-  #AboutPage #left-col #who { min-height: 0px !important; }
-  #AboutPage #left-col #panel { height: 100% !important; }
+  #AboutPage #intro { height: 100%; border-bottom: 1px solid #d8d8d8; }
+  #AboutPage #top-right { height: 100%; border: none; }
+  #AboutPage #top-right #stats { height: 100% !important; }
+  #AboutPage #top-right #stats #sessions { border-right: none !important; border-bottom: 1px solid #d8d8d8; }
+  #AboutPage #main .span6#left-col { border-right: none; border-bottom: 1px solid #d8d8d8; }
+  #AboutPage #main .span6#left-col #upperpanel #who { min-height: 0px; }
+  #AboutPage #main .span6#left-col #panel { height: 100%; }
+  #AboutPage #main .span6#left-col #panel #topics { border-right: none; border-bottom: 1px solid #d8d8d8; }
   #navigation { width: auto; }
   #navigation .navbar-inner .container .brand { padding-right: 0px; }
   #navigation .navbar-inner .container .btn-navbar { margin-top: 20px; }
-  #navigation .navbar-inner .container .nav-collapse .nav { z-index: 2 !important; margin-bottom: 0px; }
+  #navigation .navbar-inner .container .nav-collapse .nav { z-index: 2; margin-bottom: 0px; }
   #navigation .navbar-inner .container .nav-collapse .nav.pull-right { float: none; }
-  #navigation .navbar-inner .container .nav-collapse .nav li { z-index: 2 !important; }
-  #navigation .navbar-inner .container .nav-collapse .nav li a { margin-bottom: 0px; border-radius: 0px; padding: 10px 10px 10px 10px; z-index: 2 !important; }
+  #navigation .navbar-inner .container .nav-collapse .nav li { z-index: 2; }
+  #navigation .navbar-inner .container .nav-collapse .nav li a { margin-bottom: 0px; border-radius: 0px; padding: 10px 10px 10px 10px; z-index: 2; }
   #SessionsHolder #filter-form { cursor: pointer; }
   #SessionsHolder #filter-form:hover { text-decoration: underline; }
   #SessionsHolder #tag-head { cursor: pointer; }
@@ -336,28 +355,3 @@ b { font-weight: 500; }
   #footer .container .element { padding-top: 0px; float: left; }
   #footer .container .meetings { display: none; }
   #footer .container .logo { width: 160px; padding-top: 0px; float: right; } }
-@media (min-width: 768px) and (max-width: 979px) { #AboutPage #top-section #intro, #AboutPage #top-section #top-right { height: 400px; }
-  #AboutPage #main #left-col { width: 100%; }
-  #AboutPage #main #left-col #who { min-height: 0px !important; }
-  #AboutPage #main #left-col #panel { border-bottom: 1px solid #d8d8d8; }
-  #AboutPage #main #right-col { width: 100%; }
-  #HomePage .sub-main .span4 { height: 420px; }
-  #HomePage .sub-main .span4.topics span.extra { display: none; }
-  #HomePage .sub-main .span4.featured img { padding-bottom: 25px; }
-  #HomePage .content .span1 { padding-top: 30px; }
-  #HomePage .content .text { padding: 10px; }
-  #SessionsHolder #filter-wrap #Topic ul li input { display: block; }
-  #navigation .navbar-inner .container .btn-navbar { margin-top: 10px; }
-  #navigation .navbar-inner .container .nav-collapse .nav { z-index: 2; margin-bottom: 0px; }
-  #navigation .navbar-inner .container .nav-collapse .nav.pull-right { float: none; }
-  #navigation .navbar-inner .container .nav-collapse .nav li { z-index: 2; }
-  #navigation .navbar-inner .container .nav-collapse .nav li a { margin-bottom: 0px; border-radius: 0px; padding: 10px 10px 10px 10px; }
-  #searchbar .search form fieldset #Search input { width: 85%; }
-  #searchbar .search img { z-index: 1; }
-  #SessionController .social-icons .span3 { width: 45%; margin-left: 2.5%; margin-right: 2.5%; padding-bottom: 10px; }
-  #SessionController .social-icons .span3 .view-count { width: 65px; }
-  #MeetingsHolder .thumbnail { -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; text-decoration: none; min-height: 280px; }
-  #MeetingsHolder #meetings-wrap { padding-top: 30px; padding-bottom: 100px; min-height: 200px; }
-  #MeetingController .section { width: 100%; padding: 3px !important; margin-left: 0px !important; }
-  #MeetingController .section .social { width: 100%; text-align: center; padding-left: 25px; }
-  #MeetingController .section.right-divide { border-bottom: 1px #d8d8d8 solid; border-right: none; } }

@@ -126,6 +126,7 @@ class Meeting extends DataObject {
 		}
 	}
 
+	//returns list of topics for use on controller
 	public function getTopics() {
 		$sessions = $this->MeetingSessions();
 		if($sessions->count() != 0) {
@@ -141,6 +142,8 @@ class Meeting extends DataObject {
 		}
 	}
 
+
+	//returns all speakers for meetings
 	public function getSpeakers() {
 		$sessions = $this->MeetingSessions();
 		if($sessions->count() != 0) {
@@ -231,12 +234,14 @@ class Meeting extends DataObject {
 		return $tagsList;
 	}
 
+	//returns a string of the datew and location for Session filter
 	public function getYearLocation(){
 		$date = date('Y', strtotime($this->StartDate));
 		// $date .= '-'.date('d F Y', strtotime($this->EndDate));
 		return $date.' '.$this->Location()->City;
 	}
 
+	//returns a column organised list for template
 	public function getMeetingSessions(){
 		return $this->makeColumns($this->MeetingSessions());
 
@@ -294,6 +299,7 @@ class Meeting extends DataObject {
 
 	}
 
+	//returns a sessions grouped by days and then topics
 	public function meetingDays(){
 		
 		//initial lists for each day

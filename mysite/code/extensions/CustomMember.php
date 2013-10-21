@@ -49,26 +49,18 @@ class CustomMember extends DataExtension {
 		$fields->removeByName('Tagger');
 		$fields->insertBefore(new CheckboxField('Tagger', 'Can add tags to their Sessions'), 'Email');
 
-
+		//list box field for selected "organised sessions"
 		$sessions = MeetingSession::get();
 		$ses_arr = array();
 		$list = new ArrayList();
 		foreach($sessions as $session){
 			$ses_arr[$session->ID] = $session->Title.' - '.$session->Date;
-		}
-			
+		}	
 		asort($ses_arr);
 		$fields->addFieldToTab('Root.OrganisedSessions', ListboxField::create('OrganisedSessions', 'Select Sessions this member has organised and press save to add to list. ')
 			->setMultiple(true)
 			->setSource($ses_arr)
 		);
-
-		// $config = new GridFieldConfig_RelationEditor();
-		// $config->removeComponent($config->getComponentByType('GridFieldAddExistingAutocompleter'));
-		// $config->removeComponent($config->getComponentByType('GridFieldAddNewButton'));
-		// 	// ->setResultsFormat('$Title $Date')->setSearchFields(array('Title', 'Date'));
-		// $sessionList = GridField::create('OrganisedSessions', 'Organised Sessions', $this->owner->OrganisedSessions(), $config);
-		// $fields->addFieldToTab('Root.OrganisedSessions', $sessionList);
 
 	}
 
