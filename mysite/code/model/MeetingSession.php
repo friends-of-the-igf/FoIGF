@@ -203,6 +203,8 @@ class MeetingSession extends DataObject {
 			//added
 			$speakersTab->push(new HeaderField('AddedSpeakers', 'Added Speakers'));
 			$speakersTab->push($memberList);
+
+			//organiser
 		}
 
 		if($this->ID) {

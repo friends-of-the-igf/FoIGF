@@ -8,7 +8,8 @@ class CustomMember extends DataExtension {
 		);
 
 	static $has_one = array(
-		'ProfilePhoto' => 'Image'
+		'ProfilePhoto' => 'Image',
+		'Organisation' => 'Organisation'
 		);
 
 	static $has_many = array(
@@ -50,17 +51,31 @@ class CustomMember extends DataExtension {
 		$fields->insertBefore(new CheckboxField('Tagger', 'Can add tags to their Sessions'), 'Email');
 
 		//list box field for selected "organised sessions"
-		$sessions = MeetingSession::get();
-		$ses_arr = array();
-		$list = new ArrayList();
-		foreach($sessions as $session){
-			$ses_arr[$session->ID] = $session->Title.' - '.$session->Date;
-		}	
-		asort($ses_arr);
-		$fields->addFieldToTab('Root.OrganisedSessions', ListboxField::create('OrganisedSessions', 'Select Sessions this member has organised and press save to add to list. ')
-			->setMultiple(true)
-			->setSource($ses_arr)
-		);
+		// $sessions = MeetingSession::get();
+		// $ses_arr = array();
+		// $list = new ArrayList();
+		// foreach($sessions as $session){
+		// 	$ses_arr[$session->ID] = $session->Title.' - '.$session->Date;
+		// }	
+		// asort($ses_arr);
+		// $fields->addFieldToTab('Root.OrganisedSessions', ListboxField::create('OrganisedSessions', 'Select Sessions this member has organised and press save to add to list. ')
+		// 	->setMultiple(true)
+		// 	->setSource($ses_arr)
+		// );
+		$fields->removeByName('Organisation');
+		$orgs = Organisation::get()->Sort('Title');
+		if($orgs->Count()){
+			$fields->insertBefore(new DropdownField('OrganisationID', 'Organisation', $orgs->map()), 'Email');
+		}
+
+		$config = new GridFieldConfig_RelationEditor();
+		$config->getComponentByType('GridFieldAddExistingAutocompleter')
+			->setResultsFormat('$Title $Date')->setSearchFields(array('Title', 'Date'));
+		$sessionList = GridField::create('OrganisedSessions', 'Organised Sessions', $this->owner->OrganisedSessions(), $config);
+		$fields->addFieldToTab('Root.OrganisedSessions', $sessionList);
+
+
+	
 
 	}
 
@@ -77,17 +92,6 @@ class CustomMember extends DataExtension {
 		return $link;
 	}
 
-	// public function onBeforeWrite(){
-	// 	foreach ($this->owner->record as $key => $value) {
-	// 		error_log($key.'->'.$value);
-	// 	}
 
-	// 	// error_log($this->owner->record['OrgSessions[]']);
-	// 	// if(array_key_exists('OrgSessions', $this->owner->record) && $this->owner->record['OrgSessions'] != null){
-	// 	// 	error_log($this->owner->record['OrgSessions']);
-	// 	// }
-
-	// 	parent::onBeforeWrite();
-	// }
 
 }

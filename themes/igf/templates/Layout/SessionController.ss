@@ -67,6 +67,25 @@
 					$Top.TagForm
 				</div>
 			<% end_if %>
+			<% if Organiser %>
+				<h5>Organiser</h5>
+				<% with Organiser %>
+					<div class="session-side">
+						<div class='row-fluid speaker'>
+								<div class='span9'>
+									<% if BioLink %>
+										<a title="Search Session by $Name" class="no-dec" href="$Organiser.BioLink">$Name</a><br/>
+									<% else %>
+										$Name<br/>
+									<% end_if %>
+									<% if Organisation %><i>$Organisation.Title</i><br/><% end_if %>
+									<a title="Search Session by $MeetingSessions.Count Sessions" href="$Link">$MeetingSessions.Count Sessions</a>
+									
+								</div>
+							</div>
+					</div>
+				<% end_with %>
+			<% end_if %>
 			<div class="session-side">
 				<% if Speakers %>
 					<h5>Speakers</h5>
