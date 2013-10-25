@@ -64,10 +64,13 @@ b{
 /* Navigation -------------------------------------------------- */
 #navigation {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background: $grayAlt;
+	height: 75px;
 
 	.navbar-inner {
 		height:75px;
-		background: $grayAlt;
+		filter:none;
+		background: $grayAlt !important;
 
 		.container {
 

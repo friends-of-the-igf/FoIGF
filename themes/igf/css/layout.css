@@ -23,8 +23,8 @@ b { font-weight: 500; }
 .blue { color: #0098cd !important; }
 
 /* Navigation -------------------------------------------------- */
-#navigation { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-#navigation .navbar-inner { height: 75px; background: #323232; }
+#navigation { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: #323232; height: 75px; }
+#navigation .navbar-inner { height: 75px; filter: none; background: #323232 !important; }
 #navigation .navbar-inner .container .brand { padding-top: 23px; padding-right: 15px; padding-bottom: 16px; }
 #navigation .navbar-inner .container ul { margin-left: 40px; font-size: 17px; letter-spacing: 1px; font-weight: 500; }
 #navigation .navbar-inner .container ul.pull-right { float: right; }
