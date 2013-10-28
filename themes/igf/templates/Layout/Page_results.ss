@@ -1,5 +1,5 @@
 <div id="Content" class="searchResults">
-    <h1>$Title</h1>
+    <h1>Search Results</h1>
       
     <% if $Query %>
         <p class="searchQuery"><strong>You searched for &quot;{$Query}&quot;</strong></p>
