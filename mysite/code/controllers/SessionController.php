@@ -73,6 +73,15 @@ class SessionController extends Page_Controller {
 	}
 
 	/**
+	 * Gets Titile of current Meeting Session
+	 * 
+	 * @return String.
+	 */
+	public function Title(){
+		return $this->meetingsession->Title;
+	}
+
+	/**
 	 * Creates a form for front end tagging
 	 * 
 	 * @return Form.
