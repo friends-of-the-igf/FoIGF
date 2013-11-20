@@ -1,6 +1,16 @@
 <?php
+/**
+* Extension to Search for text extraction
+*
+* @package FoIGF
+*/
 class SearchExtension extends Extension {
 
+	/**
+	 * Returns a custom SearchForm
+	 * 
+	 * @return Form.
+	 */
 	public function SearchForm() {
 		$query = isset($_GET['Search']) && $_GET['Search'] ? $_GET['Search'] : '';
 
@@ -18,6 +28,13 @@ class SearchExtension extends Extension {
 		return $form;
 	}
 
+	/**
+	 * Form action for Search Form
+	 * @param $data Array of form data.
+	 * @param $form Form object
+	 * @param $request An SS_HTTPRequest
+	 * @return Mixed.
+	 */
 	public function results($data, $form, $request) {
 		if(!isset($data)) $data = $_REQUEST;
 

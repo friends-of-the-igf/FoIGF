@@ -1,5 +1,9 @@
 <?php
-
+/**
+* Controller to display Proposals belonging to a Meeting Session
+*
+* @package FoIGF
+*/
 class ProposalController extends Page_Controller {
 	
 	public static $url_handlers = array(
@@ -22,14 +26,29 @@ class ProposalController extends Page_Controller {
 		}
 	}
 
+	/**
+	 * Gets current Meeting Session
+	 * 
+	 * @return MeetingSession.
+	 */
 	public function getMeetingSession() {
 		return $this->meetingsession;
 	}
 
+	/**
+	 * Gets title for current Meeting Session
+	 * 
+	 * @return String.
+	 */
 	public function getTitle() {
 		return $this->meetingsession->Title;
 	}
 
+	/**
+	 * Returns a class name for the Controller
+	 * 
+	 * @return String.
+	 */
 	public function getClassName() {
 		return 'TranscriptController';
 	}

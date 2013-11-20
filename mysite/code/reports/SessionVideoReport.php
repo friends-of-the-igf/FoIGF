@@ -1,5 +1,9 @@
 <?php
-
+/**
+* Runs a report on missing Session videos
+*
+* @package FoIGF
+*/
 class SessionVideoReport extends SS_Report {
 
 	function title() {

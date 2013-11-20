@@ -1,5 +1,9 @@
 <?php
-
+/**
+* Controller to display Link Items
+*
+* @package FoIGF
+*/
 class LinkItemController extends Page_Controller {
 	
 	public static $url_handlers = array(
@@ -22,11 +26,20 @@ class LinkItemController extends Page_Controller {
 		}
 	}
 
+	/**
+	 * Gets current Link Item
+	 * 
+	 * @return LinkItem.
+	 */
 	public function getItem() {
 		return $this->item;
 	}
 
-
+	/**
+	 * Returns a class name for the Controller
+	 * 
+	 * @return String.
+	 */
 	public function getClassName() {
 		return 'LinkItemController';
 	}

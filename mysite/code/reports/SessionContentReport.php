@@ -1,5 +1,9 @@
 <?php
-
+/**
+* Runs a report on misisng Session Content
+*
+* @package FoIGF
+*/
 class SessionContentReport extends SS_Report {
 
 	function title() {

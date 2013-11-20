@@ -1,5 +1,9 @@
 <?php
-
+/**
+* A task to assign a transcript type to Meeting Sessions if a transcript exists
+*
+* @package FoIGF
+*/
 class TranscriptAssignTask extends BuildTask{
 	
 	protected $title = "Transcript Assign Task";

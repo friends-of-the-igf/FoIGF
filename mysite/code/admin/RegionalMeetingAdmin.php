@@ -1,4 +1,8 @@
 <?php
+/**
+* Administration for Regional Meetings
+*
+*/
 class RegionalMeetingAdmin extends ModelAdmin {
 
 	public static $managed_models = array(

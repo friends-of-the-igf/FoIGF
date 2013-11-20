@@ -1,5 +1,9 @@
 <?php 
-
+/**
+* A page that displays editable content about IGF and FoIGF
+*
+* @package FoIGF
+*/
 class AboutPage extends Page{
 
 	static $db = array(
@@ -31,19 +35,39 @@ class AboutPage_Controller extends Page_Controller{
 	static $allowed_actions = array(
 		);
 
+	/**
+	* Gets a count of all Topics. 
+	* 
+	* @return Int.
+	*/
 	public function getTopicCount(){
 		return Topic::get()->Count();
 
 	}
 
+	/**
+	* Gets a count of all Speakers. 
+	* 
+	* @return Int.
+	*/
 	public function getSpeakerCount(){
 		return Group::get()->filter(array('Title' => 'Speakers'))->First()->Members()->Count();
 	}
 
+	/**
+	* Gets a count of all Meeting Sessions. 
+	* 
+	* @return Int.
+	*/
 	public function getSessionCount(){
 		return MeetingSession::get()->Count();
 	}
 
+	/**
+	* Gets a static count of all Countries. 
+	* 
+	* @return Int.
+	*/
 	public function getCountryCount(){
 		return 87;
 	}

@@ -1,5 +1,9 @@
 <?php
-
+/**
+* Extracts file contents
+*
+* @package FoIGF
+*/
 class FileExtractionTask extends BuildTask{
 	
 	protected $title = "Extract File Content";

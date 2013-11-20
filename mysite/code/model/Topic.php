@@ -1,4 +1,9 @@
 <?php
+/**
+* A Meeting Session Topic to categorise Meeting Sessions
+*
+* @package FoIGF
+*/
 class Topic extends DataObject {
 
 	public static $db = array(
@@ -38,6 +43,11 @@ class Topic extends DataObject {
 		return $fields;
 	}
 
+	 /**
+	 * Gets a link to the Session holder page with the topic id as a parameter in the query string. 
+	 * 
+	 * @return String.
+	 */
 	public function Link(){
 		$link = "";
 		if($page = SessionsHolder::get()->First()) {

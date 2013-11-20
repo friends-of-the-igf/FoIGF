@@ -1,5 +1,9 @@
 <?php
-
+/**
+* Controller to display Meeting Sessions
+*
+* @package FoIGF
+*/
 class SessionController extends Page_Controller {
 	
 	public static $url_handlers = array(
@@ -50,16 +54,29 @@ class SessionController extends Page_Controller {
 		}
 	}
 
-	//returns the current meeting session
+	/**
+	 * Gets current MeetingSession
+	 * 
+	 * @return MeetingSession.
+	 */
 	public function getMeetingSession() {
 		return $this->meetingsession;
 	}
 	
-	//callable class name on template
+	/**
+	 * Gets ClassName for the Controller
+	 * 
+	 * @return String.
+	 */
 	public function getClassName() {
 		return 'SessionController';
 	}
 
+	/**
+	 * Creates a form for front end tagging
+	 * 
+	 * @return Form.
+	 */
 	public function TagForm(){
 		$fields = new FieldList();
 
@@ -79,6 +96,11 @@ class SessionController extends Page_Controller {
 		return $form;
 	}
 
+	/**
+	 * Form action for TagForm
+	 * @param $data Array of data from form fields.
+	 * @param $form The form object
+	 */
 	public function saveTags($data, $form){
 
 		$meetingsession = Session::get('CurrentSession');
@@ -120,6 +142,11 @@ class SessionController extends Page_Controller {
 		return $this->redirectBack();
 	}
 
+	/**
+	 * Gets a list of all Tags
+	 * 
+	 * @return String.
+	 */
 	public function getTags() {
 		$sessions = MeetingSession::get();
 		$list = array();	

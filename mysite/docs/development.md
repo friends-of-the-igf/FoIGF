@@ -10,8 +10,8 @@ any bootstrap changes override core classes in layout.scss
 any bootstrap var changes made in _variables.scss
 
 ## js
-thirdparty js goes in the themes/nad/thirdparty dir
-custom js goes in the themes/nad/javascript dir
+thirdparty js goes in the themes/igf/thirdparty dir
+custom js goes in the themes/igf/javascript dir
 
 ## for live
 turn on Session view count through global settings

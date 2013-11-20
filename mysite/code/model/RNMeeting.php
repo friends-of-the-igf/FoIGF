@@ -1,5 +1,9 @@
 <?php
-
+/**
+* A Regional National Meeting Object. Belongs to a region
+*
+* @package FoIGF
+*/
 class RNMeeting extends DataObject{
 
 	static $singular_name = 'Regional/National Meeting';
@@ -22,8 +26,6 @@ class RNMeeting extends DataObject{
 	public function getCMSFields(){
 		$fields = new FieldList();
 
-
-		
 		$fields->push( new TextField('Title', 'Title'));
 		$fields->push( new TextField('Website', 'Website'));
 
@@ -31,7 +33,6 @@ class RNMeeting extends DataObject{
 		if($types->Count()) {
 			$fields->push(new DropdownField('TypeID', 'Type', $types->map('ID', 'Title')));			
 		}
-
 
 		if($this->ID) {
 			$group = $this;
@@ -43,10 +44,7 @@ class RNMeeting extends DataObject{
 			$fields->push($regionList);
 		}
 
-
 		return $fields;
-
-
 	}
 
 

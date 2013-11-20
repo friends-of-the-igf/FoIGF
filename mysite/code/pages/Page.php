@@ -1,4 +1,9 @@
 <?php
+/**
+* Base Page type
+*
+* @package FoIGF
+*/
 class Page extends SiteTree {
 
 	public static $db = array(
@@ -29,7 +34,11 @@ class Page_Controller extends ContentController {
 		parent::init();
 	}
 
-
+	/**
+	 * Returns a link to the first Session Holder page
+	 * 
+	 * @return String.
+	 */
 	public function sessionLink(){
 		if($page = SessionsHolder::get()->First()) {
 			return $page->Link();
@@ -91,11 +100,21 @@ class Page_Controller extends ContentController {
 		return $output;
 	}
 
+	/**
+	 * Gets all meetings in order of most recent
+	 * 
+	 * @return Datalist.
+	 */
 	public function getMeetings() {
 		$meetings = Meeting::get()->Sort('StartDate', 'DESC');
 		return $meetings;
 	}
 
+	/**
+	 * Returns a link to the first Meetings Holder page
+	 * 
+	 * @return String.
+	 */
 	public function meetingsLink(){
 		return MeetingsHolder::get()->First()->Link();
 

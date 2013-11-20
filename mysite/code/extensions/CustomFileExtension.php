@@ -1,4 +1,9 @@
 <?php
+/**
+* Extension to Files for text extraction
+*
+* @package FoIGF
+*/
 class CustomFileExtension extends DataExtension {
 
 	// set index

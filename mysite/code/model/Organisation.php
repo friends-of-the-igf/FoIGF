@@ -1,5 +1,9 @@
 <?php
-
+/**
+* Organisation for Members to be belong to.
+*
+* @package FoIGF
+*/
 class Organisation extends DataObject{
 	
 	
@@ -12,14 +16,12 @@ class Organisation extends DataObject{
 		'Organisers' => 'Member'
 		);
 
-
 	public function getCMSFields(){
 		$fields = new FieldList();
 
 		$fields->push(new TextField('Title', 'Title'));
 
 		return $fields;
-
 	}
 
 

@@ -1,4 +1,9 @@
 <?php
+/**
+* A Meeting Session Type to categorise Meeting Sessions
+*
+* @package FoIGF
+*/
 class Type extends DataObject {
 
 	public static $db = array(
@@ -38,6 +43,11 @@ class Type extends DataObject {
 		return $fields;
 	}
 
+	/**
+	 * Gets a link to the Session holder page with the type id as a parameter in the query string. 
+	 * 
+	 * @return String.
+	 */
 	public function Link(){
 		$link = "";
 		if($page = SessionsHolder::get()->First()) {

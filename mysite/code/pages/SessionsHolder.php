@@ -1,4 +1,9 @@
 <?php
+/**
+* A page which displays and filters Meetings Sessions
+*
+* @package FoIGF
+*/
 class SessionsHolder extends Page {
 
 	public static $db = array(
@@ -50,6 +55,11 @@ class SessionsHolder_Controller extends Page_Controller {
 		
 	}
 
+	/**
+	* Gets a Filter form for Meeting Sessions. 
+	* 
+	* @return Form.
+	*/
 	public function FilterForm(){
 		$fields = new FieldList();
 
@@ -160,6 +170,13 @@ class SessionsHolder_Controller extends Page_Controller {
 		return $form;
 	}
 
+	/**
+	* Performs a filter operation before redirecting back to the page with the results. 
+	* @param $data An Array of form data
+	* @param $form The form object
+	*
+	* @return SessionHolder
+	*/
 	public function doSearch($data, $form){
 
 		$filter = array();
@@ -226,6 +243,14 @@ class SessionsHolder_Controller extends Page_Controller {
 
 	}
 
+	/**
+	* Performs a filter operation before redirecting back to the page with the results. 
+	* @param $filters An array of filters GET, POST and Tags
+	* @param $offset An offset for the returned list of Meeting Sessions
+	* @param $tag The current tag being filtered on
+	*
+	* @return ArrayList or DataList
+	*/
 	public function getSessions($filters = null, $offset = null, $tag = null){
 		
 		$sessions = MeetingSession::get();
@@ -400,6 +425,13 @@ class SessionsHolder_Controller extends Page_Controller {
 		
 	}
 
+	/**
+	* Arranges a list of Meeting Sessions into three columns. 
+	* @param $sessions Mixed. ArrayList or DataList
+	* @param $index An offset for the returned list of Meeting Sessions
+	*
+	* @return ArrayList
+	*/
 	public function makeColumns($sessions, $index){
 
 		if(get_class($sessions) == 'ArrayList'){
@@ -451,6 +483,11 @@ class SessionsHolder_Controller extends Page_Controller {
 
 	}
 
+	/**
+	* Gets a count of Sessions and Meetings 
+	*
+	* @return ArrayData
+	*/
 	public function getCount(){
 		$data = array(
 			'Sessions' => $this->sessionCount,
@@ -461,6 +498,11 @@ class SessionsHolder_Controller extends Page_Controller {
 	}
 
 
+	/**
+	* Gets JSON encoded string of all Speakers
+	*
+	* @return String
+	*/
 	public function getSpeakers(){
 		foreach(Member::get() as $member){
 			if($member->inGroup('Speakers')){
@@ -470,10 +512,20 @@ class SessionsHolder_Controller extends Page_Controller {
 		return json_encode($speakers);
 	}
 
+	/**
+	* Gets a list of all topics sorted by Names
+	*
+	* @return DataList
+	*/
 	public function getTopics(){
 		return Topic::get()->sort('Name', 'ASC');
 	}
 
+	/**
+	* Filters Meeting Sessions and returns Page with filtered list. 
+	*
+	* @return SessionHolder
+	*/
 	public function tag(){
         $params = Controller::curr()->getURLParams();
         $tag = $params['ID'];
@@ -485,11 +537,20 @@ class SessionsHolder_Controller extends Page_Controller {
         return $this->customise(array('getSessions' => $sessions));
     }
 
-
+    /**
+	* Gets a count of pages of Meeting Sessions. 
+	*
+	* @return Int
+	*/
     public function PageCount(){
     	return $this->pages;
     }
 
+    /**
+	* Returns URL for next page or False if last page. 
+	*
+	* @return Mixed. Boolean or String
+	*/
     public function nextPage(){
     	
     	if($this->sessionCount > 18){
@@ -572,6 +633,11 @@ class SessionsHolder_Controller extends Page_Controller {
 	    }
     }
 
+    /**
+	* Returns URL for previous page.
+	*
+	* @return String
+	*/
     public function previousPage(){
     	$url = $this->curPageURL();
     	$url_elements = parse_url($url);
@@ -597,7 +663,11 @@ class SessionsHolder_Controller extends Page_Controller {
     	return $newUrl;
     }
 
-
+    /**
+	* Returns URL for current page.
+	*
+	* @return String
+	*/
      static function curPageURL() { 
       $pageURL = 'http'; 
       if (Director::protocol() == 'https') {$pageURL .= "s";} 

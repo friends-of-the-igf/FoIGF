@@ -1,4 +1,9 @@
 <?php
+/**
+* Location Object. Contains a city and a country in text.
+*
+* @package FoIGF
+*/
 class Location extends DataObject {
 
 	public static $db = array(
@@ -20,14 +25,14 @@ class Location extends DataObject {
 		'Country'
 	);
 
-	// fields to return
+	
 	static $return_fields = array(
 		'City',
 		'Country',
 		'ID'
 	);
 
-	// set index
+	
 	public static $indexes = array(
 		"fulltext (City, Country)"
     );
@@ -44,10 +49,20 @@ class Location extends DataObject {
 		return $fields;
 	}
 
+	/**
+	 * Gets the a single string of the City and Country separated by a comma. 
+	 * 
+	 * @return String.
+	 */
 	public function Name(){
 		return $this->City.', '.$this->Country;
 	}
 
+	/**
+	 * Returns a link to the Session Holder page with the location id as a parameter in the query string.
+	 * 
+	 * @return String.
+	 */
 	public function Link(){
 		$link = "";
 		if($page = SessionsHolder::get()->First()) {

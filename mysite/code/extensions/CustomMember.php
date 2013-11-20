@@ -1,4 +1,9 @@
 <?php
+/**
+* Extension to Members for Speaker functionality
+*
+* @package FoIGF
+*/
 class CustomMember extends DataExtension {
 
 	static $db = array(
@@ -83,6 +88,11 @@ class CustomMember extends DataExtension {
 		$fields['BioLink'] = 'Bio Link';
 	}
 
+	/**
+	 * Returns a link to the Session Holder page with the member id as a parameter in the query string.
+	 * 
+	 * @return String.
+	 */
 	public function Link(){
 			$link = "";
 		if($page = SessionsHolder::get()->First()) {

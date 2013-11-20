@@ -1,5 +1,9 @@
 <?php
-
+/**
+* Controller to display Transcript belonging to a Meeting Session
+*
+* @package FoIGF
+*/
 class TranscriptController extends Page_Controller {
 	
 	public static $url_handlers = array(
@@ -22,14 +26,29 @@ class TranscriptController extends Page_Controller {
 		}
 	}
 
+	/**
+	 * Gets current MeetingSession
+	 * 
+	 * @return MeetingSession.
+	 */
 	public function getMeetingSession() {
 		return $this->meetingsession;
 	}
 
+	/**
+	 * Gets current MeetingSession title
+	 * 
+	 * @return String.
+	 */
 	public function getTitle() {
 		return $this->meetingsession->Title;
 	}
 
+	/**
+	 * Returns a class name for the Controller
+	 * 
+	 * @return String.
+	 */
 	public function getClassName() {
 		return 'TranscriptController';
 	}

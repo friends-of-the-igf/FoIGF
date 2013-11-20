@@ -1,4 +1,9 @@
 <?php
+/**
+* Meeting Object. Contains information about meetings. Has many Meeting Sessions.
+*
+* @package FoIGF
+*/
 class Meeting extends DataObject {
 
 	public static $db = array(
@@ -108,6 +113,11 @@ class Meeting extends DataObject {
 		return Controller::join_links('meeting', $this->ID, $action);
 	}
 
+	/**
+	 * Returns a link to the Session Holder page with the meeting id as a parameter in the query string.
+	 * 
+	 * @return String.
+	 */
 	public function FilterLink($action = null) {
 		if($page = SessionsHolder::get()->First()) {
 			$link =  $page->Link();
@@ -126,7 +136,11 @@ class Meeting extends DataObject {
 		}
 	}
 
-	//returns list of topics for use on controller
+	/**
+	 * Returns a list of topics included in this meeting. 
+	 * 
+	 * @return ArrayList.
+	 */
 	public function getTopics() {
 		$sessions = $this->MeetingSessions();
 		if($sessions->count() != 0) {
@@ -143,7 +157,11 @@ class Meeting extends DataObject {
 	}
 
 
-	//returns all speakers for meetings
+	/**
+	 * Returns a list of speakers included in this meeting. 
+	 * 
+	 * @return ArrayList.
+	 */
 	public function getSpeakers() {
 		$sessions = $this->MeetingSessions();
 		if($sessions->count() != 0) {
@@ -161,6 +179,11 @@ class Meeting extends DataObject {
 		}
 	}
 
+	/**
+	 * Returns a list the 20 most popular tags as ArrayData 
+	 * 
+	 * @return ArrayList.
+	 */
 	public function popularTags() {
 		$sessions = $this->MeetingSessions();
 
@@ -217,6 +240,11 @@ class Meeting extends DataObject {
 		return new ArrayList(array_slice($output->items, 0, $limit));
 	}
 
+	/**
+	 * Returns a list of all tags included in this meeting. 
+	 * 
+	 * @return ArrayList.
+	 */
 	public function allTagsList() {
 		$sessions = $this->MeetingSessions();
 		$tagsList = new ArrayList();
@@ -234,19 +262,33 @@ class Meeting extends DataObject {
 		return $tagsList;
 	}
 
-	//returns a string of the datew and location for Session filter
+	/**
+	 * Returns a string of the year and the city of the Meeting.  
+	 * 
+	 * @return String.
+	 */
 	public function getYearLocation(){
 		$date = date('Y', strtotime($this->StartDate));
 		// $date .= '-'.date('d F Y', strtotime($this->EndDate));
 		return $date.' '.$this->Location()->City;
 	}
 
-	//returns a column organised list for template
+	/**
+	 * Returns a list of the Meeting's Meeting Sessions arranged into columnns.  
+	 * 
+	 * @return ArrayList.
+	 */
 	public function getMeetingSessions(){
 		return $this->makeColumns($this->MeetingSessions());
 
 	}
 
+	/**
+	 * Returns a list of the Meeting Sessions arranged into four columnns.  
+	 * 
+	 * @param $sessions An array list of the sessions to be arranged into columns
+	 * @return ArrayList.
+	 */
 	public function makeColumns($sessions){
 
 		$total = $sessions->Count();
@@ -298,8 +340,11 @@ class Meeting extends DataObject {
 		return $list;	
 
 	}
-
-	//returns a sessions grouped by days and then topics
+	/**
+	 * Returns a list of the Meeting Sessions grouped by Day and then Topic arranged into columns.  
+	 * 
+	 * @return ArrayList.
+	 */
 	public function meetingDays(){
 		
 		//initial lists for each day
@@ -318,7 +363,6 @@ class Meeting extends DataObject {
 		
 		//get all sessions from this meeting and sort by topic id
 		$sessions = $this->MeetingSessions();
-
 
 		//go through each meeting session and assign them to an array list based on which day of the meeting they occur
 		foreach($sessions as $session){
@@ -342,7 +386,6 @@ class Meeting extends DataObject {
 			}
 		}	
 	
-
 		//add lists for each day to parent list
 		$dayLists = new ArrayList(array($dayList0, $dayList1, $dayList2, $dayList3, $dayList4));
 
@@ -365,8 +408,6 @@ class Meeting extends DataObject {
 		$day_array['Day4']['Date'] = date('l j F Y', strtotime($day4));
 		$day_array['Day4']['Day'] = 'Day 4';
 		$day_array['Day4']['Count'] = $dayList4->Count();
-
-	
 
 		//get all topics
 	 	$topics = Topic::get();
@@ -428,7 +469,6 @@ class Meeting extends DataObject {
 				}
 			}
 			
-
 			$topic_arr['Count'] = $topic_sessions->Count();
 			//format the sessions into columns and add the formatted list to the topic array
 			$topic_arr['Sessions'] = $this->makeColumns($topic_sessions);

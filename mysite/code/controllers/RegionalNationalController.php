@@ -1,5 +1,9 @@
 <?php 
-
+/**
+* Controller to display Regional and National Iniatives
+*
+* @package FoIGF
+*/
 class RegionalNationalController extends Page_Controller{
 
 	static $allowed_actions = array(
@@ -13,10 +17,20 @@ class RegionalNationalController extends Page_Controller{
 		parent::init();
 	}
 
+	/**
+	 * Gets all RNRegions
+	 * 
+	 * @return Datalist.
+	 */
 	public function getRegions(){
 		return RNRegion::get();
 	}
 
+	/**
+	 * Gets data for a RN National Meeting for template
+	 * 
+	 * @return Mixed.
+	 */
 	public function getMeetingsData(){
 
 		$type_reg = RNType::get()->filter(array('Title' => 'Regional'))->First();
@@ -79,6 +93,11 @@ class RegionalNationalController extends Page_Controller{
 		
 	}
 
+	/**
+	 * Gets a list of RNRegion IDs
+	 * 
+	 * @return ArrayData.
+	 */
 	public function getRegionIDs(){
 		$regions = RNRegion::get();
 		$list = array();

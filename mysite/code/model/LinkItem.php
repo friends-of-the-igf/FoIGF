@@ -1,4 +1,9 @@
 <?php
+/**
+* Link Item Object. Contains a URL or text content.
+*
+* @package FoIGF
+*/
 class LinkItem extends DataObject {
 
 	public static $db = array(

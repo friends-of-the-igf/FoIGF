@@ -1,4 +1,9 @@
 <?php 
+/**
+* Home Page of the website. Can display 24 meetings sessions and an upcoming meeting.
+*
+* @package FoIGF
+*/
 class HomePage extends Page {
 
 	static $has_one = array(
@@ -16,6 +21,11 @@ class HomePage extends Page {
 }
 class HomePage_Controller extends Page_Controller {
 
+	/**
+	* Gets a list of Numbers. Not currently used. 
+	* 
+	* @return ArrayList.
+	*/
 	public function getSpeakers(){
 		$list = new ArrayList();
 		for($i = 0; $i < 12; $i++){
@@ -25,6 +35,11 @@ class HomePage_Controller extends Page_Controller {
 		return $list;
 	}
 
+	/**
+	* Gets a list of the 12 most viewed Session arranged into four columns. 
+	* 
+	* @return ArrayList.
+	*/
 	public function getSessions(){
 		$list = new ArrayList();
 
@@ -69,10 +84,20 @@ class HomePage_Controller extends Page_Controller {
 		return $list;
 	}
 
+	/**
+	* Gets all topics sorted by Name. 
+	* 
+	* @return DataList.
+	*/
 	public function getTopics(){
 		return Topic::get()->sort('Name', 'ASC');
 	}
 
+	/**
+	* Gets a the latest Meeting. 
+	* 
+	* @return Meeting.
+	*/
 	public function getFeaturedMeeting(){
 		return Meeting::get()->sort('StartDate', 'DESC')->First();
 	}

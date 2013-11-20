@@ -1,4 +1,9 @@
 <?php
+/**
+* Meeting Session. Represents a Meeting Session's data.
+*
+* @package FoIGF
+*/
 class MeetingSession extends DataObject {
 
 	public static $db = array(
@@ -141,7 +146,6 @@ class MeetingSession extends DataObject {
 			$transcriptTab->push(new UploadField('Transcript', 'Transcript'));
 		}
 
-
 		$proposalTab->push(new OptionsetField('ProposalType', 'Proposal Type (Select one and click save)', array('URL' => 'URL', 'File' => 'File', 'Text' => 'Text')));
 		if($this->ProposalType == 'URL'){
 			$proposalTab->push(new TextField('ProposalLink', 'Link to Proposal'));
@@ -150,7 +154,6 @@ class MeetingSession extends DataObject {
 		} elseif($this->ProposalType == 'Text'){
 			$proposalTab->push(new HTMLEditorField('ProposalContent', 'Proposal Content'));
 		}
-
 
 		if($this->ID) {
 			$group = $this;
@@ -193,12 +196,9 @@ class MeetingSession extends DataObject {
 
 			//new
 			$speakersTab->push(new HeaderField('NewSpeaker', 'Add New Speaker'));
-
 			$speakersTab->push(new TextField('FirstName', 'First Name'));
 			$speakersTab->push(new TextField('Surname', 'Surname'));
 			$speakersTab->push(new TextField('Bio', 'Link to Bio'));
-
-			
 
 			//added
 			$speakersTab->push(new HeaderField('AddedSpeakers', 'Added Speakers'));
@@ -219,7 +219,6 @@ class MeetingSession extends DataObject {
 
 	public function onBeforeWrite() {
 		
-
 		parent::onBeforeWrite();
 
 		//Create member from add speaker fields
@@ -320,8 +319,7 @@ class MeetingSession extends DataObject {
 					$this->Day = 4;
 					break;
 			}
-		}
-		
+		}	
 	}
 
 
@@ -329,6 +327,11 @@ class MeetingSession extends DataObject {
 		return Controller::join_links('session', $this->ID, $action);
 	}
 
+	/**
+	 * Gets a list of the Meeting Session's tags.  
+	 * 
+	 * @return ArrayList.
+	 */
 	public function TagsCollection() {
 		$tags = preg_split("*,*", trim($this->Tags));
 		$output = new ArrayList();
@@ -353,6 +356,11 @@ class MeetingSession extends DataObject {
 		}
 	}
 
+	/**
+	 * Gets a list of all tags. 
+	 * 
+	 * @return Array.
+	 */
 	public function allTagsArray() {
 		$sessions = MeetingSession::get();
 		$list = array();	
@@ -368,6 +376,11 @@ class MeetingSession extends DataObject {
 		return $list;
 	}
 
+	/**
+	 * Gets the first video attached to this Meeting Session. 
+	 * 
+	 * @return Video.
+	 */
 	public function getVideo(){
 		if($this->Videos()->Count() != 0) {
 			$vid = $this->Videos()->first();
@@ -375,6 +388,11 @@ class MeetingSession extends DataObject {
 		}
     }
 
+    /**
+	 * Gets the thumbnail for the first video attached to this Meeting Session if the video is Youtube. 
+	 * 
+	 * @return String.
+	 */
     public function getVideoThumb(){
     	if($this->Videos()->Count() != 0) {
 			$vid = $this->Videos()->first();
@@ -384,10 +402,20 @@ class MeetingSession extends DataObject {
    		}
     }
 
+    /**
+	 * Gets a list of this Meeting Session's speakers. 
+	 * 
+	 * @return ManyManyList.
+	 */
     public function getSpeakers(){
     	return $this->Speakers();
     }
 
+    /**
+	 * Gets a list of 3 releated sessions based on manually added sessions, topics and speakers. 
+	 * 
+	 * @return ArrayList.
+	 */
     public function getRelatedSessions(){
 
     	$list = new ArrayList();
@@ -429,7 +457,11 @@ class MeetingSession extends DataObject {
     	return $list->limit(3);
     }
 
-    // static tag functions
+    /**
+	 * Gets a list of all unique tags, if there is a filter it will filter the tags. 
+	 * @param $filter A MeetingID to filter the tags by meeting. 
+	 * @return ManyManyList.
+	 */
     public static function get_unique_tags($filter = null) {
     	$sessions = MeetingSession::get();
     	if($filter) {
@@ -448,6 +480,12 @@ class MeetingSession extends DataObject {
 		return $uniqueTagsArray;
     }
 
+     /**
+	 * Gets a list of all tags, if there is a filter it will filter the tags.
+	 * 
+	 * @param $filter A MeetingID to filter the tags by meeting. 
+	 * @return ManyManyList.
+	 */
     public static function get_all_tags($filter = null) {
     	$sessions = MeetingSession::get();
     	if($filter) {
@@ -468,12 +506,16 @@ class MeetingSession extends DataObject {
 		return $tagsList;
     }
 
+     /**
+	 * Returns true or false based on whether the current member can tag this Meeting Session. 
+	 *
+	 * @return Boolean.
+	 */
     public function Taggable(){
     	$member = Member::CurrentUser();
 		if($member && $member->ID == $this->OrganiserID){
 			return true;
 		}
-    	
     }
 
 

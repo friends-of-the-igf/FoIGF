@@ -1,4 +1,9 @@
 <?php
+/**
+* Custom extension to Site Config
+*
+* @package FoIGF
+*/
 class CustomSiteConfig extends DataExtension {
 	
     public static $db = array(

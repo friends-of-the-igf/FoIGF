@@ -1,5 +1,9 @@
 <?php 
-
+/**
+* A page with a contact Form
+*
+* @package FoIGF
+*/
 class ContactPage extends Page{
 
 	static $db = array(
@@ -24,6 +28,11 @@ class ContactPage_Controller extends Page_Controller{
 		'ContactForm'
 	);
 
+	/**
+	* Gets a contact form. 
+	* 
+	* @return Form.
+	*/
 	public function ContactForm() {
 		if(!$this->Email) {
 			return false;
@@ -46,6 +55,11 @@ class ContactPage_Controller extends Page_Controller{
 		return $form;
 	}
 
+	/**
+	* Submits and sends Contact form data. 
+	* @param $data Array of form data
+	* @param $form The form object
+	*/
 	public function doContactForm($data, $form) {
 		$from = $data['Email'];
 		$to = $this->Email;
@@ -58,6 +72,11 @@ class ContactPage_Controller extends Page_Controller{
 		return $this->redirect($this->Link('?success=1'));
 	}
 
+	/**
+	* Determines whether or not submit was successful based on variables in the URL's query string. 
+	* 
+	* @return Boolean.
+	*/
 	public function Success() {
 		if($this->request->getVar('success')) {
 			return true;

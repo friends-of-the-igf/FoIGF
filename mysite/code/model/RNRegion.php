@@ -1,5 +1,9 @@
 <?php
-
+/**
+* A Regional National Region to categorise RNMeetings
+*
+* @package FoIGF
+*/
 class RNRegion extends DataObject{
 	static $singular_name = 'Regional/National Meeting Region';
 	

@@ -1,5 +1,9 @@
 <?php
-
+/**
+* A task to write all objects
+*
+* @package FoIGF
+*/
 class WriteAllTask extends BuildTask{
 	
 	protected $title = "Write All Objects";

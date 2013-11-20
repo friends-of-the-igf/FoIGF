@@ -1,4 +1,8 @@
 <?php
+/**
+* Administration for Meeting Sessions
+*
+*/
 class MeetingSessionAdmin extends ModelAdmin {
 
 	public static $managed_models = array(

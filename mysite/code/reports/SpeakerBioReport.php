@@ -1,5 +1,9 @@
 <?php
-
+/**
+* Runs a report on missing Speaker bios.
+*
+* @package FoIGF
+*/
 class SpeakerBioReport extends SS_Report {
 
 	function title() {

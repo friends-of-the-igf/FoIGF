@@ -1,5 +1,9 @@
 <?php
-
+/**
+* A task to wipe all views from Meeting Sessions
+*
+* @package FoIGF
+*/
 class WipeViewsTask extends BuildTask{
 	
 	protected $title = "Reset views on Sessions";

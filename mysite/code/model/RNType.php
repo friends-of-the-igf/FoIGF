@@ -1,5 +1,9 @@
 <?php
-
+/**
+* An Regional National Meeting type to categorise RNMeetings
+*
+* @package FoIGF
+*/
 class RNType extends DataObject{
 	static $singular_name = 'Regional/National Meeting Type';
 	

@@ -1,5 +1,9 @@
 <?php
-
+/**
+* A Meeting Session Topic to categorise Meeting Sessions
+*
+* @package FoIGF
+*/
 class TranscriptTypeReport extends SS_Report {
 
 	function title() {

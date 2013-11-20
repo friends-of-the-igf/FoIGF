@@ -1,4 +1,9 @@
 <?php
+/**
+*Base Configuration file for FoIGF
+*
+*
+*/
 
 global $project;
 $project = 'mysite';

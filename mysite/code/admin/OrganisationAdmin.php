@@ -1,4 +1,8 @@
 <?php
+/**
+* Administration for Organisation
+*
+*/
 class OrganisationAdmin extends ModelAdmin {
 
 	public static $managed_models = array(

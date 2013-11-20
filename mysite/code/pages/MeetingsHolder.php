@@ -1,4 +1,9 @@
 <?php
+/**
+* A page that lists Meetings
+*
+* @package FoIGF
+*/
 class MeetingsHolder extends Page {
 
 	public static $db = array(
@@ -25,6 +30,11 @@ class MeetingsHolder_Controller extends Page_Controller {
 		parent::init();
 	}
 
+	/**
+	* Gets list of all meetings sorted by Date. 
+	* 
+	* @return DataList.
+	*/
 	public function getMeetings() {
 		$meetings = Meeting::get()->Sort('StartDate', 'DESC');
 		return $meetings;
