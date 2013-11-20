@@ -30,6 +30,12 @@ Github:
 
 	* Solr for Search [https://cwiki.apache.org/confluence/display/solr/Installing+Solr]
 	* Base SilverStripe _ss_environment.php file in web root [http://doc.silverstripe.org/framework/en/topics/environment-management]
+	* SilverStripe 3.0.x [http://www.silverstripe.org/] (included in composer)
+	* FullTextSearch module [https://github.com/silverstripe-labs/silverstripe-fulltextsearch] (included in composer)
+	* Compass Module [https://github.com/silverstripe-labs/silverstripe-compass] (included in composer)
+	* SortableGridField 0.2.0 [https://github.com/UndefinedOffset/SortableGridField] (included in composer)
+	* Text Extraction Module [http://addons.silverstripe.org/add-ons/silverstripe/textextraction] (included in composer)
+
 
 ## Installation
 
