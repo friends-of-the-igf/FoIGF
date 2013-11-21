@@ -12,6 +12,7 @@ global $database;
 $database = 'STW_igf';
 
 require_once('conf/ConfigureFromEnv.php');
+require_once('main.php');
 
 MySQLDatabase::set_connection_charset('utf8');
 SSViewer::set_theme('igf');
@@ -36,7 +37,9 @@ Object::add_extension('ContentController', 'SearchExtension');
 Member::set_unique_identifier_field('Username');
 
 // fulltextsearch/solr
+
 SearchUpdater::bind_manipulation_capture();
+
 Solr::configure_server(isset($solr_config) ? $solr_config : array(
 	'host' => 'localhost',
 	'indexstore' => array(
