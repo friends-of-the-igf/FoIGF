@@ -1,4 +1,4 @@
-# Friend of the IGF
+# Friends of the IGF
 -------------------
 ##Licence
 Copyright 2013 Stripe The Web Ltd. 
