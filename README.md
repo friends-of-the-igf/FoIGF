@@ -28,10 +28,10 @@ Github:
 
 ## Requirements
 
-	* Solr for Search [https://cwiki.apache.org/confluence/display/solr/Installing+Solr]
-	* Base SilverStripe _ss_environment.php file in web root [http://doc.silverstripe.org/framework/en/topics/environment-management]
 	* SilverStripe 3.0.x [http://www.silverstripe.org/] (included in composer)
+	* Base SilverStripe _ss_environment.php file in web root [http://doc.silverstripe.org/framework/en/topics/environment-management]
 	* FullTextSearch module [https://github.com/silverstripe-labs/silverstripe-fulltextsearch] (included in composer)
+	* Solr for Search [https://cwiki.apache.org/confluence/display/solr/Installing+Solr] (included in FullTextSearch package)
 	* Compass Module [https://github.com/silverstripe-labs/silverstripe-compass] (included in composer)
 	* SortableGridField 0.2.0 [https://github.com/UndefinedOffset/SortableGridField] (included in composer)
 	* Text Extraction Module [http://addons.silverstripe.org/add-ons/silverstripe/textextraction] (included in composer)
@@ -43,5 +43,15 @@ Open Terminal or Command line and change directory to the website's base directo
 Grant read/write permissions to the entire site and make an initial dev/build?flush=all.
 
 ##Search Set Up
+
+1. Open terminal or command line and switch the directory to following path:
+> [your webroot]/fulltextsearch/thirdparty/solr/server
+2. Enter the command $ java -jar start.jar
+3. To verify that it Solr is now running you can visit http://localhost:8983/solr/
+4. You will need to run the Configure and Reindex tasks located at /dev/tasks/Solr_Configure and /dev/tasks/Solr_Reindex respectively. 
+
+To stop Solr running press control+C in the terminal window. 
+
+
 
 
