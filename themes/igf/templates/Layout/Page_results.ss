@@ -9,6 +9,8 @@
     <div class='results'>
         <ul id="meetingResults">
         <% loop $Results %> 
+        
+
             <% if ClassName == Meeting %>
             <li>
                 <strong>Meeting</strong> - <a title="Go to $Title" class="searchResultHeader" href="$URLSegment">$Title</a>
@@ -31,6 +33,10 @@
             <% else_if ClassName == Type %>
             <li>
                 <strong>Type</strong> - <a title="Find sessions in $Name" class="searchResultHeader" href="$Link">$Name</a>
+            </li>
+            <% else_if ClassName == Member %>
+            <li>
+                <strong>Speaker</strong> - <a title="Find sessions with $Name" class="searchResultHeader" href="$Link">$Name</a>
             </li>
             <% else_if ClassName == File %>
             <li>

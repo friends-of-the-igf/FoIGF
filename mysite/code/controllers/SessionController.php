@@ -20,7 +20,7 @@ class SessionController extends Page_Controller {
 
 	public function init() {
 		parent::init();
-
+		
 		Requirements::javascript('themes/igf/javascript/sessioncontroller.js');
 		Requirements::javascript('themes/igf/thirdparty/bootstrap-typeahead.js');
 
@@ -78,7 +78,9 @@ class SessionController extends Page_Controller {
 	 * @return String.
 	 */
 	public function Title(){
-		return $this->meetingsession->Title;
+		if($this->meetingsession){
+			return $this->meetingsession->Title;
+		}
 	}
 
 	/**

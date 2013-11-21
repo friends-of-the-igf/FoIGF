@@ -10,6 +10,7 @@ class MyIndex extends SolrIndex {
 		$this->addClass('Location');
 		$this->addClass('Topic');
 		$this->addClass('Type');
+		$this->addClass('Member');
 
 		$this->addFulltextField('Title');
 		$this->addFulltextField('Content');
@@ -20,6 +21,8 @@ class MyIndex extends SolrIndex {
 		$this->addFulltextField('Location.Country');
 		$this->addFulltextField('Type.Name');
 		$this->addFulltextField('Topic.Name');
+		$this->addFulltextField('FirstName');
+		$this->addFulltextField('Surname');
 
 		// files
 		$this->addFulltextField('Transcript.FileContentCache'); // will return only related files with name Transcript
