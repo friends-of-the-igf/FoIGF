@@ -1,0 +1,52 @@
+<?php
+/**
+* A Regional National Meeting Object. Belongs to a region
+*
+* @package FoIGF
+*/
+class RNMeeting extends DataObject{
+
+	static $singular_name = 'Regional/National Meeting';
+	
+	static $db = array(
+		'Title' => 'Text',
+		'Website' => 'Text'
+		);
+
+	static $has_one = array(
+		'Type' => 'RNType',
+		'Region' => 'RNRegion'
+		);
+
+	static $belongs_many_many = array(
+		'Regions' => 'RNRegion'
+		);
+
+
+	public function getCMSFields(){
+		$fields = new FieldList();
+
+		$fields->push( new TextField('Title', 'Title'));
+		$fields->push( new TextField('Website', 'Website'));
+
+		$types = RNType::get()->sort('Title');
+		if($types->Count()) {
+			$fields->push(new DropdownField('TypeID', 'Type', $types->map('ID', 'Title')));			
+		}
+
+		if($this->ID) {
+			$group = $this;
+			$config = new GridFieldConfig_RelationEditor();
+			$config->getComponentByType('GridFieldAddExistingAutocompleter')
+				->setResultsFormat('$Title')->setSearchFields(array('Title'));
+			$config->removeComponent($config->getComponentByType('GridFieldAddNewButton'));
+			$regionList = GridField::create('Regions','Regions', $this->Regions(), $config);
+			$fields->push($regionList);
+		}
+
+		return $fields;
+	}
+
+
+
+}

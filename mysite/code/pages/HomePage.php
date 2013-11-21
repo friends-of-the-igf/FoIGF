@@ -1,0 +1,104 @@
+<?php 
+/**
+* Home Page of the website. Can display 24 meetings sessions and an upcoming meeting.
+*
+* @package FoIGF
+*/
+class HomePage extends Page {
+
+	static $has_one = array(
+		'OfficialLogo' => 'Image'
+		);
+
+	public function getCMSFields(){
+		$fields = parent::getCMSFields();
+
+		$fields->addFieldToTab('Root.Logo', new UploadField('OfficialLogo', 'Official Logo'));
+
+		return $fields;
+	}
+	
+}
+class HomePage_Controller extends Page_Controller {
+
+	/**
+	* Gets a list of Numbers. Not currently used. 
+	* 
+	* @return ArrayList.
+	*/
+	public function getSpeakers(){
+		$list = new ArrayList();
+		for($i = 0; $i < 12; $i++){
+			$y = array();
+			$list->push(new ArrayData($y));
+		}
+		return $list;
+	}
+
+	/**
+	* Gets a list of the 12 most viewed Session arranged into four columns. 
+	* 
+	* @return ArrayList.
+	*/
+	public function getSessions(){
+		$list = new ArrayList();
+
+		$col1 = new ArrayList();
+		$col2 = new ArrayList();
+		$col3 = new ArrayList();
+		$col4 = new ArrayList();
+
+		$i = 0;
+		$j = 1;
+		
+		while ($i <= 11) {
+			$session = MeetingSession::get()->sort('Views', 'DESC')->limit(1, $i)->first();
+			if($session) {
+				switch ($j) {
+					case 1:
+						$col1->push($session);
+						$j++;
+						break;
+					case 2:
+						$col2->push($session);
+						$j++;
+						break;
+					case 3:
+						$col3->push($session);
+						$j++;
+						break;
+					case 4:
+						$col4->push($session);
+						$j = 1;
+						break;
+				}
+			}
+			$i++;
+		}
+
+		$list->push(new ArrayData(array('Columns' => $col1)));
+		$list->push(new ArrayData(array('Columns' => $col2)));
+		$list->push(new ArrayData(array('Columns' => $col3)));
+		$list->push(new ArrayData(array('Columns' => $col4)));
+
+		return $list;
+	}
+
+	/**
+	* Gets all topics sorted by Name. 
+	* 
+	* @return DataList.
+	*/
+	public function getTopics(){
+		return Topic::get()->sort('Name', 'ASC');
+	}
+
+	/**
+	* Gets a the latest Meeting. 
+	* 
+	* @return Meeting.
+	*/
+	public function getFeaturedMeeting(){
+		return Meeting::get()->sort('StartDate', 'DESC')->First();
+	}
+}

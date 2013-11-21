@@ -1,0 +1,84 @@
+<?php
+/**
+* A video object for Meeting Sessions
+*
+* @package FoIGF
+*/
+class Video extends DataObject {
+
+	public static $db = array(
+		'YouTubeID' => 'VarChar',
+        'WebcastCode' => 'HTMLText'
+	);
+
+	public static $has_one = array(
+		'MeetingSession' => 'MeetingSession'
+	);
+
+	public function getCMSFields() {
+		$fields = new FieldList();
+		$fields->push(new TextField('YouTubeID', 'YouTube ID (can be ID or full URL)'));
+        $fields->push(new LabelField('OR', 'OR'));
+        $fields->push(new TextAreaField('WebcastCode', 'Webcast Embed Code (from webcast.intgovforum.org. Pause video, select embed tab, click copy code then paste code here)'));
+		return $fields;
+	}
+
+	public function onAfterWrite(){
+		parent::onAfterWrite();
+
+		$this->formatYouTubeID();
+	}
+
+    /**
+     * Formats the YoutubeID to a standard form. 
+     * 
+     */
+	public function formatYouTubeID(){
+
+		$url = $this->YouTubeID;
+         
+        $params = explode('?',$url);
+
+        if(count($params) > 1) {
+
+            $paras = explode('&',$params[1]);
+            foreach($paras as $para) {
+                $type = substr($para,0,2);
+                if($type == 'v=') {
+                    $str = explode('=',$para);
+                    $v = $str[1];
+                    if($v != $url) {
+                 
+                        $this->YouTubeID = $v;
+                        $this->write();
+                    }
+                }
+            }
+        }
+        $params = explode('be/',$url);
+            if(count($params) > 1) {
+            $paras = explode('?',$params[1]);
+            if(count($paras) == 1){
+                if($paras[0] != $url){
+                	
+                    $this->YouTubeID = $paras[0];
+                    $this->write();
+                }
+            } 
+        }  
+	}
+
+    /**
+     * Gets the embed text for this video. 
+     * 
+     * @return String.
+     */
+	public function getVideo(){
+        if($this->YouTubeID != null){
+            return '<iframe width="100%" height="100%" class="youtube-player" type="text/html" src="http://www.youtube.com/embed/'.$this->YouTubeID.'?controls=1&showinfo=0&html5=1" frameborder="0"></iframe>';
+        } elseif ($this->WebcastCode != null){
+
+            return $this->WebcastCode;
+        }
+    }
+}

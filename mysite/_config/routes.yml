@@ -1,0 +1,13 @@
+---
+Name: IGF
+---
+Director:
+  rules:
+    'session//$ID!/$Action': 'SessionController',
+    'meeting//$ID!/$Action': 'MeetingController',
+    'transcript//$ID!': 'TranscriptController',
+    'item//$ID!': 'LinkItemController',
+    'proposal//$ID!': 'ProposalController',
+    'regional//$ID': 'RegionalNationalController'
+SolrCellTextExtractor:
+  base_url: 'http://localhost:8983/solr/MyIndex/update/extract'

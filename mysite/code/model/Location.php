@@ -1,0 +1,74 @@
+<?php
+/**
+* Location Object. Contains a city and a country in text.
+*
+* @package FoIGF
+*/
+class Location extends DataObject {
+
+	public static $db = array(
+		'City' => 'Text',
+		'Country' => 'Text'
+	);
+
+	public static $has_many = array(
+		'Meetings' => 'Meeting'
+	);
+
+	public static $summary_fields = array(
+		'City',
+		'Country'	
+	);
+
+	static $searchable_fields = array(
+		'City',
+		'Country'
+	);
+
+	
+	static $return_fields = array(
+		'City',
+		'Country',
+		'ID'
+	);
+
+	
+	public static $indexes = array(
+		"fulltext (City, Country)"
+    );
+
+    // REQUIRED: object table must be set to MyISAM
+	static $create_table_options = array(
+	    'MySQLDatabase' => 'ENGINE=MyISAM'
+	);
+
+	public function getCMSFields() {
+		$fields = new FieldList();
+		$fields->push(new TextField('City', 'City'));
+		$fields->push(new TextField('Country', 'Country'));
+		return $fields;
+	}
+
+	/**
+	 * Gets the a single string of the City and Country separated by a comma. 
+	 * 
+	 * @return String.
+	 */
+	public function Name(){
+		return $this->City.', '.$this->Country;
+	}
+
+	/**
+	 * Returns a link to the Session Holder page with the location id as a parameter in the query string.
+	 * 
+	 * @return String.
+	 */
+	public function Link(){
+		$link = "";
+		if($page = SessionsHolder::get()->First()) {
+			$link = $page->Link('?location=').$this->ID;
+		}
+
+		return $link;
+	}
+}
