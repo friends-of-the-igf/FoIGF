@@ -12,7 +12,6 @@ global $database;
 $database = 'STW_igf';
 
 require_once('conf/ConfigureFromEnv.php');
-require_once('main.php');
 
 MySQLDatabase::set_connection_charset('utf8');
 SSViewer::set_theme('igf');
