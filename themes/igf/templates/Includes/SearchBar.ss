@@ -7,7 +7,7 @@
 				$SearchForm
 			</div>
 			<div class="twitter span3">
-				<a title="Share this page" href="https://twitter.com/share" class="twitter-share-button" data-url='www.friendsoftheigf.org/' data-counturl="www.friendsoftheigf.org/" data-size="large">Tweet</a>
+				<a title="Share this page" href='https://twitter.com/share' class='twitter-share-button' <% if ClassName  == SessionController %> data-url='www.friendsoftheigf.org/$MeetingSession.Link' data-counturl="www.friendsoftheigf.org/$MeetingSession.Link" <% else %> data-url="www.friendsoftheigf.org/" data-counturl="www.friendsoftheigf.org/" <% end_if %> data-size="large">Tweet</a>
 			</div>
 		</div>
 	</div>
