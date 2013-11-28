@@ -355,7 +355,7 @@ b{
 
 	.sub-main{
 
-		.span4{
+		.box{
 			margin-bottom: 40px;
 			border: 1px $grayMedium solid;
 			min-height: 100px;
@@ -379,7 +379,14 @@ b{
 				}
 			}
 
+
 			&.official, &.featured{
+
+				&.span6{
+					h3{
+						text-align: center;
+					}
+				}
 				
 			
 
@@ -1230,6 +1237,14 @@ b{
 					&.featured{
 						img{
 							padding-bottom: 25px;
+						}
+					}
+				}
+				.span6{
+					height:320px;
+					&.topics{
+						span.extra{
+							display: none;
 						}
 					}
 				}
