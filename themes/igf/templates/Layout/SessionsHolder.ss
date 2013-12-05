@@ -16,9 +16,7 @@
 	</div>
 	<div class="sessions span9">
 		<div class="heading">
-			<% with getCount %>
-				<h3>$Sessions Sessions in $Meetings Meetings match your criteria</h3>
-			<% end_with %>
+				<h3><span id="s-count"></span> Sessions in <span id="m-count"></span> Meetings match your criteria</h3>	
 		</div>
 		<div id="sessions-paged" class="row-fluid" data-pages="$PageCount" data-filter={$getFilter}>
 			<div class="span12">
@@ -33,6 +31,9 @@
 				<% end_if %>
 			</div>	
 		</div>
+		<% with getCount %>
+			<div id="counts" data-sessions="$Sessions" data-meetings="$Meetings">
+		<% end_with %>
 		<div class="more">
 			<div class="row-fluid">
 				<div class=" span4 button">

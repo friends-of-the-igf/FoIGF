@@ -7,8 +7,10 @@ $(document).ready(function() {
 
 	url = $('#Form_FilterForm').data('url') +'getSpeakers';
 	$.get(url, function(data){
-		for(var i in data){
-		    speakerArr.push(data [i]);
+		if(data != false){
+			for(var i in data){
+			    speakerArr.push(data [i]);
+			}
 		}
 	}, "json");
 
@@ -45,6 +47,12 @@ $('#tag-head').on('click', function(){
 $('.more').show();
 $('#next').show();
 $('#prev').show();
+
+//load counts-------------------
+var s_count = $('#counts').data('sessions');
+var m_count = $('#counts').data('meetings');
+$('#s-count').html(s_count);
+$('#m-count').html(m_count);
 
 
 function getParameterByName(name) {

@@ -44,10 +44,6 @@ class SessionsHolder_Controller extends Page_Controller {
 
 	public function init() {
 		parent::init();
-
-
-		$this->getSessions();
-	
 	
 		Requirements::javascript('themes/igf/thirdparty/bootstrap-typeahead.js');
 		Requirements::javascript('themes/igf/javascript/sessionholder.js');
@@ -297,23 +293,28 @@ class SessionsHolder_Controller extends Page_Controller {
     		$sort = $_GET['sort'];
     	}
 
-    	if(!empty($getFilter)){		
-				if(isset($sort)){
-					$sessions = MeetingSession::get()->filter($getFilter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
-				} else {
-					$sessions = MeetingSession::get()->filter($getFilter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'ASC');
-				}
-			} else {
-				if(isset($sort)){
-					$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
-				} else {
-					$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'ASC');
-				}
-			}
-
-		if(!empty($speaker)){
-			$sessions = $sessions->filter($speaker);
-		}
+    	//If sort not set make default
+    	if(!isset($sort)){
+    		$sort['Field'] = 'Created';
+    		$sort['Direction'] = 'ASC';
+    	}
+    	
+    	if(!empty($speaker)){	
+    	//If speaker isn't empty join on speaker table, filter if there is a filter, filter speakers. 
+    		if(!empty($getFilter)){
+    			$sessions = MeetingSession::get()->filter($getFilter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
+    		}else{
+    			$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
+    		}
+    		$sessions = $sessions->filter($speaker);
+    	} else {
+    	//If speaker is empty, do not join for filter
+    		if(!empty($getFilter)){
+    			$sessions = MeetingSession::get()->filter($getFilter)->sort($sort['Field'], $sort['Direction']);
+    		}else{
+    			$sessions = MeetingSession::get()->sort($sort['Field'], $sort['Direction']);
+    		}
+    	}
 
 		if((isset($_GET['tag']) && $_GET['tag'] != null)){
 			$tag = $_GET['tag'];
@@ -324,7 +325,7 @@ class SessionsHolder_Controller extends Page_Controller {
 		    	}
 			}
 			$sessions = $list;
-	}
+		}
  	
 
 
@@ -504,12 +505,14 @@ class SessionsHolder_Controller extends Page_Controller {
 	* @return String
 	*/
 	public function getSpeakers(){
-		foreach(Member::get() as $member){
-			if($member->inGroup('Speakers')){
-				$speakers[$member->ID] = $member->Name;
-			}
+		$group = Group::get()->filter('Title', 'Speakers')->First();
+		if($group){
+			$speakers = $group->Members();
+			$speakers = $speakers->map('ID', 'Name')->toArray();
+			return json_encode($speakers);
+		} else {
+			return false;
 		}
-		return json_encode($speakers);
 	}
 
 	/**
