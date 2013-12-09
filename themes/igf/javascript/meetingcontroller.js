@@ -14,12 +14,20 @@ $(document).ready(function() {
 			$('.list').hide();
 			list.show();
 			$('.arrow').find('a').html('&#9660');
-			$(this).parent().find('.arrow').find('a').html('&#9650');
+			if($(this).parent().hasClass('arrow')){
+				$(this).html('&#9650');
+			}else{
+				$(this).parent().find('.arrow').find('a').html('&#9650');
+			}
 		} else if(list.css('display') == 'block') {
 			$('.list').hide();
 			list.hide();
+			if($(this).parent().hasClass('arrow')){
+				$(this).html('&#9660');
+			} else {
+				$(this).parent().find('.arrow').find('a').html('&#9660');
+			}
 			
-			$(this).parent().find('.arrow').find('a').html('&#9660');
 		}
 
 	})
@@ -31,13 +39,19 @@ $(document).ready(function() {
 		if(list.css('display') == 'none'){
 			$('.topic-list').hide();
 			list.show();
-			$('.topic-arrow').find('a').html('&#9660');
-			$(this).parent().find('.topic-arrow').find('a').html('&#9650');
+			if($(this).parent().hasClass('topic-arrow')){
+				$(this).html('&#9650');
+			}else{
+				$(this).parent().find('.topic-arrow').find('a').html('&#9650');
+			}
 		} else if(list.css('display') == 'block') {
 			$('.topic-list').hide();
 			list.hide();
-			$(this).parent().find('.topic-arrow').find('a').html('&#9660');
-			// $(this).parent().find('a.topic-switch').find('a.topic-switch').html('&#9660');
+			if($(this).parent().hasClass('topic-arrow')){
+				$(this).html('&#9660');
+			}else{
+				$(this).parent().find('.topic-arrow').find('a').html('&#9660');
+			}
 		}
 
 	})
