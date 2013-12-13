@@ -36,7 +36,8 @@ class MeetingSession extends DataObject {
 	);
 
 	public static $has_many = array(
-		'Videos' => 'Video'
+		'Videos' => 'Video',
+		'Transcripts' => 'SessionTranscript'
 	);
 
 	public static $many_many = array(
@@ -133,18 +134,21 @@ class MeetingSession extends DataObject {
 			$mainTab->push(new DropdownField('TopicID', 'Topic', $topics->map()));			
 		}
 
+		if($this->ID) {
+			$group = $this;
+			$gridFieldConfig = new GridFieldConfig_RecordEditor();
+			$list = $this->Transcripts();
+			$gridField = new GridField('Transcripts', 'Transcripts', $list, $gridFieldConfig);
+			$transcriptTab->push($gridField);
+		}
+
+
+
 		$meetings = Meeting::get();
 		if($meetings->count() != 0) {
 			$mainTab->push(new DropdownField('MeetingID', 'Meeting', $meetings->map('ID', 'getYearLocation')));
 		}
 		$mainTab->push(new HTMLEditorField('Content', 'Content'));
-
-		$transcriptTab->push(new OptionsetField('TranscriptType', 'Transcript Type (Select one and click save)', array('File' => 'File', 'Text' => 'Text')));
-		if($this->TranscriptType == 'Text'){
-			$transcriptTab->push(new HTMLEditorField('TranscriptContent', 'Transcript Content'));
-		} elseif($this->TranscriptType == 'File' ){
-			$transcriptTab->push(new UploadField('Transcript', 'Transcript'));
-		}
 
 		$proposalTab->push(new OptionsetField('ProposalType', 'Proposal Type (Select one and click save)', array('URL' => 'URL', 'File' => 'File', 'Text' => 'Text')));
 		if($this->ProposalType == 'URL'){
@@ -386,6 +390,22 @@ class MeetingSession extends DataObject {
 			$vid = $this->Videos()->first();
 			return $vid;
 		}
+    }
+
+    public function LangVideos(){
+    	$videos = Video::get()->filter(array('MeetingSessionID' => $this->ID));
+    	$languages = array();
+    	foreach($videos as $video){
+    		$languages[$video->Language()->ID] = $video->Language()->Name;
+    	}
+    	$languages = array_unique($languages);
+    	$list = new ArrayList();
+    	foreach($languages as $id => $language){
+    		$data['Language'] = $language;
+    		$data['Videos'] = $videos->filter(array('LanguageID' => $id)); 
+    		$list->push($data);
+    	}
+    	return $list;
     }
 
     /**

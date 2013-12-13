@@ -17,5 +17,30 @@ $(document).ready(function() {
 	});
 
 	});
+
+	var current =  $('.vid-nav ul .current').data('lang');
+	$('.video-wrap').each(function(i){
+		
+		if($(this).hasClass(current)){
+			$(this).show();
+		} else {
+			$(this).hide();
+		}
+	});
+	$('.vid-nav ul li').on('click', function(){
+		$('.vid-nav ul li').each(function(i){
+			$(this).removeClass('current');
+		})
+		$(this).addClass('current');
+		var current =  $(this).data('lang');
+		$('.video-wrap').each(function(i){
+			if($(this).hasClass(current)){
+				$(this).show();
+			} else {
+				$(this).hide();
+			}
+		});
+	});
+
 }(jQuery));
 

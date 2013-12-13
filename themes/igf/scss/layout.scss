@@ -663,17 +663,50 @@ b{
 		p{
 			padding-bottom: 10px;
 		}
-	}
 
-	.video{
-		height: 300px;
+		.vid-nav{
+			padding: 0px;
+			ul{
+				margin: 0px;
+				li{
+					border-bottom: none;
+					display: inline-block;
+					background: $grayWash;
+					list-style-type: none;
+					padding: 10px;
+					a{
+						&:hover{
+							text-decoration: none;
+						}
+					}
+					&.current{
+						background: $grayLight;
+						
+					}
 
-		embed{
-			height: 100%;
-			width: 100%;
+				}
+			}
 		}
-			
+
+		.video-wrap{
+			display: none;
+			background: $grayLight;
+			padding:10px 10px 0px 10px;
+			margin-bottom: 10px;
+			.video{
+				height: 300px;
+				padding-bottom: 10px;
+				embed{
+					height: 100%;
+					width: 100%;
+				}
+			}
+			&.current{
+				display: block;
+			}
+		}
 	}
+
 	.speaker{
 		.no-dec{
 			text-decoration: none;

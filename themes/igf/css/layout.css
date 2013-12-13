@@ -139,8 +139,15 @@ b { font-weight: 500; }
 #ses-wrap .main h5 { font-size: 16px; }
 #ses-wrap .main .content h5 { color: #0098cd; }
 #ses-wrap .main p { padding-bottom: 10px; }
-#ses-wrap .video { height: 300px; }
-#ses-wrap .video embed { height: 100%; width: 100%; }
+#ses-wrap .main .vid-nav { padding: 0px; }
+#ses-wrap .main .vid-nav ul { margin: 0px; }
+#ses-wrap .main .vid-nav ul li { border-bottom: none; display: inline-block; background: #b9b9b9; list-style-type: none; padding: 10px; }
+#ses-wrap .main .vid-nav ul li a:hover { text-decoration: none; }
+#ses-wrap .main .vid-nav ul li.current { background: #e0e0e0; }
+#ses-wrap .main .video-wrap { display: none; background: #e0e0e0; padding: 10px 10px 0px 10px; margin-bottom: 10px; }
+#ses-wrap .main .video-wrap .video { height: 300px; padding-bottom: 10px; }
+#ses-wrap .main .video-wrap .video embed { height: 100%; width: 100%; }
+#ses-wrap .main .video-wrap.current { display: block; }
 #ses-wrap .speaker .no-dec { text-decoration: none; color: #696b6f; }
 #ses-wrap .session-side { margin-bottom: 10px; }
 #ses-wrap .session-side a { text-decoration: underline; }

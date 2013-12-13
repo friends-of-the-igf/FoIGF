@@ -11,11 +11,23 @@
 	<div class="row">
 		<div class="span8 main">	
 			<% if Videos %>
-			<% loop Videos %>
-				<div class="video">
-					$getVideo
+			<div class="vid-nav">
+				<ul>
+					<% loop LangVideos %>
+					<li class="<% if First %> current <% end_if %>" data-lang="$Language"><a>$Language</a></li>
+					<% end_loop %>
+				</ul>
+			</div>
+			<% loop LangVideos %>
+				<div class="video-wrap $Language">
+					<% loop Videos %>
+						<div class='video'>
+							$getVideo
+						</div>
+					<% end_loop %>
 				</div>
 			<% end_loop %>
+
 			<% end_if %>
 			<div>
 				<% if Transcript %> <a title="Read full session transcript" href="$Transcript.Link" class="btn"><b>Read full session transcript</b></a> 
