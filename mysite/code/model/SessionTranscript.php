@@ -14,6 +14,15 @@ class SessionTranscript extends DataObject{
 		'MeetingSession' => 'MeetingSession'
 		);
 
+	public static $summary_fields = array(
+        'TranscriptType',
+        'Language.Name'
+    );
+
+    public static $field_labels = array(
+        'Language.Name' => 'Language'
+    );
+
 	 // REQUIRED: object table must be set to MyISAM
 	static $create_table_options = array(
 	    'MySQLDatabase' => 'ENGINE=MyISAM'
