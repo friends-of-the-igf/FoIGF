@@ -39,4 +39,8 @@ class SessionTranscript extends DataObject{
 
 		return $fields;
 	}
+
+	public function Link($action = null) {
+		return Controller::join_links('transcript', $this->ID, $action);
+	}
 }

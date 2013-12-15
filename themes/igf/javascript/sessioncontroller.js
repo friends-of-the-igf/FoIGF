@@ -27,6 +27,13 @@ $(document).ready(function() {
 			$(this).hide();
 		}
 	});
+	$('.tran').each(function(i){
+		if($(this).hasClass(current)){
+			$(this).show();
+		} else {
+			$(this).hide();
+		}
+	});
 	$('.vid-nav ul li').on('click', function(){
 		$('.vid-nav ul li').each(function(i){
 			$(this).removeClass('current');
@@ -40,6 +47,13 @@ $(document).ready(function() {
 				$(this).hide();
 			}
 		});
+		$('.tran').each(function(i){
+		if($(this).hasClass(current)){
+			$(this).show();
+		} else {
+			$(this).hide();
+		}
+	});
 	});
 
 }(jQuery));

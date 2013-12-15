@@ -30,8 +30,17 @@
 
 			<% end_if %>
 			<div>
-				<% if Transcript %> <a title="Read full session transcript" href="$Transcript.Link" class="btn"><b>Read full session transcript</b></a> 
-				<% else_if  TranscriptContent %><% if Videos || Content %>  <a title="Read full session transcript" href="transcript/$ID" class="btn" target="_blank"><b>Read full session transcript</b></a> <% end_if %><% end_if %>
+				<% if Transcripts %>
+					<% loop Transcripts %>
+						<% if Transcript %> 
+						<a title="Read full session transcript" href="$Transcript.Link" class="btn tran $Language.Name"><b>Read full session transcript</b></a> 
+						<% else_if Content %>
+							<% if Up.Videos || Up.Content %>  
+								<a title="Read full session transcript" href="transcript/$ID" class="btn tran $Language.Name" target="_blank"><b>Read full session transcript</b></a> 
+							<% end_if %>
+						<% end_if %>
+					<% end_loop %>
+				<% end_if %>
 				<% if ProposalLink %><a title="View Original proposal" href="$ProposalLink" class="btn" target="_blank"><b>View Original proposal</b></a>
 				<% else_if Proposal %><a title="View Original proposal" href="$Proposal.Link" class="btn" target="_blank"><b>View Original proposal</b></a>
 				<% else_if ProposalContent %><a title="View Original proposal" href="proposal/$ID" class="btn" target="_blank"><b>View Original proposal</b></a>
