@@ -48,13 +48,17 @@ $(document).ready(function() {
 			}
 		});
 		$('.tran').each(function(i){
-		if($(this).hasClass(current)){
-			$(this).show();
-		} else {
-			$(this).hide();
-		}
+			if($(this).hasClass(current)){
+				$(this).show();
+			} else {
+				$(this).hide();
+			}
+		});
 	});
-	});
+	if(!$('.vid-nav').length){
+	
+		$('.tran').first().show();
+	}
 
 }(jQuery));
 

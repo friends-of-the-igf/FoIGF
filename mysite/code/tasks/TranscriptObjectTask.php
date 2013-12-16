@@ -29,7 +29,6 @@ class TranscriptObjectTask extends BuildTask{
 				$trans_obj = new SessionTranscript();
 				$trans_obj->LanguageID = $eng->ID;
 				$trans_obj->TranscriptType = $session->TranscriptType;
-				echo $session->TranscriptContent;
 				$trans_obj->Content = $session->TranscriptContent;
 				if($session->TranscriptID != 0){
 					$trans_obj->TranscriptID  = $session->TranscriptID;
