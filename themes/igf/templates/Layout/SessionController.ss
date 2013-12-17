@@ -45,6 +45,11 @@
 				<% else_if Proposal %><a title="View Original proposal" href="$Proposal.Link" class="btn" target="_blank"><b>View Original proposal</b></a>
 				<% else_if ProposalContent %><a title="View Original proposal" href="proposal/$ID" class="btn" target="_blank"><b>View Original proposal</b></a>
 				<% end_if %>
+				<% if Report %>
+					<a title="View report" href="$Report.Link" class="btn" target="_blank"><b>View report</b></a>
+				<% else_if ReportContent %>
+					<a title="View report" href="report/$ID" class="btn" target="_blank"><b>View report</b></a>
+				<% end_if %>
 			</div>
 			<div class="content">
 				<% if Content %>
