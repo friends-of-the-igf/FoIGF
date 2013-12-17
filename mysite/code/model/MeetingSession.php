@@ -20,7 +20,11 @@ class MeetingSession extends DataObject {
 		'ProposalContent' => 'HTMLText',
 		'TranscriptType' => 'Text',
 		'ProposalType' => 'Text',
-		'Day' => 'Text'
+		'Day' => 'Text',
+		'ReportContent' => 'HTMLText',
+		'ReportType' => 'Text'
+
+
 	
 	);
 
@@ -29,10 +33,12 @@ class MeetingSession extends DataObject {
 	public static $has_one = array(
 		'Transcript' => 'File',
 		'Proposal' => 'File',
+		'Report' => 'File',
 		'Meeting' => 'Meeting',
 		'Type' => 'Type',
 		'Topic' => 'Topic',
 		'Organiser' => 'Member'
+
 	);
 
 	public static $has_many = array(
@@ -95,6 +101,7 @@ class MeetingSession extends DataObject {
 		$videosTab = new Tab('Videos');
 		$speakersTab = new Tab('Speakers');
 		$sessionsTab = new Tab('RelatedSessions');
+		$reportTab = new Tab('Report');
 		
 		$tabset = new TabSet("Root",
 			$mainTab,
@@ -102,7 +109,8 @@ class MeetingSession extends DataObject {
 			$proposalTab,
 			$videosTab,
 			$speakersTab,
-			$sessionsTab
+			$sessionsTab,
+			$reportTab
 		);
 		$fields->push( $tabset );
 
@@ -157,6 +165,13 @@ class MeetingSession extends DataObject {
 			$proposalTab->push(new UploadField('Proposal', 'Proposal'));
 		} elseif($this->ProposalType == 'Text'){
 			$proposalTab->push(new HTMLEditorField('ProposalContent', 'Proposal Content'));
+		}
+
+		$reportTab->push(new OptionsetField('ReportType', 'Report Type (Select one and click save)', array('File' => 'File', 'Text' => 'Text')));
+		if($this->ReportType =='File'){
+			$reportTab->push(new UploadField('Report', 'Report'));
+		} elseif($this->ReportType == 'Text'){
+			$reportTab->push(new HTMLEditorField('ReportContent', 'Report Content'));
 		}
 
 		if($this->ID) {

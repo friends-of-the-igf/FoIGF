@@ -25,17 +25,19 @@ class TranscriptObjectTask extends BuildTask{
 		}
 		foreach($sessions as $session){
 			if($session->TranscriptType != null){
-				$count++;
-				$trans_obj = new SessionTranscript();
-				$trans_obj->LanguageID = $eng->ID;
-				$trans_obj->TranscriptType = $session->TranscriptType;
-				$trans_obj->Content = $session->TranscriptContent;
-				if($session->TranscriptID != 0){
-					$trans_obj->TranscriptID  = $session->TranscriptID;
+				if($session->Transcripts()->filter(array('LanguageID' => $eng->ID))->Count() == 0){
+					$count++;
+					$trans_obj = new SessionTranscript();
+					$trans_obj->LanguageID = $eng->ID;
+					$trans_obj->TranscriptType = $session->TranscriptType;
+					$trans_obj->Content = $session->TranscriptContent;
+					if($session->TranscriptID != 0){
+						$trans_obj->TranscriptID  = $session->TranscriptID;
+					}
+					$trans_obj->write();
+					$session->Transcripts()->add($trans_obj);
+					$session->write();
 				}
-				$trans_obj->write();
-				$session->Transcripts()->add($trans_obj);
-				$session->write();
 			}
 		}
 		echo $count.' Transcript objects created and saved to Sessions';
