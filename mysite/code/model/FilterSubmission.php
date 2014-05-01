@@ -12,23 +12,30 @@ class FilterSubmission extends DataObject{
 		);
 
 
-
+	static $summary_fields = array(
+		'Speaker',
+		'Meeting',
+		'Type',
+		'Topics',
+		'Day',
+		'Sort'
+		);
 
 	public function absorb(Array $sub){
 
-		
-		$this->Day = $sub['Day'];
-		$this->Sort = $sub['Sort'];
-		$this->Meeting = Meeting::get()->byID($sub['Meeting'])->getYearLocation();
-		$this->Type = Type::get()->byID($sub['Type'])->Title;
+		$this->Day = isset($sub['Day']) ? $sub['Day'] : null;
+		$this->Sort = isset($sub['Sort']) ? $sub['Sort'] : null;
+		$this->Meeting = isset($sub['Meeting']) ? Meeting::get()->byID($sub['Meeting'])->getYearLocation(): null;
+		$this->Type = isset($sub['Type']) ? Type::get()->byID($sub['Type'])->Title : null;
+		if(isset($sub['Topic'])){
 		$topics = array();
-		foreach($sub['Topic'] as $topic){
-			$topics[] = Topic::get()->byID($topic)->Title;
-		}
+			foreach($sub['Topic'] as $topic){
+				$topics[] = Topic::get()->byID($topic)->Title;
+			}
 
-		$this->Topics = implode(', ', $topics);
-		$this->Speaker = $sub['Speaker'];
-		
+			$this->Topics = implode(', ', $topics);
+		}
+		$this->Speaker = isset($sub['Speaker']) ? $sub['Speaker'] : null;
 
 		$this->write();
 	}
