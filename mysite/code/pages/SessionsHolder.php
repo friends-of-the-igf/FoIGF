@@ -175,6 +175,9 @@ class SessionsHolder_Controller extends Page_Controller {
 	*/
 	public function doSearch($data, $form){
 
+		$sub = new FilterSubmission();
+		$sub->absorb($data);
+
 		$filter = array();
 		$filterList = array();
 		$speaker = array();
