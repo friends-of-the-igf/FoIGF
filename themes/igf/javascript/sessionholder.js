@@ -62,6 +62,40 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+$('#Form_FilterForm_action_doSearch').on('click', function(){
+	var string = '';
+	if($('#Topic').find('input:checked').length > 0){
+		string += 'Topics: ';
+		$('#Topic').find('input:checked').each(function(){
+			string += $(this).siblings('label').html() + ', ';
+		});
+		string += ' - ';
+	}
+	if($('#Meeting').find('option:selected').val() != ''){
+		string += 'Meeting: ';
+		string += $('#Meeting').find('option:selected').html() + ' - ';
+	}
+	if($('#Day').find('option:selected').val()  != ''){
+		string += 'Day: ';
+		string += $('#Day').find('option:selected').html() + ' - ';
+	}
+	if($('#Type').find('option:selected').val()  != ''){
+		string += 'Type: ';
+		string += $('#Type').find('option:selected').html() + ' - ';
+	}
+	if($('#Speaker').find('input').val()  != ''){
+		string += 'Speaker: ';
+		string += $('#Speaker').find('input').val() + ' - ';
+	}
+	if($('#Sort').find('input:checked').length > 0){
+		string += 'Sort: ';
+		string += $('#Sort').find('input:checked').val();
+	}
+	
+	ga('send', 'event', 'SessionFilter', 'Submit', string);
+
+});
+
 	
 
 	
