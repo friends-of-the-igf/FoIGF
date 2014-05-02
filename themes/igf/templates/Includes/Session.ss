@@ -8,10 +8,11 @@
 		</div>
 	<div class="text-wrap">
 	<% else_if Video.WebcastCode %>
-	
 		<div class="vidthumb">
-			<img alt="Video" class="icon" width="40px" height="40px" src="{$ThemeDir}/images/youtube-play.png" />
-			<img alt="$Title" width="100%" height="100%" class="thumb" src="$Meeting.Image.URL" />
+			<a href="$Link">
+				<img alt="Video" class="icon" width="40px" height="40px" src="{$ThemeDir}/images/youtube-play.png" />
+				<img alt="$Title" width="100%" height="100%" class="thumb" src="$Meeting.Image.URL" />
+			</a>
 		</div>
 	<div class="text-wrap">
 	<% else %>
