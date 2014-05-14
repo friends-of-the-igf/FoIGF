@@ -1,0 +1,7 @@
+---
+Name: OpenCalaisConfig
+After: 'framework/*','cms/*'
+---
+SiteConfig:
+  extensions:
+   - CalaisSiteConfig 
