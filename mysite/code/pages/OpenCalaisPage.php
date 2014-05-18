@@ -58,28 +58,8 @@ class OpenCalaisPage_Controller extends Page_Controller{
 			}
 
 			//TO DO: Move this process to part of the service class
-			if(strlen($content) > 1000){
-				$length = strlen($content);
-				$chunks = floor(strlen($content)/1000) + 1;
-				$start = 0;
-				$end = 1000;
-				$nextPeriod = strpos($content, '.', $end)+1 - $start;
-				$contentChunks = array();
-				for($i = 0; $i < $chunks; $i++){				
-					$contentChunks[] = substr($content, $start, $nextPeriod);
-					$start = $start + $nextPeriod;
-					$end = $end + 1000;
-					if($end > $length){
-						$nextPeriod = $length;
-					} else{
-						$nextPeriod = strpos($content, '.', $end)+1-$start;
-					}
-				}
-			}
-			foreach($contentChunks as $chunk){
-				$ocs->setContent($chunk);
-				Debug::dump($ocs->processContent());
-			}
+			
+			Debug::dump($ocs->processContent($content));
 			
 		}
 

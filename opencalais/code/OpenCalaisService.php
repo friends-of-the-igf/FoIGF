@@ -5,24 +5,18 @@ class OpenCalaisService extends RestfulService{
 	/**
 	*
 	*/
-	protected $content;
-
-	/**
-	*
-	*/
-	public function __construct($content = null) {
-		$this->content = $content;
+	public function __construct() {
+		
 
 		parent::__construct('http://api.opencalais.com/enlighten/rest/', 3600);
 	}
 
-	/**
-	*
-	*/
-	public function processContent(){
-		 
+	//This is called to process content, multiple times for chunked
+	public function callAPI($content){
+
 		//Get and set the API key from settings. Throw error if it hasn't been entered.
 		$key = SiteConfig::current_site_config()->OpenCalaisAPIKey;
+		
 		if($key == null){
 			user_error('Please set an Open Calais API Key in the CMS Settings', E_USER_ERROR);
 		}
@@ -41,21 +35,35 @@ class OpenCalaisService extends RestfulService{
 		$params['paramsXML'] = $pXML;
 
 		//Set content
-		$params['content'] = $this->content;
+		$params['content'] = $content;
 
 		$this->setQueryString($params);
 
-		$response = $this->request();
-		$xml = $response->SimpleXML()->CalaisSimpleOutputFormat;
-		Debug::dump($response);
-		return $this->getEntities($xml);
+		return $this->request();
 	}
 
-	public function setContent(String $content){
-		$this->content = $content;
+	/**
+	*
+	*/
+	public function processContent($content){
+		$content = $this->prepareContent($content);
+		if(is_array($content)){
+			$result = array();
+			foreach($content as $chunk){
+				$chunkResponse = $this->callAPI($chunk);
+				$chunkXML = $chunkResponse->SimpleXML()->CalaisSimpleOutputFormat;
+				$chunkResult = $this->getEntities($chunkXML);
+				$result = $result + $chunkResult;
+			}
+		} else {
+			$response = $this->callAPI($content);
+			$xml = $response->SimpleXML()->CalaisSimpleOutputFormat;
+			$result = $this->getEntities($xml);
+		}
+		return $result;
 	}
 
-
+	
 	/**
 	*
 	*/
@@ -126,7 +134,28 @@ class OpenCalaisService extends RestfulService{
 		return $types;
 	}
 
-	public function prepareContent(){
-		
+	public function prepareContent($content){
+		if(strlen($content) > 1000){
+			$length = strlen($content);
+			$chunks = floor(strlen($content)/1000) + 1;
+			$start = 0;
+			$end = 1000;
+			$nextPeriod = strpos($content, '.', $end)+1 - $start;
+			$contentChunks = array();
+			for($i = 0; $i < $chunks; $i++){				
+				$contentChunks[] = substr($content, $start, $nextPeriod);
+				$start = $start + $nextPeriod;
+				$end = $end + 1000;
+				if($end > $length){
+					$nextPeriod = $length;
+				} else{
+					$nextPeriod = strpos($content, '.', $end)+1-$start;
+				}
+			}
+			// Debug::dump($contentChunks);
+			return $contentChunks;
+		} else {
+			return $content;
+		}
 	}
 }
