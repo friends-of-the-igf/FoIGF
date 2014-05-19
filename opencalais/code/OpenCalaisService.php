@@ -46,14 +46,53 @@ class OpenCalaisService extends RestfulService{
 	*
 	*/
 	public function processContent($content){
+		//check if the content needs to be chunked
 		$content = $this->prepareContent($content);
+		//if it did then it will be an array
 		if(is_array($content)){
+			//set the result holder
 			$result = array();
 			foreach($content as $chunk){
 				$chunkResponse = $this->callAPI($chunk);
 				$chunkXML = $chunkResponse->SimpleXML()->CalaisSimpleOutputFormat;
 				$chunkResult = $this->getEntities($chunkXML);
-				$result = $result + $chunkResult;
+				Debug::dump($chunkResult);
+				if(empty($result)){
+					$result = $chunkResult;
+				} else {
+					foreach($chunkResult as $chunkEntityType => $entities){
+
+						if(array_key_exists($chunkEntityType, $result)){
+
+							$existingEntities = $result[$chunkEntityType];
+
+							if($chunkEntityType != 'Topics' && $chunkEntityType != 'SocialTags'){
+
+								foreach($entities as $entity => $metadata){
+
+									if(array_key_exists($entity, $existingEntities)){
+
+										$existingEntity = $existingEntities[$entity];
+
+										$existingEntity['Count'] = $existingEntity['Count'] + $metadata['Count'];
+
+										if($existingEntity['Relevance'] < $metadata['Relevance']) {
+											
+											$existingEntity['Relevance'] = 	$metadata['Relevance'];
+										} 
+
+									} else {
+										$existingEntities[$entity] = $metadata;
+									}
+								}
+							} else {
+								//merge topics and social tags
+							}
+						} else {
+							$result[$chunkEntityType] = $entities;
+						}
+					}
+				}
 			}
 		} else {
 			$response = $this->callAPI($content);

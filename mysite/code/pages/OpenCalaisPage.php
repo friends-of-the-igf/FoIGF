@@ -60,6 +60,8 @@ class OpenCalaisPage_Controller extends Page_Controller{
 			//TO DO: Move this process to part of the service class
 			
 			Debug::dump($ocs->processContent($content));
+			// $ocs->processContent($content);
+			return;
 			
 		}
 
