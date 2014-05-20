@@ -13,7 +13,8 @@ class SessionController extends Page_Controller {
 	public static $allowed_actions = array(
         'TagForm',
         'saveTags',
-        'getTags'
+        'getTags',
+        'OpenCalaisForm'
 	);
 
 	protected $meetingsession = null;
@@ -46,7 +47,7 @@ class SessionController extends Page_Controller {
 			Session::set('CurrentSession', $meetingsession);
 			$this->meetingsession = $meetingsession;
 		} else {
-			if($this->request->param('Action') == 'SearchForm' || $this->request->param('Action') == 'TagForm' || $this->request->param('Action') == 'getTags'){
+			if($this->request->param('Action') == 'SearchForm' || $this->request->param('Action') == 'TagForm' || $this->request->param('Action') == 'getTags' || $this->request->param('Action') == 'OpenCalaisForm'){
 				return;
 			}else{
 				return $this->httpError(404);
@@ -171,6 +172,37 @@ class SessionController extends Page_Controller {
 			}
 		}
 		return json_encode($list);
+	}
+
+	public function OpenCalaisForm(){
+
+		$fields = new FieldList(array(
+			new CheckboxSetField('ContentSelection', 'Select what areas of content you would like to process:', array('Transcripts' => 'Transcript', 'Agenda' =>  'Agenda', 'Proposal' =>  'Proposal', 'Report' =>  'Report')),	
+			)
+		);
+		if($this->meetingsession){
+			$fields->push(new HiddenField('MeetingSessionID', 'MeetingSessionID', $this->meetingsession->ID));
+		}
+
+		$required = new RequiredFields(array('ContentSelection'));
+
+		$actions = new FieldList(new FormAction('processSession', 'Extract Entities'));
+
+		return new Form($this, 'OpenCalaisForm', $fields, $actions, $required);
+	}
+
+	public function processSession($data, $form){
+		$id = $data['MeetingSessionID'];
+
+		$page = OpenCalaisPage::get()->First();
+		if($page){
+			$link = $page->Link().'processSession?ID='.$id;
+			foreach($data['ContentSelection'] as $area){
+				$link.='&area[]='.$area;
+			}
+			return $this->redirect($link);	
+		}
+
 	}
 
 

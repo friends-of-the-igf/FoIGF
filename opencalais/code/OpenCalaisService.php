@@ -2,17 +2,17 @@
 
 class OpenCalaisService extends RestfulService{
 	
-	/**
-	*
-	*/
-	public function __construct() {
-		
 
+	public function __construct() {
 		parent::__construct('http://api.opencalais.com/enlighten/rest/', 3600);
 	}
 
-	//This is called to process content, multiple times for chunked
-	public function callAPI($content){
+	/**
+	* This function accepts a string of content as a parameter and then calls the Open Calais API to process it. 
+	*	@param $content - String (1000 characters max)
+	*	@return RestfulService_Response Object
+	*/
+	public function callAPI(String $content){
 
 		//Get and set the API key from settings. Throw error if it hasn't been entered.
 		$key = SiteConfig::current_site_config()->OpenCalaisAPIKey;
@@ -43,57 +43,14 @@ class OpenCalaisService extends RestfulService{
 	}
 
 	/**
-	*
+	* This is the primary function. It accepts a string of the content that needs to be processed and returns an array of extracted entities.
+	*	@param $content - String
+	*	@return array
 	*/
-	public function processContent($content){
-		//check if the content needs to be chunked
+	public function processContent(String $content){
 		$content = $this->prepareContent($content);
-		//if it did then it will be an array
 		if(is_array($content)){
-			//set the result holder
-			$result = array();
-			foreach($content as $chunk){
-				$chunkResponse = $this->callAPI($chunk);
-				$chunkXML = $chunkResponse->SimpleXML()->CalaisSimpleOutputFormat;
-				$chunkResult = $this->getEntities($chunkXML);
-				Debug::dump($chunkResult);
-				if(empty($result)){
-					$result = $chunkResult;
-				} else {
-					foreach($chunkResult as $chunkEntityType => $entities){
-
-						if(array_key_exists($chunkEntityType, $result)){
-
-							$existingEntities = $result[$chunkEntityType];
-
-							if($chunkEntityType != 'Topics' && $chunkEntityType != 'SocialTags'){
-
-								foreach($entities as $entity => $metadata){
-
-									if(array_key_exists($entity, $existingEntities)){
-
-										$existingEntity = $existingEntities[$entity];
-
-										$existingEntity['Count'] = $existingEntity['Count'] + $metadata['Count'];
-
-										if($existingEntity['Relevance'] < $metadata['Relevance']) {
-											
-											$existingEntity['Relevance'] = 	$metadata['Relevance'];
-										} 
-
-									} else {
-										$existingEntities[$entity] = $metadata;
-									}
-								}
-							} else {
-								//merge topics and social tags
-							}
-						} else {
-							$result[$chunkEntityType] = $entities;
-						}
-					}
-				}
-			}
+			$result = $this->processChunks($content);
 		} else {
 			$response = $this->callAPI($content);
 			$xml = $response->SimpleXML()->CalaisSimpleOutputFormat;
@@ -102,11 +59,12 @@ class OpenCalaisService extends RestfulService{
 		return $result;
 	}
 
-	
 	/**
-	*
+	* This function takes the xml object of entities and turns them into an array.
+	*	@param $xml - SimpleXMLElement
+	*	@return array
 	*/
-	public function getEntities($xml){
+	public function getEntities(SimpleXMLElement $xml){
 		//Entities
 		$types = array();
 		foreach($xml->children() as $child){
@@ -147,7 +105,6 @@ class OpenCalaisService extends RestfulService{
 					'Score' => floatval(str_replace(array('Score', '=', '"'), '', $score['Score']->asXML()))
 					);
 			}
-		
 		} else {
 			$topicArray = 'No topics were able to be extracted from the content';
 		}
@@ -169,11 +126,16 @@ class OpenCalaisService extends RestfulService{
 		}
 		$types['SocialTags'] = $tagsArray;
 
-
 		return $types;
 	}
 
-	public function prepareContent($content){
+	/**
+	* This function takes a string of content and determines if it is too large to be processed. If it, it breaks it into approx.
+	* 1000 word chunks to the nearest full stop and are returned as an array.
+	*	@param $content - String
+	*	@return mixed. An array or a string.
+	*/
+	public function prepareContent(String $content){
 		if(strlen($content) > 1000){
 			$length = strlen($content);
 			$chunks = floor(strlen($content)/1000) + 1;
@@ -191,10 +153,94 @@ class OpenCalaisService extends RestfulService{
 					$nextPeriod = strpos($content, '.', $end)+1-$start;
 				}
 			}
-			// Debug::dump($contentChunks);
 			return $contentChunks;
 		} else {
 			return $content;
 		}
+	}
+
+	/**
+	* This function will process an array of strings, process them with the Open Calais service
+	* and return a single array with all the extracted metadata.
+	*	@param $content - Array
+	*	@return array
+	*/	
+	public function processChunks(Array $content){
+		$result = array();
+		foreach($content as $chunk){
+			$chunkResponse = $this->callAPI($chunk);
+			$chunkXML = $chunkResponse->SimpleXML()->CalaisSimpleOutputFormat;
+			$chunkResult = $this->getEntities($chunkXML);
+			if(empty($result)){
+				$result = $chunkResult;
+			} else {
+				foreach($chunkResult as $chunkEntityType => $entities){
+					if(array_key_exists($chunkEntityType, $result)){
+						$existingEntities = $result[$chunkEntityType];
+						if($chunkEntityType != 'Topics' && $chunkEntityType != 'SocialTags'){
+							foreach($entities as $entity => $metadata){
+								if(array_key_exists($entity, $existingEntities)){
+									$existingEntity = $existingEntities[$entity];
+									$existingEntity['Count'] = $existingEntity['Count'] + $metadata['Count'];
+									if($existingEntity['Relevance'] < $metadata['Relevance']) {	
+										$existingEntity['Relevance'] = 	$metadata['Relevance'];
+									} 
+								} else {
+									$existingEntities[$entity] = $metadata;
+									$result[$chunkEntityType] = $existingEntities;
+								}
+							}
+						} else {
+							if(is_array($entities)){
+								//Topics
+								if($chunkEntityType == 'Topics'){
+									foreach($entities as $index => $metadata){
+										if(is_array($result['Topics'])){
+											$inArray = false;
+											foreach($result['Topics'] as $topic){
+												if($topic['Value'] == $metadata['Value']){
+													$inArray = true;
+													if($topic['Score'] < $metadata['Score']){
+														$topic['Score'] = $metadata['Score'];
+													}
+												}
+											}
+											if(!$inArray){
+												array_push($result['Topics'], $metadata);
+											}
+										} else {
+											$result['Topics'] = array($metadata);
+										}
+									}
+								} else {
+									//Social Tags
+									foreach($entities as $index => $metadata){
+										if(is_array($result['SocialTags'])){
+											$inArray = false;
+											foreach($result['SocialTags'] as $socialTag){
+												if($socialTag['Tag'] == $metadata['Tag']){
+													$inArray = true;
+													if($socialTag['Importance'] < $metadata['Importance']){
+														$socialTag['Importance'] = $metadata['Importance'];
+													}
+												}
+											}
+											if(!$inArray){
+												array_push($result['SocialTags'], $metadata);
+											}
+										} else {
+											$result['SocialTags'] = array($metadata);
+										}
+									}
+								}
+							}
+						}
+					} else {
+						$result[$chunkEntityType] = $entities;
+					}
+				}
+			}
+		}
+		return $result;
 	}
 }

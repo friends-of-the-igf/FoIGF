@@ -15,6 +15,10 @@ class CustomSiteConfig extends DataExtension {
         'ShowFeatured' => 'Boolean'
     );
 
+    public static $has_one = array(
+        'ResearchGroup' => 'Group'
+        );
+
     public function updateCMSFields(FieldList $fields) {
         $fields->addFieldToTab('Root.Main', new CheckboxField('ViewCheck', 'Turn on Session View count?'));
         $fields->addFieldToTab('Root.Main', new CheckboxField('ShowFeatured', 'Show Next Meeting on Home Page?'));
@@ -22,6 +26,7 @@ class CustomSiteConfig extends DataExtension {
         $fields->addFieldToTab('Root.Main', new CheckboxField('ShowOrganisers', 'Show Organisers on Session pages?'));
         $fields->addFieldToTab('Root.Main', new TextField('FacebookURL', 'Facebook URL'));
         $fields->addFieldToTab('Root.Main', new TextField('TwitterURL', 'Twitter URL'));
+        $fields->addFieldToTab('Root.ContentEnrichment', new TreeDropdownField('ResearchGroupID', 'Security Group to conduct Content Enrichment research'));
     }
     
 }

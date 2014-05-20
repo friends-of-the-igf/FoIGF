@@ -7,31 +7,29 @@ class OpenCalaisPage extends Page{
 
 class OpenCalaisPage_Controller extends Page_Controller{
 
+
+
 	public static $allowed_actions = array(
 		'test',
-		'OpenCalaisForm'
+		'processSession',
+		'sortColumn'
 	);
 
-	public function OpenCalaisForm(){
-
-		$sessions = MeetingSession::get()->map();
-
-		$fields = new FieldList(array(
-			new DropdownField('Session', 'Choose a session:', $sessions),
-			new CheckboxSetField('ContentSelection', 'Select what areas of content you would like to process:', array('Transcripts' => 'Transcript', 'Agenda' =>  'Agenda', 'Proposal' =>  'Proposal', 'Report' =>  'Report'))
-			)
-		);
-
-		$actions = new FieldList(new FormAction('processSession', 'Extract Entities'));
-
-		return new Form($this, 'OpenCalaisForm', $fields, $actions);
+	public function init(){
+		parent::init();
+		Requirements::javascript('themes/igf/javascript/opencalaispage.js');
 	}
 
-	public function processSession($data, $form){
-		$session =  MeetingSession::get()->byID($data['Session']);
+	public function getMeetingSession(){
+		return MeetingSession::get()->byID($_GET['ID']);
+	}
+
+	public function processSession(){
+		$session =  MeetingSession::get()->byID($_GET['ID']);
 		$returnData = array();
 		$ocs = new OpenCalaisService();
-		foreach($data['ContentSelection'] as $area){
+		foreach($_GET['area'] as $area){
+			$content = false;
 			if($area == 'Agenda'){
 				$content = $session->Content;
 			} else if($area == 'Transcripts') {
@@ -39,36 +37,74 @@ class OpenCalaisPage_Controller extends Page_Controller{
 					$content = $session->Transcripts()->filter('TranscriptType', 'Text')->First()->Content;
 				} else {
 					$returnData[$area] = 'Transcript was not available in a format that can be processed or does not exist. You can only process text based Transcripts.';
-					break;
 				}
 			} else if($area == 'Proposal'){
 				if($session->ProposalType == 'Text' && strlen($session->ProposalContent) > 0){
 					$content = $session->ProposalContent;
 				} else {
 					$returnData[$area] = 'Proposal was not available in a format that can be processed or does not exist. You can only process text based Proposals.';
-					break;
 				}
-			} else {
+			} else if($area == 'Report') {
 				if($session->ReportType == 'Text' && strlen($session->ReportContent) > 0){
 					$content = $session->ReportContent;
 				} else {
 					$returnData[$area] = 'Report was not available in a format that can be processed or does not exist. You can only process text based Reports.';
-					break;
 				}
 			}
-
-			//TO DO: Move this process to part of the service class
-			
-			Debug::dump($ocs->processContent($content));
-			// $ocs->processContent($content);
-			return;
-			
+			if($content){
+				$returnData[$area] = $ocs->processContent($content);	
+			}		
 		}
+		
+		$areaList = new ArrayList();
 
-		// return Debug::dump($returnData);
-
+		foreach($returnData as $area => $entityTypes){
+			$areaData['Title'] = preg_replace("/(?<=[a-zA-Z])(?=[A-Z])/", " ", $area);
+			$areaData['Value'] = $area;
+			$typeList = new ArrayList();
+			if(is_array($entityTypes)){
+				foreach($entityTypes as $type => $entities){
+					$typeData['Title'] = preg_replace("/(?<=[a-zA-Z])(?=[A-Z])/", " ", $type);
+					$typeData['Value'] = $type;
+					$entityList = new ArrayList();
+					if(is_array($entities)){
+						foreach($entities as $entity){
+							$entityList->push(new ArrayData($entity));
+						}
+						$typeData['Entities'] = $entityList;
+					} else {
+						$typeData['Entities'] = false;
+						$typeData['Message'] = $entities;
+					}
+					$typeList->push(new ArrayData($typeData));
+				}
+				$areaData['Types'] = $typeList;
+			} else {
+				$areaData['Types'] = false;
+				$areaData['Message'] = $entityTypes;
+			}	
+			$areaList->push(new ArrayData($areaData));
+		}
+		Session::set('Entities', $areaList);
+	
+		return $this->customise(array('Areas' => $areaList));
 	}
 
+	public function sortColumn(){
+		$dir = $_POST['dir'];
+		$field = ($_POST['field'] == 'Name' ? 'Value' : $_POST['field']);
+		$type = $_POST['type'];
+		$area = $_POST['area'];
+		$list = Session::get('Entities');
+		$sorted = $list->find('Value', $area)->Types->find('Value', $type)->Entities->sort($field, $dir);
+		if($type == 'SocialTags'){
+			return $this->customise(array('Entities' => $sorted))->renderWith('TagTable');
+		} else if($type == 'Topics'){
+			return $this->customise(array('Entities' => $sorted))->renderWith('TopicTable');
+		} else {
+			return $this->customise(array('Entities' => $sorted))->renderWith('EntityTable');
+		}
+	}
 
 	public function test(){
 		$ocs = new OpenCalaisService();

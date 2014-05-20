@@ -152,6 +152,10 @@ b { font-weight: 500; }
 #ses-wrap .session-side { margin-bottom: 10px; }
 #ses-wrap .session-side a { text-decoration: underline; }
 #ses-wrap .session-side div { padding-bottom: 5px; }
+#ses-wrap .session-side form { background: #e0e0e0; padding: 20px; }
+#ses-wrap .session-side form fieldset .checkboxset ul { list-style-type: none; padding: 0; margin: 0; }
+#ses-wrap .session-side form fieldset .checkboxset ul li { margin-bottom: 5px; }
+#ses-wrap .session-side form fieldset .checkboxset ul li input, #ses-wrap .session-side form fieldset .checkboxset ul li label { display: inline-block; margin: 0px; }
 #ses-wrap .view-count { padding: 15px 0 5px 0; background-color: #f3f3f3; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 #ses-wrap .view-count b { font-size: 1.5em; }
 #ses-wrap #Form_TagForm { margin-bottom: 0px; }
@@ -244,6 +248,36 @@ b { font-weight: 500; }
 
 /* Contact Page -------------------------------------------------- */
 #ContactPage #contentWrap { margin-top: 20px; }
+
+/*Open Calais Page -------------------------------------------------- */
+#OpenCalaisPage #contentWrap { padding: 30px; }
+#OpenCalaisPage .tab-nav .area-nav { list-style-type: none; padding: 0; margin: 0; }
+#OpenCalaisPage .tab-nav .area-nav li { display: inline-block; }
+#OpenCalaisPage .tab-nav .area-nav li a { display: inline-block; padding: 10px 20px; -webkit-border-top-right-radius: 8px; -moz-border-radius-topright: 8px; border-top-right-radius: 8px; -webkit-border-top-left-radius: 8px; -moz-border-radius-topleft: 8px; border-top-left-radius: 8px; background: #d8d8d8; }
+#OpenCalaisPage .tab-nav .area-nav li a.active { background: #e0e0e0; }
+#OpenCalaisPage .tab-content { -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; -webkit-border-top-left-radius: 0px; -moz-border-radius-topleft: 0px; border-top-left-radius: 0px; background: #e0e0e0; padding: 20px; margin-bottom: 40px; }
+#OpenCalaisPage .tab-content .area { display: none; }
+#OpenCalaisPage .tab-content .area.active { display: block; }
+#OpenCalaisPage .tab-content .area .type-nav { list-style-type: none; padding: 0; margin: 0; }
+#OpenCalaisPage .tab-content .area .type-nav li { display: inline-block; margin-bottom: 5px; }
+#OpenCalaisPage .tab-content .area .type-nav li a { display: inline-block; padding: 5px 20px; background: #b9b9b9; color: white; }
+#OpenCalaisPage .tab-content .area .type-nav li a.active { color: #0098cd; background: white; }
+#OpenCalaisPage .tab-content .area .type { display: none; position: relative; }
+#OpenCalaisPage .tab-content .area .type.active { display: block; }
+#OpenCalaisPage .tab-content .area .type table { width: 100%; border: 2px solid #e0e0e0; opacity: 1; }
+#OpenCalaisPage .tab-content .area .type table tr td, #OpenCalaisPage .tab-content .area .type table tr th { border: 2px solid #e0e0e0; padding: 5px 15px; background: white; text-align: center; }
+#OpenCalaisPage .tab-content .area .type table tr td.name, #OpenCalaisPage .tab-content .area .type table tr th.name { text-align: left; }
+#OpenCalaisPage .tab-content .area .type table tr td:even, #OpenCalaisPage .tab-content .area .type table tr th:even { background: #b9b9b9; }
+#OpenCalaisPage .tab-content .area .type table tr th { background: #0098cd; }
+#OpenCalaisPage .tab-content .area .type table tr th a { color: white; }
+#OpenCalaisPage .tab-content .area .type table tr th a span { display: inline-block; position: relative; color: white; display: none; }
+#OpenCalaisPage .tab-content .area .type table tr th a.ASC .up { display: inline-block; }
+#OpenCalaisPage .tab-content .area .type table tr th a.DESC .down { display: inline-block; }
+#OpenCalaisPage .tab-content .area .type table tr:nth-child(odd) td { background: #f3f3f3; }
+#OpenCalaisPage .tab-content .area .type .ajax-loading { top: 0; left: -9999px; bottom: 0; right: 0; width: 100%; height: 100%; position: absolute; background: transparent; -webkit-transition: background, 0.3s, ease; -moz-transition: background, 0.3s, ease; -o-transition: background, 0.3s, ease; transition: background, 0.3s, ease; }
+#OpenCalaisPage .tab-content .area .type .ajax-loading .loader-inner { position: relative; width: 100%; height: 100%; }
+#OpenCalaisPage .tab-content .area .type .ajax-loading .loader-inner h3 { height: 40px; position: absolute; text-align: center; margin: auto; top: 0; left: 0; right: 0; bottom: 0; }
+#OpenCalaisPage .tab-content .area .type .ajax-loading.active { left: 0px; background: rgba(100, 100, 100, 0.6); }
 
 /*Responsiveness -------------------------------------------------- */
 @media (min-width: 1200px) { #AboutPage #intro, #AboutPage #top-right { height: 240px; }

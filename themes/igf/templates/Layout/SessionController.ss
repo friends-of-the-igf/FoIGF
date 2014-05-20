@@ -80,6 +80,12 @@
 					</div>
 				</div>
 			</div>
+			<% if Top.isResearcher %>
+				<div class="session-side">
+					<h5>Open Calais Content Processing</h5>
+					$Top.OpenCalaisForm
+				</div>
+			<% end_if %>
 			<div class="session-side">
 				<% if TagsCollection %>
 					<h5>Tagged</h5>
@@ -139,6 +145,7 @@
 				<% end_if %>
 			
 			</div>
+
 		</div>
 	</div>
 </div>

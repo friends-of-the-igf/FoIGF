@@ -723,6 +723,26 @@ b{
 		div{
 			padding-bottom: 5px;
 		}
+		form{
+			background: $grayLight;
+			padding:20px;
+			fieldset{
+				.checkboxset{
+					ul{
+						list-style-type: none;
+						padding: 0;
+						margin: 0;
+						li{
+							margin-bottom: 5px;
+							input, label{
+								display: inline-block;
+								margin: 0px;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	.view-count {
@@ -1162,6 +1182,153 @@ b{
 	}
 }
 
+
+
+/*Open Calais Page -------------------------------------------------- */
+
+#OpenCalaisPage{
+	#contentWrap{
+		padding:30px;
+	}
+	.tab-nav{
+		.area-nav{
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			li{
+				display: inline-block;
+				a{	
+					display: inline-block;
+					padding: 10px 20px;
+					@include border-top-radius(8px);
+					background: $grayMedium;
+					&.active{
+						background: $grayLight;
+					}
+				}
+			}	
+		}
+	}
+
+	.tab-content{
+		@include border-radius(8px);
+		@include border-top-left-radius(0px);
+
+		background: $grayLight;
+		padding: 20px;
+		margin-bottom: 40px;
+		.area{
+			display: none;
+
+			&.active{
+				display: block;
+			}
+			.type-nav{
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+				li{
+					display: inline-block;
+					margin-bottom: 5px;
+					a{	
+						display: inline-block;
+						padding: 5px 20px;
+						background: $grayWash;
+						color: $white;
+						&.active{
+							color: $blue;
+							background: $white;
+						}
+					}
+				}	
+			}
+			.type{
+				display: none;
+				position: relative;
+				&.active{
+					display: block;
+				}
+				table{
+					width: 100%;
+					border: 2px solid $grayLight;
+					opacity: 1;
+					tr{
+						td,th{
+							border: 2px solid $grayLight;
+							padding: 5px 15px;
+							background: white;
+							text-align: center;
+							&.name{
+								text-align: left;
+							}
+							&:even{
+								background: $grayWash;
+							}
+						}
+						th{
+							background: $blue;
+							a{
+								color: white;
+								span{
+									display: inline-block;
+									position: relative;
+									color: white;
+									display: none;
+								}
+								&.ASC{
+									.up{
+										display: inline-block;
+									}
+								}
+								&.DESC{
+									.down{
+										display: inline-block;
+									}
+								}
+							}
+
+						}
+						&:nth-child(odd){
+							td{
+								background: $grayLighter;
+							}
+						}
+					}
+				}
+				.ajax-loading{
+					top: 0;
+					left: -9999px;
+					bottom: 0;
+					right: 0;
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					background: transparent;
+					@include transition(background, 0.3s, ease);
+					.loader-inner{
+						position: relative;
+						width: 100%;
+						height: 100%;
+						h3{
+							height:40px;
+							position: absolute;
+							text-align: center;
+							margin: auto;
+							top: 0;
+							left: 0;
+							right: 0;
+							bottom: 0;
+						}
+					}
+					&.active{
+						left:0px;
+						background: rgba(100, 100, 100, 0.6);
+					}
+				}
+			}
+		}
+	}
+}
 
 
 
