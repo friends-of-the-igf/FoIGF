@@ -151,9 +151,13 @@ class OpenCalaisService extends RestfulService{
 					$nextPeriod = $length;
 				} else{
 					$nextPeriod = strpos($content, '.', $end)+1-$start;
+					if($nextPeriod < 0){
+						$nextPeriod = $length;
+					}
 				}
 			}
 			return $contentChunks;
+
 		} else {
 			return $content;
 		}
