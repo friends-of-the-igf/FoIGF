@@ -126,8 +126,7 @@ class Page_Controller extends ContentController {
 	public function isResearcher(){
 		$member = Member::CurrentUser();
 		$group = SiteConfig::current_site_config()->ResearchGroup();
-		if($group){
-			error_log('hello');
+		if($group && $member){
 			return $member->inGroup($group->Code);
 		} else {
 			return false;
