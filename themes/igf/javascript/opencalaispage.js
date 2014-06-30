@@ -40,6 +40,11 @@ $(document).ready(function() {
 		});
 	});
 
+	$('#exportButton').on('click', function(e){
+		e.preventDefault();
+		$('#export').submit();
+	})
+
 
 });
 }(jQuery));
