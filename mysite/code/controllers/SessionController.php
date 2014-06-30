@@ -196,7 +196,7 @@ class SessionController extends Page_Controller {
 
 		$page = OpenCalaisPage::get()->First();
 		if($page){
-			$link = $page->Link().'processSession?ID='.$id;
+			$link = $page->Link().'openCalaisSession?ID='.$id;
 			foreach($data['ContentSelection'] as $area){
 				$link.='&area[]='.$area;
 			}

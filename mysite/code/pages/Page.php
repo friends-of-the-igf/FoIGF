@@ -121,7 +121,7 @@ class Page_Controller extends ContentController {
 	}
 
 	/**
-	*
+	* Returns whether there is a Researcher logged in. 
 	*/
 	public function isResearcher(){
 		$member = Member::CurrentUser();
@@ -133,4 +133,9 @@ class Page_Controller extends ContentController {
 		}	
 	}
 
+	public function OpenCalaisPage(){
+		if($pages = OpenCalaisPage::get()){
+			return $pages->First();
+		}
+	}
 }

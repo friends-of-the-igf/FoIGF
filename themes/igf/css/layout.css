@@ -12,7 +12,7 @@ h3 { font-weight: normal; font-size: 30px; color: #414141; margin: 0px; }
 
 h4 { font-weight: 500; }
 
-.btn { padding: 10px 10px; text-transform: uppercase; font-size: 13px; }
+.btn { -webkit-font-smoothing: antialiased; padding: 10px 10px; text-transform: uppercase; font-size: 13px; }
 
 .subtext { color: #919294; }
 
@@ -264,20 +264,20 @@ b { font-weight: 500; }
 #OpenCalaisPage .tab-content .area .type-nav li a.active { color: #0098cd; background: white; }
 #OpenCalaisPage .tab-content .area .type { display: none; position: relative; }
 #OpenCalaisPage .tab-content .area .type.active { display: block; }
-#OpenCalaisPage .tab-content .area .type table { width: 100%; border: 2px solid #e0e0e0; opacity: 1; }
-#OpenCalaisPage .tab-content .area .type table tr td, #OpenCalaisPage .tab-content .area .type table tr th { border: 2px solid #e0e0e0; padding: 5px 15px; background: white; text-align: center; }
-#OpenCalaisPage .tab-content .area .type table tr td.name, #OpenCalaisPage .tab-content .area .type table tr th.name { text-align: left; }
-#OpenCalaisPage .tab-content .area .type table tr td:even, #OpenCalaisPage .tab-content .area .type table tr th:even { background: #b9b9b9; }
-#OpenCalaisPage .tab-content .area .type table tr th { background: #0098cd; }
-#OpenCalaisPage .tab-content .area .type table tr th a { color: white; }
-#OpenCalaisPage .tab-content .area .type table tr th a span { display: inline-block; position: relative; color: white; display: none; }
-#OpenCalaisPage .tab-content .area .type table tr th a.ASC .up { display: inline-block; }
-#OpenCalaisPage .tab-content .area .type table tr th a.DESC .down { display: inline-block; }
-#OpenCalaisPage .tab-content .area .type table tr:nth-child(odd) td { background: #f3f3f3; }
 #OpenCalaisPage .tab-content .area .type .ajax-loading { top: 0; left: -9999px; bottom: 0; right: 0; width: 100%; height: 100%; position: absolute; background: transparent; -webkit-transition: background, 0.3s, ease; -moz-transition: background, 0.3s, ease; -o-transition: background, 0.3s, ease; transition: background, 0.3s, ease; }
 #OpenCalaisPage .tab-content .area .type .ajax-loading .loader-inner { position: relative; width: 100%; height: 100%; }
 #OpenCalaisPage .tab-content .area .type .ajax-loading .loader-inner h3 { height: 40px; position: absolute; text-align: center; margin: auto; top: 0; left: 0; right: 0; bottom: 0; }
 #OpenCalaisPage .tab-content .area .type .ajax-loading.active { left: 0px; background: rgba(100, 100, 100, 0.6); }
+#OpenCalaisPage table { width: 100%; border: 2px solid #e0e0e0; opacity: 1; }
+#OpenCalaisPage table tr td, #OpenCalaisPage table tr th { border: 2px solid #e0e0e0; padding: 5px 15px; background: white; text-align: center; }
+#OpenCalaisPage table tr td.name, #OpenCalaisPage table tr th.name { text-align: left; }
+#OpenCalaisPage table tr td:even, #OpenCalaisPage table tr th:even { background: #b9b9b9; }
+#OpenCalaisPage table tr th { background: #0098cd; color: white; }
+#OpenCalaisPage table tr th a { color: white; }
+#OpenCalaisPage table tr th a span { display: inline-block; position: relative; color: white; display: none; }
+#OpenCalaisPage table tr th a.ASC .up { display: inline-block; }
+#OpenCalaisPage table tr th a.DESC .down { display: inline-block; }
+#OpenCalaisPage table tr:nth-child(odd) td { background: #f3f3f3; }
 
 /*Responsiveness -------------------------------------------------- */
 @media (min-width: 1200px) { #AboutPage #intro, #AboutPage #top-right { height: 240px; }

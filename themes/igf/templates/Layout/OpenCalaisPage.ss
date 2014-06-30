@@ -1,7 +1,68 @@
-<% with MeetingSession %>
-<p>You are viewing the entities extracted from the Session titled "<a href="$Link">$Title</a>" from the "<a href="$Meeting.Link">$Meeting.getYearLocation()</a>" meeting. <br/ >This was performed using the <a href="http://www.opencalais.com/">Open Calais Web Service.</a>
-</p>
-<% end_with %>
+$BatchIDForm
+
+<% if BatchProcess %>
+	<table id="dvData">
+		<tr>
+			<th>
+				Session ID
+			</th>
+			<th>
+				Area
+			</th>
+			<th>
+				Entity Type
+			</th>
+			<th>
+				Entity 
+			</th>
+			<th>
+				Relevance
+			</th>
+			<th>
+				Count
+			</th>
+			<th>
+				Social Tag (Social Tags Only)
+			</th>
+			<th>
+				Tag Importance (Social Tags Only)
+			</th>
+			<th>
+				Topic (Topics Only)
+			</th>
+			<th>
+				Score (Topics Only)
+			</th>
+		</tr>
+		<% loop Records %>
+			<% loop Entities %>
+				<% loop Types %>
+					<% loop Entities %>
+						<tr>
+							<td>$Up.Up.Up.ID</td>
+							<td>$Up.Up.Title</td>
+							<td>$Up.Title</td>
+							<td>$Value</td>
+							<td>$Relevance</td>
+							<td>$Count</td>
+							<td>$Tag</td>
+							<td>$Importance</td>
+							<td>$Topic</td>
+							<td>$Score</td>
+						</tr>
+					<% end_loop %>
+				<% end_loop %>
+			<% end_loop %>
+		<% end_loop %>
+	</table>
+<% end_if %>
+
+<% if MeetingSession %>
+	<% with MeetingSession %>
+	<p>You are viewing the entities extracted from the Session titled "<a href="$Link">$Title</a>" from the "<a href="$Meeting.Link">$Meeting.getYearLocation()</a>" meeting. <br/ >This was performed using the <a href="http://www.opencalais.com/">Open Calais Web Service.</a>
+	</p>
+	<% end_with %>
+<% end_if %>
 
 <% if Areas %>
 <div class="tab-nav">

@@ -39,6 +39,7 @@ h4{
 }
 
 .btn{
+	-webkit-font-smoothing: antialiased;
 	padding: 10px 10px;
 	text-transform:uppercase;
 	font-size: 13px;
@@ -1248,53 +1249,6 @@ b{
 				&.active{
 					display: block;
 				}
-				table{
-					width: 100%;
-					border: 2px solid $grayLight;
-					opacity: 1;
-					tr{
-						td,th{
-							border: 2px solid $grayLight;
-							padding: 5px 15px;
-							background: white;
-							text-align: center;
-							&.name{
-								text-align: left;
-							}
-							&:even{
-								background: $grayWash;
-							}
-						}
-						th{
-							background: $blue;
-							a{
-								color: white;
-								span{
-									display: inline-block;
-									position: relative;
-									color: white;
-									display: none;
-								}
-								&.ASC{
-									.up{
-										display: inline-block;
-									}
-								}
-								&.DESC{
-									.down{
-										display: inline-block;
-									}
-								}
-							}
-
-						}
-						&:nth-child(odd){
-							td{
-								background: $grayLighter;
-							}
-						}
-					}
-				}
 				.ajax-loading{
 					top: 0;
 					left: -9999px;
@@ -1324,6 +1278,54 @@ b{
 						left:0px;
 						background: rgba(100, 100, 100, 0.6);
 					}
+				}
+			}
+		}
+	}
+	table{
+		width: 100%;
+		border: 2px solid $grayLight;
+		opacity: 1;
+		tr{
+			td,th{
+				border: 2px solid $grayLight;
+				padding: 5px 15px;
+				background: white;
+				text-align: center;
+				&.name{
+					text-align: left;
+				}
+				&:even{
+					background: $grayWash;
+				}
+			}
+			th{
+				background: $blue;
+				color: white;
+				a{
+					color: white;
+					span{
+						display: inline-block;
+						position: relative;
+						color: white;
+						display: none;
+					}
+					&.ASC{
+						.up{
+							display: inline-block;
+						}
+					}
+					&.DESC{
+						.down{
+							display: inline-block;
+						}
+					}
+				}
+
+			}
+			&:nth-child(odd){
+				td{
+					background: $grayLighter;
 				}
 			}
 		}

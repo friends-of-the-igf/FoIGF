@@ -25,6 +25,9 @@
 										<li class="$LinkingMode buff"><a href="$Link" title="Go to $Title.XML">$MenuTitle.XML</a></li>
 									<% end_if %>
 								<% end_loop %>	
+								<% if isResearcher %>
+									<li class="buff"><a title='Go to Open Calais' href="$OpenCalaisPage.Link()">Open Calais</a></li>
+								<% end_if %>
 								<% if CurrentMember %>
 									<li><a title='Click here to log out' href="security/logout">Logout</a></li>
 								<% else %>
