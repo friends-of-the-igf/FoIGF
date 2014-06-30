@@ -33,7 +33,7 @@ class OpenCalaisPage_Controller extends Page_Controller{
 	public static $allowed_actions = array(
 		'test',
 		'openCalaisSession',
-		'processSession',
+		'exportToCSV',
 		'sortColumn',
 		'BatchIDForm'
 	);
@@ -50,6 +50,9 @@ class OpenCalaisPage_Controller extends Page_Controller{
 		return $this->meetingSession;
 	}
 
+	/**
+	* Processes an individual session
+	*/
 	public function processSession($meetingSession = null){
 		$session =  ($meetingSession == null) ? $this->meetingSession : $meetingSession;
 		$returnData = array();
@@ -112,13 +115,13 @@ class OpenCalaisPage_Controller extends Page_Controller{
 			}	
 			$areaList->push(new ArrayData($areaData));
 		}
-		Session::set('Entities', $areaList);
 	
 		return $areaList;
 	}
 
 	public function openCalaisSession(){
 		$areaList = $this->processSession();
+		Session::set('Entities', $areaList);
 		return $this->customise(array('Areas' => $areaList));
 	}
 
@@ -154,14 +157,20 @@ class OpenCalaisPage_Controller extends Page_Controller{
 		return new Form($this, 'BatchIDForm', $fields, $actions, $validator);
 	}
 
+
+	/**
+	* Form action for processing a list of Meeting Session IDs
+	*/
 	public function processIDList($data, $form){
+
 	 	$idArray = array_filter(array_map('trim', explode(',', $data['IDList'])));
 	 	$recordHolder = new ArrayList();
+
+	 	//Create records for the table
 	 	foreach($idArray as $id){
 	 		$meetingSession = MeetingSession::get()->byID($id);
 	 		if($meetingSession instanceOf MeetingSession){
 	 			$entities = $this->processSession($meetingSession);
-
 	 			$recordHolder->push(new ArrayData(array(
 	 				'ID' => $id,
 	 				'Entities' => $entities
@@ -170,7 +179,34 @@ class OpenCalaisPage_Controller extends Page_Controller{
 	 		}
 	 	}
 	 	
-	 	return $this->customise(array('BatchProcess' => true, 'Records' => $recordHolder));
+	 	//Create an array ready for export
+	 	$export = array();
+	 	foreach($recordHolder as $session){
+	 		foreach($session->Entities as $area){
+	 			if($area->Types){
+		 			foreach($area->Types as $type){
+		 				foreach($type->Entities as $entity){
+		 					$line = array();
+		 					$line['SessionID'] = $session->ID;
+		 					$line['Area'] = $area->Title;
+		 					$line['EntityType'] = $type->Title;
+		 					$line['Entity'] = $entity->Value;
+		 					$line['Relevance'] = $entity->Relevance;
+		 					$line['SocialTag'] = $entity->Tag;
+		 					$line['Importance'] = $entity->Importance;
+		 					$line['Topic'] = ($type->Title == 'Topics') ? $entity->Value : '';
+		 					$line['Score'] = $entity->Score;
+		 					$export[] = $line;
+		 				}
+		 			}
+		 		}
+	 		}
+	 	}
+		
+		//We serialize the data for a hidden form on the Page
+	 	$exportData = serialize($export);
+	
+	 	return $this->customise(array('BatchProcess' => true, 'Records' => $recordHolder, 'Export' => $exportData));
 	}
 
 	public function test(){
@@ -178,5 +214,32 @@ class OpenCalaisPage_Controller extends Page_Controller{
 		$ocs->setContent("April 7 (Bloomberg) . Yahoo! Inc., the Internet company that snubbed a $44.6 billion takeover bid from Microsoft Corp., may drop in Nasdaq trading after the software maker threatened to cut its bid if directors fail to give in soon. If Yahoo.s directors refuse to negotiate a deal within three weeks, Microsoft plans to nominate a board slate and take its case to investors, Chief Executive Officer Steve Ballmer said April 5 in a statement. He suggested the deal.s value might decline if Microsoft has to take those steps. The ultimatum may send Yahoo Chief Executive Officer Jerry Yang scrambling to find an appealing alternative for investors to avoid succumbing to Microsoft, whose bid was a 62 percent premium to Yahoo.s stock price at the time. The deadline shows Microsoft is in a hurry to take on Google Inc., which dominates in Internet search, said analysts including Canaccord Adams.s Colin Gillis.");
 		$result = $ocs->processContent();
 		return Debug::dump($result);
+	}
+
+	//Generates and downloads a CSV of the data
+	public function exportToCSV(){
+
+		//Get the post data and turn it back into an array
+		$export = $_POST['data'];
+		$export = unserialize($export);
+
+		//Set the headers to download
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename=entityextractionexport.csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+
+
+		//Create the CSV!
+		$fp = fopen('php://output', 'w');
+
+		$headRow = array_keys($export[0]);
+		fputcsv($fp, $headRow);
+
+		foreach($export as $record){
+			fputcsv($fp, $record);
+		}
+
+		fclose($fp);
 	}
 }

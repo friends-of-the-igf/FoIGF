@@ -1,6 +1,10 @@
 $BatchIDForm
 
 <% if BatchProcess %>
+	<form id="export" action="{$Link}exportToCSV" method="post">
+	    <input name="data" type="hidden" value='$Export' />
+	</form>
+	<a id="exportButton" href="#" >Export output to CSV</a>
 	<table id="dvData">
 		<tr>
 			<th>
