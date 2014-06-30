@@ -2,33 +2,60 @@
 
 class OpenCalaisPage extends Page{
 	
+	/**
+	 * This automatically creates a OpenCalaisPage whenever dev/build
+	 * is invoked and there is no page on the site with OpenCalaisPage
+	 * applied to it.
+	 */
+	function requireDefaultRecords() {
+		parent::requireDefaultRecords();
+
+		$page = OpenCalaisPage::get();
+
+		if($page->count() == 0) {
+			$page = OpenCalaisPage::create();
+			$page->Title = 'Open Calais';
+			$page->URLSegment = 'opencalais';
+			$page->ShowInMenus = 0;
+			$page->writeToStage('Stage');
+			$page->publish('Stage', 'Live');
+
+			DB::alteration_message('Open Calais Page \'Open Calais\' created', 'created');
+		}
+ 	}
 
 }
 
 class OpenCalaisPage_Controller extends Page_Controller{
 
-
+	protected $meetingSession;
 
 	public static $allowed_actions = array(
 		'test',
+		'openCalaisSession',
 		'processSession',
-		'sortColumn'
+		'sortColumn',
+		'BatchIDForm'
 	);
 
 	public function init(){
 		parent::init();
+
+		$this->meetingSession = (isset($_GET['ID'])) ? MeetingSession::get()->byID($_GET['ID']) : false ;
+
 		Requirements::javascript('themes/igf/javascript/opencalaispage.js');
 	}
 
 	public function getMeetingSession(){
-		return MeetingSession::get()->byID($_GET['ID']);
+		return $this->meetingSession;
 	}
 
-	public function processSession(){
-		$session =  MeetingSession::get()->byID($_GET['ID']);
+	public function processSession($meetingSession = null){
+		$session =  ($meetingSession == null) ? $this->meetingSession : $meetingSession;
 		$returnData = array();
 		$ocs = new OpenCalaisService();
-		foreach($_GET['area'] as $area){
+		$areas = (isset($_GET['area'])) ? $_GET['area'] : array('Agenda','Transcripts','Report','Proposal');
+		foreach($areas as $area){
 			$content = false;
 			if($area == 'Agenda'){
 				$content = $session->Content;
@@ -55,7 +82,7 @@ class OpenCalaisPage_Controller extends Page_Controller{
 				$returnData[$area] = $ocs->processContent($content);	
 			}		
 		}
-		
+
 		$areaList = new ArrayList();
 
 		foreach($returnData as $area => $entityTypes){
@@ -87,6 +114,11 @@ class OpenCalaisPage_Controller extends Page_Controller{
 		}
 		Session::set('Entities', $areaList);
 	
+		return $areaList;
+	}
+
+	public function openCalaisSession(){
+		$areaList = $this->processSession();
 		return $this->customise(array('Areas' => $areaList));
 	}
 
@@ -104,6 +136,41 @@ class OpenCalaisPage_Controller extends Page_Controller{
 		} else {
 			return $this->customise(array('Entities' => $sorted))->renderWith('EntityTable');
 		}
+	}
+
+	public function BatchIDForm(){
+		$fields = new FieldList();
+
+		$fields->push($field = new TextField('IDList', 'ID List'));
+		$field->setAttribute('placeholder', 'eg. 123,456,789');
+
+		$actions = new FieldList($button = new FormAction('processIDList', 'Process'));
+		$button->addExtraClass('btn');
+		$button->addExtraClass('btn-primary');
+
+
+		$validator = new RequiredFields('IDList');
+
+		return new Form($this, 'BatchIDForm', $fields, $actions, $validator);
+	}
+
+	public function processIDList($data, $form){
+	 	$idArray = array_filter(array_map('trim', explode(',', $data['IDList'])));
+	 	$recordHolder = new ArrayList();
+	 	foreach($idArray as $id){
+	 		$meetingSession = MeetingSession::get()->byID($id);
+	 		if($meetingSession instanceOf MeetingSession){
+	 			$entities = $this->processSession($meetingSession);
+
+	 			$recordHolder->push(new ArrayData(array(
+	 				'ID' => $id,
+	 				'Entities' => $entities
+	 				)
+	 			));
+	 		}
+	 	}
+	 	
+	 	return $this->customise(array('BatchProcess' => true, 'Records' => $recordHolder));
 	}
 
 	public function test(){
