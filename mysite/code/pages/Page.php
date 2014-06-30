@@ -138,4 +138,30 @@ class Page_Controller extends ContentController {
 			return $pages->First();
 		}
 	}
+
+	/**
+	* Questionnaire Form for Content Enrichment.
+	*/
+	public function QuestionnaireForm(){
+		$fields = new FieldList();
+
+		$options = array(
+			'Information' => "I'm trying to find a specific piece of information",
+			'Question' => "I'm looking for the answer to a particular question",
+			'Topic' => "I'm researching a particular topic",
+			"I'm just browsing"
+			);
+
+		$fields->push(new OptionSetField('Purpose', 'What is the purpose of your visit to the IGF website today?', $options));
+
+		$fields->push(new TextAreaField('Information', 'What information are you looking for?'));
+		$fields->push(new TextAreaField('Question', 'What question are you trying to find an answer to?'));
+		$fields->push(new TextAreaField('Topic', 'What topic are you researching?'));
+		$fields->push(new TextAreaField('Purpose', 'What is the purpose of your research?'));
+
+		$actions = new FieldList(new FormAction('submit', 'Next'));
+
+		return new Form($this, 'QuestionnaireForm', $fields, $actions);
+
+	}
 }
