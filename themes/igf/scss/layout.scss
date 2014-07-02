@@ -61,6 +61,10 @@ b{
 	color: $blue !important;
 }
 
+.modal{
+	display: none;
+}
+
 
 /* Navigation -------------------------------------------------- */
 #navigation {
@@ -1329,6 +1333,59 @@ b{
 				}
 			}
 		}
+	}
+}
+
+/* Questionnaire */
+.modal{
+	width: 440px;
+	margin-left: -220px;
+	#Form_QuestionnaireForm{
+		fieldset{
+			label{
+				font-size: 16px;
+				font-weight: 500;
+			}
+			textarea{
+				width: 398px;
+			}
+			ul{
+				li{
+
+					list-style-type: none;
+					label, input{
+						float: left;
+					}
+					input{
+						margin-right: 10px;
+					}
+					clear:both;
+				}
+			}
+		}
+		.Actions{
+			input{
+
+				background: rgb(234, 133, 25);
+				border: none;
+				color: white;
+				font-size: 16px;
+				float: right;
+				padding: 10px 20px;
+				text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+				transition: background 0.5s linear;
+				-webkit-font-smoothing: antialiased;
+
+				&.finished{
+					background: $blue;
+
+				}
+			}
+		}
+	}
+	button.close{
+		float: left;
+		font-size: 14px;
 	}
 }
 

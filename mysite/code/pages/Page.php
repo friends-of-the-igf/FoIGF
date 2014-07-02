@@ -27,11 +27,40 @@ class Page_Controller extends ContentController {
 
 	public static $allowed_actions = array(
 		'SearchForm',
-		'results'
+		'results',
+		'QuestionnaireForm',
+		'setFormCookie'
 	);
 
 	public function init() {
 		parent::init();
+
+		//Start timer for Questionnaire pop up
+		$start = Session::get('SessionStart');
+		if($start == null){
+			Session::set('SessionStart', time());
+		}
+
+	}
+
+
+	/**
+	* Returns time elapsed since Questionnaire timer started.
+	*/
+	public function SessionLength(){
+		$start = Session::get('SessionStart');
+		if($start != null){
+			$start = Session::get('SessionStart');
+		    $now = time();
+		    return $now - $start;
+		} else {
+			return 0;
+		}
+	}
+
+	public function QuestionnaireCookie(){
+		$cookie = Cookie::get('HideForm');
+		return ($cookie == null) ? false : true;
 	}
 
 	/**
@@ -152,16 +181,30 @@ class Page_Controller extends ContentController {
 			"I'm just browsing"
 			);
 
-		$fields->push(new OptionSetField('Purpose', 'What is the purpose of your visit to the IGF website today?', $options));
+		$fields->push(new OptionsetField('Purpose', 'What is the purpose of your visit to the IGF website today?', $options));
 
-		$fields->push(new TextAreaField('Information', 'What information are you looking for?'));
-		$fields->push(new TextAreaField('Question', 'What question are you trying to find an answer to?'));
-		$fields->push(new TextAreaField('Topic', 'What topic are you researching?'));
-		$fields->push(new TextAreaField('Purpose', 'What is the purpose of your research?'));
+		// $fields->push()
+
+		$fields->push($field = new TextAreaField('Information', 'What information are you looking for?'));
+		$fields->push($field = new TextAreaField('Question', 'What question are you trying to find an answer to?'));
+		$fields->push($field = new TextAreaField('Topic', 'What topic are you researching?'));
+		$fields->push($field = new TextAreaField('Research', 'What is the purpose of your research?'));
+		
 
 		$actions = new FieldList(new FormAction('submit', 'Next'));
 
 		return new Form($this, 'QuestionnaireForm', $fields, $actions);
+	}
 
+	public function submit($data, $form){
+		$submission = new QuestionnaireSubmission();
+		$form->saveInto($submission);
+		$submission->write();
+
+		return $this->redirectBack();
+	}
+
+	public function setFormCookie(){
+		Cookie::set('HideForm', true, 7);
 	}
 }

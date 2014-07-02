@@ -4,10 +4,11 @@
 *
 * @package FoIGF
 */
-class FilterSubmissionAdmin extends ModelAdmin {
+class FormSubmissionAdmin extends ModelAdmin {
 
 	public static $managed_models = array(
-		'FilterSubmission'
+		'FilterSubmission',
+		'QuestionnaireSubmission'
 	);
 
 	static $url_segment = 'filtersubmissions';

@@ -29,6 +29,7 @@
 	<!-- Bootstrap -->
 	<!--<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-button.js"></script>-->
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-collapse.js"></script>
+	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-modal.js"></script>
 	<!--<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-dropdown.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-tab.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-tooltip.js"></script>
@@ -41,8 +42,18 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 </head>
-<body id="$ClassName">
+<body id="$ClassName" data-session="$SessionLength" data-questionnaire="$QuestionnaireCookie" data-url="$Link">
 
+	<div id="modal" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body"> 
+					$QuestionnaireForm
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">Skip >></button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Facebook Widget -->
 	<div id="fb-root"></div>
@@ -69,6 +80,7 @@
 	    </div>
 	</div>
     <% include Footer %>
+
    <script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -79,5 +91,6 @@
 	  ga('send', 'pageview');
 
 	</script>
+
 </body>
 </html>

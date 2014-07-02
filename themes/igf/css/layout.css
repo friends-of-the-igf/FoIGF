@@ -22,6 +22,8 @@ b { font-weight: 500; }
 
 .blue { color: #0098cd !important; }
 
+.modal { display: none; }
+
 /* Navigation -------------------------------------------------- */
 #navigation { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: #323232; height: 75px; }
 #navigation .navbar-inner { height: 75px; filter: none; background: #323232 !important; }
@@ -278,6 +280,17 @@ b { font-weight: 500; }
 #OpenCalaisPage table tr th a.ASC .up { display: inline-block; }
 #OpenCalaisPage table tr th a.DESC .down { display: inline-block; }
 #OpenCalaisPage table tr:nth-child(odd) td { background: #f3f3f3; }
+
+/* Questionnaire */
+.modal { width: 440px; margin-left: -220px; }
+.modal #Form_QuestionnaireForm fieldset label { font-size: 16px; font-weight: 500; }
+.modal #Form_QuestionnaireForm fieldset textarea { width: 398px; }
+.modal #Form_QuestionnaireForm fieldset ul li { list-style-type: none; clear: both; }
+.modal #Form_QuestionnaireForm fieldset ul li label, .modal #Form_QuestionnaireForm fieldset ul li input { float: left; }
+.modal #Form_QuestionnaireForm fieldset ul li input { margin-right: 10px; }
+.modal #Form_QuestionnaireForm .Actions input { background: #ea8519; border: none; color: white; font-size: 16px; float: right; padding: 10px 20px; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004); transition: background 0.5s linear; -webkit-font-smoothing: antialiased; }
+.modal #Form_QuestionnaireForm .Actions input.finished { background: #0098cd; }
+.modal button.close { float: left; font-size: 14px; }
 
 /*Responsiveness -------------------------------------------------- */
 @media (min-width: 1200px) { #AboutPage #intro, #AboutPage #top-right { height: 240px; }
