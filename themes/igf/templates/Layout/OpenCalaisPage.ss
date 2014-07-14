@@ -1,5 +1,5 @@
 $BatchIDForm
-
+<p> This form will process a list of IDs and export processed result as a CSV. </p>
 <% if BatchProcess %>
 	<form id="export" action="{$Link}exportToCSV" method="post">
 	    <input name="data" type="hidden" value='$Export' />

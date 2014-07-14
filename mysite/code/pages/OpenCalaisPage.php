@@ -185,28 +185,50 @@ class OpenCalaisPage_Controller extends Page_Controller{
 	 		foreach($session->Entities as $area){
 	 			if($area->Types){
 		 			foreach($area->Types as $type){
-		 				foreach($type->Entities as $entity){
-		 					$line = array();
-		 					$line['SessionID'] = $session->ID;
-		 					$line['Area'] = $area->Title;
-		 					$line['EntityType'] = $type->Title;
-		 					$line['Entity'] = $entity->Value;
-		 					$line['Relevance'] = $entity->Relevance;
-		 					$line['SocialTag'] = $entity->Tag;
-		 					$line['Importance'] = $entity->Importance;
-		 					$line['Topic'] = ($type->Title == 'Topics') ? $entity->Value : '';
-		 					$line['Score'] = $entity->Score;
-		 					$export[] = $line;
-		 				}
+		 				if($type->Entities != null){
+			 				foreach($type->Entities as $entity){
+			 					$line = array();
+			 					$line['SessionID'] = $session->ID;
+			 					$line['Area'] = $area->Title;
+			 					$line['EntityType'] = $type->Title;
+			 					$line['Entity'] = $entity->Value;
+			 					$line['Relevance'] = $entity->Relevance;
+			 					$line['SocialTag'] = $entity->Tag;
+			 					$line['Importance'] = $entity->Importance;
+			 					$line['Topic'] = ($type->Title == 'Topics') ? $entity->Value : '';
+			 					$line['Score'] = $entity->Score;
+			 					$export[] = $line;
+			 				}
+			 			}
 		 			}
 		 		}
 	 		}
 	 	}
-		
+
 		//We serialize the data for a hidden form on the Page
 	 	$exportData = serialize($export);
+
+	 	/* By passing the export function and export straight away */
+	 	//Set the headers to download
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename=entityextractionexport.csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+
+		//Create the CSV!
+		$fp = fopen('php://output', 'w');
+
+		$headRow = array_keys($export[0]);
+		fputcsv($fp, $headRow);
+
+		foreach($export as $record){
+			fputcsv($fp, $record);
+		}
+
+		fclose($fp);
 	
-	 	return $this->customise(array('BatchProcess' => true, 'Records' => $recordHolder, 'Export' => $exportData));
+	 	// return $this->customise(array('BatchProcess' => true, 'Records' => $recordHolder, 'Export' => $exportData));
+
 	}
 
 	public function test(){
