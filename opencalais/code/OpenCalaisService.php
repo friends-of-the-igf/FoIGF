@@ -156,7 +156,8 @@ class OpenCalaisService extends RestfulService{
 					}
 				}
 			}
-			return $contentChunks;
+			
+			return array_filter($contentChunks);
 
 		} else {
 			return $content;

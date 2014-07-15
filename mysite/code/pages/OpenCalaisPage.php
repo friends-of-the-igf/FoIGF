@@ -178,7 +178,7 @@ class OpenCalaisPage_Controller extends Page_Controller{
 	 			));
 	 		}
 	 	}
-	 	
+	 	// Debug::dump($recordHolder);
 	 	//Create an array ready for export
 	 	$export = array();
 	 	foreach($recordHolder as $session){
@@ -201,32 +201,49 @@ class OpenCalaisPage_Controller extends Page_Controller{
 			 				}
 			 			}
 		 			}
+		 		} else {
+		 			$line = array();
+ 					$line['SessionID'] = $session->ID;
+ 					$line['Area'] = $area->Title;
+ 					$line['EntityType'] = 'No entities found';
+ 					$line['Entity'] = '';
+ 					$line['Relevance'] = '';
+ 					$line['SocialTag'] = '';
+ 					$line['Importance'] = '';
+ 					$line['Topic'] = '';
+ 					$line['Score'] = '';
+ 					$export[] = $line;
 		 		}
 	 		}
 	 	}
 
 		//We serialize the data for a hidden form on the Page
-	 	$exportData = serialize($export);
+	 	// $exportData = serialize($export);
 
 	 	/* By passing the export function and export straight away */
-	 	//Set the headers to download
-		header("Content-type: text/csv");
-		header("Content-Disposition: attachment; filename=entityextractionexport.csv");
-		header("Pragma: no-cache");
-		header("Expires: 0");
+	 	if(!empty($export)){
+		 	//Set the headers to download
+			header("Content-type: text/csv");
+			header("Content-Disposition: attachment; filename=entityextractionexport.csv");
+			header("Pragma: no-cache");
+			header("Expires: 0");
 
-		//Create the CSV!
-		$fp = fopen('php://output', 'w');
+			//Create the CSV!
+			$fp = fopen('php://output', 'w');
 
-		$headRow = array_keys($export[0]);
-		fputcsv($fp, $headRow);
+			$headRow = array_keys($export[0]);
+			fputcsv($fp, $headRow);
 
-		foreach($export as $record){
-			fputcsv($fp, $record);
+			foreach($export as $record){
+				fputcsv($fp, $record);
+			}
+
+			fclose($fp);
+
+		} else {
+			return $this->customise(array('Message' => 'Nothing could be extracted from any of the sessions: ' . $data['IDList']));
 		}
-
-		fclose($fp);
-	
+		
 	 	// return $this->customise(array('BatchProcess' => true, 'Records' => $recordHolder, 'Export' => $exportData));
 
 	}
