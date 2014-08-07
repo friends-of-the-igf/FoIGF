@@ -125,7 +125,7 @@ b { font-weight: 500; }
 .sessions .link .btn { color: white; }
 .sessions .session-tile { padding: 0px; padding-bottom: 0px; border: 1px solid #d8d8d8; margin-bottom: 20px; }
 .sessions .session-tile .session-blue { background-color: #0098cd; -webkit-transition: background-color 0.3s ease; transition: background-color 0.3s ease; padding: 4px; }
-.sessions .session-tile .session-blue .vidthumb { background-color: white; }
+.sessions .session-tile .session-blue .vidthumb { padding-top: 4px; padding-bottom: 4px; background-color: white; }
 .sessions .session-tile .session-blue .vidthumb .thumb { position: relative; margin-top: -40px; top: 0px; }
 .sessions .session-tile .session-blue .vidthumb .icon { position: relative; z-index: 1; top: 0px; left: 10px; }
 .sessions .session-tile .session-blue .title { display: block; position: relative; font-family: Georgia, serif; color: white; padding: 10px 40px 10px 10px; font-size: 16px; }
