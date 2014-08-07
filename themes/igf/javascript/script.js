@@ -95,6 +95,23 @@ $(document).ready(function() {
 		$.post(url);
 	}
 
+	
+	$('.session-tile').each(function(i){
+		var container = $(this).find('.title');
+		var icon = container.find('i');
+		var top = (container.height()/2) - (icon.height()/2) + 10;
+		icon.css('top',top);
+	});
+	
+	$(window).resize(function(){
+		$('.session-tile').each(function(i){
+			var container = $(this).find('.title');
+			var icon = container.find('i');
+			var top = (container.height()/2) - (icon.height()/2) + 10;
+			icon.css('top',top);
+		});
+	});
+
 
 
 

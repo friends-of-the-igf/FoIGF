@@ -36,6 +36,7 @@
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-popover.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-transition.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-typeahead.js"></script>-->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 
 
