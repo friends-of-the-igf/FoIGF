@@ -591,11 +591,13 @@ b{
 		margin-bottom: 20px;
 		.session-blue{
 			background-color: $blue;
-			-webkit-transition: opacity 0.3s ease;
-			transition: opacity 0.3s ease;
+			-webkit-transition: background-color 0.3s ease;
+			transition: background-color 0.3s ease;
+			padding: 4px;
 
 			.vidthumb{
-				padding: 4px;
+				background-color: white;
+				
 
 				.thumb{
 					position: relative;
@@ -629,7 +631,7 @@ b{
 
 			}
 			&:hover{
-				opacity: 0.7;
+				background-color: rgba(0, 152, 205, 0.7);
 			}
 		}
 
