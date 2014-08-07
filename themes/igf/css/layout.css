@@ -136,6 +136,7 @@ b { font-weight: 500; }
 .sessions .session-tile .text-wrap a { color: black; border-bottom: 1px dashed black; }
 .sessions .session-tile .text-wrap a.button { display: inline-block; border: none; color: white; padding: 8px 6px; margin: 10px 0px; }
 .sessions .session-tile .text-wrap a.button i { padding: 0px 5px; }
+.sessions .session-tile .text-wrap a:hover { text-decoration: none; }
 .sessions .session-tile .text-wrap .subtext { padding-bottom: 8px; }
 .sessions .session-tile .nov { width: 90% !important; }
 .sessions .session-tile .tags { font-size: 13px; background: #f3f3f3; padding: 7px; }
