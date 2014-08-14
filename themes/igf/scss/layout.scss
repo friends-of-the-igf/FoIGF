@@ -521,7 +521,15 @@ b{
 						height:43px;
 						text-transform:uppercase;
 						font-size: 12px;
-						letter-spacing: 1px;	
+						letter-spacing: 1px;
+						margin-bottom: 10px;
+
+						&.resetformaction{
+							text-transform:lowercase;
+							height:43px;
+							padding: 5px;
+							
+						}	
 					}
 				}
 			}
@@ -541,6 +549,17 @@ b{
 
 		#tag-list{
 			display: none;
+		}
+
+		.current-search{
+			margin-top: 20px;
+			background: $grayLighter;
+			border: 1px $grayMedium solid;
+			padding: 10px 10%;
+			/*padding-left: 10%;
+			padding-right: 10%;*/
+			margin-bottom: 20px;
+			color: black;
 		}
 	}
 	

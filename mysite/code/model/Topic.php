@@ -51,7 +51,7 @@ class Topic extends DataObject {
 	public function Link(){
 		$link = "";
 		if($page = SessionsHolder::get()->First()) {
-			$link = $page->Link('?topic=').$this->ID;
+			$link = $page->Link('?Topic=').$this->ID;
 		}
 		return $link;
 	}

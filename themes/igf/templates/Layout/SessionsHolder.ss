@@ -1,10 +1,27 @@
 
 <div class="row-fluid">
 	<div id='filter-wrap' class="span3">
+			<% if CurrentKeyword %>
+			<div class="current-search">
+				<p>Searching for sessions with keywords:</p>
+				<h4>"$CurrentKeyword"</h4>
+				<% if CurrentTag %>
+				<p>and with tag: </p>
+				<h4>"$CurrentTag" <a href="#" class="clear-tag"><i class="fa fa-times-circle"></i></a></h4>
+				<% end_if %>
+			</div>
+			<% else %>
+			<% if CurrentTag %>
+				<div class="current-search">
+					<p>Searching for sessions with tag: </p>
+					<h4>"$CurrentTag" <a href="#" class="clear-tag"><i class="fa fa-times-circle"></i></a></h4>
+				</div>
+			<% end_if %>
+			<% end_if %>
+
 		<div class="filter">
 			<h5 id="filter-form">Filter Sessions <span class="arrow">&#9650</span></h5>
 			$FilterForm
-			<a title="Clear Filter" href="$URLSegment" class="underline clear"> clear filter </a>
 			<div class='tags'>
 			<h5 id="tag-head">View sessions by tag <span class="arrow">&#9660</span></h5>
 			<div id="tag-list">
