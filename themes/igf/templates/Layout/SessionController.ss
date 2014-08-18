@@ -87,7 +87,7 @@
 				</div>
 			<% end_if %>
 			<div class="session-side">
-				<% if Tags %>
+				<% if hasTags %>
 					<h5>Tagged</h5>
 					<% loop Tags %>
 						<a title="Search Session by $Title" href="$Link">$Title</a><% if not Last %>,<% end_if %>

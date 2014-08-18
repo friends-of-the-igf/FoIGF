@@ -11,6 +11,11 @@ class Tag extends DataObject{
 		'Sessions' => 'MeetingSession'
 		);
 
+	static $summary_fields = array(
+		'Title',
+		'Provenance'
+		);
+
 	public function getCMSField(){
 		$fields = new FieldList();
 

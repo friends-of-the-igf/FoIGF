@@ -104,6 +104,7 @@ class MeetingSession extends DataObject {
 		$sessionsTab = new Tab('RelatedSessions');
 		$reportTab = new Tab('Report');
 		$tagTab = new Tab('Tags');
+		$ocTab = new Tab('OpenCalais');
 		
 		$tabset = new TabSet("Root",
 			$mainTab,
@@ -113,7 +114,8 @@ class MeetingSession extends DataObject {
 			$speakersTab,
 			$sessionsTab,
 			$reportTab,
-			$tagTab
+			$tagTab,
+			$ocTab
 		);
 		$fields->push( $tabset );
 
@@ -129,16 +131,6 @@ class MeetingSession extends DataObject {
 		if($types->Count()) {
 			$mainTab->push(new DropdownField('TypeID', 'Type', $types->map()));			
 		}
-
-		// tags
-		$tags = $this->allTagsArray();
-		asort($tags);
-		$mainTab->push(ListboxField::create('Tags', 'Tags (pre-defined)')
-			->setMultiple(true)
-			->setSource($tags)
-		);
-
-		$mainTab->push(new TextField('NewTags', 'New Tags (adds to pre-defined list, comma seperated eg tag1,tag2,tag3)'));
 
 		$topics = Topic::get()->sort('Name');
 		if($topics->Count()) {
@@ -240,6 +232,17 @@ class MeetingSession extends DataObject {
 			$tagTab->push(new GridField('Tags', 'Tags', $this->Tags(), GridFieldConfig_RelationEditor::create()));
 		}
 
+		if($this->ID){
+			$ocTab->push($button = new FormAction('extractTags', 'Suggest Tags'));
+			$button->setAttribute('data-base', Director::baseURL());
+			$button->setAttribute('data-id', $this->ID);
+
+			$ocTab->push($button = new LiteralField('table-holder', '<div id="table-holder"><img class="loading" style="display:none;" src="mysite/images/ajax-loader.gif"></div></div>'));
+		}
+
+		Requirements::javascript('mysite/javascript/opencalais.js');
+		Requirements::css('mysite/css/opencalais.css');
+
 		return $fields;
 	}
 
@@ -294,16 +297,6 @@ class MeetingSession extends DataObject {
 					
 				}
 			}
-		}
-	
-		//add new tags
-		if($this->NewTags) {
-			if($this->Tags != null){
-				$this->Tags .= ',' . $this->NewTags;
-			} else {
-				$this->Tags = $this->NewTags;
-			}
-			$this->NewTags = null;
 		}
 
 		//save a url segment
@@ -449,6 +442,10 @@ class MeetingSession extends DataObject {
     	$list->removeDuplicates();
 
     	return $list->limit(3);
+    }
+
+    public function hasTags(){
+    	return ($this->Tags()->Count() > 0) ? true : false;
     }
 
 
