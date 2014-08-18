@@ -87,18 +87,13 @@
 				</div>
 			<% end_if %>
 			<div class="session-side">
-				<% if TagsCollection %>
+				<% if Tags %>
 					<h5>Tagged</h5>
-					<% loop TagsCollection %>
-						<a title="Search Session by $Tag" href="$Link">$Tag</a><% if not Last %>,<% end_if %>
+					<% loop Tags %>
+						<a title="Search Session by $Title" href="$Link">$Title</a><% if not Last %>,<% end_if %>
 					<% end_loop %>
 				<% end_if %>
 			</div>
-			<% if Taggable %>
-				<div class='add-tags'>
-					$Top.TagForm
-				</div>
-			<% end_if %>
 			<% if Organiser && $Top.SiteConfig.ShowOrganisers %>
 				<h5>Organiser</h5>
 				<% with Organiser %>

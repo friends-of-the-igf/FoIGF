@@ -82,19 +82,18 @@ class Page_Controller extends ContentController {
 	 * @param $filter Meeting->ID or FALSE. if Meeting->ID will filter MeetingSession->Tags by Meeting.
 	 * @return ArrayList.
 	 */
-	public function popularTags($limit = null, $sort = null, $filter = null) {
-		$uniqueTags = MeetingSession::get_unique_tags($filter);
-		$allTags = MeetingSession::get_all_tags($filter);
-		$list = GroupedList::create($allTags);
-		$list = $list->GroupedBy('Tag', 'Tags');
+	public function AllTags($limit = null, $sort = null, $filter = null) {
+		$tags = Tag::get();
 
-		$count = $allTags->Count();
+		$count = DB::query('SELECT COUNT(*) FROM MeetingSession_Tags');
+		$count = $count->value();
+
 		$output = new ArrayList();
-		$link = (SessionsHolder::get()->First() ? SessionsHolder::get()->First()->Link('tag') : "");
+		foreach($tags as $tag) {
+			$weight = DB::query('SELECT COUNT(*) FROM MeetingSession_Tags WHERE TagID ='.$tag->ID);
+			$weight = $weight->value();
 
-		foreach($uniqueTags as $tag) {
-			$item = $list->find('Tag', $tag);
-			$weight = $item->Tags->Count();
+			error_log($weight);
 			$percent = ($weight / $count) * 100;
 
 			if($percent <= 1) {
@@ -112,9 +111,8 @@ class Page_Controller extends ContentController {
 			}
 
 			$output->push(new ArrayData(array(
-				'Tag' => $tag,
-				'Link' => $link . '/' . urlencode($tag),
-				'URLTag' => urlencode($tag),
+				'Title' => $tag->Title,
+				'Link' => $tag->Link(),
 				'Weight' => $percent,
 				'Size' => $size
 			)));
