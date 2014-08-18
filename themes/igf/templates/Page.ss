@@ -29,29 +29,32 @@
 	<!-- Bootstrap -->
 	<!--<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-button.js"></script>-->
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-collapse.js"></script>
+	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-modal.js"></script>
 	<!--<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-dropdown.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-tab.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-tooltip.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-popover.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-transition.js"></script>
 	<script type="text/javascript" src="$ThemeDir/thirdparty/bootstrap-typeahead.js"></script>-->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-44143735-1', 'friendsoftheigf.org');
-  ga('send', 'pageview');
-
-</script>
 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 </head>
-<body id="$ClassName">
+<body id="$ClassName" data-session="$SessionLength" data-questionnaire="$QuestionnaireCookie" data-url="$Link">
 
+	<div id="modal" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body"> 
+					$QuestionnaireForm
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">Skip >></button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Facebook Widget -->
 	<div id="fb-root"></div>
@@ -78,15 +81,17 @@
 	    </div>
 	</div>
     <% include Footer %>
-    <script>
+
+   <script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-44954491-1', 'friendsoftheigf.org');
+	  ga('create', 'UA-44143735-1', 'friendsoftheigf.org');
 	  ga('send', 'pageview');
 
 	</script>
+
 </body>
 </html>

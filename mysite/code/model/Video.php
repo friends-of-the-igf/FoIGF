@@ -12,11 +12,26 @@ class Video extends DataObject {
 	);
 
 	public static $has_one = array(
-		'MeetingSession' => 'MeetingSession'
+		'MeetingSession' => 'MeetingSession',
+        'Language' => 'VideoLanguage'
 	);
+
+    public static $summary_fields = array(
+        'ID',
+        'Language.Name'
+    );
+
+    public static $field_labels = array(
+        'Language.Name' => 'Language'
+    );
 
 	public function getCMSFields() {
 		$fields = new FieldList();
+
+        $langs = VideoLanguage::get()->map()->toArray();
+        if($langs){
+            $fields->push(new DropdownField('LanguageID', 'Language', $langs));
+        }
 		$fields->push(new TextField('YouTubeID', 'YouTube ID (can be ID or full URL)'));
         $fields->push(new LabelField('OR', 'OR'));
         $fields->push(new TextAreaField('WebcastCode', 'Webcast Embed Code (from webcast.intgovforum.org. Pause video, select embed tab, click copy code then paste code here)'));

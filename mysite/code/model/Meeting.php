@@ -110,7 +110,7 @@ class Meeting extends DataObject {
 	}
 
 	public function Link($action = null) {
-		return Controller::join_links('meeting', $this->ID, $action);
+		return Controller::join_links('Meeting', $this->ID, $action);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-# Friends of the IGF
+# Friend of the IGF
 -------------------
 ##Licence
 Copyright 2013 Stripe The Web Ltd. 
@@ -21,10 +21,10 @@ The goal of this project is to create a website to host Internet Governance Foru
 ## Administrators
 
 	* Dylan Sweetensen - <dylan (at) stripetheweb (dot) com>
+	* ?? ?? - <?? (at) stripetheweb (dot) com>
 
 Website: http://friendsoftheigf.org
-
-Github: https://github.com/friends-of-the-igf/FoIGF
+Github: 
 
 ## Requirements
 
@@ -45,7 +45,7 @@ Grant read/write permissions to the entire site and make an initial dev/build?fl
 ##Search Set Up
 
 1. Open terminal or command line and switch the directory to following path:
-*[your webroot]/fulltextsearch/thirdparty/solr/server
+> [your webroot]/fulltextsearch/thirdparty/solr/server
 2. Enter the command $ java -jar start.jar
 3. To verify that it Solr is now running you can visit http://localhost:8983/solr/
 4. You will need to run the Configure and Reindex tasks located at /dev/tasks/Solr_Configure and /dev/tasks/Solr_Reindex respectively. 

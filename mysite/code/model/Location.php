@@ -66,7 +66,7 @@ class Location extends DataObject {
 	public function Link(){
 		$link = "";
 		if($page = SessionsHolder::get()->First()) {
-			$link = $page->Link('?location=').$this->ID;
+			$link = $page->Link('?Location=').$this->ID;
 		}
 
 		return $link;

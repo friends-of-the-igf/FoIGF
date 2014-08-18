@@ -36,15 +36,27 @@ Object::add_extension('ContentController', 'SearchExtension');
 Member::set_unique_identifier_field('Username');
 
 // fulltextsearch/solr
+
 SearchUpdater::bind_manipulation_capture();
-Solr::configure_server(isset($solr_config) ? $solr_config : array(
-	'host' => 'localhost',
-	'indexstore' => array(
-		'mode' => 'file',
-		'path' => BASE_PATH . '/.solr'
-	),
-	'extraspath' => Director::baseFolder() . '/mysite/data/solr/'
-));
+
+if(class_exists('Solr')) {
+    $extrasPath = BASE_PATH . '/mysite/data/solr/';
+    if(!file_exists($extrasPath)) {
+        $extrasPath = BASE_PATH . '/fulltextsearch/conf/solr/3/extras';
+    }
+    Solr::configure_server(array(
+        'host' => defined('SOLR_SERVER') ? SOLR_SERVER : 'localhost',
+        'port' => defined('SOLR_PORT') ? SOLR_PORT : 8983,
+        'path' => defined('SOLR_PATH') ? SOLR_PATH : '/solr/',
+        'indexstore' => array(
+            'mode' => defined('SOLR_MODE') ? SOLR_MODE : 'file',
+            'auth' => defined('SOLR_AUTH') ? SOLR_AUTH : NULL,
+            'path' => defined('SOLR_INDEXSTORE_PATH') ? SOLR_INDEXSTORE_PATH : BASE_PATH . '/.solr',
+            'remotepath' => defined('SOLR_REMOTE_PATH') ? SOLR_REMOTE_PATH : null
+        ),
+        'extraspath' => $extrasPath
+    ));
+}
 
 DataObject::add_extension('File', 'FileTextExtractable');
 DataObject::add_extension('File', 'CustomFileExtension');

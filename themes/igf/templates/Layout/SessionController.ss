@@ -11,18 +11,44 @@
 	<div class="row">
 		<div class="span8 main">	
 			<% if Videos %>
-			<% loop Videos %>
-				<div class="video">
-					$getVideo
+			<div class="vid-nav">
+				<ul>
+					<% loop LangVideos %>
+					<li class="<% if First %> current <% end_if %>" data-lang="$Language"><a>$Language</a></li>
+					<% end_loop %>
+				</ul>
+			</div>
+			<% loop LangVideos %>
+				<div class="video-wrap $Language">
+					<% loop Videos %>
+						<div class='video'>
+							$getVideo
+						</div>
+					<% end_loop %>
 				</div>
 			<% end_loop %>
+
 			<% end_if %>
 			<div>
-				<% if Transcript %> <a title="Read full session transcript" href="$Transcript.Link" class="btn"><b>Read full session transcript</b></a> 
-				<% else_if  TranscriptContent %><% if Videos || Content %>  <a title="Read full session transcript" href="transcript/$ID" class="btn" target="_blank"><b>Read full session transcript</b></a> <% end_if %><% end_if %>
+				<% if Transcripts %>
+					<% loop Transcripts %>
+						<% if Transcript %> 
+						<a title="Read full session transcript" href="$Transcript.Link" class="btn tran $Language.Name"><b>Read full session transcript</b></a> 
+						<% else_if Content %>
+							<% if Up.Videos || Up.Content %>  
+								<a title="Read full session transcript" href="transcript/$ID" class="btn tran $Language.Name" target="_blank"><b>Read full session transcript</b></a> 
+							<% end_if %>
+						<% end_if %>
+					<% end_loop %>
+				<% end_if %>
 				<% if ProposalLink %><a title="View Original proposal" href="$ProposalLink" class="btn" target="_blank"><b>View Original proposal</b></a>
 				<% else_if Proposal %><a title="View Original proposal" href="$Proposal.Link" class="btn" target="_blank"><b>View Original proposal</b></a>
 				<% else_if ProposalContent %><a title="View Original proposal" href="proposal/$ID" class="btn" target="_blank"><b>View Original proposal</b></a>
+				<% end_if %>
+				<% if Report %>
+					<a title="View report" href="$Report.Link" class="btn" target="_blank"><b>View report</b></a>
+				<% else_if ReportContent %>
+					<a title="View report" href="report/$ID" class="btn" target="_blank"><b>View report</b></a>
 				<% end_if %>
 			</div>
 			<div class="content">
@@ -54,6 +80,12 @@
 					</div>
 				</div>
 			</div>
+			<% if Top.isResearcher %>
+				<div class="session-side">
+					<h5>Open Calais Content Processing</h5>
+					$Top.OpenCalaisForm
+				</div>
+			<% end_if %>
 			<div class="session-side">
 				<% if TagsCollection %>
 					<h5>Tagged</h5>
@@ -113,6 +145,7 @@
 				<% end_if %>
 			
 			</div>
+
 		</div>
 	</div>
 </div>

@@ -8,7 +8,8 @@ class MeetingSessionAdmin extends ModelAdmin {
 	public static $managed_models = array(
 		'MeetingSession',
 		'Type',
-		'Topic'
+		'Topic',
+		'VideoLanguage'
 	);
 
 	static $url_segment = 'sessions';

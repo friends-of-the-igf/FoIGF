@@ -44,10 +44,6 @@ class SessionsHolder_Controller extends Page_Controller {
 
 	public function init() {
 		parent::init();
-
-
-		$this->getSessions();
-	
 	
 		Requirements::javascript('themes/igf/thirdparty/bootstrap-typeahead.js');
 		Requirements::javascript('themes/igf/javascript/sessionholder.js');
@@ -64,24 +60,24 @@ class SessionsHolder_Controller extends Page_Controller {
 		$fields = new FieldList();
 
 		$fields->push($topic = new CheckboxSetField('Topic', 'by Topic', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
-		if(isset($_GET['topic']) && $_GET['topic'] != null){
-			$topic->setValue($_GET['topic']);
+		if(isset($_GET['Topic']) && $_GET['Topic'] != null){
+			$topic->setValue($_GET['Topic']);
 		}
 		
 
 		$fields->push($m = new DropdownField('Meeting', 'by Meeting', Meeting::get()->sort('StartDate','DESC')->map('ID', 'getYearLocation')));
-		if(isset($_GET['location']) && $_GET['location'] != null){
+		if(isset($_GET['Location']) && $_GET['Location'] != null){
 			$m->setValue(Location::get()->byID($_GET['location'])->Meetings()->First()->ID);
 		} 
-		if(isset($_GET['meeting']) && $_GET['meeting'] != null){
-			$m->setValue(Meeting::get()->byID($_GET['meeting'])->ID);
+		if(isset($_GET['Meeting']) && $_GET['Meeting'] != null){
+			$m->setValue(Meeting::get()->byID($_GET['Meeting'])->ID);
 		}
 		
 		$m->setEmptyString('-select-');
 
 		$fields->push($t = new DropdownField('Type', 'by Type', Type::get()->map('ID', 'Name')));
-		if(isset($_GET['type']) && $_GET['type'] != null){
-			$t->setValue($_GET['type']);
+		if(isset($_GET['Type']) && $_GET['Type'] != null){
+			$t->setValue($_GET['Type']);
 		}
 		
 		$t->setEmptyString('-select-');
@@ -94,19 +90,15 @@ class SessionsHolder_Controller extends Page_Controller {
 			'3' => 'Day 3',
 			'4' => 'Day 4'
 			)));
-		if(isset($_GET['day']) && $_GET['day'] != null){
-			$d->setValue($_GET['day']);
+		if(isset($_GET['Day']) && $_GET['Day'] != null){
+			$d->setValue($_GET['Day']);
 		}
 		
 		$d->setEmptyString('-select-');
 
-		
-
-
-		
 		$fields->push($s = new TextField('Speaker', 'by Speaker'));
-		if(isset($_GET['speaker']) && $_GET['speaker'] != null){
-			$s->setValue(Member::get()->byID($_GET['speaker'])->Name);
+		if(isset($_GET['Speaker']) && $_GET['Speaker'] != null){
+			$s->setValue(Member::get()->byID($_GET['Speaker'])->Name);
 		}
 		
 		$s->setAttribute('placeholder', 'Start typing...');
@@ -125,8 +117,8 @@ class SessionsHolder_Controller extends Page_Controller {
 		}
 
 		$fields->push($sor = new OptionSetField('Sort', 'Sort Sessions by', $sortOptions));
-		if(isset($_GET['sort']) && $_GET['sort'] != null){
-			$field = $_GET['sort']['Field'];
+		if(isset($_GET['Sort']) && $_GET['Sort'] != null){
+			$field = $_GET['Sort']['Field'];
 			if($field == 'Views'){
 				$sor->setValue('Views');
 			} else if($field == 'Created'){
@@ -146,19 +138,32 @@ class SessionsHolder_Controller extends Page_Controller {
 	    if(isset($url_elements['query'])){
 		    $query = $url_elements['query'];
 			parse_str($query, $query_elements);
-			if (isset($query_elements['tag'])){
-				$fields->push(new HiddenField('CurrentTag', 'CurrentTag', $query_elements['tag']));
+			if (isset($query_elements['Tag'])){
+				$fields->push(new HiddenField('CurrentTag', 'CurrentTag', $query_elements['Tag']));
 			}
 		}
+
 		if(isset($this->filters['Post']['CurrentTag'])){
 			$fields->push(new HiddenField('CurrentTag', 'CurrentTag', $this->filters['Post']['CurrentTag']));
 		}
+		if(isset($_GET['CurrentTag'])){
+			$fields->push(new HiddenField('CurrentTag', 'CurrentTag', $_GET['CurrentTag']));
+		}
+
+		if(isset($_GET['Search'])){
+			$fields->push(new HiddenField('Keyword', 'Keyword', $_GET['Search']));
+		} elseif (isset($_POST['Keyword'])){
+			$fields->push(new HiddenField('Keyword', 'Keyword', $_POST['Keyword']));
+		}
 
 
 
-		$actions = new FieldList($button = new FormAction('doSearch', 'Refine Results'));
+		$actions = new FieldList($button = new FormAction('doSearch', 'Filter Results'), $reset = new ResetFormAction('clear', 'Clear Filter'));
 		$button->addExtraClass('btn');
 		$button->addExtraClass('btn-primary');
+
+		$reset->addExtraClass('btn');
+		$reset->addExtraClass('btn-sm');
 
 		$form = new Form($this, 'FilterForm', $fields, $actions);
 		$form->setAttribute('data-url', $this->Link());
@@ -178,6 +183,9 @@ class SessionsHolder_Controller extends Page_Controller {
 	* @return SessionHolder
 	*/
 	public function doSearch($data, $form){
+
+		$sub = new FilterSubmission();
+		$sub->absorb($data);
 
 		$filter = array();
 		$filterList = array();
@@ -238,6 +246,14 @@ class SessionsHolder_Controller extends Page_Controller {
 		}
 
 		$this->filters['Post'] = $filterList;
+
+		/*---Keyword---*/
+		if(isset($data['Keyword'])){
+			$this->filters['Keyword'] = $data['Keyword'];
+		}
+
+		//We need to set them in the session, so we can use them in the Search Form. 
+		Session::set('Filters', $this->filters);
 		
 		return Controller::curr()->customise(array('getSessions' => $this->getSessions($this->filters)));
 
@@ -252,6 +268,30 @@ class SessionsHolder_Controller extends Page_Controller {
 	* @return ArrayList or DataList
 	*/
 	public function getSessions($filters = null, $offset = null, $tag = null){
+
+		$keywords = isset($_GET['Search']) ? $_GET['Search'] : false;
+
+		if(!$keywords){
+			$keywords = (isset($filters['Keyword'])) ? $filters['Keyword'] : false;
+		}
+		
+		
+		if($keywords){
+			$query = new SearchQuery();
+			$query->search($keywords);
+
+			$query->start(0);
+			$query->limit(9999);
+
+			$results = singleton('MyIndex')->search($query);
+
+			$matches = $results->Matches;
+			
+			$list = $matches->getList()->filter('ClassName', 'MeetingSession');
+			$idMatch = $list->map();
+		} else {
+			$idMatch = array();
+		}
 		
 		$sessions = MeetingSession::get();
 
@@ -268,55 +308,60 @@ class SessionsHolder_Controller extends Page_Controller {
     	}
 
 		//Topic
-    	if(isset($_GET['topic']) && $_GET['topic'] != null){
-    		$getFilter['TopicID'] = $_GET['topic'];
+    	if(isset($_GET['Topic']) && $_GET['Topic'] != null){
+    		$getFilter['TopicID'] = $_GET['Topic'];
     	}
 
     	//Type
-    	if(isset($_GET['type']) && $_GET['type'] != null){
-    		$getFilter['TypeID'] = $_GET['type'];   		
+    	if(isset($_GET['Type']) && $_GET['Type'] != null){
+    		$getFilter['TypeID'] = $_GET['Type'];   		
     	}
 
     	//Meeting
-    	if(isset($_GET['meeting']) && $_GET['meeting'] != null){
-    		$getFilter['MeetingID'] = $_GET['meeting'];	
+    	if(isset($_GET['Meeting']) && $_GET['Meeting'] != null){
+    		$getFilter['MeetingID'] = $_GET['Meeting'];	
     	}
 
     	//Day
-    	if(isset($_GET['day']) && $_GET['day'] != null){
-    		$getFilter['Day'] = $_GET['day'];
+    	if(isset($_GET['Day']) && $_GET['Day'] != null){
+    		$getFilter['Day'] = $_GET['Day'];
     	}
 
     	//Speaker
-    	if(isset($_GET['speaker']) && $_GET['speaker'] != null){
-    		$speaker['MemberID'] = $_GET['speaker'];
+    	if(isset($_GET['Speaker']) && $_GET['Speaker'] != null){
+    		$speaker['MemberID'] = $_GET['Speaker'];
     	}
 
 		//Sort
-    	if(isset($_GET['sort']) && $_GET['sort'] != null){
-    		$sort = $_GET['sort'];
+    	if(isset($_GET['Sort']) && $_GET['Sort'] != null){
+    		$sort = $_GET['Sort'];
     	}
 
-    	if(!empty($getFilter)){		
-				if(isset($sort)){
-					$sessions = MeetingSession::get()->filter($getFilter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
-				} else {
-					$sessions = MeetingSession::get()->filter($getFilter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'ASC');
-				}
-			} else {
-				if(isset($sort)){
-					$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
-				} else {
-					$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort('Created', 'ASC');
-				}
-			}
+    	//If sort not set make default
+    	if(!isset($sort)){
+    		$sort['Field'] = 'Created';
+    		$sort['Direction'] = 'ASC';
+    	}
+    	
+    	if(!empty($speaker)){	
+    	//If speaker isn't empty join on speaker table, filter if there is a filter, filter speakers. 
+    		if(!empty($getFilter)){
+    			$sessions = MeetingSession::get()->filter($getFilter)->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
+    		}else{
+    			$sessions = MeetingSession::get()->leftJoin('MeetingSession_Speakers', 'MeetingSession.ID = MeetingSession_Speakers.MeetingSessionID')->sort($sort['Field'], $sort['Direction']);
+    		}
+    		$sessions = $sessions->filter($speaker);
+    	} else {
+    	//If speaker is empty, do not join for filter
+    		if(!empty($getFilter)){
+    			$sessions = MeetingSession::get()->filter($getFilter)->sort($sort['Field'], $sort['Direction']);
+    		}else{
+    			$sessions = MeetingSession::get()->sort($sort['Field'], $sort['Direction']);
+    		}
+    	}
 
-		if(!empty($speaker)){
-			$sessions = $sessions->filter($speaker);
-		}
-
-		if((isset($_GET['tag']) && $_GET['tag'] != null)){
-			$tag = $_GET['tag'];
+		if((isset($_GET['Tag']) && $_GET['Tag'] != null)){
+			$tag = $_GET['Tag'];
 			$list = new ArrayList();
 			foreach ($sessions as $session) {
 				if(strpos($session->Tags, $tag) !== false){
@@ -324,7 +369,18 @@ class SessionsHolder_Controller extends Page_Controller {
 		    	}
 			}
 			$sessions = $list;
-	}
+		}
+
+		if((isset($_GET['CurrentTag']) && $_GET['CurrentTag'] != null)){
+			$tag = $_GET['CurrentTag'];
+			$list = new ArrayList();
+			foreach ($sessions as $session) {
+				if(strpos($session->Tags, $tag) !== false){
+		    		$list->push($session);
+		    	}
+			}
+			$sessions = $list;
+		}
  	
 
 
@@ -361,6 +417,7 @@ class SessionsHolder_Controller extends Page_Controller {
 			if(!empty($speaker)){
 				$sessions = $sessions->filter($speaker);
 			}
+
 			//Post Tags
 			if(array_key_exists('CurrentTag', $postFilters)){
 				$list = new ArrayList();
@@ -388,6 +445,8 @@ class SessionsHolder_Controller extends Page_Controller {
 	        }
 		}
 
+		//--- KEY WORD FILTER --- //
+		$sessions = (!empty($idMatch)) ? $sessions->filter('ID', array_keys($idMatch)) : $sessions;
 
 		//------COUNTS-------//
 
@@ -504,12 +563,14 @@ class SessionsHolder_Controller extends Page_Controller {
 	* @return String
 	*/
 	public function getSpeakers(){
-		foreach(Member::get() as $member){
-			if($member->inGroup('Speakers')){
-				$speakers[$member->ID] = $member->Name;
-			}
+		$group = Group::get()->filter('Title', 'Speakers')->First();
+		if($group){
+			$speakers = $group->Members();
+			$speakers = $speakers->map('ID', 'Name')->toArray();
+			return json_encode($speakers);
+		} else {
+			return false;
 		}
-		return json_encode($speakers);
 	}
 
 	/**
@@ -590,36 +651,39 @@ class SessionsHolder_Controller extends Page_Controller {
 				    if(isset($post_filters['Filter'])){
 				    	$top_filter = $post_filters['Filter'];
 					    if(isset($top_filter['MeetingID']) && $top_filter['MeetingID'] != null){
-	 						$query_elements['meeting'] = $top_filter['MeetingID'];
+	 						$query_elements['Meeting'] = $top_filter['MeetingID'];
 					    }
 					    if(isset($top_filter['TypeID']) && $top_filter['TypeID'] != null){
-					    	$query_elements['type'] = $top_filter['TypeID'];
+					    	$query_elements['Type'] = $top_filter['TypeID'];
 					    }
 					    if(isset($top_filter['Day']) && $top_filter['Day'] != null){
-					    	$query_elements['day'] = $top_filter['Day'];
+					    	$query_elements['Day'] = $top_filter['Day'];
 					    }
 					    if(isset($top_filter['TopicID']) && $top_filter['TopicID'] != null){
-					    	$query_elements['topic'] = $top_filter['TopicID'];
+					    	$query_elements['Topic'] = $top_filter['TopicID'];
 					    }
 				    }
 				    if(isset($post_filters['Speaker'])){
 				    	$speak_filter = $post_filters['Speaker'];
 				    	if(isset($speak_filter['MemberID']) && $speak_filter['MemberID'] != null){
-					    	$query_elements['speaker'] = $speak_filter['MemberID'];
+					    	$query_elements['Speaker'] = $speak_filter['MemberID'];
 					    }
 				    }
 				    if(isset($post_filters['Sort'])){
 				    	$sort_filter = $post_filters['Sort'];
 				    	if(isset($sort_filter['Field']) && isset($sort_filter['Direction'])){
-					    	$query_elements['sort'] = $post_filters['Sort'];
+					    	$query_elements['Sort'] = $post_filters['Sort'];
 					    }
 				    }
 				     if(isset($post_filters['CurrentTag'])){
-				    	$query_elements['tag'] = $post_filters['CurrentTag'];
+				    	$query_elements['Tag'] = $post_filters['CurrentTag'];
 				    }
 				}
+				if(isset($this->filters['Keyword'])){
+					$query_elements['Search'] = $this->filters['Keyword'];
+				}
 				if(isset($this->filters['Tag'])){
-					$query_elements['tag'] = $this->filters['Tag'];
+					$query_elements['Tag'] = $this->filters['Tag'];
 				}
 				$query_elements['page'] = 1;
 			}
@@ -668,7 +732,7 @@ class SessionsHolder_Controller extends Page_Controller {
 	*
 	* @return String
 	*/
-     static function curPageURL() { 
+    static function curPageURL() { 
       $pageURL = 'http'; 
       if (Director::protocol() == 'https') {$pageURL .= "s";} 
       $pageURL .= "://"; 
@@ -678,7 +742,35 @@ class SessionsHolder_Controller extends Page_Controller {
          $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; 
       } 
       return $pageURL; 
-   }
+  	}
+
+	public function getCurrentKeyword(){
+		if(isset($_GET['Search'])){ 
+			return $_GET['Search'];
+		} else if(isset($_POST['Keyword'])){  
+			return $_POST['Keyword'];
+		}else{ 
+			return false;
+		}
+	}
+
+	public function getCurrentTag(){
+		if(isset($_GET['Tag'])){ 
+			return $_GET['Tag'];
+		} else if(isset($_GET['CurrentTag']) && $_GET['CurrentTag'] != null){
+			return $_GET['CurrentTag'];
+		} else if(isset($this->filters['Post']['CurrentTag'])){
+			return $this->filters['Post']['CurrentTag']; 
+		} else {
+			$params = $this->getURLParams();
+			if(isset($params['Action']) && isset($params['ID'])){
+				if($params['Action'] == 'tag'){
+					return $params['ID'];
+				}
+			}
+		 	return false;
+		}
+	}
 
   
 

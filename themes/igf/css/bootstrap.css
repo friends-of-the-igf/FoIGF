@@ -1,4 +1,4 @@
-/*
+/*!
  * Bootstrap v2.3.2
  *
  * Copyright 2012 Twitter, Inc
@@ -564,15 +564,15 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 /* White icons with optional class, or on hover/focus/active states of certain elements */
 .icon-white, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:focus > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"], .dropdown-menu > li > a:focus > [class*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu > .active > a > [class*=" icon-"], .dropdown-submenu:hover > a > [class^="icon-"], .dropdown-submenu:focus > a > [class^="icon-"], .dropdown-submenu:hover > a > [class*=" icon-"], .dropdown-submenu:focus > a > [class*=" icon-"] { background-image: url("../images/glyphicons-halflings-white.png"); }
 
-.icon-glass { background-position: 0 0; }
+.icon-glass { background-position: 0      0; }
 
-.icon-music { background-position: -24px 0; }
+.icon-music { background-position: -24px  0; }
 
-.icon-search { background-position: -48px 0; }
+.icon-search { background-position: -48px  0; }
 
-.icon-envelope { background-position: -72px 0; }
+.icon-envelope { background-position: -72px  0; }
 
-.icon-heart { background-position: -96px 0; }
+.icon-heart { background-position: -96px  0; }
 
 .icon-star { background-position: -120px 0; }
 
@@ -604,15 +604,15 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 
 .icon-trash { background-position: -456px 0; }
 
-.icon-home { background-position: 0 -24px; }
+.icon-home { background-position: 0      -24px; }
 
-.icon-file { background-position: -24px -24px; }
+.icon-file { background-position: -24px  -24px; }
 
-.icon-time { background-position: -48px -24px; }
+.icon-time { background-position: -48px  -24px; }
 
-.icon-road { background-position: -72px -24px; }
+.icon-road { background-position: -72px  -24px; }
 
-.icon-download-alt { background-position: -96px -24px; }
+.icon-download-alt { background-position: -96px  -24px; }
 
 .icon-download { background-position: -120px -24px; }
 
@@ -644,15 +644,15 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 
 .icon-barcode { background-position: -456px -24px; }
 
-.icon-tag { background-position: 0 -48px; }
+.icon-tag { background-position: 0      -48px; }
 
-.icon-tags { background-position: -25px -48px; }
+.icon-tags { background-position: -25px  -48px; }
 
-.icon-book { background-position: -48px -48px; }
+.icon-book { background-position: -48px  -48px; }
 
-.icon-bookmark { background-position: -72px -48px; }
+.icon-bookmark { background-position: -72px  -48px; }
 
-.icon-print { background-position: -96px -48px; }
+.icon-print { background-position: -96px  -48px; }
 
 .icon-camera { background-position: -120px -48px; }
 
@@ -684,15 +684,15 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 
 .icon-picture { background-position: -456px -48px; }
 
-.icon-pencil { background-position: 0 -72px; }
+.icon-pencil { background-position: 0      -72px; }
 
-.icon-map-marker { background-position: -24px -72px; }
+.icon-map-marker { background-position: -24px  -72px; }
 
-.icon-adjust { background-position: -48px -72px; }
+.icon-adjust { background-position: -48px  -72px; }
 
-.icon-tint { background-position: -72px -72px; }
+.icon-tint { background-position: -72px  -72px; }
 
-.icon-edit { background-position: -96px -72px; }
+.icon-edit { background-position: -96px  -72px; }
 
 .icon-share { background-position: -120px -72px; }
 
@@ -724,15 +724,15 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 
 .icon-chevron-right { background-position: -456px -72px; }
 
-.icon-plus-sign { background-position: 0 -96px; }
+.icon-plus-sign { background-position: 0      -96px; }
 
-.icon-minus-sign { background-position: -24px -96px; }
+.icon-minus-sign { background-position: -24px  -96px; }
 
-.icon-remove-sign { background-position: -48px -96px; }
+.icon-remove-sign { background-position: -48px  -96px; }
 
-.icon-ok-sign { background-position: -72px -96px; }
+.icon-ok-sign { background-position: -72px  -96px; }
 
-.icon-question-sign { background-position: -96px -96px; }
+.icon-question-sign { background-position: -96px  -96px; }
 
 .icon-info-sign { background-position: -120px -96px; }
 
@@ -764,15 +764,15 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 
 .icon-asterisk { background-position: -456px -96px; }
 
-.icon-exclamation-sign { background-position: 0 -120px; }
+.icon-exclamation-sign { background-position: 0      -120px; }
 
-.icon-gift { background-position: -24px -120px; }
+.icon-gift { background-position: -24px  -120px; }
 
-.icon-leaf { background-position: -48px -120px; }
+.icon-leaf { background-position: -48px  -120px; }
 
-.icon-fire { background-position: -72px -120px; }
+.icon-fire { background-position: -72px  -120px; }
 
-.icon-eye-open { background-position: -96px -120px; }
+.icon-eye-open { background-position: -96px  -120px; }
 
 .icon-eye-close { background-position: -120px -120px; }
 
@@ -804,15 +804,15 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 
 .icon-resize-horizontal { background-position: -456px -118px; }
 
-.icon-hdd { background-position: 0 -144px; }
+.icon-hdd { background-position: 0      -144px; }
 
-.icon-bullhorn { background-position: -24px -144px; }
+.icon-bullhorn { background-position: -24px  -144px; }
 
-.icon-bell { background-position: -48px -144px; }
+.icon-bell { background-position: -48px  -144px; }
 
-.icon-certificate { background-position: -72px -144px; }
+.icon-certificate { background-position: -72px  -144px; }
 
-.icon-thumbs-up { background-position: -96px -144px; }
+.icon-thumbs-up { background-position: -96px  -144px; }
 
 .icon-thumbs-down { background-position: -120px -144px; }
 

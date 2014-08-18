@@ -14,16 +14,19 @@ class TranscriptController extends Page_Controller {
 	);
 
 	protected $meetingsession = null;
+	protected $transcript = null;
 
 	public function init() {
 		parent::init();
 
 		$id = (int)$this->request->param('ID');
-		if($meetingsession = MeetingSession::get()->ByID($id)) {
-			$this->meetingsession = $meetingsession;
+		if($transcript = SessionTranscript::get()->ByID($id)) {
+			$this->transcript = $transcript;
+			$this->meetingsession = $transcript->MeetingSession();
 		} else {
 			return $this->httpError(404);
 		}
+		
 	}
 
 	/**
@@ -33,6 +36,15 @@ class TranscriptController extends Page_Controller {
 	 */
 	public function getMeetingSession() {
 		return $this->meetingsession;
+	}
+
+	/**
+	 * Gets current MeetingSession Transcript
+	 * 
+	 * @return SessionTranscript.
+	 */
+	public function getTranscript(){
+		return $this->transcript;
 	}
 
 	/**
@@ -51,6 +63,12 @@ class TranscriptController extends Page_Controller {
 	 */
 	public function getClassName() {
 		return 'TranscriptController';
+	}
+
+	public function otherLanguages(){
+		$session = $this->meetingsession;
+		$transcripts = $session->Transcripts()->exclude(array('ID' => $this->transcript->ID));
+		return $transcripts;
 	}
 
 }

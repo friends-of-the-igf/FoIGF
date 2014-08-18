@@ -4,7 +4,9 @@
 *
 * @package FoIGF
 */
-class Topic extends DataObject {
+class VideoLanguage extends DataObject {
+
+	public static $singular_name = 'Language';
 
 	public static $db = array(
 		'Name' => 'Text',
@@ -14,7 +16,7 @@ class Topic extends DataObject {
 	public static $default_sort='SortOrder';
 
 	public static $has_many = array(
-		'MeetingSessions' => 'MeetingSession'
+		'Videos' => 'Video'
 	);
 
 	static $searchable_fields = array(
@@ -43,16 +45,4 @@ class Topic extends DataObject {
 		return $fields;
 	}
 
-	 /**
-	 * Gets a link to the Session holder page with the topic id as a parameter in the query string. 
-	 * 
-	 * @return String.
-	 */
-	public function Link(){
-		$link = "";
-		if($page = SessionsHolder::get()->First()) {
-			$link = $page->Link('?Topic=').$this->ID;
-		}
-		return $link;
-	}
 }
