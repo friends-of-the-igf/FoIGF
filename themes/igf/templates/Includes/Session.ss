@@ -28,11 +28,11 @@
 		</div>
 	</div>
 
-	<% if TagsCollection %>
+	<% if Tags %>
 		<div class="tags subtext">
 			<b>Tagged:</b>
-			<% loop TagsCollection %>
-				<a title="Search Session by $Tag" href="$Link">$Tag</a><% if not Last %>,<% end_if %>
+			<% loop ApprovedTags %>
+				<a title="Search Session by $Title" href="$Link">$Title</a><% if not Last %>,<% end_if %>
 			<% end_loop %>
 		</div>
 	<% end_if %>

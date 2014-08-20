@@ -16,7 +16,8 @@ class CustomSiteConfig extends DataExtension {
     );
 
     public static $has_one = array(
-        'ResearchGroup' => 'Group'
+        'ResearchGroup' => 'Group',
+        'CurationGroup' => 'Group'
         );
 
     public function updateCMSFields(FieldList $fields) {
@@ -27,6 +28,7 @@ class CustomSiteConfig extends DataExtension {
         $fields->addFieldToTab('Root.Main', new TextField('FacebookURL', 'Facebook URL'));
         $fields->addFieldToTab('Root.Main', new TextField('TwitterURL', 'Twitter URL'));
         $fields->addFieldToTab('Root.ContentEnrichment', new TreeDropdownField('ResearchGroupID', 'Security Group to conduct Content Enrichment research'));
+        $fields->addFieldToTab('Root.ContentEnrichment', new TreeDropdownField('CurationGroupID', 'Security Group to conduct Tag curation'));
     }
     
 }

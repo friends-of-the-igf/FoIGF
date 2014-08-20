@@ -12,9 +12,12 @@ class SessionController extends Page_Controller {
 
 	public static $allowed_actions = array(
         'TagForm',
-        'saveTags',
-        'getTags',
-        'OpenCalaisForm'
+        'submitTag',
+        'approveTag' => '->isCurator',
+        'denyTag' => '->isCurator',
+        'rateTag',
+        'OpenCalaisForm',
+        'setFormCookie'
 	);
 
 	protected $meetingsession = null;
@@ -47,7 +50,11 @@ class SessionController extends Page_Controller {
 			Session::set('CurrentSession', $meetingsession);
 			$this->meetingsession = $meetingsession;
 		} else {
-			if($this->request->param('Action') == 'SearchForm' || $this->request->param('Action') == 'TagForm' || $this->request->param('Action') == 'getTags' || $this->request->param('Action') == 'OpenCalaisForm'){
+			if($this->request->param('Action') == 'SearchForm' 
+				|| $this->request->param('Action') == 'TagForm' 
+				|| $this->request->param('Action') == 'getTags' 
+				|| $this->request->param('Action') == 'OpenCalaisForm'
+				|| $this->request->param('Action') == 'setFormCookie'){
 				return;
 			}else{
 				return $this->httpError(404);
@@ -84,95 +91,6 @@ class SessionController extends Page_Controller {
 		}
 	}
 
-	/**
-	 * Creates a form for front end tagging
-	 * 
-	 * @return Form.
-	 */
-	public function TagForm(){
-		$fields = new FieldList();
-
-		$fields->push($t = new TextField('Tags', 'Add Tags'));
-		$t->setAttribute('placeholder', 'Enter tags separated by commas');
-		$t->setAttribute('class', 'typeahead');
-		$t->setAttribute('data-provide', 'typeahead');
-		$t->setAttribute('autocomplete', 'off');
-
-		$actions = new FieldList($b = new FormAction('saveTags', 'Save'));
-		$b->addExtraClass('btn');
-		$b->addExtraClass('btn-primary');
-
-		$form = new Form($this, 'TagForm', $fields, $actions);
-		$form->setAttribute('data-url', $this->Link());
-
-		return $form;
-	}
-
-	/**
-	 * Form action for TagForm
-	 * @param $data Array of data from form fields.
-	 * @param $form The form object
-	 */
-	public function saveTags($data, $form){
-
-		$meetingsession = Session::get('CurrentSession');
-
-		if($data['Tags'] != null && isset($data['Tags'])){
-			//make an array of the tags currently attached to sesseion		
-			$oldTagList = array();	
-			$oldTags = preg_split("*,*", trim($meetingsession->Tags));
-			foreach($oldTags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$oldTagList[$tag] = $tag;
-				}
-			}
-
-			$newTagList = array();	
-			$newTags = preg_split("*,*", trim($data['Tags']));
-			foreach($newTags as $tag) {
-				$tag = trim($tag);
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$newTagList[$tag] = $tag;
-				}
-			}
-
-			$tagsToAdd = array_diff($newTagList, $oldTagList);
-		
-			if(!empty($tagsToAdd)){
-				foreach($tagsToAdd as $tag){				
-					if($meetingsession->Tags != null){
-						$meetingsession->Tags .= ','.$tag;
-					} else {
-						$meetingsession->Tags = $tag;
-					}
-					$meetingsession->write();
-				}
-			}
-		}
-		return $this->redirectBack();
-	}
-
-	/**
-	 * Gets a list of all Tags
-	 * 
-	 * @return String.
-	 */
-	public function getTags() {
-		$sessions = MeetingSession::get();
-		$list = array();	
-		foreach($sessions as $session) {
-			$tags = preg_split("*,*", trim($session->Tags));
-			foreach($tags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$list[$tag] = $tag;
-				}
-			}
-		}
-		return json_encode($list);
-	}
 
 	public function OpenCalaisForm(){
 
@@ -204,6 +122,324 @@ class SessionController extends Page_Controller {
 		}
 
 	}
+
+	public function TagForm(){
+		$fields = new FieldList();
+		$fields->push(new TextField('Tag', 'Suggest a new tag'));
+		if($this->meetingsession){
+			$fields->push(new HiddenField('MSID', 'MSID', $this->meetingsession->ID));
+		}
+		$actions = new FieldList($btn = new FormAction('submitTag', '+'));
+		$btn->addExtraClass('btn');
+		$btn->addExtraClass('btn-primary');
+		$validator = new RequiredFields('Tag');
+		return new Form($this, 'TagForm', $fields, $actions);
+	}
+
+	public function submitTag($data, $form){
+		/* ------- Cookie Validation Time! --------- */
+		$cookie = Cookie::get('RaterCookie');
+		//Missing Cookie
+		if(!$cookie){
+			return json_encode(array(
+			'Status' => 'Failure',
+			'Content' => 'Please enable cookies to rate tags.'
+			));
+		}
+
+		//Make our data easy to use. 
+		$cookieData = explode(',', $cookie);
+		$userID = $cookieData[0];
+		$timestamp = $cookieData[1];
+		$hash = $cookieData[2];
+		$now = time();
+
+		//Authenticate the cookies hash
+		$rehash = crypt($userID.$timestamp, COOKIE_SALT);
+		if($hash != $rehash){
+			return json_encode(array(
+				'Status' => 'Failure',
+				'Content' => 'Sorry, we could not authenticate your cookie'
+				));
+		}
+
+		//Validate the cookies extistence for more than 5 min.
+		$timeElapsed = ($now - $timestamp)/60;
+		if($timeElapsed < 5){
+			return json_encode(array(
+				'Status' => 'Failure',
+				'Content' => 'Your cookie is too young, please wait a few minutes'
+				));
+		}
+
+		//Validate that there have not been more than 60 ratings by this user in the last 5 minutes.
+		$usersRatings = TagRating::get()->filter(array('Rater' => $userID));
+		if($usersRatings->Count() > 60){
+			$fiveMinutesAgo = date('Y-m-d H:i:s', $now - 300);
+			$recentRatings = $usersRatings->filter('Created:GreaterThan', $fiveMinutesAgo);
+			if($recentRatings->Count() >= 60){
+				return json_encode(array(
+					'Status' => 'Failure',
+					'Content' => 'Sorry, you have rated 60 tags in less than 5 minutes. Take a little break.'
+					));
+			}
+		}
+		/*----- You have successfully passed cookie validation -----*/	
+
+		$session = MeetingSession::get()->byID($data['MSID']);
+
+		$tag = Tag::get()->filter(array('Title' => strtolower(trim($data['Tag']))))->First();
+		$newTag = false;
+		if(!$tag){
+			$newTag = true;
+			$tag = new Tag();
+			$tag->Title = strtolower(trim($data['Tag']));
+			$tag->Provenance = 'Crowd';
+			$tag->Status = 'Pending';
+			$tag->write();
+		} else if($tag->Status == 'Pending'){
+			$newTag = true;
+		}
+
+		$session->Tags()->add($tag);
+
+		$rating = new TagRating(); 
+		$rating->setProperties($userID, $tag->ID, $session->ID, true);
+		$rating->write();
+
+		if($this->getRequest()->isAjax()){
+			if($newTag){
+				return json_encode(array(
+					'Status' => 'Failure',
+					'Content' => 'Thank you, your tag has been submitted for approval.'
+					));
+
+			} else {
+				$data = new ArrayData(array(
+					'Tag' => $tag,
+					'MeetingSession' => $session,
+					'Rating' => 1
+					));
+
+				return json_encode(array(
+					'Status' => 'Success',
+					'Content' => $data->renderWith('Tag')
+					));
+			}
+		} else {
+			return $this->redirectBack();
+		}
+	}
+
+	public function getTags(){
+		$tags = $this->meetingsession->Tags()->filter('Status', 'Approved');
+		$list = new ArrayList();
+		foreach($tags as $tag){
+			$netRatings = $this->calculateRating($tag->ID, $this->meetingsession->ID);
+
+			$tagData = new ArrayData(array(
+				'Tag' => $tag,
+				'Rating' => $netRatings
+				));
+			$list->push($tagData);
+		}
+		$list = $list->Sort('Rating', 'DESC');
+		$list->limit(10);
+		return $list;
+	}
+
+	public function getPendingTags(){
+		return $this->meetingsession->Tags()->filter('Status', 'Pending');
+	}
+
+	public function approveTag(){
+		$id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : null;
+
+		$tag = Tag::get()->byID($id);
+		if(!$tag){
+			return;//Send back error;
+		}
+
+		$session = (isset($_REQUEST['session'])) ? $_REQUEST['session'] : null;
+		$session = MeetingSession::get()->byID($session);
+		//Missing Session ID from Requesr
+		if(!$session){
+			return;//TO DO: Missing shit
+		}
+
+		$tag->Status = 'Approved';
+ 		$tag->write();
+
+ 		if($this->getRequest()->isAjax()){
+ 			$data = new ArrayData(array(
+				'Tag' => $tag,
+				'MeetingSession' => $session,
+				'Rating' => 1
+				));
+
+			return json_encode(array(
+				'ID' => $id,
+				'Status' => 'Approved',
+				'Content' => $data->renderWith('Tag')
+				));
+		} else {
+			return $this->redirectBack();
+		} 
+	}	
+
+	public function denyTag(){
+		$id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : null;
+
+		$tag = Tag::get()->byID($id);
+		if(!$tag){
+			return;//TO DO: Missing Shit
+		}
+
+		$session = (isset($_REQUEST['session'])) ? $_REQUEST['session'] : null;
+		$session = MeetingSession::get()->byID($session);
+		//Missing Session ID from Requesr
+		if(!$session){
+			return;//TO DO: Missing shit
+		}
+
+		$tag->delete();
+
+		$ratings = TagRating::get()->filter('TagID', $id);
+		foreach($ratings as $rating){
+			$rating->delete;
+		}
+ 
+ 		if($this->getRequest()->isAjax()){
+			return json_encode(array(
+				'ID' => $id,
+				'Status' => 'Denied'
+				));
+		} else {
+			return $this->redirectBack();
+		} 
+	}
+
+	public function rateTag(){
+		//Get our variables and make sure we have what we need.
+		$relevant = isset($_REQUEST['r']);
+
+		$id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : null;
+		//Missing Tag ID from request
+		if(!$id){
+			return;//TO DO: Missing shit
+		}
+
+		$session = (isset($_REQUEST['session'])) ? $_REQUEST['session'] : null;
+		//Missing Session ID from Requesr
+		if(!$session){
+			return;//TO DO: Missing shit
+		}
+
+		/* ------- Cookie Validation Time! --------- */
+		$cookie = Cookie::get('RaterCookie');
+		//Missing Cookie
+		if(!$cookie){
+			return json_encode(array(
+			'Status' => 'Failure',
+			'Content' => 'Please enable cookies to rate tags.'
+			));
+		}
+
+		//Make our data easy to use. 
+		$cookieData = explode(',', $cookie);
+		$userID = $cookieData[0];
+		$timestamp = $cookieData[1];
+		$hash = $cookieData[2];
+		$now = time();
+
+		//Authenticate the cookies hash
+		$rehash = crypt($userID.$timestamp, COOKIE_SALT);
+		if($hash != $rehash){
+			return json_encode(array(
+				'Status' => 'Failure',
+				'Content' => 'Sorry, we could not authenticate your cookie'
+				));
+		}
+
+		//Validate the cookies extistence for more than 5 min.
+		$timeElapsed = ($now - $timestamp)/60;
+		if($timeElapsed < 5){
+			return json_encode(array(
+				'Status' => 'Failure',
+				'Content' => 'Your cookie is too young, please wait a few minutes'
+				));
+		}
+
+		//Validate that this tag has not been rated in the last 24 hours.
+		$latestRating = TagRating::get()->filter(array('Rater' => $userID, 'TagID' => $id, 'SessionID' => $session))->Sort('Created', 'DESC')->First();
+		if($latestRating){
+
+			$created = date_create_from_format('Y-m-d H:i:s', (string)$latestRating->Created);
+			if($created){
+				$created = $created->getTimestamp();
+			} else {
+				$created = 0;
+			}
+			$difference = ($now - $created)/(60 * 60 * 24);
+			if($difference < 24){
+				return json_encode(array(
+					'Status' => 'Failure',
+					'Content' => 'You can only rate a particular tag once every 24 hours.'
+					));
+			}
+		}
+
+		//Validate that there have not been more than 60 ratings by this user in the last 5 minutes.
+		$usersRatings = TagRating::get()->filter(array('Rater' => $userID));
+		if($usersRatings->Count() > 60){
+			$fiveMinutesAgo = date('Y-m-d H:i:s', $now - 300);
+			$recentRatings = $usersRatings->filter('Created:GreaterThan', $fiveMinutesAgo);
+			if($recentRatings->Count() >= 60){
+				return json_encode(array(
+					'Status' => 'Failure',
+					'Content' => 'Sorry, you have rated 60 tags in less than 5 minutes. Take a little break.'
+					));
+			}
+		}
+		/*----- You have successfully passed cookie validation -----*/
+
+
+		$rating = new TagRating();
+		$rating->setProperties($userID, $id, $session, $relevant);
+		$rating->write();
+
+		$netRating = $this->calculateRating($id, $session);
+
+		if($this->getRequest()->isAjax()){
+			return json_encode(array(
+					'ID' => $id,
+					'Rating' => $netRating
+					));
+		} else {
+			return $this->redirectBack();
+		} 
+	}
+
+	
+
+	public function calculateRating($tag, $session){
+		$q = DB::query('SELECT COUNT(*) FROM TagRating WHERE TagID='.$tag.' AND SessionID='.$session.' AND Relevant=1 ');
+		$positiveRatings = (int)$q->value();
+
+		$q = DB::query('SELECT COUNT(*) FROM TagRating WHERE TagID='.$tag.' AND SessionID='.$session.' AND Relevant=0');
+		$negativeRatings = (int)$q->value();
+
+		return  $positiveRatings - $negativeRatings;
+	}
+
+
+	public function setFormCookie(){
+		Cookie::set('HideForm', true, 7);
+	}
+
+	
+
+
 
 
 }

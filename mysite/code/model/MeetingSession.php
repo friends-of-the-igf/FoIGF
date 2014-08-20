@@ -43,12 +43,14 @@ class MeetingSession extends DataObject {
 
 	public static $has_many = array(
 		'Videos' => 'Video',
-		'Transcripts' => 'SessionTranscript'
+		'Transcripts' => 'SessionTranscript',
+		'TagRatings' => 'TagRating'
 	);
 
 	public static $many_many = array(
 		'Speakers' => 'Member',
-		'RelatedSessions' => 'MeetingSession'
+		'RelatedSessions' => 'MeetingSession',
+		'Tags' => 'Tag'
 	);
 	public static $defaults = array(
 		'URLSegment' => null
@@ -102,6 +104,8 @@ class MeetingSession extends DataObject {
 		$speakersTab = new Tab('Speakers');
 		$sessionsTab = new Tab('RelatedSessions');
 		$reportTab = new Tab('Report');
+		$tagTab = new Tab('Tags');
+		$ocTab = new Tab('OpenCalais');
 		
 		$tabset = new TabSet("Root",
 			$mainTab,
@@ -110,7 +114,9 @@ class MeetingSession extends DataObject {
 			$videosTab,
 			$speakersTab,
 			$sessionsTab,
-			$reportTab
+			$reportTab,
+			$tagTab,
+			$ocTab
 		);
 		$fields->push( $tabset );
 
@@ -126,16 +132,6 @@ class MeetingSession extends DataObject {
 		if($types->Count()) {
 			$mainTab->push(new DropdownField('TypeID', 'Type', $types->map()));			
 		}
-
-		// tags
-		$tags = $this->allTagsArray();
-		asort($tags);
-		$mainTab->push(ListboxField::create('Tags', 'Tags (pre-defined)')
-			->setMultiple(true)
-			->setSource($tags)
-		);
-
-		$mainTab->push(new TextField('NewTags', 'New Tags (adds to pre-defined list, comma seperated eg tag1,tag2,tag3)'));
 
 		$topics = Topic::get()->sort('Name');
 		if($topics->Count()) {
@@ -233,6 +229,21 @@ class MeetingSession extends DataObject {
 			$sessionsTab->push($sessionList);
 		}
 
+		if($this->ID){
+			$tagTab->push(new GridField('Tags', 'Tags', $this->Tags(), GridFieldConfig_RelationEditor::create()));
+		}
+
+		if($this->ID){
+			$ocTab->push($button = new FormAction('extractTags', 'Suggest Tags'));
+			$button->setAttribute('data-base', Director::baseURL());
+			$button->setAttribute('data-id', $this->ID);
+
+			$ocTab->push($button = new LiteralField('table-holder', '<div id="table-holder"><img class="loading" style="display:none;" src="mysite/images/ajax-loader.gif"></div></div>'));
+		}
+
+		Requirements::javascript('mysite/javascript/opencalais.js');
+		Requirements::css('mysite/css/opencalais.css');
+
 		return $fields;
 	}
 
@@ -288,16 +299,6 @@ class MeetingSession extends DataObject {
 				}
 			}
 		}
-	
-		//add new tags
-		if($this->NewTags) {
-			if($this->Tags != null){
-				$this->Tags .= ',' . $this->NewTags;
-			} else {
-				$this->Tags = $this->NewTags;
-			}
-			$this->NewTags = null;
-		}
 
 		//save a url segment
 		if(!$this->URLSegment || $this->URLSegment = 'session/0') {
@@ -346,54 +347,6 @@ class MeetingSession extends DataObject {
 		return Controller::join_links('session', $this->ID, $action);
 	}
 
-	/**
-	 * Gets a list of the Meeting Session's tags.  
-	 * 
-	 * @return ArrayList.
-	 */
-	public function TagsCollection() {
-		$tags = preg_split("*,*", trim($this->Tags));
-		$output = new ArrayList();
-		
-		$link = "";
-		if($page = SessionsHolder::get()->First()) {
-			$link = $page->Link('tag');
-		}
-
-		foreach($tags as $tag) {
-			if($tag != ''){
-				$output->push(new ArrayData(array(
-					'Tag' => $tag,
-					'Link' => $link . '/' . urlencode($tag),
-					'URLTag' => urlencode($tag)
-				)));
-			}
-		}
-		
-		if($this->Tags) {
-			return $output;
-		}
-	}
-
-	/**
-	 * Gets a list of all tags. 
-	 * 
-	 * @return Array.
-	 */
-	public function allTagsArray() {
-		$sessions = MeetingSession::get();
-		$list = array();	
-		foreach($sessions as $session) {
-			$tags = preg_split("*,*", trim($session->Tags));
-			foreach($tags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$list[$tag] = $tag;
-				}
-			}
-		}
-		return $list;
-	}
 
 	/**
 	 * Gets the first video attached to this Meeting Session. 
@@ -492,66 +445,21 @@ class MeetingSession extends DataObject {
     	return $list->limit(3);
     }
 
-    /**
-	 * Gets a list of all unique tags, if there is a filter it will filter the tags. 
-	 * @param $filter A MeetingID to filter the tags by meeting. 
-	 * @return ManyManyList.
-	 */
-    public static function get_unique_tags($filter = null) {
-    	$sessions = MeetingSession::get();
-    	if($filter) {
-    		$sessions = $sessions->filter('MeetingID', $filter);
-    	}
-		$uniqueTagsArray = array();
-		foreach($sessions as $session) {
-			$tags = preg_split("*,*", trim($session->Tags));
-			foreach($tags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$uniqueTagsArray[$tag] = $tag;
-				}
-			}
-		}
-		return $uniqueTagsArray;
+    public function hasTags(){
+    	return ($this->Tags()->Count() > 0) ? true : false;
     }
 
-     /**
-	 * Gets a list of all tags, if there is a filter it will filter the tags.
-	 * 
-	 * @param $filter A MeetingID to filter the tags by meeting. 
-	 * @return ManyManyList.
-	 */
-    public static function get_all_tags($filter = null) {
-    	$sessions = MeetingSession::get();
-    	if($filter) {
-    		$sessions = $sessions->filter('MeetingID', $filter);
-    	}
-		$tagsList = new ArrayList();
-		foreach($sessions as $session) {
-			$tags = preg_split("*,*", trim($session->Tags));
-			foreach($tags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$tagsList->push(new ArrayData(array(
-						'Tag' => $tag
-					)));
-				}
-			}
-		}
-		return $tagsList;
+    public function hasPendingTags(){
+    	return ($this->Tags()->filter('Status', 'Pending')->Count() > 0) ? true : false;
     }
 
-     /**
-	 * Returns true or false based on whether the current member can tag this Meeting Session. 
-	 *
-	 * @return Boolean.
-	 */
-    public function Taggable(){
-    	$member = Member::CurrentUser();
-		if($member && $member->ID == $this->OrganiserID){
-			return true;
-		}
+    public function getApprovedTags(){
+    	return $this->Tags()->filter('Status', 'Approved');
     }
+
+
+
+
 
 
 }
