@@ -73,9 +73,24 @@
 
 
 	<div id="wrap">
+
 		<% include Navigation %>
 		<% include SearchBar %>
 		<% include Header %>
+		
+		<% if PendingTagSessions && isCurator %>
+		<div class="notification">
+			<div class='container'>
+				<p>The following sessions have tags pending approval:</p>
+				<ul>
+				<% loop PendingTagSessions %>
+					<li><a href="$Link">$Title</a></li>
+				<% end_loop %>
+				</ul>
+			</div>
+		</div>
+		<% end_if %>
+		
 	    <div id="contentWrap" class="container">
 			$Layout
 	    </div>

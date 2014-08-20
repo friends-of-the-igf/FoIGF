@@ -41,6 +41,17 @@ class Page_Controller extends ContentController {
 			Session::set('SessionStart', time());
 		}
 
+		$cookie = Cookie::get('RaterCookie');
+		if(!$cookie){
+			$uniqueID = $this->generateRandomString(20);
+			$cookieData = array(
+				'ID' => $uniqueID,
+				'Timestamp' => time(),
+				);
+			$cookieData['Hash'] = crypt($cookieData['ID'].$cookieData['Timestamp'], COOKIE_SALT);
+			
+			Cookie::set('RaterCookie', implode(',', $cookieData));
+		} 
 	}
 
 
@@ -83,7 +94,7 @@ class Page_Controller extends ContentController {
 	 * @return ArrayList.
 	 */
 	public function AllTags($limit = null, $sort = null, $filter = null) {
-		$tags = Tag::get();
+		$tags = Tag::get()->filter('Status', 'Approved');
 
 		$count = DB::query('SELECT COUNT(*) FROM MeetingSession_Tags');
 		$count = $count->value();
@@ -204,5 +215,44 @@ class Page_Controller extends ContentController {
 
 	public function setFormCookie(){
 		Cookie::set('HideForm', true, 7);
+	}
+
+	public function isCurator(){
+		$member = Member::CurrentUser();
+		if(!$member){
+			return false;
+		}
+
+		$config = SiteConfig::current_site_config();
+		$group = $config->CurationGroup();
+		if(!$group){
+			return false;
+		}
+
+		$members = $group->Members()->map('ID', 'ID')->toArray();
+		return in_array($member->ID, $members);
+	}
+
+	public function getPendingTagSessions(){
+		$tagIDs = Tag::get()->filter('Status', 'Pending')->map('ID', 'ID')->toArray();
+
+		if(empty($tagIDs)){
+			return false;
+		}
+
+		$sessionIDS = DB::query('SELECT MeetingSessionID FROM MeetingSession_Tags WHERE TagID IN('.implode(',', $tagIDs) .')');
+
+		$sessions = MeetingSession::get()->filter('ID', array_keys($sessionIDS->map()));
+
+		return $sessions;
+	}
+
+	function generateRandomString($length = 10) {
+	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	    $randomString = '';
+	    for ($i = 0; $i < $length; $i++) {
+	        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+	    }
+	    return $randomString;
 	}
 }

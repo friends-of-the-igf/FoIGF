@@ -31,7 +31,7 @@
 	<% if Tags %>
 		<div class="tags subtext">
 			<b>Tagged:</b>
-			<% loop Tags %>
+			<% loop ApprovedTags %>
 				<a title="Search Session by $Title" href="$Link">$Title</a><% if not Last %>,<% end_if %>
 			<% end_loop %>
 		</div>

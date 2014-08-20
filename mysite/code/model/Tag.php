@@ -4,7 +4,12 @@ class Tag extends DataObject{
 	
 	static $db = array(
 		'Title' => 'Varchar',
-		'Provenance' => 'Enum("Manual, Crowd, OpenCalais")'
+		'Provenance' => 'Enum("Manual, Crowd, OpenCalais")',
+		'Status' => 'Enum("Approved, Pending")'
+		);
+
+	static $has_many = array(
+		'Ratings' => 'TagRating'
 		);
 
 	static $belongs_many_many = array(

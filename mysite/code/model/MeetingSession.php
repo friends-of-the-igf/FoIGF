@@ -43,7 +43,8 @@ class MeetingSession extends DataObject {
 
 	public static $has_many = array(
 		'Videos' => 'Video',
-		'Transcripts' => 'SessionTranscript'
+		'Transcripts' => 'SessionTranscript',
+		'TagRatings' => 'TagRating'
 	);
 
 	public static $many_many = array(
@@ -446,6 +447,14 @@ class MeetingSession extends DataObject {
 
     public function hasTags(){
     	return ($this->Tags()->Count() > 0) ? true : false;
+    }
+
+    public function hasPendingTags(){
+    	return ($this->Tags()->filter('Status', 'Pending')->Count() > 0) ? true : false;
+    }
+
+    public function getApprovedTags(){
+    	return $this->Tags()->filter('Status', 'Approved');
     }
 
 

@@ -38,7 +38,8 @@ class SessionsHolder_Controller extends Page_Controller {
 		'doSearch',
 		'getSpeakers',
 		'tag',
-		'changePage'	
+		'changePage',
+		'setFormCookie'	
 
 	);
 

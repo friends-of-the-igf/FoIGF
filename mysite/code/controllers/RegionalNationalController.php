@@ -7,7 +7,8 @@
 class RegionalNationalController extends Page_Controller{
 
 	static $allowed_actions = array(
-		'getMeetingsData'
+		'getMeetingsData',
+		'setFormCookie'
 		);
 
 	public function init(){

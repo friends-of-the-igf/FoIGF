@@ -24,6 +24,9 @@ b { font-weight: 500; }
 
 .modal { display: none; }
 
+/* Notification ------------------------------------------------- */
+.notification { padding-top: 10px; padding-bottom: 10px; border: 1px solid #8a2be2; background: rgba(138, 43, 226, 0.3); }
+
 /* Navigation -------------------------------------------------- */
 #navigation { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: #323232; height: 75px; }
 #navigation .navbar-inner { height: 75px; filter: none; background: #323232 !important; }
@@ -167,13 +170,27 @@ padding-right: 10%;*/ margin-bottom: 20px; color: black; }
 #ses-wrap .session-side form fieldset .checkboxset ul { list-style-type: none; padding: 0; margin: 0; }
 #ses-wrap .session-side form fieldset .checkboxset ul li { margin-bottom: 5px; }
 #ses-wrap .session-side form fieldset .checkboxset ul li input, #ses-wrap .session-side form fieldset .checkboxset ul li label { display: inline-block; margin: 0px; }
+#ses-wrap .session-side .tags { border: 1px #d8d8d8 solid; padding: 15px; }
+#ses-wrap .session-side .tags h4 { margin-top: 0px; color: #0098cd; }
+#ses-wrap .session-side .tags ul { max-width: 100%; list-style-type: none; margin-left: 0; margin-bottom: 5px; }
+#ses-wrap .session-side .tags ul .tag, #ses-wrap .session-side .tags ul .pending-tag { float: left; width: 100%; }
+#ses-wrap .session-side .tags ul .tag .rate, #ses-wrap .session-side .tags ul .pending-tag .rate { float: right; }
+#ses-wrap .session-side .tags ul .tag .rate a, #ses-wrap .session-side .tags ul .pending-tag .rate a { margin-right: 5px; text-decoration: none; }
+#ses-wrap .session-side .tags ul .tag .rate a i, #ses-wrap .session-side .tags ul .pending-tag .rate a i { font-size: 1.1em; }
+#ses-wrap .session-side .tags ul .tag .rate a.up, #ses-wrap .session-side .tags ul .pending-tag .rate a.up { color: #bae1bb; }
+#ses-wrap .session-side .tags ul .tag .rate a.down, #ses-wrap .session-side .tags ul .pending-tag .rate a.down { color: #e3606c; }
+#ses-wrap .session-side .tags ul .tag .rate .rating, #ses-wrap .session-side .tags ul .pending-tag .rate .rating { display: inline-block; text-align: center; width: 30px; }
+#ses-wrap .session-side #Form_TagForm { margin-bottom: 0px; padding: 4px 10px; background: #0098cd; }
+#ses-wrap .session-side #Form_TagForm div { padding: 0px; }
+#ses-wrap .session-side #Form_TagForm fieldset { display: inline-block; }
+#ses-wrap .session-side #Form_TagForm fieldset #Tag { padding: 0px; }
+#ses-wrap .session-side #Form_TagForm fieldset #Tag label { color: white; display: inline-block; margin-right: 7px; }
+#ses-wrap .session-side #Form_TagForm fieldset #Tag .middleColumn { display: inline-block; }
+#ses-wrap .session-side #Form_TagForm fieldset #Tag .middleColumn input { display: inline-block; width: 163px; margin-bottom: 0px; }
+#ses-wrap .session-side #Form_TagForm .Actions { text-align: right; display: inline-block; }
+#ses-wrap .session-side #Form_TagForm .Actions input { -webkit-font-smoothing: antialiased; display: inline-block; padding: 3px 10px; padding-bottom: 7px; font-size: 20px; font-weight: bold; border: 1px solid #0077a8; }
 #ses-wrap .view-count { padding: 15px 0 5px 0; background-color: #f3f3f3; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 #ses-wrap .view-count b { font-size: 1.5em; }
-#ses-wrap #Form_TagForm { margin-bottom: 0px; }
-#ses-wrap #Form_TagForm label { font-weight: bold; font-size: 14px; }
-#ses-wrap #Form_TagForm fieldset { display: inline-block; width: 70%; }
-#ses-wrap #Form_TagForm fieldset #Tags input { width: 100%; padding: 10px; margin-bottom: 0px; }
-#ses-wrap #Form_TagForm .Actions { text-align: right; margin-bottom: 10px; display: inline-block; width: 28%; }
 
 /* meetings holder -------------------------------------------------- */
 #MeetingsHolder .promo { background: #f3f3f3; border: 1px solid #d8d8d8; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; margin-top: 30px; margin-bottom: 20px; }
@@ -312,9 +329,10 @@ padding-right: 10%;*/ margin-bottom: 20px; color: black; }
   #AboutPage #stat { padding-left: 0px !important; }
   #AboutPage #who { margin-bottom: 50px !important; }
   #filter-wrap form fieldset select { width: 100%; }
-  #filter-wrap form fieldset #Speaker input { width: 90%; } }
-#navigation .navbar-inner .container ul { margin-left: 0px; }
-
+  #filter-wrap form fieldset #Speaker input { width: 90%; }
+  #ses-wrap .session-side #Form_TagForm fieldset #Tag .middleColumn { display: inline-block; }
+  #ses-wrap .session-side #Form_TagForm fieldset #Tag .middleColumn input { display: inline-block; width: 95px; margin-bottom: 0px; }
+  #navigation .navbar-inner .container ul { margin-left: 0px; } }
 @media (min-width: 768px) and (max-width: 979px) { #HomePage .sub-main .span4 { height: 420px; }
   #HomePage .sub-main .span4.topics span.extra { display: none; }
   #HomePage .sub-main .span4.featured img { padding-bottom: 25px; }
@@ -341,7 +359,9 @@ padding-right: 10%;*/ margin-bottom: 20px; color: black; }
   #MeetingsHolder #meetings-wrap { padding-top: 30px; padding-bottom: 100px; min-height: 200px; }
   #MeetingController .section { width: 100%; padding: 3px !important; margin-left: 0px !important; }
   #MeetingController .section .social { width: 100%; text-align: center; padding-left: 25px; }
-  #MeetingController .section.right-divide { border-bottom: 1px #d8d8d8 solid; border-right: none; } }
+  #MeetingController .section.right-divide { border-bottom: 1px #d8d8d8 solid; border-right: none; }
+  #ses-wrap .session-side #Form_TagForm fieldset #Tag .middleColumn { display: inline-block; }
+  #ses-wrap .session-side #Form_TagForm fieldset #Tag .middleColumn input { display: inline-block; width: 100%; margin-bottom: 5px; } }
 @media (max-width: 767px) { body { padding: 0px; width: 100%; }
   body #wrap { padding-left: 20px; padding-right: 20px; }
   #AboutPage #intro { height: 100%; border-bottom: 1px solid #d8d8d8; }
@@ -359,6 +379,12 @@ padding-right: 10%;*/ margin-bottom: 20px; color: black; }
   #navigation .navbar-inner .container .nav-collapse .nav.pull-right { float: none; }
   #navigation .navbar-inner .container .nav-collapse .nav li { z-index: 2; }
   #navigation .navbar-inner .container .nav-collapse .nav li a { margin-bottom: 0px; border-radius: 0px; padding: 10px 10px 10px 10px; z-index: 2; }
+  #ses-wrap .session-side #Form_TagForm fieldset { width: 90%; }
+  #ses-wrap .session-side #Form_TagForm fieldset #Tag { width: 100%; }
+  #ses-wrap .session-side #Form_TagForm fieldset #Tag .middleColumn { display: inline-block; width: 70%; }
+  #ses-wrap .session-side #Form_TagForm fieldset #Tag .middleColumn input { display: inline-block; width: 100%; margin-bottom: 2px; margin-top: 2px; }
+  #ses-wrap .session-side #Form_TagForm .Actions { /*margin-top: 5px;*/ }
+  #ses-wrap .session-side #Form_TagForm .Actions input { /*margin-bottom: 0px;*/ margin-bottom: 2px; margin-top: 2px; }
   #SessionsHolder #filter-form { cursor: pointer; }
   #SessionsHolder #filter-form:hover { text-decoration: underline; }
   #SessionsHolder #tag-head { cursor: pointer; }
