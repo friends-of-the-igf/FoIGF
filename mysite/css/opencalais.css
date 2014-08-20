@@ -1,0 +1,4 @@
+#table-holder { padding: 10px; }
+#table-holder table { margin-bottom: 10px; }
+#table-holder table tr td { padding: 5px; padding-left: 10px; }
+#table-holder i { font-style: italic; }

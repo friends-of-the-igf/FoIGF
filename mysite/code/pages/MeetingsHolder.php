@@ -23,7 +23,8 @@ class MeetingsHolder extends Page {
 }
 class MeetingsHolder_Controller extends Page_Controller {
 
-	public static $allowed_actions = array (
+	public static $allowed_actions = array(
+		'setFormCookie',
 	);
 
 	public function init() {

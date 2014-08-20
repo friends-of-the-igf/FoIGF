@@ -25,7 +25,8 @@ class ContactPage extends Page{
 class ContactPage_Controller extends Page_Controller{
 
 	static $allowed_actions = array(
-		'ContactForm'
+		'ContactForm',
+		'setFormCookie'
 	);
 
 	/**

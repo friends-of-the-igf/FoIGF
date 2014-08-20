@@ -38,7 +38,8 @@ class SessionsHolder_Controller extends Page_Controller {
 		'doSearch',
 		'getSpeakers',
 		'tag',
-		'changePage'	
+		'changePage',
+		'setFormCookie'	
 
 	);
 
@@ -361,24 +362,18 @@ class SessionsHolder_Controller extends Page_Controller {
     	}
 
 		if((isset($_GET['Tag']) && $_GET['Tag'] != null)){
-			$tag = $_GET['Tag'];
-			$list = new ArrayList();
-			foreach ($sessions as $session) {
-				if(strpos($session->Tags, $tag) !== false){
-		    		$list->push($session);
-		    	}
-			}
+			$tagID = $_GET['Tag'];
+			$tag = Tag::get()->byID($tagID);
+			$map = $tag->Sessions()->map('ID', 'ID')->toArray();
+			$list = $sessions->filter('ID', $map);
 			$sessions = $list;
 		}
 
 		if((isset($_GET['CurrentTag']) && $_GET['CurrentTag'] != null)){
-			$tag = $_GET['CurrentTag'];
-			$list = new ArrayList();
-			foreach ($sessions as $session) {
-				if(strpos($session->Tags, $tag) !== false){
-		    		$list->push($session);
-		    	}
-			}
+			$tagID = $_GET['CurrentTag'];
+			$tag = Tag::get()->byID($tagID);
+			$map = $tag->Sessions()->map('ID', 'ID')->toArray();
+			$list = $sessions->filter('ID', $map);
 			$sessions = $list;
 		}
  	
@@ -420,13 +415,10 @@ class SessionsHolder_Controller extends Page_Controller {
 
 			//Post Tags
 			if(array_key_exists('CurrentTag', $postFilters)){
-				$list = new ArrayList();
-				$tag = $postFilters['CurrentTag'];
-				foreach ($sessions as $session) {
-					if(strpos($session->Tags, $tag) !== false){
-			    		$list->push($session);
-			    	}
-				}
+				$tagID = $postFilters['CurrentTag'];
+				$tag = Tag::get()->byID($tagID);
+				$map = $tag->Sessions()->map('ID', 'ID')->toArray();
+				$list = $sessions->filter('ID', $map);
 				$sessions = $list;
 			}
 
@@ -435,14 +427,10 @@ class SessionsHolder_Controller extends Page_Controller {
 		
 		//--- TAG FILTER ----//
 		if(!empty($filters) && array_key_exists('Tag', $filters)){
-			$tag = $filters['Tag'];
-			$sessions = new ArrayList();
-        	$fullSessions = MeetingSession::get();
-       		foreach($fullSessions as $sesh){
-		    	if(strpos($sesh->Tags, $tag) !== false){
-		    		$sessions->push($sesh);
-		    	}
-	        }
+			$tagID  = $filters['Tag'];
+			$tag = Tag::get()->byID($tagID);
+			$list = $tag->Sessions();
+	        $sessions = $list;
 		}
 
 		//--- KEY WORD FILTER --- //
@@ -756,16 +744,28 @@ class SessionsHolder_Controller extends Page_Controller {
 
 	public function getCurrentTag(){
 		if(isset($_GET['Tag'])){ 
-			return $_GET['Tag'];
+			$tag = Tag::get()->byID($_GET['Tag']);
+			if($tag){
+				return $tag->Title;
+			}
 		} else if(isset($_GET['CurrentTag']) && $_GET['CurrentTag'] != null){
-			return $_GET['CurrentTag'];
+			$tag = Tag::get()->byID($_GET['CurrentTag']);
+			if($tag){
+				return $tag->Title;
+			}
 		} else if(isset($this->filters['Post']['CurrentTag'])){
-			return $this->filters['Post']['CurrentTag']; 
+			$tag = Tag::get()->byID($this->filters['Post']['CurrentTag']);
+			if($tag){
+				return $tag->Title;
+			}
 		} else {
 			$params = $this->getURLParams();
 			if(isset($params['Action']) && isset($params['ID'])){
 				if($params['Action'] == 'tag'){
-					return $params['ID'];
+					$tag = Tag::get()->byID($params['ID']);
+					if($tag){
+						return $tag->Title;
+					}
 				}
 			}
 		 	return false;

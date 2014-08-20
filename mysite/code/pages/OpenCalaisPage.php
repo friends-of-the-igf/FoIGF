@@ -35,7 +35,8 @@ class OpenCalaisPage_Controller extends Page_Controller{
 		'openCalaisSession',
 		'exportToCSV',
 		'sortColumn',
-		'BatchIDForm'
+		'BatchIDForm',
+		'setFormCookie'
 	);
 
 	public function init(){

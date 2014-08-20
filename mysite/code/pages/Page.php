@@ -41,6 +41,17 @@ class Page_Controller extends ContentController {
 			Session::set('SessionStart', time());
 		}
 
+		$cookie = Cookie::get('RaterCookie');
+		if(!$cookie){
+			$uniqueID = $this->generateRandomString(20);
+			$cookieData = array(
+				'ID' => $uniqueID,
+				'Timestamp' => time(),
+				);
+			$cookieData['Hash'] = crypt($cookieData['ID'].$cookieData['Timestamp'], COOKIE_SALT);
+			
+			Cookie::set('RaterCookie', implode(',', $cookieData));
+		} 
 	}
 
 
@@ -82,19 +93,18 @@ class Page_Controller extends ContentController {
 	 * @param $filter Meeting->ID or FALSE. if Meeting->ID will filter MeetingSession->Tags by Meeting.
 	 * @return ArrayList.
 	 */
-	public function popularTags($limit = null, $sort = null, $filter = null) {
-		$uniqueTags = MeetingSession::get_unique_tags($filter);
-		$allTags = MeetingSession::get_all_tags($filter);
-		$list = GroupedList::create($allTags);
-		$list = $list->GroupedBy('Tag', 'Tags');
+	public function AllTags($limit = null, $sort = null, $filter = null) {
+		$tags = Tag::get()->filter('Status', 'Approved');
 
-		$count = $allTags->Count();
+		$count = DB::query('SELECT COUNT(*) FROM MeetingSession_Tags');
+		$count = $count->value();
+
 		$output = new ArrayList();
-		$link = (SessionsHolder::get()->First() ? SessionsHolder::get()->First()->Link('tag') : "");
+		foreach($tags as $tag) {
+			$weight = DB::query('SELECT COUNT(*) FROM MeetingSession_Tags WHERE TagID ='.$tag->ID);
+			$weight = $weight->value();
 
-		foreach($uniqueTags as $tag) {
-			$item = $list->find('Tag', $tag);
-			$weight = $item->Tags->Count();
+			error_log($weight);
 			$percent = ($weight / $count) * 100;
 
 			if($percent <= 1) {
@@ -112,9 +122,8 @@ class Page_Controller extends ContentController {
 			}
 
 			$output->push(new ArrayData(array(
-				'Tag' => $tag,
-				'Link' => $link . '/' . urlencode($tag),
-				'URLTag' => urlencode($tag),
+				'Title' => $tag->Title,
+				'Link' => $tag->Link(),
 				'Weight' => $percent,
 				'Size' => $size
 			)));
@@ -206,5 +215,44 @@ class Page_Controller extends ContentController {
 
 	public function setFormCookie(){
 		Cookie::set('HideForm', true, 7);
+	}
+
+	public function isCurator(){
+		$member = Member::CurrentUser();
+		if(!$member){
+			return false;
+		}
+
+		$config = SiteConfig::current_site_config();
+		$group = $config->CurationGroup();
+		if(!$group){
+			return false;
+		}
+
+		$members = $group->Members()->map('ID', 'ID')->toArray();
+		return in_array($member->ID, $members);
+	}
+
+	public function getPendingTagSessions(){
+		$tagIDs = Tag::get()->filter('Status', 'Pending')->map('ID', 'ID')->toArray();
+
+		if(empty($tagIDs)){
+			return false;
+		}
+
+		$sessionIDS = DB::query('SELECT MeetingSessionID FROM MeetingSession_Tags WHERE TagID IN('.implode(',', $tagIDs) .')');
+
+		$sessions = MeetingSession::get()->filter('ID', array_keys($sessionIDS->map()));
+
+		return $sessions;
+	}
+
+	function generateRandomString($length = 10) {
+	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	    $randomString = '';
+	    for ($i = 0; $i < $length; $i++) {
+	        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+	    }
+	    return $randomString;
 	}
 }

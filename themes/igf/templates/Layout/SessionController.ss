@@ -87,18 +87,52 @@
 				</div>
 			<% end_if %>
 			<div class="session-side">
-				<% if TagsCollection %>
-					<h5>Tagged</h5>
-					<% loop TagsCollection %>
-						<a title="Search Session by $Tag" href="$Link">$Tag</a><% if not Last %>,<% end_if %>
+				<div class='tags'>
+				<% if hasTags %>
+					<h4><i class="fa fa-tags"></i> Tags</h4>
+					<ul class="tag-list">
+					<% loop Top.Tags %>	
+							<li class="tag">
+								<a title="Search Session by $Tag.Title" href="$Tag.Link">$Tag.Title</a> 
+								<span class="rate">
+									<a class="up" title="This is a good tag" href="$Top.MeetingSession.Link()/rateTag?r=1&id=$Tag.ID&session=$Top.MeetingSession.ID">
+										<i class="fa fa-arrow-up"></i>
+									</a> 
+									<a class="down" title="This is a bad tag" href="$Top.MeetingSession.Link()/rateTag?id=$Tag.ID&session=$Top.MeetingSession.ID">
+										<i class="fa fa-arrow-down"></i>
+									</a>
+									<span class="rating" id="rating_{$Tag.ID}">$Rating</span>
+								</span>
+							</li>
 					<% end_loop %>
+					<div style="clear:both"></div>
+					</ul>
+					<% if hasPendingTags && Top.isCurator %>
+						<h4><i class="fa fa-tags"></i> Pending Tags</h4>
+						<ul class="pending-tag-list">
+						<% loop Top.PendingTags %>
+
+							<li data-id="$ID" class='pending-tag'>
+								<a title="Search Session by $Title" href="$Link">$Title</a> 
+								<span class="rate">
+									<a class="up" title="This is a good tag" href="$Top.MeetingSession.Link()/approveTag?r=1&id=$ID&session=$Top.MeetingSession.ID">
+										<i class="fa fa-check-circle"></i></i>
+									</a> 
+									<a class="down" title="This is a bad tag" href="$Top.MeetingSession.Link()/denyTag?id=$ID&session=$Top.MeetingSession.ID">
+										<i class="fa fa-times-circle"></i></i>
+									</a>
+									<span class="rating"></span>
+								</span>
+							</li>
+						<% end_loop %>
+						<div style="clear:both"></div>
+					</ul>
+					<% end_if %>
 				<% end_if %>
-			</div>
-			<% if Taggable %>
-				<div class='add-tags'>
-					$Top.TagForm
+				<div style="clear:both"></div>
 				</div>
-			<% end_if %>
+				$Top.TagForm
+			</div>
 			<% if Organiser && $Top.SiteConfig.ShowOrganisers %>
 				<h5>Organiser</h5>
 				<% with Organiser %>

@@ -13,6 +13,8 @@ $database = 'STW_igf';
 
 require_once('conf/ConfigureFromEnv.php');
 
+define('COOKIE_SALT', 'xFV-LkZ*0Z+r_xfJG8=UktJ~Tkv92uSEXVFQm74shXuek34-NwaBBcQI|0pl');
+
 MySQLDatabase::set_connection_charset('utf8');
 SSViewer::set_theme('igf');
 if(class_exists('SiteTree')) SiteTree::enable_nested_urls();
