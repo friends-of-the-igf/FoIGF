@@ -120,6 +120,20 @@ $(document).ready(function() {
 		window.location = destination;
 	});
 
+	$('.tags').find('a').on('click', function(e){
+		e.preventDefault();
+		keywords = $('#Form_SearchForm').serialize();
+
+		if($('#Form_FilterForm').find('#Form_FilterForm_CurrentTag').val() != null){
+			$('#Form_FilterForm').find('#Form_FilterForm_CurrentTag').val('');
+		}
+		otherData = $('#Form_FilterForm').serialize();
+
+		destination = $(this).attr('href') + '?' + keywords + '&' + otherData; 
+
+		window.location = destination;
+	});
+
 	$('.clear-tag').on('click', function(e){
 		e.preventDefault();
 		$('#Form_FilterForm').find('#Form_FilterForm_CurrentTag').val('');
