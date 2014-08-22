@@ -53,10 +53,17 @@ $(document).ready(function() {
 		data = $(this).serialize();	
 		url = $(this).attr('action');
 
+		$('#Form_TagForm_action_submitTag').html('<img class="loader" src="themes/igf/images/ajax-loader-white.gif">');
+
 		$.post(url, data, function(result){
-		
 		 	obj = JSON.parse(result);
 		 	if(obj.Status == 'Failure'){
+		 		alert(obj.Content);
+		 	} else if(obj.Status == 'Pending') {
+		 		$('#Form_TagForm_Tag').val('');
+		 		$('#Form_TagForm_action_submitTag').html('<i class="fa fa-check"></i>');
+		 		$('#Form_TagForm_action_submitTag').addClass('green');
+		 		$('#Form_TagForm_action_submitTag').attr("disabled", true);
 		 		alert(obj.Content);
 		 	} else {
 		 		$('.tag-list').find('div').prepend(obj.Content);
@@ -65,6 +72,8 @@ $(document).ready(function() {
 
 	});
 
+	
+
 	/* Tag Stuff */
 	//Approve/Deny a tag
 	$('li.pending-tag').find('a').on('click', function(e){
@@ -72,7 +81,10 @@ $(document).ready(function() {
 		var id = $(this).parent().data('id');
 		var url = $(this).attr('href');
 
+		$(this).parent().find('.loader').show();
+
 		$.get(url, null, function(result){
+			$('.loader').hide();
 			obj = JSON.parse(result);
 			if(obj.Status == 'Denied'){
 		 		$('.pending-tag[data-id="'+obj.ID+'"]').remove();
@@ -83,14 +95,16 @@ $(document).ready(function() {
 		});
 	});
 
-	$('li.tag').find('a').on('click', function(e){
+	$('li.tag').find('.rate').find('a').on('click', function(e){
 		e.preventDefault();
 		var id = $(this).parent().data('id');
 		var url = $(this).attr('href');
 
+		$(this).parent().find('.loader').show();
+
 		$.get(url, null, function(result){
-			console.log(result);
 			obj = JSON.parse(result);
+			$('.loader').hide();
 			if(obj.Status == 'Failure'){
 				alert(obj.Content);
 		 	} else {

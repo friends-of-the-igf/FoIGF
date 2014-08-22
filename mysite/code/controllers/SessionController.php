@@ -129,7 +129,10 @@ class SessionController extends Page_Controller {
 		if($this->meetingsession){
 			$fields->push(new HiddenField('MSID', 'MSID', $this->meetingsession->ID));
 		}
-		$actions = new FieldList($btn = new FormAction('submitTag', '+'));
+		
+		$actions = new FieldList($btn = new FormAction('submitTag', ''));
+		$btn->setUseButtonTag(true);
+		$btn->setButtonContent('<i class="fa fa-plus"></i>');
 		$btn->addExtraClass('btn');
 		$btn->addExtraClass('btn-primary');
 		$validator = new RequiredFields('Tag');
@@ -168,7 +171,7 @@ class SessionController extends Page_Controller {
 		if($timeElapsed < 5){
 			return json_encode(array(
 				'Status' => 'Failure',
-				'Content' => 'Your cookie is too young, please wait a few minutes'
+				'Content' => "To help us avoid spam, you can't add new tags until you've been on the website for at least 5 minutes, please try again in a few minutes time."
 				));
 		}
 
@@ -210,7 +213,7 @@ class SessionController extends Page_Controller {
 		if($this->getRequest()->isAjax()){
 			if($newTag){
 				return json_encode(array(
-					'Status' => 'Failure',
+					'Status' => 'Pending',
 					'Content' => 'Thank you, your tag has been submitted for approval.'
 					));
 
@@ -252,6 +255,10 @@ class SessionController extends Page_Controller {
 		return $this->meetingsession->Tags()->filter('Status', 'Pending');
 	}
 
+
+	/**
+	* Approves a pending tag
+	*/
 	public function approveTag(){
 		$id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : null;
 
@@ -287,6 +294,9 @@ class SessionController extends Page_Controller {
 		} 
 	}	
 
+	/**
+	* Removes a pending tag
+	*/
 	public function denyTag(){
 		$id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : null;
 
@@ -366,7 +376,7 @@ class SessionController extends Page_Controller {
 		if($timeElapsed < 5){
 			return json_encode(array(
 				'Status' => 'Failure',
-				'Content' => 'Your cookie is too young, please wait a few minutes'
+				'Content' => "To help us avoid spam, you can't add new tags until you've been on the website for at least 5 minutes, please try again in a few minutes time."
 				));
 		}
 
