@@ -862,6 +862,7 @@ b{
 			}
 			fieldset{
 				display: inline-block;
+				position: relative;
 				#Tag{
 					padding: 0px;
 					label{
@@ -878,20 +879,25 @@ b{
 						}
 					}
 				}
-				
 			}
 		
 			.Actions{
 				text-align: right;
 				display: inline-block;
-				input{
+				button{
 					-webkit-font-smoothing: antialiased;
 					display: inline-block;
-					padding: 3px 10px;
-					padding-bottom: 7px;
-					font-size: 20px;
+					width: 36px;
+					padding: 4px 10px;
+					/*padding-bottom: 3px;*/
+					/*padding: 0px;*/
+					font-size: 14px;
 					font-weight: bold;
 					border: 1px solid $blueDarker;	
+					&.green{
+						border: 1px solid #49BF4C;	
+						background: #49BF4C;
+					}
 				}
 			}
 		}

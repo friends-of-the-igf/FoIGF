@@ -95,6 +95,7 @@
 							<li class="tag">
 								<a title="Search Session by $Tag.Title" href="$Tag.Link">$Tag.Title</a> 
 								<span class="rate">
+									<img style="display:none" class="loader" src="mysite/images/ajax-loader.gif">
 									<a class="up" title="This is a good tag" href="$Top.MeetingSession.Link()/rateTag?r=1&id=$Tag.ID&session=$Top.MeetingSession.ID">
 										<i class="fa fa-arrow-up"></i>
 									</a> 
@@ -115,6 +116,7 @@
 							<li data-id="$ID" class='pending-tag'>
 								<a title="Search Session by $Title" href="$Link">$Title</a> 
 								<span class="rate">
+									<img style="display:none" class="loader" src="mysite/images/ajax-loader.gif">
 									<a class="up" title="This is a good tag" href="$Top.MeetingSession.Link()/approveTag?r=1&id=$ID&session=$Top.MeetingSession.ID">
 										<i class="fa fa-check-circle"></i></i>
 									</a> 

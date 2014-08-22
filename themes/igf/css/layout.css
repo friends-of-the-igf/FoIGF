@@ -182,13 +182,14 @@ padding-right: 10%;*/ margin-bottom: 20px; color: black; }
 #ses-wrap .session-side .tags ul .tag .rate .rating, #ses-wrap .session-side .tags ul .pending-tag .rate .rating { display: inline-block; text-align: center; width: 30px; }
 #ses-wrap .session-side #Form_TagForm { margin-bottom: 0px; padding: 4px 10px; background: #0098cd; }
 #ses-wrap .session-side #Form_TagForm div { padding: 0px; }
-#ses-wrap .session-side #Form_TagForm fieldset { display: inline-block; }
+#ses-wrap .session-side #Form_TagForm fieldset { display: inline-block; position: relative; }
 #ses-wrap .session-side #Form_TagForm fieldset #Tag { padding: 0px; }
 #ses-wrap .session-side #Form_TagForm fieldset #Tag label { color: white; display: inline-block; margin-right: 7px; }
 #ses-wrap .session-side #Form_TagForm fieldset #Tag .middleColumn { display: inline-block; }
 #ses-wrap .session-side #Form_TagForm fieldset #Tag .middleColumn input { display: inline-block; width: 163px; margin-bottom: 0px; }
 #ses-wrap .session-side #Form_TagForm .Actions { text-align: right; display: inline-block; }
-#ses-wrap .session-side #Form_TagForm .Actions input { -webkit-font-smoothing: antialiased; display: inline-block; padding: 3px 10px; padding-bottom: 7px; font-size: 20px; font-weight: bold; border: 1px solid #0077a8; }
+#ses-wrap .session-side #Form_TagForm .Actions button { -webkit-font-smoothing: antialiased; display: inline-block; width: 36px; padding: 4px 10px; /*padding-bottom: 3px;*/ /*padding: 0px;*/ font-size: 14px; font-weight: bold; border: 1px solid #0077a8; }
+#ses-wrap .session-side #Form_TagForm .Actions button.green { border: 1px solid #49BF4C; background: #49BF4C; }
 #ses-wrap .view-count { padding: 15px 0 5px 0; background-color: #f3f3f3; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 #ses-wrap .view-count b { font-size: 1.5em; }
 

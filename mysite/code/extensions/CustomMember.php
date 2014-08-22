@@ -8,8 +8,7 @@ class CustomMember extends DataExtension {
 
 	static $db = array(
 		'Username' => 'Text',
-		'BioLink' => 'Text',
-		'Tagger' => 'Boolean'
+		'BioLink' => 'Text'
 		);
 
 	static $has_one = array(
@@ -52,8 +51,6 @@ class CustomMember extends DataExtension {
 		$fields->insertBefore(new TextField('Username', 'Username'), 'Email');
 		$fields->removeByName('BioLink');
 		$fields->insertBefore(new TextField('BioLink', 'Link to Bio'), 'Email');
-		$fields->removeByName('Tagger');
-		$fields->insertBefore(new CheckboxField('Tagger', 'Can add tags to their Sessions'), 'Email');
 
 		//list box field for selected "organised sessions"
 		// $sessions = MeetingSession::get();
@@ -67,6 +64,7 @@ class CustomMember extends DataExtension {
 		// 	->setMultiple(true)
 		// 	->setSource($ses_arr)
 		// );
+
 		$fields->removeByName('Organisation');
 		$orgs = Organisation::get()->Sort('Title');
 		if($orgs->Count()){

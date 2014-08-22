@@ -115,8 +115,7 @@ class MeetingSession extends DataObject {
 			$speakersTab,
 			$sessionsTab,
 			$reportTab,
-			$tagTab,
-			$ocTab
+			$tagTab
 		);
 		$fields->push( $tabset );
 
@@ -233,12 +232,15 @@ class MeetingSession extends DataObject {
 			$tagTab->push(new GridField('Tags', 'Tags', $this->Tags(), GridFieldConfig_RelationEditor::create()));
 		}
 
-		if($this->ID){
+		$config = SiteConfig::current_site_config();
+
+		if($this->ID && $config->OpenCalaisAPIKey){
 			$ocTab->push($button = new FormAction('extractTags', 'Suggest Tags'));
 			$button->setAttribute('data-base', Director::baseURL());
 			$button->setAttribute('data-id', $this->ID);
 
 			$ocTab->push($button = new LiteralField('table-holder', '<div id="table-holder"><img class="loading" style="display:none;" src="mysite/images/ajax-loader.gif"></div></div>'));
+			$tabset->push($ocTab);
 		}
 
 		Requirements::javascript('mysite/javascript/opencalais.js');
