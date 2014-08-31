@@ -22,8 +22,6 @@
 		<div>
 			<p><a title="Search Session by $Type.Name" href="$Type.Link">$Type.Name</a> in <a title="Search Session by $Meeting.Location.City" href="$Meeting.Location.Link">$Meeting.Location.City</a> on <a title="Search Session by $Topic.Name" href="$Topic.Link">$Topic.Name</a></p>
 
-			<a class="session-blue button" title="Go to $Title" href="$Link"><i class="fa fa-caret-right"></i> View Session </a>
-
 			<p class="subtext small"><b>$Date.Long | $Views view<% if Views != 1 %>s<% end_if %></b></p>
 		</div>
 	</div>
