@@ -20,7 +20,7 @@ SSViewer::set_theme('igf');
 if(class_exists('SiteTree')) SiteTree::enable_nested_urls();
 
 // Admin Email
-Email::setAdminEmail("ben@stripetheweb.com");
+Email::setAdminEmail("dylan@stripetheweb.com");
 
 // Don't use compass when not required
 // if ( !isset($_GET['flush']) ) {
