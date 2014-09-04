@@ -429,8 +429,10 @@ class SessionsHolder_Controller extends Page_Controller {
 		if(!empty($filters) && array_key_exists('Tag', $filters)){
 			$tagID  = $filters['Tag'];
 			$tag = Tag::get()->byID($tagID);
-			$list = $tag->Sessions();
-	        $sessions = $list;
+			if($tag){
+				$list = $tag->Sessions();
+		        $sessions = $list;
+		    }
 		}
 
 		//--- KEY WORD FILTER --- //
