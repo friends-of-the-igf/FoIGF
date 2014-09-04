@@ -105,7 +105,6 @@ class Page_Controller extends ContentController {
 			$weight = DB::query('SELECT COUNT(*) FROM MeetingSession_Tags WHERE TagID ='.$tag->ID);
 			$weight = $weight->value();
 
-			error_log($weight);
 			$percent = ($weight / $count) * 100;
 
 			if($percent <= 1) {
