@@ -60,25 +60,28 @@ class SessionsHolder_Controller extends Page_Controller {
 	public function FilterForm(){
 		$fields = new FieldList();
 
+		$get = $this->getRequest()->getVars();
+		$post = $this->getRequest()->postVars();
+
 		$fields->push($topic = new CheckboxSetField('Topic', 'by Topic', Topic::get()->sort('Name', 'ASC')->map('ID', 'Name')));
-		if(isset($_GET['Topic']) && $_GET['Topic'] != null){
-			$topic->setValue($_GET['Topic']);
+		if(isset($get['Topic']) && $get['Topic'] != null){
+			$topic->setValue($get['Topic']);
 		}
 		
 
 		$fields->push($m = new DropdownField('Meeting', 'by Meeting', Meeting::get()->sort('StartDate','DESC')->map('ID', 'getYearLocation')));
-		if(isset($_GET['Location']) && $_GET['Location'] != null){
-			$m->setValue(Location::get()->byID($_GET['Location'])->Meetings()->First()->ID);
+		if(isset($get['Location']) && $get['Location'] != null){
+			$m->setValue(Location::get()->byID($get['Location'])->Meetings()->First()->ID);
 		} 
-		if(isset($_GET['Meeting']) && $_GET['Meeting'] != null){
-			$m->setValue(Meeting::get()->byID($_GET['Meeting'])->ID);
+		if(isset($get['Meeting']) && $get['Meeting'] != null){
+			$m->setValue(Meeting::get()->byID($get['Meeting'])->ID);
 		}
 		
 		$m->setEmptyString('-select-');
 
 		$fields->push($t = new DropdownField('Type', 'by Type', Type::get()->map('ID', 'Name')));
-		if(isset($_GET['Type']) && $_GET['Type'] != null){
-			$t->setValue($_GET['Type']);
+		if(isset($get['Type']) && $get['Type'] != null){
+			$t->setValue($get['Type']);
 		}
 		
 		$t->setEmptyString('-select-');
@@ -91,15 +94,15 @@ class SessionsHolder_Controller extends Page_Controller {
 			'3' => 'Day 3',
 			'4' => 'Day 4'
 			)));
-		if(isset($_GET['Day']) && $_GET['Day'] != null){
-			$d->setValue($_GET['Day']);
+		if(isset($get['Day']) && $get['Day'] != null){
+			$d->setValue($get['Day']);
 		}
 		
 		$d->setEmptyString('-select-');
 
 		$fields->push($s = new TextField('Speaker', 'by Speaker'));
-		if(isset($_GET['Speaker']) && $_GET['Speaker'] != null){
-			$s->setValue(Member::get()->byID($_GET['Speaker'])->Name);
+		if(isset($get['Speaker']) && $get['Speaker'] != null){
+			$s->setValue(Member::get()->byID($get['Speaker'])->Name);
 		}
 		
 		$s->setAttribute('placeholder', 'Start typing...');
@@ -118,12 +121,12 @@ class SessionsHolder_Controller extends Page_Controller {
 		}
 
 		$fields->push($sor = new OptionSetField('Sort', 'Sort Sessions by', $sortOptions));
-		if(isset($_GET['Sort']) && $_GET['Sort'] != null){
-			$field = $_GET['Sort']['Field'];
+		if(isset($get['Sort']) && $get['Sort'] != null){
+			$field = $get['Sort']['Field'];
 			if($field == 'Views'){
 				$sor->setValue('Views');
 			} else if($field == 'Created'){
-				if($_GET['sort']['Direction'] == 'ASC'){
+				if($get['sort']['Direction'] == 'ASC'){
 					$sor->setValue('Oldest');
 				} else {
 					$sor->setValue('Latest');
@@ -147,14 +150,14 @@ class SessionsHolder_Controller extends Page_Controller {
 		if(isset($this->filters['Post']['CurrentTag'])){
 			$fields->push(new HiddenField('CurrentTag', 'CurrentTag', $this->filters['Post']['CurrentTag']));
 		}
-		if(isset($_GET['CurrentTag'])){
-			$fields->push(new HiddenField('CurrentTag', 'CurrentTag', $_GET['CurrentTag']));
+		if(isset($get['CurrentTag'])){
+			$fields->push(new HiddenField('CurrentTag', 'CurrentTag', $get['CurrentTag']));
 		}
 
-		if(isset($_GET['Search'])){
-			$fields->push(new HiddenField('Keyword', 'Keyword', $_GET['Search']));
-		} elseif (isset($_POST['Keyword'])){
-			$fields->push(new HiddenField('Keyword', 'Keyword', $_POST['Keyword']));
+		if(isset($get['Search'])){
+			$fields->push(new HiddenField('Keyword', 'Keyword', $get['Search']));
+		} elseif (isset($post['Keyword'])){
+			$fields->push(new HiddenField('Keyword', 'Keyword', $post['Keyword']));
 		}
 
 
@@ -169,8 +172,8 @@ class SessionsHolder_Controller extends Page_Controller {
 		$form = new Form($this, 'FilterForm', $fields, $actions);
 		$form->setAttribute('data-url', $this->Link());
 	
-		if(isset($_POST)){
-			$form->loadDataFrom($_POST);
+		if(isset($post)){
+			$form->loadDataFrom($post);
 		}
 		
 		return $form;
@@ -270,7 +273,9 @@ class SessionsHolder_Controller extends Page_Controller {
 	*/
 	public function getSessions($filters = null, $offset = null, $tag = null){
 
-		$keywords = isset($_GET['Search']) ? $_GET['Search'] : false;
+		$get = $this->getRequest()->getVars();
+
+		$keywords = isset($get['Search']) ? $get['Search'] : false;
 
 		if(!$keywords){
 			$keywords = (isset($filters['Keyword'])) ? $filters['Keyword'] : false;
@@ -296,46 +301,47 @@ class SessionsHolder_Controller extends Page_Controller {
 		
 		$sessions = MeetingSession::get();
 
+
 		//------GET FILTERS------//
 		//Location
-    	if(isset($_GET['location']) && $_GET['location'] != null){
-			$sessions = new ArrayList();
-	        $meetings = Location::get()->byID($_GET['location'])->Meetings();
-	        foreach($meetings as $meeting){
-	        	foreach($meeting->MeetingSessions() as $session){
-	        		$sessions->push($session);
-	        	}
-	        }
-    	}
+    	if(isset($get['Location']) && $get['Location'] != null){
+			$location = Location::get()->byID($get['Location']);
 
+			if($location){
+		        $meetingIDs = $location->Meetings()->map('ID', 'ID')->toArray();
+		        $getFilter['MeetingID'] = $meetingIDs;
+		    }
+    	}
+    	
 		//Topic
-    	if(isset($_GET['Topic']) && $_GET['Topic'] != null){
-    		$getFilter['TopicID'] = $_GET['Topic'];
+    	if(isset($get['Topic']) && $get['Topic'] != null){
+    		$getFilter['TopicID'] = $get['Topic'];
     	}
 
     	//Type
-    	if(isset($_GET['Type']) && $_GET['Type'] != null){
-    		$getFilter['TypeID'] = $_GET['Type'];   		
+    	if(isset($get['Type']) && $get['Type'] != null){
+    		$getFilter['TypeID'] = $get['Type'];   		
     	}
 
     	//Meeting
-    	if(isset($_GET['Meeting']) && $_GET['Meeting'] != null){
-    		$getFilter['MeetingID'] = $_GET['Meeting'];	
+    	if(isset($get['Meeting']) && $get['Meeting'] != null){
+
+    		$getFilter['MeetingID'] = $get['Meeting'];	
     	}
 
     	//Day
-    	if(isset($_GET['Day']) && $_GET['Day'] != null){
-    		$getFilter['Day'] = $_GET['Day'];
+    	if(isset($get['Day']) && $get['Day'] != null){
+    		$getFilter['Day'] = $get['Day'];
     	}
 
     	//Speaker
-    	if(isset($_GET['Speaker']) && $_GET['Speaker'] != null){
-    		$speaker['MemberID'] = $_GET['Speaker'];
+    	if(isset($get['Speaker']) && $get['Speaker'] != null){
+    		$speaker['MemberID'] = $get['Speaker'];
     	}
 
 		//Sort
-    	if(isset($_GET['Sort']) && $_GET['Sort'] != null){
-    		$sort = $_GET['Sort'];
+    	if(isset($get['Sort']) && $get['Sort'] != null){
+    		$sort = $get['Sort'];
     	}
 
     	//If sort not set make default
@@ -355,29 +361,31 @@ class SessionsHolder_Controller extends Page_Controller {
     	} else {
     	//If speaker is empty, do not join for filter
     		if(!empty($getFilter)){
-    			$sessions = MeetingSession::get()->filter($getFilter)->sort($sort['Field'], $sort['Direction']);
+    			$sessions = $sessions->filter($getFilter)->sort($sort['Field'], $sort['Direction']);
     		}else{
-    			$sessions = MeetingSession::get()->sort($sort['Field'], $sort['Direction']);
+    			$sessions = $sessions->sort($sort['Field'], $sort['Direction']);
     		}
     	}
 
-		if((isset($_GET['Tag']) && $_GET['Tag'] != null)){
-			$tagID = $_GET['Tag'];
+
+		if((isset($get['Tag']) && $get['Tag'] != null)){
+			$tagID = $get['Tag'];
+			$tag = Tag::get()->byID($tagID);
+			if($tag){
+				$map = $tag->Sessions()->map('ID', 'ID')->toArray();
+				$list = $sessions->filter('ID', $map);
+				$sessions = $list;
+			}
+		}
+
+		if((isset($get['CurrentTag']) && $get['CurrentTag'] != null)){
+			$tagID = $get['CurrentTag'];
 			$tag = Tag::get()->byID($tagID);
 			$map = $tag->Sessions()->map('ID', 'ID')->toArray();
 			$list = $sessions->filter('ID', $map);
 			$sessions = $list;
 		}
-
-		if((isset($_GET['CurrentTag']) && $_GET['CurrentTag'] != null)){
-			$tagID = $_GET['CurrentTag'];
-			$tag = Tag::get()->byID($tagID);
-			$map = $tag->Sessions()->map('ID', 'ID')->toArray();
-			$list = $sessions->filter('ID', $map);
-			$sessions = $list;
-		}
- 	
-
+ 
 
     	//------POST FILTERS------//
     	
@@ -457,8 +465,8 @@ class SessionsHolder_Controller extends Page_Controller {
 		
 		//-------PAGINATION------//
 
-    	if(isset($_GET['page']) && $_GET['page'] != null){
-    		$page = $_GET['page'];
+    	if(isset($get['page']) && $get['page'] != null){
+    		$page = $get['page'];
     		$offset = $page*18;
     	}
 
@@ -735,23 +743,29 @@ class SessionsHolder_Controller extends Page_Controller {
   	}
 
 	public function getCurrentKeyword(){
-		if(isset($_GET['Search'])){ 
-			return $_GET['Search'];
-		} else if(isset($_POST['Keyword'])){  
-			return $_POST['Keyword'];
+		$get = $this->getRequest()->getVars();
+		$post = $this->getRequest()->postVars();
+
+		if(isset($get['Search'])){ 
+			return $get['Search'];
+		} else if(isset($post['Keyword'])){  
+			return $post['Keyword'];
 		}else{ 
 			return false;
 		}
 	}
 
 	public function getCurrentTag(){
-		if(isset($_GET['Tag'])){ 
-			$tag = Tag::get()->byID($_GET['Tag']);
+		$get = $this->getRequest()->getVars();
+		$post = $this->getRequest()->postVars();
+
+		if(isset($get['Tag'])){ 
+			$tag = Tag::get()->byID($get['Tag']);
 			if($tag){
 				return $tag->Title;
 			}
-		} else if(isset($_GET['CurrentTag']) && $_GET['CurrentTag'] != null){
-			$tag = Tag::get()->byID($_GET['CurrentTag']);
+		} else if(isset($get['CurrentTag']) && $get['CurrentTag'] != null){
+			$tag = Tag::get()->byID($get['CurrentTag']);
 			if($tag){
 				return $tag->Title;
 			}

@@ -179,66 +179,117 @@ class Meeting extends DataObject {
 		}
 	}
 
-	/**
-	 * Returns a list the 20 most popular tags as ArrayData 
-	 * 
-	 * @return ArrayList.
-	 */
-	public function popularTags() {
-		$sessions = $this->MeetingSessions();
+	public function popularTags($limit = null, $sort = null, $filter = null) {
 
-		$uniqueTagsArray = array();
-		foreach($sessions as $session) {
-			$tags = preg_split("*,*", trim($session->Tags));
-			foreach($tags as $tag) {
-				if($tag != "") {
-					$tag = strtolower($tag);
-					$uniqueTagsArray[$tag] = $tag;
-				}
-			}
-		}
+		$sessions = $this->MeetingSessions();
+		$sessionIDs = $sessions->map('ID', 'ID')->toArray();
+
+		$idQuery = DB::query('SELECT TagID FROM MeetingSession_Tags WHERE MeetingSessionID IN ('. implode(',', $sessionIDs) .')');
+		$ids = array_keys($idQuery->map());
+
+		$tags = Tag::get()->filter(array('Status' => 'Approved', 'ID' => $ids));
+
+		$count = DB::query('SELECT COUNT(*) FROM MeetingSession_Tags');
+		$count = $count->value();
 
 		$output = new ArrayList();
-		$link = "";
-		if($page = SessionsHolder::get()->First()) {
-			$link = $page->Link('tag');
-		}
+		foreach($tags as $tag) {
+			$weight = DB::query('SELECT COUNT(*) FROM MeetingSession_Tags WHERE TagID ='.$tag->ID);
+			$weight = $weight->value();
 
-		foreach($uniqueTagsArray as $tag) {
-			$tagsList = $this->allTagsList();
-			$count = $tagsList->Count();
-			$filteredList = $tagsList->filter('Tag', $tag);
-			$weight = $filteredList->Count();
 			$percent = ($weight / $count) * 100;
 
-			if($percent <= 3) {
+			if($percent <= 1) {
 				$size = "14px";
-			} elseif($percent <= 5) {
+			} elseif($percent <= 2) {
 				$size = "16px";
-			} elseif($percent <= 10) {
+			} elseif($percent <= 3) {
 				$size = "18px";
-			} elseif($percent <= 20) {
+			} elseif($percent <= 5) {
 				$size = "20px";
-			} elseif($percent <= 30) {
+			} elseif($percent <= 10) {
 				$size = "22px";
 			} else {
-				$size = "22px";
+				$size = "23px";
 			}
 
 			$output->push(new ArrayData(array(
-				'Tag' => $tag,
-				'Link' => $link . '/' . urlencode($tag),
-				'URLTag' => urlencode($tag),
+				'Tag' => $tag->Title,
+				'Link' => $tag->Link(),
 				'Weight' => $percent,
 				'Size' => $size
 			)));
 		}
-		$output->sort('Weight', 'DESC');
-		
-		$limit = 20;
-		
-		return new ArrayList(array_slice($output->items, 0, $limit));
+		if($sort) {
+			$output->sort('Weight', 'DESC');
+		}
+
+		if($limit) {
+			return new ArrayList(array_slice($output->items, 0, $limit));
+		}
+		return $output;
 	}
+
+	// /**
+	//  * Returns a list the 20 most popular tags as ArrayData 
+	//  * 
+	//  * @return ArrayList.
+	//  */
+	// public function popularTags() {
+	// 	$sessions = $this->MeetingSessions();
+
+	// 	$uniqueTagsArray = array();
+	// 	foreach($sessions as $session) {
+	// 		$tags = preg_split("*,*", trim($session->Tags));
+	// 		foreach($tags as $tag) {
+	// 			if($tag != "") {
+	// 				$tag = strtolower($tag);
+	// 				$uniqueTagsArray[$tag] = $tag;
+	// 			}
+	// 		}
+	// 	}
+
+	// 	$output = new ArrayList();
+	// 	$link = "";
+	// 	if($page = SessionsHolder::get()->First()) {
+	// 		$link = $page->Link('tag');
+	// 	}
+
+	// 	foreach($uniqueTagsArray as $tag) {
+	// 		$tagsList = $this->allTagsList();
+	// 		$count = $tagsList->Count();
+	// 		$filteredList = $tagsList->filter('Tag', $tag);
+	// 		$weight = $filteredList->Count();
+	// 		$percent = ($weight / $count) * 100;
+
+	// 		if($percent <= 3) {
+	// 			$size = "14px";
+	// 		} elseif($percent <= 5) {
+	// 			$size = "16px";
+	// 		} elseif($percent <= 10) {
+	// 			$size = "18px";
+	// 		} elseif($percent <= 20) {
+	// 			$size = "20px";
+	// 		} elseif($percent <= 30) {
+	// 			$size = "22px";
+	// 		} else {
+	// 			$size = "22px";
+	// 		}
+
+	// 		$output->push(new ArrayData(array(
+	// 			'Tag' => $tag,
+	// 			'Link' => $link . '/' . urlencode($tag),
+	// 			'URLTag' => urlencode($tag),
+	// 			'Weight' => $percent,
+	// 			'Size' => $size
+	// 		)));
+	// 	}
+	// 	$output->sort('Weight', 'DESC');
+		
+	// 	$limit = 20;
+		
+	// 	return new ArrayList(array_slice($output->items, 0, $limit));
+	// }
 
 	/**
 	 * Returns a list of all tags included in this meeting. 
