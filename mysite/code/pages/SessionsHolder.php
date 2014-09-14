@@ -71,7 +71,10 @@ class SessionsHolder_Controller extends Page_Controller {
 
 		$fields->push($m = new DropdownField('Meeting', 'by Meeting', Meeting::get()->sort('StartDate','DESC')->map('ID', 'getYearLocation')));
 		if(isset($get['Location']) && $get['Location'] != null){
-			$m->setValue(Location::get()->byID($get['Location'])->Meetings()->First()->ID);
+			$loc = Location::get()->byID($get['Location']);
+			if($loc){
+				$m->setValue($loc->Meetings()->First()->ID);
+			}
 		} 
 		if(isset($get['Meeting']) && $get['Meeting'] != null){
 			$m->setValue(Meeting::get()->byID($get['Meeting'])->ID);
