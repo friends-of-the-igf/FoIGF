@@ -14,6 +14,7 @@ class TranscriptTypeReport extends SS_Report {
 		if(!$sort || $sort == "") {
 			$sort = 'TranscriptType';
 		}
+
 		$sessions = MeetingSession::get()->exclude(array('TranscriptType' => '', 'ProposalType' => ''))->sort($sort);
 		$list = new ArrayList();
 		foreach($sessions as $session) {
@@ -35,7 +36,7 @@ class TranscriptTypeReport extends SS_Report {
 			"Title" => array(
 				"title" => "Title"
 			),
-			"TranscriptType" => array(
+			"Transcripts.First.TranscriptType" => array(
 				"Title" => "Transcript Type"
 			),
 			"ProposalType" => array(

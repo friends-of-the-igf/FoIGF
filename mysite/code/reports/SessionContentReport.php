@@ -24,7 +24,11 @@ class SessionContentReport extends SS_Report {
 			$type = $_REQUEST['filters']['Type'];
 
 			foreach($sessions as $session) {
-				if(!$session->$type) {
+				if($type == 'Transcripts'){
+					if($session->Transcripts()->Count() < 1){
+						$list->push($session);
+					}
+				} else if(!$session->$type) {
 					$list->push($session);
 				}
 			}
@@ -70,8 +74,7 @@ class SessionContentReport extends SS_Report {
 			'Content' => 'Content',
 			'Date' => 'Date',
 			'Day' => 'Day',
-			'TranscriptContent' => 'Transcript Content',
-			'TranscriptID' => 'Transcript File',
+			'Transcripts' => 'Transcript',
 			'ProposalContent' => 'Proposal Content',
 			'ProposalID' => 'Proposal File',
 			'MeetingID' => 'Meeting',
