@@ -44,7 +44,7 @@
 <div class="row-fluid tags-wrap">
   <div class="span12 tags">
     <h5>Popular Tags</h5>
-      <% loop $popularTags %><a title="Search Session by $Tag" href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
+      <% loop PopularTags(20, true) %><a title="Search Session by $Tag" href="$Link" style="font-size: {$Size};" >$Tag</a> <% end_loop %>
   </div>
 </div>
 <div class="sessions">

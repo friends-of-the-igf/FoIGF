@@ -4,7 +4,7 @@ jQuery.noConflict();
 $(document).ready(function() {
 
 
-	$('input[name="action_extractTags"]').on('click', function(e){
+	$('input[name="action_extractTags"]').live('click', function(e){
 		e.preventDefault();
 		$('.loading').show();
 		var base = $(this).data('base');
@@ -25,7 +25,6 @@ $(document).ready(function() {
 			});
 		});
 	});
-
 
 
 

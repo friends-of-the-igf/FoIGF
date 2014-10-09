@@ -29,7 +29,8 @@ class Page_Controller extends ContentController {
 		'SearchForm',
 		'results',
 		'QuestionnaireForm',
-		'setFormCookie'
+		'setFormCookie',
+		'testraygun'
 	);
 
 	public function init() {
@@ -104,7 +105,6 @@ class Page_Controller extends ContentController {
 			$weight = DB::query('SELECT COUNT(*) FROM MeetingSession_Tags WHERE TagID ='.$tag->ID);
 			$weight = $weight->value();
 
-			error_log($weight);
 			$percent = ($weight / $count) * 100;
 
 			if($percent <= 1) {
@@ -254,5 +254,9 @@ class Page_Controller extends ContentController {
 	        $randomString .= $characters[rand(0, strlen($characters) - 1)];
 	    }
 	    return $randomString;
+	}
+
+	public function testraygun(){
+		throw new Exception('Test exception '.date('Y-m-d H:i:s'));
 	}
 }

@@ -6,6 +6,10 @@
 */
 class HomePage extends Page {
 
+	static $db = array(
+		'SessionsSort' => 'Text'
+		);
+
 	static $has_one = array(
 		'OfficialLogo' => 'Image'
 		);
@@ -14,6 +18,7 @@ class HomePage extends Page {
 		$fields = parent::getCMSFields();
 
 		$fields->addFieldToTab('Root.Logo', new UploadField('OfficialLogo', 'Official Logo'));
+		$fields->addFieldToTab('Root.Main', new DropdownField('SessionsSort', 'Session to display one home page:', array('Views' => 'Most Viewed', 'Created' => 'Recently Added')), 'Content');
 
 		return $fields;
 	}
@@ -50,9 +55,11 @@ class HomePage_Controller extends Page_Controller {
 
 		$i = 0;
 		$j = 1;
+
+		// $
 		
 		while ($i <= 11) {
-			$session = MeetingSession::get()->sort('Views', 'DESC')->limit(1, $i)->first();
+			$session = MeetingSession::get()->sort($this->SessionsSort, 'DESC')->limit(1, $i)->first();
 			if($session) {
 				switch ($j) {
 					case 1:
