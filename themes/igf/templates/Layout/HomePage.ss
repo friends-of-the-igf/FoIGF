@@ -64,7 +64,11 @@
 <div class="sessions">
 	<div class="row-fluid heading">
 		<div class="span8">
-		<h3>Most viewed sessions</h3>
+		<% if SesssionsSort == Views %> 
+			<h3>Most viewed sessions</h3>
+		<% else %>
+			<h3>Recently viewed sessions</h3>
+		<% end_if %>
 		</div>
 	</div>
 	<div class="row-fluid ses">
